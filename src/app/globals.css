@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+:root {
+  --green: #0b8441;
+  --green-dark: #076634;
+  --green-light: #12a853;
+  --orange: #dd4c2f;
+  --orange-dark: #b83d25;
+  --white: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  color: #111827;
+  background: #ffffff;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #0b8441; border-radius: 4px; }
+
+.gradient-text {
+  background: linear-gradient(135deg, #0b8441 0%, #dd4c2f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes pulse-ring {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(11, 132, 65, 0.4); }
+  50% { box-shadow: 0 0 0 14px rgba(11, 132, 65, 0); }
+}
+
+@keyframes pulse-wa {
+  0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45); }
+  50% { box-shadow: 0 4px 32px rgba(37, 211, 102, 0.7); }
+}
+
+.animate-float { animation: float 4s ease-in-out infinite; }
+.animate-pulse-ring { animation: pulse-ring 2s ease-in-out infinite; }
+.animate-pulse-wa { animation: pulse-wa 2.5s ease-in-out infinite; }
+
+.hero-bg {
+  background: linear-gradient(135deg, #0a3d22 0%, #0b8441 50%, #076634 100%);
+}
+
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 800;
+  color: #111827;
+  line-height: 1.2;
+}
+
+.accent-line {
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #0b8441, #dd4c2f);
+  border-radius: 2px;
+  margin: 0.75rem auto 0;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: white;
+  outline: none;
+}
+.form-input:focus {
+  border-color: #0b8441;
+  box-shadow: 0 0 0 3px rgba(11, 132, 65, 0.1);
+}
