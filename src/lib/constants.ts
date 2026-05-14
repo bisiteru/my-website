@@ -12,7 +12,7 @@ export const COMPANY = {
   social: {
     instagram: "https://instagram.com/dustandwipes",
     facebook: "https://facebook.com/dustandwipes",
-    twitter: "https://twitter.com/dustandwipes",
+    twitter: "https://x.com/dustandwipes",
     linkedin: "https://linkedin.com/company/dustandwipes",
   },
 };
