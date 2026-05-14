@@ -120,8 +120,8 @@ export default function Testimonials() {
                   transition={{ duration: 0.4, ease: ease }}
                   className="flex items-center gap-3.5"
                 >
-                  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#0b8441] to-[#076634] flex items-center justify-center text-white font-bold text-base shrink-0">
-                    {t.name[0]}
+                  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#0b8441] to-[#076634] flex items-center justify-center text-white font-bold text-sm shrink-0">
+                    {t.initials ?? t.name[0]}
                   </div>
                   <div>
                     <div className="font-semibold text-gray-900 text-sm">{t.name}</div>
@@ -189,8 +189,8 @@ export default function Testimonials() {
                 style={{ padding: "1rem 1.25rem" }}
               >
                 <div className="flex items-center gap-2 mb-2">
-                  <div className="w-7 h-7 rounded-full bg-[#0b8441] flex items-center justify-center text-white text-xs font-bold shrink-0">
-                    {test.name[0]}
+                  <div className="w-7 h-7 rounded-full bg-[#0b8441] flex items-center justify-center text-white text-[10px] font-bold shrink-0">
+                    {test.initials ?? test.name[0]}
                   </div>
                   <div className="min-w-0">
                     <div className="text-xs font-semibold text-gray-900 truncate">{test.name}</div>

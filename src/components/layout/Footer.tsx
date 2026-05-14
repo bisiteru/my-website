@@ -1,6 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Phone, Mail, MapPin } from "lucide-react";
-import { COMPANY } from "@/lib/constants";
+import { COMPANY, AFFILIATIONS, LOGO_URL } from "@/lib/constants";
 
 function InstagramIcon() {
   return (
@@ -62,19 +63,27 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="space-y-5 lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-xl bg-[#0b8441] flex items-center justify-center text-white font-black text-lg">
-                D<span className="text-[#dd4c2f]">&</span>W
-              </div>
+            <Link href="/" className="flex items-center gap-2.5">
+              <Image src={LOGO_URL} alt="Dust & Wipes Ltd. Logo" width={48} height={48} className="rounded-xl" />
               <div>
-                <div className="font-black text-white text-base">Dust & Wipes</div>
-                <div className="text-[10px] text-green-400 font-medium tracking-widest uppercase">Limited</div>
+                <div className="font-black text-white text-base leading-tight">Dust & Wipes</div>
+                <div className="text-[9px] text-green-400 font-semibold tracking-[0.18em] uppercase">{COMPANY.tagline}</div>
               </div>
             </Link>
             <p className="text-sm leading-relaxed text-gray-400">
-              Abuja&apos;s trusted professional cleaning and pest control company.
-              Delivering spotless environments and pest-free spaces since 2021.
+              Abuja&apos;s trusted cleaning and pest control experts — restoring clean, healthy spaces since {COMPANY.foundedYear}.
             </p>
+            {/* Affiliations */}
+            <div>
+              <p className="text-xs text-gray-500 uppercase tracking-wider mb-2">Certified & Affiliated With</p>
+              <div className="flex flex-wrap gap-2">
+                {AFFILIATIONS.map((a) => (
+                  <span key={a.short} title={a.full} className="text-xs font-bold text-gray-400 border border-gray-700 px-2.5 py-1 rounded-md hover:border-[#0b8441] hover:text-[#0b8441] transition-colors cursor-default">
+                    {a.short}
+                  </span>
+                ))}
+              </div>
+            </div>
             {/* Social */}
             <div className="flex gap-3">
               {[
@@ -174,7 +183,7 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-gray-500">
-          <p>© {year} Dust & Wipes Limited. All rights reserved.</p>
+          <p>© {year} Dust and Wipes Ltd. All rights reserved.</p>
           <div className="flex gap-4">
             <Link href="/privacy" className="hover:text-[#0b8441] transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-[#0b8441] transition-colors">Terms of Service</Link>
