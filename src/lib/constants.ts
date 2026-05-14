@@ -1,14 +1,20 @@
+export const LOGO_URL =
+  "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=192,h=192,fit=crop,f=png/ALpeL1ljNpuX4VBM/dust-wipes-logo41-2-AGB2VD6oX7TQO8Nj.png";
+
 export const COMPANY = {
   name: "Dust & Wipes Limited",
-  tagline: "Cleaner Spaces. Healthier Living.",
+  tagline: "Restoring a Clean World",
   description:
-    "Abuja's trusted cleaning and pest control company. We deliver spotless environments and pest-free homes for homes, offices, and facilities across the FCT.",
+    "Abuja's most trusted cleaning and pest control company since 2017. We deliver spotless, safe environments for homes, offices, and facilities across the FCT.",
   phone: "0809 970 0001",
   phone2: "0809 845 7721",
   whatsapp: "+2348099700001",
+  whatsappText: "Hello, I'd like to enquire about cleaning services",
   email: "infodesk@dustandwipes.com",
-  address: "Abuja, Federal Capital Territory, Nigeria",
-  googleMapsUrl: "https://maps.google.com/?q=Abuja+FCT+Nigeria",
+  address: "Suite D15, Irama Plaza, 4th Avenue, Gwarinpa, Abuja.",
+  googleMapsUrl:
+    "https://maps.google.com/?q=Irama+Plaza+Gwarinpa+Abuja",
+  foundedYear: 2017,
   social: {
     instagram: "https://instagram.com/dustandwipes",
     facebook: "https://facebook.com/dustandwipes",
@@ -17,14 +23,27 @@ export const COMPANY = {
   },
 };
 
+export const AFFILIATIONS = [
+  { short: "ISSA", full: "International Sanitary Standards Association" },
+  { short: "EHCON", full: "Environmental Health Council of Nigeria" },
+  { short: "PECAN", full: "Pest Control Association of Nigeria" },
+];
+
+export const SERVICE_AREAS = [
+  "Gwarinpa", "Maitama", "Asokoro", "Wuse I & II", "Jabi", "Lugbe",
+  "Kubwa", "Lifecamp", "Katampe", "Jahi", "Apo", "Guzape",
+  "Garki", "Central Area", "Kado", "Utako", "Karu", "Nyanya",
+];
+
 export const SERVICES = [
   {
     id: "residential-cleaning",
-    icon: "🏠",
     title: "Residential Cleaning",
-    shortDesc: "Spotless homes, every time.",
+    shortDesc: "Thorough, eco-friendly cleaning for your home.",
     description:
-      "Thorough home cleaning services tailored to your schedule. From living rooms to kitchens and bathrooms, we leave no corner untouched.",
+      "Thorough, eco-friendly cleaning for your home — kitchens, bathrooms, bedrooms and living areas done to perfection.",
+    image: "/images/hero-corridor-cleaning.jpg",
+    href: "/services#cleaning",
     features: [
       "Full home deep cleaning",
       "Kitchen and bathroom sanitation",
@@ -34,12 +53,13 @@ export const SERVICES = [
     category: "cleaning",
   },
   {
-    id: "office-cleaning",
-    icon: "🏢",
-    title: "Office & Commercial Cleaning",
-    shortDesc: "Productive spaces start clean.",
+    id: "commercial-cleaning",
+    title: "Commercial Cleaning",
+    shortDesc: "Expert office and commercial space cleaning.",
     description:
-      "Keep your workspace hygienic and presentable. We offer daily, weekly, and one-off commercial cleaning for offices, retail shops, and facilities.",
+      "Expert office and commercial space cleaning that keeps your workplace professional, hygienic, and productive.",
+    image: "/images/office-sweeping-yellow.jpg",
+    href: "/services#cleaning",
     features: [
       "Open-plan office cleaning",
       "Restroom sanitisation",
@@ -49,57 +69,13 @@ export const SERVICES = [
     category: "cleaning",
   },
   {
-    id: "deep-cleaning",
-    icon: "✨",
-    title: "Deep Cleaning",
-    shortDesc: "The ultimate refresh for any space.",
+    id: "pest-control",
+    title: "Pest Control",
+    shortDesc: "Safe, effective fumigation and pest management.",
     description:
-      "A comprehensive top-to-bottom clean for homes or offices that need a thorough reset. Perfect for move-ins, move-outs, and after renovations.",
-    features: [
-      "Inside appliances & cabinets",
-      "Grout and tile scrubbing",
-      "Wall & ceiling spot cleaning",
-      "Post-construction debris removal",
-    ],
-    category: "cleaning",
-  },
-  {
-    id: "carpet-upholstery",
-    icon: "🛋️",
-    title: "Carpet & Upholstery Cleaning",
-    shortDesc: "Restore your fabrics to factory fresh.",
-    description:
-      "Professional hot-water extraction and dry cleaning for carpets, rugs, sofas, and fabric chairs. Removes stains, allergens, and odours.",
-    features: [
-      "Hot-water extraction",
-      "Stain & odour treatment",
-      "Sofa and chair deep clean",
-      "Rug washing & restoration",
-    ],
-    category: "cleaning",
-  },
-  {
-    id: "post-construction",
-    icon: "🔨",
-    title: "Post-Construction Cleaning",
-    shortDesc: "We handle the mess builders leave behind.",
-    description:
-      "Specialist cleaning after building, renovation, or remodelling projects. We remove dust, debris, and construction residue safely and efficiently.",
-    features: [
-      "Dust & debris clearance",
-      "Window & glass polishing",
-      "Paint splatter removal",
-      "Final handover inspection clean",
-    ],
-    category: "cleaning",
-  },
-  {
-    id: "general-pest-control",
-    icon: "🐛",
-    title: "General Pest Control",
-    shortDesc: "One treatment. Multiple threats neutralised.",
-    description:
-      "Comprehensive pest treatment targeting cockroaches, ants, flies, and other common household pests using safe, certified pesticides.",
+      "Safe, effective fumigation and pest management to protect your home and business from unwanted infestations.",
+    image: "/images/fumigation-office-hallway.jpg",
+    href: "/services#pest-control",
     features: [
       "Multi-pest spray treatment",
       "Safe for children & pets",
@@ -109,98 +85,137 @@ export const SERVICES = [
     category: "pest-control",
   },
   {
-    id: "termite-control",
-    icon: "🪲",
-    title: "Termite Control",
-    shortDesc: "Protect your property from silent destroyers.",
+    id: "post-construction",
+    title: "Post-Construction Cleaning",
+    shortDesc: "Specialized deep-clean for newly built spaces.",
     description:
-      "Targeted termite extermination and prevention using advanced soil treatment and baiting systems to safeguard your structure.",
+      "Specialized deep-clean for newly built or renovated properties — ready for immediate occupation.",
+    image: "/images/post-construction-interior.jpg",
+    href: "/services#cleaning",
     features: [
-      "Soil barrier treatment",
-      "Bait station installation",
-      "Wood treatment & protection",
-      "Annual inspection plans",
+      "Dust & debris clearance",
+      "Window & glass polishing",
+      "Paint splatter removal",
+      "Final handover inspection clean",
     ],
-    category: "pest-control",
+    category: "cleaning",
   },
   {
-    id: "rodent-control",
-    icon: "🐀",
-    title: "Rodent Control",
-    shortDesc: "Mice and rats — gone for good.",
+    id: "carpet-upholstery",
+    title: "Carpet & Upholstery Cleaning",
+    shortDesc: "Professional deep cleaning for carpets & sofas.",
     description:
-      "Effective rodent elimination and exclusion services. We identify entry points, set traps, and seal access areas to prevent re-infestation.",
+      "Professional deep cleaning for carpets, rugs, sofas and furniture using industry-grade Rug Doctor equipment.",
+    image: "/images/sofa-cleaning.jpg",
+    href: "/services#cleaning",
     features: [
-      "Entry point identification",
-      "Trap placement & monitoring",
-      "Rodent-proofing measures",
-      "Safe disposal of rodents",
+      "Hot-water extraction",
+      "Stain & odour treatment",
+      "Sofa and chair deep clean",
+      "Rug washing & restoration",
     ],
-    category: "pest-control",
+    category: "cleaning",
   },
   {
-    id: "mosquito-treatment",
-    icon: "🦟",
-    title: "Mosquito & Insect Treatment",
-    shortDesc: "Enjoy your evenings without the buzz.",
+    id: "training-consultancy",
+    title: "Training & Consultancy",
+    shortDesc: "Professional training in cleaning management.",
     description:
-      "Targeted fogging and residual spraying to eliminate mosquitoes, midges, and flying insects from gardens, compounds, and interiors.",
+      "Professional training and consulting in cleaning management, hygiene standards, and facility operations.",
+    image: "/images/team-meeting.jpg",
+    href: "/services#training",
     features: [
-      "ULV fogging treatment",
-      "Residual perimeter spray",
-      "Breeding site reduction",
-      "Larvicide application",
+      "Cleaning management training",
+      "Hygiene standards consulting",
+      "Facility operations guidance",
+      "Team certification programs",
     ],
-    category: "pest-control",
+    category: "training",
+  },
+];
+
+export const WHY_US = [
+  {
+    number: "01",
+    title: "Premium Cleaning Quality",
+    description:
+      "We use the latest professional equipment and eco-safe products, adhering to international cleaning standards — every result exceeds expectations.",
   },
   {
-    id: "bed-bug-treatment",
-    icon: "🛏️",
-    title: "Bed Bug Treatment",
-    shortDesc: "Sleep easy — really.",
+    number: "02",
+    title: "Vetted, Professional Staff",
     description:
-      "Heat and chemical treatment protocols that eliminate bed bug infestations at all life stages, including eggs, without damage to your furniture.",
-    features: [
-      "Full room inspection",
-      "Heat treatment option",
-      "Chemical residual spray",
-      "Mattress encasement advice",
-    ],
-    category: "pest-control",
+      "Every team member is thoroughly background-checked, trained, and certified. Dedicated professionals who treat your space with respect.",
+  },
+  {
+    number: "03",
+    title: "Affordable, Transparent Rates",
+    description:
+      "Competitive pricing with no hidden fees. We work with your budget to deliver customised solutions — quality cleaning accessible to all.",
+  },
+  {
+    number: "04",
+    title: "Eco-Friendly Products",
+    description:
+      "Environmentally safe, non-toxic cleaning products — effective on dirt but gentle on your family, pets, and the planet.",
+  },
+  {
+    number: "05",
+    title: "Reliable & On-Time",
+    description:
+      "We show up when we say we will. With Dust & Wipes, you never have to chase your cleaner — reliability is at our core.",
+  },
+  {
+    number: "06",
+    title: "100% Satisfaction Guarantee",
+    description:
+      "Not satisfied? We'll come back and make it right at no extra cost. Your complete satisfaction is our commitment, every visit.",
   },
 ];
 
 export const TESTIMONIALS = [
   {
-    name: "Chibuike Amaraegbu",
-    role: "Google Review",
-    rating: 5,
-    text: "I had a great experience with Dust and Wipes. They cleaned my upholstery so well; the sofa looks brand new. The team was professional, on time, and super friendly. Highly recommend if you're looking for upholstery cleaning done right.",
-  },
-  {
     name: "Mimie Dikko",
-    role: "Google Review",
+    initials: "MD",
+    role: "Carpet Cleaning",
     rating: 5,
-    text: "I am very happy with their service, level of professionalism, and their efficiency. I gave them one carpet on a weekend (Saturday) needing it back by Tuesday, and without any hassle they picked it up, washed and returned it — they didn't even need to call me twice. The carpet went to them brownish and it came back the same colour we bought it! We ended up giving them two more carpets to wash. We will definitely be giving them more jobs to do. Highly recommend them for anything you need cleaned!",
+    text: "I am very happy with their service, professionalism, and efficiency. They picked up my carpet, washed it, and returned it looking brand new. We ended up giving them two more carpets to wash. Highly recommend!",
   },
   {
-    name: "Ukpai Chinemerem",
-    role: "Google Review",
+    name: "Chinemerem Ukpai",
+    initials: "CU",
+    role: "Home Cleaning",
     rating: 5,
-    text: "It was a wonderful experience, very professional at what they do. It's the second time I am using them, and I will choose them again when the need arises.",
+    text: "It was a wonderful experience — very professional at what they do. It's the second time I am using them, and I will choose them again. Great team!",
+  },
+  {
+    name: "Mrs. Nnam",
+    initials: "MN",
+    role: "Office Cleaning",
+    rating: 5,
+    text: "Dust and Wipes transformed my office completely. The team was punctual, thorough, and truly professional. Areas previously stained showed no trace. Truly grateful.",
+  },
+  {
+    name: "Chibuike Amaraegbu",
+    initials: "CA",
+    role: "Upholstery Cleaning",
+    rating: 5,
+    text: "I had a great experience with Dust and Wipes. They cleaned my upholstery so well; the sofa looks brand new. The team was professional, on time, and super friendly. Highly recommend!",
   },
   {
     name: "Oloyede Omolola",
-    role: "Google Review",
+    initials: "OO",
+    role: "House Cleaning",
     rating: 5,
-    text: "Excellent Service. I trust them for all my house cleaning services.",
+    text: "Excellent service. I trust them for all my house cleaning services.",
   },
-  {
-    name: "jefichka U",
-    role: "Google Review",
-    rating: 5,
-    text: "5 Stars.",
-  },
+];
+
+export const STATS = [
+  { value: 1250, suffix: "+", label: "Happy Clients" },
+  { value: 500, suffix: "+", label: "Projects Completed" },
+  { value: 100, suffix: "+", label: "Trained Professionals" },
+  { value: 5.0, suffix: "★", label: "Google Rating", isStatic: true },
 ];
 
 export const FAQS = [
@@ -317,11 +332,4 @@ export const BLOG_POSTS = [
     readTime: "6 min read",
     image: "/images/blog-6.jpg",
   },
-];
-
-export const STATS = [
-  { value: "500+", label: "Happy Clients" },
-  { value: "1,200+", label: "Jobs Completed" },
-  { value: "5★", label: "Google Rating" },
-  { value: "3+", label: "Years in Abuja" },
 ];

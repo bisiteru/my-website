@@ -40,10 +40,18 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate form submission
-    await new Promise((r) => setTimeout(r, 1200));
-    setLoading(false);
-    setSubmitted(true);
+    try {
+      const res = await fetch("https://formspree.io/f/mzdyqpka", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ ...form, _subject: "New Quote Request from Website" }),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   const waMessage = encodeURIComponent(

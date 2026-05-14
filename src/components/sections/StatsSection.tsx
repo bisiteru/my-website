@@ -5,36 +5,30 @@ import { useInView, useMotionValue, useTransform, motion, animate } from "framer
 import { STATS } from "@/lib/constants";
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
-function AnimatedStat({ value, label, index }: { value: string; label: string; index: number }) {
+
+function AnimatedStat({
+  value, suffix, label, isStatic, index,
+}: { value: number; suffix: string; label: string; isStatic?: boolean; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
 
-  // Parse numeric part and suffix from value like "500+", "1,200+", "5★", "3+"
-  const numericMatch = value.replace(/,/g, "").match(/^(\d+(\.\d+)?)(.*)/);
-  const numericTarget = numericMatch ? parseFloat(numericMatch[1]) : null;
-  const suffix = numericMatch ? numericMatch[3] : "";
-  const hasComma = value.includes(",");
-
   const count = useMotionValue(0);
   const displayValue = useTransform(count, (latest) => {
-    if (numericTarget === null) return value;
+    if (isStatic) return value.toFixed(1) + suffix;
     const rounded = Math.round(latest);
-    if (hasComma && rounded >= 1000) {
-      return rounded.toLocaleString() + suffix;
-    }
-    return rounded.toString() + suffix;
+    return (rounded >= 1000 ? rounded.toLocaleString() : rounded.toString()) + suffix;
   });
 
   useEffect(() => {
-    if (isInView && numericTarget !== null) {
-      const controls = animate(count, numericTarget, {
+    if (isInView && !isStatic) {
+      const controls = animate(count, value, {
         duration: 1.8,
         ease: ease,
         delay: index * 0.1,
       });
       return controls.stop;
     }
-  }, [isInView, numericTarget, count, index]);
+  }, [isInView, value, isStatic, count, index]);
 
   return (
     <motion.div
@@ -42,13 +36,16 @@ function AnimatedStat({ value, label, index }: { value: string; label: string; i
       initial={{ opacity: 0, y: 24 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, ease: ease, delay: index * 0.1 }}
-      className="text-center group"
+      className="text-center"
     >
       <div
         className="text-4xl sm:text-5xl font-black gradient-text mb-2 tabular-nums"
         style={{ fontFamily: "var(--font-display), Georgia, serif" }}
       >
-        {numericTarget !== null ? <motion.span>{displayValue}</motion.span> : value}
+        {isStatic
+          ? <span>{value.toFixed(1)}{suffix}</span>
+          : <motion.span>{displayValue}</motion.span>
+        }
       </div>
       <div className="text-gray-500 text-sm font-medium tracking-wide">{label}</div>
     </motion.div>

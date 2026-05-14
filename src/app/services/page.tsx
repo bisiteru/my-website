@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { CheckCircle, MessageCircle } from "lucide-react";
 import { SERVICES, COMPANY } from "@/lib/constants";
 import CTABanner from "@/components/sections/CTABanner";
@@ -64,7 +63,10 @@ export default function ServicesPage() {
               >
                 <div className="h-2 bg-gradient-to-r from-[#0b8441] to-[#12a853]" />
                 <div className="p-6">
-                  <div className="text-4xl mb-4">{service.icon}</div>
+                  <div
+                    className="h-32 -mx-6 -mt-6 mb-5 bg-cover bg-center"
+                    style={{ backgroundImage: `url('${service.image}')` }}
+                  />
                   <h3 className="text-xl font-bold text-gray-900 mb-2">{service.title}</h3>
                   <p className="text-gray-600 text-sm leading-relaxed mb-5">{service.description}</p>
                   <ul className="space-y-2 mb-6">
@@ -113,7 +115,10 @@ export default function ServicesPage() {
               >
                 <div className="h-2 bg-gradient-to-r from-[#dd4c2f] to-[#e96a50]" />
                 <div className="p-6">
-                  <div className="text-4xl mb-4">{service.icon}</div>
+                  <div
+                    className="h-32 -mx-6 -mt-6 mb-5 bg-cover bg-center"
+                    style={{ backgroundImage: `url('${service.image}')` }}
+                  />
                   <h3 className="text-xl font-bold text-gray-900 mb-2">{service.title}</h3>
                   <p className="text-gray-600 text-sm leading-relaxed mb-5">{service.description}</p>
                   <ul className="space-y-2 mb-6">

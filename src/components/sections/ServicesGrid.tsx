@@ -16,9 +16,14 @@ const cardVariants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: ease } },
 };
 
+const CATEGORY_META: Record<string, { label: string; accent: string; bg: string; text: string }> = {
+  cleaning:     { label: "Cleaning",    accent: "#0b8441", bg: "#f0faf4", text: "#0b8441" },
+  "pest-control": { label: "Pest Control", accent: "#dd4c2f", bg: "#fff7f5", text: "#dd4c2f" },
+  training:     { label: "Training",    accent: "#7c3aed", bg: "#f5f3ff", text: "#7c3aed" },
+};
+
 interface Props {
   limit?: number;
-  showTabs?: boolean;
 }
 
 export default function ServicesGrid({ limit }: Props) {
@@ -33,60 +38,60 @@ export default function ServicesGrid({ limit }: Props) {
       viewport={{ once: true, amount: 0.05 }}
     >
       {displayed.map((service) => {
-        const isCleaning = service.category === "cleaning";
-        const accentColor = isCleaning ? "#0b8441" : "#dd4c2f";
-        const badgeBg = isCleaning ? "#f0faf4" : "#fff7f5";
-        const badgeText = isCleaning ? "#0b8441" : "#dd4c2f";
+        const meta = CATEGORY_META[service.category] ?? CATEGORY_META.cleaning;
 
         return (
-          <motion.div key={service.id} variants={cardVariants}>
+          <motion.div key={service.id} variants={cardVariants} className="flex">
             <Link
-              href={`/services#${service.id}`}
-              className="group block bg-white rounded-2xl border border-gray-100 shadow-sm p-6 hover:border-gray-200 hover:shadow-md transition-all duration-300 h-full relative overflow-hidden"
+              href={service.href}
+              className="group flex flex-col bg-white rounded-2xl border border-gray-100 shadow-sm hover:border-gray-200 hover:shadow-lg transition-all duration-300 w-full overflow-hidden"
             >
-              {/* Top accent bar */}
+              {/* Image */}
               <div
-                className="absolute top-0 left-0 right-0 h-0.5 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-t-2xl"
-                style={{ background: accentColor }}
-              />
-
-              {/* Category badge */}
-              <span
-                className="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-full mb-5"
-                style={{ background: badgeBg, color: badgeText }}
+                className="h-48 bg-cover bg-center relative overflow-hidden shrink-0"
+                style={{ backgroundImage: `url('${service.image}')` }}
               >
-                {service.icon}
-                {isCleaning ? "Cleaning" : "Pest Control"}
-              </span>
+                <div className="absolute inset-0 bg-gray-900/30 group-hover:bg-gray-900/20 transition-colors" />
+                {/* Top accent bar on hover */}
+                <div
+                  className="absolute top-0 left-0 right-0 h-1 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
+                  style={{ background: meta.accent }}
+                />
+                {/* Category badge */}
+                <span
+                  className="absolute top-4 left-4 text-[11px] font-bold px-2.5 py-1 rounded-full"
+                  style={{ background: "rgba(255,255,255,0.95)", color: meta.text }}
+                >
+                  {meta.label}
+                </span>
+              </div>
 
               {/* Content */}
-              <h3 className="text-[1.0625rem] font-bold text-gray-900 mb-1.5 leading-snug group-hover:text-[--accent] transition-colors"
-                style={{ "--accent": accentColor } as React.CSSProperties}
-              >
-                {service.title}
-              </h3>
-              <p className="text-sm text-gray-400 mb-4 font-medium">{service.shortDesc}</p>
+              <div className="p-6 flex flex-col flex-1">
+                <h3 className="text-[1.0625rem] font-bold text-gray-900 mb-1.5 leading-snug group-hover:transition-colors"
+                  style={{ transition: "color 0.2s" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = meta.accent)}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+                >
+                  {service.title}
+                </h3>
+                <p className="text-sm text-gray-500 mb-4 leading-relaxed flex-1">{service.description}</p>
 
-              {/* Features */}
-              <ul className="space-y-1.5 mb-6">
-                {service.features.slice(0, 3).map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-sm text-gray-500">
-                    <span
-                      className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0"
-                      style={{ background: accentColor }}
-                    />
-                    {f}
-                  </li>
-                ))}
-              </ul>
+                {/* Features */}
+                <ul className="space-y-1.5 mb-5">
+                  {service.features.slice(0, 3).map((f) => (
+                    <li key={f} className="flex items-start gap-2 text-sm text-gray-500">
+                      <span className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0" style={{ background: meta.accent }} />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
 
-              {/* Learn more */}
-              <div
-                className="flex items-center gap-1.5 text-sm font-semibold"
-                style={{ color: accentColor }}
-              >
-                Learn more
-                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                {/* Learn more */}
+                <div className="flex items-center gap-1.5 text-sm font-semibold mt-auto" style={{ color: meta.accent }}>
+                  Learn more
+                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                </div>
               </div>
             </Link>
           </motion.div>

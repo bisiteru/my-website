@@ -1,10 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Star, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { COMPANY } from "@/lib/constants";
+import { COMPANY, LOGO_URL } from "@/lib/constants";
 
 const words = ["Spotless", "Hygienic", "Pest-Free", "Refreshed"];
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -61,13 +62,21 @@ export default function Hero() {
   const waUrl = `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent("Hello! I'd like to get a quote for your services.")}`;
 
   return (
-    <section className="hero-bg relative overflow-hidden min-h-screen flex items-center">
+    <section className="relative overflow-hidden min-h-screen flex items-center">
+
+      {/* Hero background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('/images/hero-corridor-cleaning.jpg')" }}
+      />
+      {/* Dark overlay */}
+      <div className="absolute inset-0" style={{ background: "linear-gradient(150deg, rgba(3,26,12,0.92) 0%, rgba(5,32,16,0.88) 35%, rgba(8,51,24,0.82) 65%, rgba(11,92,46,0.75) 100%)" }} />
 
       {/* Subtle grid overlay */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
           backgroundSize: "60px 60px",
         }}
       />
@@ -105,10 +114,10 @@ export default function Hero() {
             {/* Headline */}
             <motion.h1
               variants={itemVariants}
-              className="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-[1.05] tracking-tight mb-6"
+              className="text-5xl sm:text-6xl lg:text-[4.25rem] font-black text-white leading-[1.05] tracking-tight mb-6"
               style={{ fontFamily: "var(--font-display), Georgia, serif" }}
             >
-              Your Space,{" "}
+              Professional Cleaning &amp; Pest Control{" "}
               <span className="block relative">
                 <AnimatePresence mode="wait">
                   <motion.span
@@ -119,7 +128,7 @@ export default function Hero() {
                     transition={{ duration: 0.5, ease: ease }}
                     className="gradient-text-light italic inline-block"
                   >
-                    {words[wordIndex]}
+                    in Abuja
                   </motion.span>
                 </AnimatePresence>
               </span>
@@ -130,7 +139,7 @@ export default function Hero() {
               variants={itemVariants}
               className="text-white/60 text-lg leading-relaxed mb-10 max-w-lg mx-auto lg:mx-0"
             >
-              Professional cleaning &amp; pest control across all Abuja FCT districts — reliable, thorough, and built around your schedule.
+              We create spotless, safe spaces for homes and businesses — delivered with care, precision, and a guarantee of your satisfaction.
             </motion.p>
 
             {/* CTAs */}
@@ -166,7 +175,7 @@ export default function Hero() {
             >
               {[
                 { icon: <div className="flex gap-0.5">{[1,2,3,4,5].map(i=><Star key={i} size={12} className="text-amber-400 fill-amber-400"/>)}</div>, text: "5.0 on Google" },
-                { icon: null, text: "500+ Happy Clients" },
+                { icon: null, text: "1,250+ Happy Clients" },
                 { icon: null, text: "All FCT Districts" },
               ].map(({ icon, text }, i) => (
                 <div key={text} className="flex items-center gap-2 text-white/50 text-sm">
@@ -201,10 +210,7 @@ export default function Hero() {
 
               {/* Centre logo mark */}
               <div className="relative z-10 text-center">
-                <div className="w-20 h-20 rounded-2xl bg-[#0b8441] flex items-center justify-center text-white font-black text-2xl shadow-2xl mx-auto mb-3"
-                  style={{ fontFamily: "var(--font-display)" }}>
-                  D<span className="text-[#dd4c2f]">&</span>W
-                </div>
+                <Image src={LOGO_URL} alt="Dust & Wipes Ltd." width={80} height={80} className="rounded-2xl shadow-2xl mx-auto mb-3" />
                 <div className="text-white/80 text-xs font-semibold tracking-widest uppercase">Dust & Wipes</div>
                 <div className="text-white/40 text-[10px] tracking-widest uppercase">Limited</div>
               </div>
