@@ -76,7 +76,7 @@ export default function Testimonials() {
                 <div className="font-bold text-gray-900">{t.name}</div>
                 <div className="text-sm text-gray-500">{t.role}</div>
               </div>
-              <div className="ml-auto text-xs text-gray-400">{t.date}</div>
+              <div className="ml-auto text-xs text-gray-400">{t.role}</div>
             </div>
           </div>
 

@@ -91,19 +91,17 @@ export default function ContactPage() {
 
               {/* Contact cards */}
               <div className="space-y-4">
-                <a
-                  href={`tel:${COMPANY.phone}`}
-                  className="flex items-start gap-4 p-4 bg-white rounded-2xl border border-gray-100 shadow-sm hover:border-[#0b8441] transition-colors group"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center shrink-0 group-hover:bg-[#0b8441] transition-colors">
-                    <Phone size={18} className="text-[#0b8441] group-hover:text-white transition-colors" />
+                <div className="flex items-start gap-4 p-4 bg-white rounded-2xl border border-gray-100 shadow-sm">
+                  <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center shrink-0">
+                    <Phone size={18} className="text-[#0b8441]" />
                   </div>
                   <div>
                     <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-0.5">Phone</div>
-                    <div className="font-semibold text-gray-900">{COMPANY.phone}</div>
-                    <div className="text-xs text-gray-400">Mon–Sat, 7am–6pm</div>
+                    <a href={`tel:${COMPANY.phone}`} className="block font-semibold text-gray-900 hover:text-[#0b8441] transition-colors">{COMPANY.phone}</a>
+                    <a href={`tel:${COMPANY.phone2}`} className="block font-semibold text-gray-900 hover:text-[#0b8441] transition-colors">{COMPANY.phone2}</a>
+                    <div className="text-xs text-gray-400 mt-0.5">Mon–Sat, 7am–6pm</div>
                   </div>
-                </a>
+                </div>
 
                 <a
                   href={waUrl}
