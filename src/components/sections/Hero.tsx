@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Star, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { COMPANY, LOGO_URL } from "@/lib/constants";
+import { COMPANY } from "@/lib/constants";
+import LogoImg from "@/components/ui/LogoImg";
 
 const words = ["Spotless", "Hygienic", "Pest-Free", "Refreshed"];
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -210,7 +210,7 @@ export default function Hero() {
 
               {/* Centre logo mark */}
               <div className="relative z-10 text-center">
-                <Image src={LOGO_URL} alt="Dust & Wipes Ltd." width={80} height={80} className="rounded-2xl shadow-2xl mx-auto mb-3" />
+                <LogoImg size={80} className="rounded-2xl shadow-2xl mx-auto mb-3 block" />
                 <div className="text-white/80 text-xs font-semibold tracking-widest uppercase">Dust & Wipes</div>
                 <div className="text-white/40 text-[10px] tracking-widest uppercase">Limited</div>
               </div>

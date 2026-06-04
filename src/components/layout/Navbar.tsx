@@ -3,10 +3,10 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { COMPANY, LOGO_URL } from "@/lib/constants";
+import { COMPANY } from "@/lib/constants";
+import LogoImg from "@/components/ui/LogoImg";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -61,14 +61,7 @@ export default function Navbar() {
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 group">
-            <Image
-              src={LOGO_URL}
-              alt="Dust & Wipes Ltd. Logo"
-              width={40}
-              height={40}
-              className="rounded-xl"
-              priority
-            />
+            <LogoImg size={40} className="rounded-xl" />
             <div className="leading-tight">
               <div className={`font-bold text-[0.9375rem] tracking-tight transition-colors ${scrolled ? "text-gray-900" : "text-white"}`}>
                 Dust & Wipes

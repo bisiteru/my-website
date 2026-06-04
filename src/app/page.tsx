@@ -8,7 +8,8 @@ import StatsSection from "@/components/sections/StatsSection";
 import WhyUs from "@/components/sections/WhyUs";
 import Testimonials from "@/components/sections/Testimonials";
 import CTABanner from "@/components/sections/CTABanner";
-import { BLOG_POSTS, COMPANY, AFFILIATIONS, SERVICE_AREAS, LOGO_URL } from "@/lib/constants";
+import LogoImg from "@/components/ui/LogoImg";
+import { BLOG_POSTS, COMPANY, AFFILIATIONS, SERVICE_AREAS } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Professional Cleaning & Pest Control in Abuja | Dust and Wipes Ltd.",
@@ -103,7 +104,7 @@ export default function HomePage() {
                 Our mission is to turn spotless spaces into lasting impressions, making your comfort our priority every single time. Trusted by over 1,250 clients across Abuja FCT since {COMPANY.foundedYear}.
               </p>
               <div className="flex items-center gap-3 mt-8">
-                <Image src={LOGO_URL} alt="Dust & Wipes Logo" width={40} height={40} className="rounded-xl" />
+                <LogoImg size={40} className="rounded-xl" />
                 <div>
                   <div className="font-bold text-gray-900 text-sm">Dust & Wipes Limited</div>
                   <div className="text-xs text-[#0b8441] font-medium">{COMPANY.tagline}</div>

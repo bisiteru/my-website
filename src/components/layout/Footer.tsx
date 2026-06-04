@@ -1,7 +1,7 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Phone, Mail, MapPin } from "lucide-react";
-import { COMPANY, AFFILIATIONS, LOGO_URL } from "@/lib/constants";
+import { COMPANY, AFFILIATIONS } from "@/lib/constants";
+import LogoImg from "@/components/ui/LogoImg";
 
 function InstagramIcon() {
   return (
@@ -64,7 +64,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="space-y-5 lg:col-span-1">
             <Link href="/" className="flex items-center gap-2.5">
-              <Image src={LOGO_URL} alt="Dust & Wipes Ltd. Logo" width={48} height={48} className="rounded-xl" />
+              <LogoImg size={48} className="rounded-xl" />
               <div>
                 <div className="font-black text-white text-base leading-tight">Dust & Wipes</div>
                 <div className="text-[9px] text-green-400 font-semibold tracking-[0.18em] uppercase">{COMPANY.tagline}</div>
