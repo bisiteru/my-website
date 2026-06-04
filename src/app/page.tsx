@@ -84,7 +84,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             <div className="rounded-2xl overflow-hidden aspect-[4/3] relative">
               <Image
-                src="/images/team-uba-marketplace.jpg"
+                src="/images/team-uba-marketplace.webp"
                 alt="The Dust and Wipes professional cleaning team at UBA Marketplace Abuja"
                 fill
                 className="object-cover"
