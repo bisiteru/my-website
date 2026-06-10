@@ -212,7 +212,7 @@ export const TESTIMONIALS = [
 ];
 
 export const STATS = [
-  { value: 1250, suffix: "+", label: "Happy Clients" },
+  { value: 650, suffix: "+", label: "Happy Clients" },
   { value: 500, suffix: "+", label: "Projects Completed" },
   { value: 100, suffix: "+", label: "Trained Professionals" },
   { value: 5.0, suffix: "★", label: "Google Rating", isStatic: true },

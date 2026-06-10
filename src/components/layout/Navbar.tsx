@@ -60,13 +60,13 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
 
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <LogoImg size={40} className="rounded-xl" />
+          <Link href="/" className="flex items-center gap-3.5 group">
+            <LogoImg size={60} className="rounded-xl" />
             <div className="leading-tight">
-              <div className={`font-bold text-[0.9375rem] tracking-tight transition-colors ${scrolled ? "text-gray-900" : "text-white"}`}>
+              <div className={`font-bold text-[1.4rem] tracking-tight transition-colors ${scrolled ? "text-gray-900" : "text-white"}`}>
                 Dust & Wipes
               </div>
-              <div className={`text-[9px] font-semibold tracking-[0.18em] uppercase transition-colors ${scrolled ? "text-[#0b8441]" : "text-green-300/80"}`}>
+              <div className={`text-[13px] font-semibold tracking-[0.18em] uppercase transition-colors ${scrolled ? "text-[#0b8441]" : "text-green-300/80"}`}>
                 {COMPANY.tagline}
               </div>
             </div>
