@@ -196,7 +196,7 @@ export default function Hero() {
   const waUrl = `https://wa.me/${COMPANY.whatsapp.replace("+", "")}?text=${encodeURIComponent("Hello! I'd like to get a quote for your services.")}`;
 
   return (
-    <section className="relative overflow-hidden min-h-screen flex items-center">
+    <section className="relative overflow-hidden min-h-[85vh] lg:min-h-screen flex items-center">
 
       {/* Hero background image */}
       <div
@@ -338,9 +338,23 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* ── Right: Orbital showcase ── */}
+          {/* ── Right: Orbital showcase (desktop) ── */}
           <div className="hidden lg:flex justify-center items-center relative h-[480px]">
             <OrbitalServices />
+          </div>
+
+          {/* ── Mobile services grid ── */}
+          <div className="lg:hidden grid grid-cols-2 gap-2.5 mt-2">
+            {ORBITAL_SERVICES.map((s) => (
+              <div
+                key={s.id}
+                className="flex items-center gap-2 rounded-xl px-3 py-2.5 text-xs font-semibold text-white/85"
+                style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.12)" }}
+              >
+                <span className="w-2 h-2 rounded-full shrink-0" style={{ background: s.color }} />
+                {s.label}
+              </div>
+            ))}
           </div>
         </div>
       </div>

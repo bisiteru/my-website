@@ -14,7 +14,7 @@ import { BLOG_POSTS, COMPANY, AFFILIATIONS, SERVICE_AREAS } from "@/lib/constant
 export const metadata: Metadata = {
   title: "Professional Cleaning & Pest Control in Abuja | Dust and Wipes Ltd.",
   description:
-    "Abuja's most trusted cleaning and pest control company since 2017. Residential, commercial & specialist cleaning in Gwarinpa, Maitama, Wuse & across FCT. 1,250+ happy clients. Get a free quote today.",
+    "Abuja's most trusted cleaning and pest control company since 2017. Residential, commercial & specialist cleaning in Gwarinpa, Maitama, Wuse & across FCT. 650+ happy clients. Get a free quote today.",
 };
 
 const blogCategoryColors: Record<string, { bg: string; text: string }> = {
@@ -101,7 +101,7 @@ export default function HomePage() {
                 At Dust and Wipes Ltd., we&apos;re driven by one thing — your satisfaction. We go beyond the basics, crafting personalised cleaning solutions that fit your unique needs, delivered with expertise and a genuine touch of care.
               </p>
               <p className="text-gray-600 mt-4 leading-relaxed">
-                Our mission is to turn spotless spaces into lasting impressions, making your comfort our priority every single time. Trusted by over 1,250 clients across Abuja FCT since {COMPANY.foundedYear}.
+                Our mission is to turn spotless spaces into lasting impressions, making your comfort our priority every single time. Trusted by over 650 clients across Abuja FCT since {COMPANY.foundedYear}.
               </p>
               <div className="flex items-center gap-3 mt-8">
                 <LogoImg size={40} className="rounded-xl" />

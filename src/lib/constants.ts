@@ -59,12 +59,28 @@ export const SERVICES = [
     description:
       "Expert office and commercial space cleaning that keeps your workplace professional, hygienic, and productive.",
     image: "/images/office-sweeping-yellow.jpg",
-    href: "/services#cleaning",
+    href: "/services#commercial-cleaning",
     features: [
       "Open-plan office cleaning",
       "Restroom sanitisation",
       "Reception & boardroom cleaning",
       "Waste disposal management",
+    ],
+    category: "cleaning",
+  },
+  {
+    id: "deep-cleaning",
+    title: "Deep Cleaning",
+    shortDesc: "Thorough room-by-room deep clean of your entire space.",
+    description:
+      "A comprehensive deep clean tackling every corner — inside appliances, grout lines, blinds, under furniture, and all the areas your regular clean misses.",
+    image: "/images/kitchen-cleaning.jpg",
+    href: "/services#deep-cleaning",
+    features: [
+      "Inside appliances (oven, fridge, microwave)",
+      "Grout scrubbing & tile deep-clean",
+      "Inside cupboards & wardrobes",
+      "Blinds, skirting boards & vents",
     ],
     category: "cleaning",
   },
@@ -123,7 +139,7 @@ export const SERVICES = [
     description:
       "Professional training and consulting in cleaning management, hygiene standards, and facility operations.",
     image: "/images/team-meeting.jpg",
-    href: "/services#training",
+    href: "/services#training-consultancy",
     features: [
       "Cleaning management training",
       "Hygiene standards consulting",

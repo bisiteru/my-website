@@ -16,10 +16,11 @@ const navLinks = [
     href: "/services",
     children: [
       { label: "Residential Cleaning", href: "/services#residential-cleaning" },
-      { label: "Office Cleaning", href: "/services#office-cleaning" },
+      { label: "Office Cleaning", href: "/services#commercial-cleaning" },
       { label: "Deep Cleaning", href: "/services#deep-cleaning" },
       { label: "Pest Control", href: "/services#pest-control" },
       { label: "Carpet & Upholstery", href: "/services#carpet-upholstery" },
+      { label: "Training & Consultancy", href: "/services#training-consultancy" },
     ],
   },
   { label: "Blog", href: "/blog" },
