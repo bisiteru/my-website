@@ -125,7 +125,7 @@ function OrbitalServices() {
           <div className="text-white/80 text-[11px] font-bold tracking-widest uppercase">
             Dust & Wipes
           </div>
-          <div className="text-white/35 text-[9px] tracking-widest uppercase">Limited</div>
+          <div className="text-white/55 text-[9px] tracking-widest uppercase">Limited</div>
         </div>
       </motion.div>
 

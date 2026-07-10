@@ -58,7 +58,7 @@ export const metadata: Metadata = {
       "Abuja's most trusted cleaning and pest control company since 2017. 650+ satisfied clients across all FCT districts.",
     images: [
       {
-        url: "/images/team-uba-marketplace.webp",
+        url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Dust and Wipes Limited — Professional Cleaning Team Abuja",
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dust & Wipes Limited | Abuja Cleaning & Pest Control",
     description: "Professional cleaning and pest control services across Abuja FCT. 650+ happy clients since 2017.",
-    images: ["/images/team-uba-marketplace.webp"],
+    images: ["/images/og-image.jpg"],
   },
   robots: {
     index: true,
@@ -81,9 +81,6 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-  },
-  alternates: {
-    canonical: "https://dustandwipes.com",
   },
 };
 
@@ -109,7 +106,7 @@ export default function RootLayout({
                 "Professional cleaning and pest control services in Abuja, Nigeria. Residential, commercial, deep cleaning, carpet cleaning, fumigation and training.",
               url: "https://dustandwipes.com",
               logo: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=192,h=192,fit=crop,f=png/ALpeL1ljNpuX4VBM/dust-wipes-logo41-2-AGB2VD6oX7TQO8Nj.png",
-              image: "https://dustandwipes.com/images/team-uba-marketplace.webp",
+              image: "https://dustandwipes.com/images/og-image.jpg",
               telephone: "+2348099700001",
               email: "infodesk@dustandwipes.com",
               foundingDate: "2017",
@@ -136,13 +133,13 @@ export default function RootLayout({
                 {
                   "@type": "OpeningHoursSpecification",
                   dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-                  opens: "08:00",
+                  opens: "07:00",
                   closes: "18:00",
                 },
                 {
                   "@type": "OpeningHoursSpecification",
                   dayOfWeek: "Saturday",
-                  opens: "09:00",
+                  opens: "08:00",
                   closes: "16:00",
                 },
               ],

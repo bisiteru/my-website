@@ -10,7 +10,7 @@ export default function WhatsAppButton() {
   const message = encodeURIComponent(
     "Hello! I'd like to get a quote for your cleaning/pest control services."
   );
-  const waUrl = `https://wa.me/${COMPANY.whatsapp}?text=${message}`;
+  const waUrl = `https://wa.me/${COMPANY.whatsapp.replace("+", "")}?text=${message}`;
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
