@@ -289,6 +289,16 @@ export const FAQS = [
 
 export const BLOG_POSTS = [
   {
+    slug: "why-trained-cleaners-matter",
+    title: "Why Trained Cleaners Matter: The Hidden Link Between Cleaning Skills and Workplace Safety",
+    excerpt:
+      "Anyone can hold a mop — but professional cleaning is a skill. Here's why trained, well-equipped cleaning personnel are essential to hygiene and safety in hospitals, hotels, offices, and embassies.",
+    category: "Training & Safety",
+    date: "July 12, 2026",
+    readTime: "6 min read",
+    image: "/images/team-meeting.jpg",
+  },
+  {
     slug: "how-often-should-you-deep-clean",
     title: "How Often Should You Deep Clean Your Home?",
     excerpt:

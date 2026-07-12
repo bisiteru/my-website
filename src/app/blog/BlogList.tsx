@@ -2,10 +2,13 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Clock, Tag } from "lucide-react";
 import { BLOG_POSTS } from "@/lib/constants";
 
-const categories = ["All", "Cleaning Tips", "Pest Control", "Office Cleaning"];
+const hasRealImage = (img: string) => img && !img.startsWith("/images/blog-");
+
+const categories = ["All", "Cleaning Tips", "Pest Control", "Office Cleaning", "Training & Safety"];
 
 export default function BlogList() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -19,7 +22,7 @@ export default function BlogList() {
   const rest = filtered.slice(1);
 
   const categoryIcon = (cat: string) =>
-    cat === "Pest Control" ? "🐛" : cat === "Office Cleaning" ? "🏢" : "🧹";
+    cat === "Pest Control" ? "🐛" : cat === "Office Cleaning" ? "🏢" : cat === "Training & Safety" ? "🎓" : "🧹";
 
   return (
     <>
@@ -51,9 +54,21 @@ export default function BlogList() {
           className="group block bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm card-hover mb-8"
         >
           <div className="grid grid-cols-1 lg:grid-cols-2">
-            <div className="h-64 lg:h-auto bg-gradient-to-br from-[#0b8441]/15 to-[#dd4c2f]/15 flex items-center justify-center text-8xl">
-              {categoryIcon(featured.category)}
-            </div>
+            {hasRealImage(featured.image) ? (
+              <div className="h-64 lg:h-auto relative min-h-[16rem]">
+                <Image
+                  src={featured.image}
+                  alt={featured.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
+            ) : (
+              <div className="h-64 lg:h-auto bg-gradient-to-br from-[#0b8441]/15 to-[#dd4c2f]/15 flex items-center justify-center text-8xl">
+                {categoryIcon(featured.category)}
+              </div>
+            )}
             <div className="p-8 lg:p-10 flex flex-col justify-center">
               <div className="flex items-center gap-3 mb-4">
                 <span className="bg-green-50 text-[#0b8441] text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1">
@@ -89,9 +104,21 @@ export default function BlogList() {
               href={`/blog/${post.slug}`}
               className="group bg-white rounded-2xl overflow-hidden border border-gray-100 card-hover shadow-sm"
             >
-              <div className="h-44 bg-gradient-to-br from-[#0b8441]/10 to-[#dd4c2f]/10 flex items-center justify-center text-6xl">
-                {categoryIcon(post.category)}
-              </div>
+              {hasRealImage(post.image) ? (
+                <div className="h-44 relative">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, 33vw"
+                  />
+                </div>
+              ) : (
+                <div className="h-44 bg-gradient-to-br from-[#0b8441]/10 to-[#dd4c2f]/10 flex items-center justify-center text-6xl">
+                  {categoryIcon(post.category)}
+                </div>
+              )}
               <div className="p-5">
                 <div className="flex items-center gap-2 mb-3">
                   <span className="text-xs font-semibold text-[#0b8441] bg-green-50 px-2.5 py-1 rounded-full flex items-center gap-1">

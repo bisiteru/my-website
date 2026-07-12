@@ -24,11 +24,10 @@ const values = [
 ];
 
 const milestones = [
-  { year: "2017", title: "Founded", desc: "Dust & Wipes Limited was established in Abuja by Bisi Teru, with a mission to raise the standard of professional cleaning across the FCT." },
-  { year: "2019", title: "Expanded to Pest Control", desc: "We added comprehensive pest control services, becoming a one-stop solution for property hygiene and safety across Abuja." },
-  { year: "2022", title: "500+ Clients Served", desc: "Reached a major milestone serving over 500 residential and commercial clients across all FCT districts." },
-  { year: "2024", title: "5★ Google Rating", desc: "Recognised with a 5-star Google Business rating, reflecting our clients' consistent satisfaction." },
-  { year: "2025", title: "Growing Stronger", desc: "With 650+ clients and a growing team, we continue to expand our services and raise the bar for cleaning excellence in Abuja." },
+  { year: "2017", title: "Founded", desc: "Dust & Wipes Limited was established in Abuja in March 2017 by Bisi Teru, with a mission to raise the standard of professional cleaning across the FCT." },
+  { year: "2018", title: "Pest Control & First 5★ Reviews", desc: "We expanded into comprehensive pest control services and earned our first 5-star Google reviews — a rating we have maintained ever since." },
+  { year: "2022", title: "500+ Clients Served", desc: "Crossed the 500-client milestone, serving homes, offices, and facilities across all FCT districts." },
+  { year: "2026", title: "650+ Clients & Growing", desc: "Now trusted by over 650 clients with a perfect 5-star Google rating, we continue to expand our services and raise the bar for cleaning excellence in Abuja." },
 ];
 
 export default function AboutPage() {

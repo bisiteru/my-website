@@ -109,7 +109,7 @@ export default function RootLayout({
               image: "https://dustandwipes.com/images/og-image.jpg",
               telephone: "+2348099700001",
               email: "infodesk@dustandwipes.com",
-              foundingDate: "2017",
+              foundingDate: "2017-03",
               founder: {
                 "@type": "Person",
                 name: "Bisi Teru",
@@ -146,9 +146,10 @@ export default function RootLayout({
               aggregateRating: {
                 "@type": "AggregateRating",
                 ratingValue: "5",
-                reviewCount: "50",
+                reviewCount: "7",
                 bestRating: "5",
               },
+              hasMap: "https://maps.google.com/?q=Irama+Plaza+Gwarinpa+Abuja",
               hasOfferCatalog: {
                 "@type": "OfferCatalog",
                 name: "Cleaning & Pest Control Services",

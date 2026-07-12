@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Clock, Tag, Calendar } from "lucide-react";
 import { BLOG_POSTS, COMPANY } from "@/lib/constants";
 import CTABanner from "@/components/sections/CTABanner";
+
+type ContentBlock =
+  | string
+  | { heading: string }
+  | { image: string; alt: string; caption?: string };
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -39,7 +45,29 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const blogContent: Record<string, string[]> = {
+const blogContent: Record<string, ContentBlock[]> = {
+  "why-trained-cleaners-matter": [
+    "Ask most people what it takes to be a cleaner and they'll shrug: a mop, a bucket, and some effort. It's one of the most persistent — and most costly — misconceptions in facility management. The truth is that professional cleaning is a skilled trade, and the difference between a trained cleaner and an untrained one shows up in places that matter enormously: infection rates, workplace accidents, equipment lifespan, and even a company's legal exposure.",
+    { heading: "Cleaning is chemistry, not just elbow grease" },
+    "Every professional cleaner works with chemicals daily — disinfectants, degreasers, descalers, sanitisers. Used correctly, they protect health. Used incorrectly, they can be dangerous. Mixing chlorine bleach with acidic cleaners releases toxic chlorine gas. Using the wrong product on the wrong surface destroys expensive finishes. Under-diluting wastes money; over-diluting leaves surfaces looking clean but still contaminated.",
+    "Trained cleaners understand dwell time — the period a disinfectant must remain wet on a surface to actually kill germs. An untrained cleaner sprays and immediately wipes, achieving little more than a cosmetic shine. In a hospital ward or hotel kitchen, that difference is the difference between hygiene and the illusion of hygiene.",
+    { image: "/images/clinic-cleaning-1.jpg", alt: "Professional cleaner sanitising a clinic in Abuja", caption: "Healthcare environments demand trained hands — every surface has its own protocol." },
+    { heading: "The hidden safety stakes" },
+    "The International Labour Organization estimates that unsafe cleaning practices contribute to thousands of preventable workplace injuries every year — chemical burns, slip-and-fall accidents from improper wet-floor procedures, respiratory harm from poor ventilation during chemical use, and cross-contamination incidents in food and healthcare settings.",
+    "Cross-contamination deserves special attention. A cloth used on a toilet and then on a door handle actively spreads pathogens through a building. Professional training instils colour-coded cloth and mop systems — red for sanitary areas, blue for general surfaces, green for kitchens — a simple discipline that dramatically cuts the spread of infection. Untrained staff, through no fault of their own, simply don't know these systems exist.",
+    "There's also the equipment dimension. Modern professional cleaning relies on machines — rotary scrubbers, hot-water extraction units, industrial vacuums with HEPA filtration. In untrained hands these machines are hazards; in trained hands they deliver results no amount of manual scrubbing can match.",
+    { heading: "Why it matters most in high-stakes environments" },
+    "In hospitals and clinics, cleaning staff are genuinely part of the infection-control team. Studies show that improved cleaning protocols alone can cut hospital-acquired infections significantly. In hotels, cleanliness is the single biggest driver of guest reviews. In embassies and secure facilities, cleaning personnel need discipline, vetting, and protocol awareness that goes far beyond the mop. In offices, the quality of cleaning quietly shapes sick-day rates and staff morale.",
+    { image: "/images/green-uniform-office.jpg", alt: "Uniformed professional cleaner at work in an Abuja office", caption: "Uniformed, trained personnel signal professionalism — and deliver measurably better outcomes." },
+    { heading: "Training transforms the cleaner too" },
+    "There's a human side to this. When cleaning staff are trained, certified, and properly equipped, their work changes character — from casual labour to a profession with standards, career progression, and dignity. Trained cleaners take visible pride in their work, stay longer with employers, and become trusted custodians of the spaces they maintain. Investing in cleaner training is one of the rare decisions that improves safety, quality, staff retention, and morale simultaneously.",
+    { heading: "What to look for in a cleaning provider" },
+    "Whether you manage a hospital, hotel, embassy, school, or office, ask any prospective cleaning provider these questions: Are your staff formally trained, and in what? Do you use colour-coded systems to prevent cross-contamination? Are your chemicals certified and correctly diluted? Are staff trained on the equipment they operate? Can you show vetting and supervision processes? A professional provider will answer confidently; the rest will improvise.",
+    { image: "/images/team-meeting.jpg", alt: "Dust and Wipes training session for cleaning professionals in Abuja", caption: "A Dust & Wipes training session — where cleaning skills, safety, and standards are built." },
+    { heading: "Our commitment at Dust & Wipes" },
+    "At Dust and Wipes Limited, this philosophy is in our DNA — our company was founded on the belief that cleaners deserve proper training, fair treatment, and professional respect. Beyond delivering cleaning services, we offer professional training programmes for cleaners and pest control technicians, covering chemical safety, infection control, equipment operation, and workplace protocols. Our goal is simple: to raise the standard of cleanliness and safety in Abuja's workplaces — hospitals, hotels, embassies, offices, and beyond — one trained professional at a time.",
+    "If your organization would like to train its cleaning team, or you'd like your facility cleaned by personnel trained to these standards, contact us today. Cleanliness is too important to leave to chance.",
+  ],
   "how-often-should-you-deep-clean": [
     "Most homeowners clean their homes regularly — sweeping, mopping, wiping down surfaces — but the deep clean is often neglected. Yet it's one of the most important things you can do for your home's hygiene and your family's health.",
     "A deep clean goes far beyond surface-level tidying. It involves cleaning inside appliances, scrubbing grout, washing blinds, vacuuming mattresses, and tackling all the spots your regular clean misses. The question is: how often should you do it?",
@@ -193,18 +221,64 @@ export default async function BlogPostPage({ params }: Props) {
       {/* Article */}
       <section className="py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Image placeholder */}
-          <div className="w-full h-64 bg-gradient-to-br from-[#0b8441]/10 to-[#dd4c2f]/10 rounded-3xl flex items-center justify-center text-8xl mb-10">
-            {post.category === "Pest Control" ? "🐛" : post.category === "Office Cleaning" ? "🏢" : "🧹"}
-          </div>
+          {/* Header image — real photo if the post has one, else themed placeholder */}
+          {post.image && !post.image.startsWith("/images/blog-") ? (
+            <div className="w-full h-64 sm:h-80 relative rounded-3xl overflow-hidden mb-10 shadow-md">
+              <Image
+                src={post.image}
+                alt={post.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 768px"
+                priority
+              />
+            </div>
+          ) : (
+            <div className="w-full h-64 bg-gradient-to-br from-[#0b8441]/10 to-[#dd4c2f]/10 rounded-3xl flex items-center justify-center text-8xl mb-10">
+              {post.category === "Pest Control" ? "🐛" : post.category === "Office Cleaning" ? "🏢" : "🧹"}
+            </div>
+          )}
 
           {/* Content */}
           <article className="prose prose-gray max-w-none">
-            {content.map((para, i) => (
-              <p key={i} className="text-gray-700 leading-relaxed mb-5 text-base">
-                {para}
-              </p>
-            ))}
+            {content.map((block, i) => {
+              if (typeof block === "string") {
+                return (
+                  <p key={i} className="text-gray-700 leading-relaxed mb-5 text-base">
+                    {block}
+                  </p>
+                );
+              }
+              if ("heading" in block) {
+                return (
+                  <h2
+                    key={i}
+                    className="text-2xl font-bold text-gray-900 mt-10 mb-4"
+                    style={{ fontFamily: "var(--font-display), Georgia, serif" }}
+                  >
+                    {block.heading}
+                  </h2>
+                );
+              }
+              return (
+                <figure key={i} className="my-8">
+                  <div className="w-full h-64 sm:h-80 relative rounded-2xl overflow-hidden shadow-sm">
+                    <Image
+                      src={block.image}
+                      alt={block.alt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 768px"
+                    />
+                  </div>
+                  {block.caption && (
+                    <figcaption className="text-center text-sm text-gray-400 mt-3 italic">
+                      {block.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              );
+            })}
           </article>
 
           {/* Author / CTA box */}
