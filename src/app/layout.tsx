@@ -114,6 +114,7 @@ export default function RootLayout({
                 "@type": "Person",
                 name: "Bisi Teru",
                 jobTitle: "Founder & CEO",
+                image: "https://dustandwipes.com/images/founder-photo.jpg",
               },
               address: {
                 "@type": "PostalAddress",

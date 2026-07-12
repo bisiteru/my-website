@@ -114,13 +114,14 @@ export default function AboutPage() {
 
               {/* Signature */}
               <div className="pt-4 border-t border-gray-100 flex items-center gap-4">
-                {/* Founder photo placeholder */}
-                <div
-                  className="w-16 h-16 rounded-full bg-[#0b8441]/10 border-2 border-[#0b8441]/20 flex items-center justify-center shrink-0 overflow-hidden"
-                  title="Founder photo — replace with actual image"
-                >
-                  {/* Replace the div below with <Image src="/images/bisi-teru.jpg" ... /> when photo is available */}
-                  <span className="text-[#0b8441] text-2xl font-black select-none">BT</span>
+                <div className="w-16 h-16 rounded-full border-2 border-[#0b8441]/25 shrink-0 overflow-hidden relative shadow-sm">
+                  <Image
+                    src="/images/founder-photo.jpg"
+                    alt="Bisi Teru, Founder & CEO of Dust and Wipes Limited"
+                    fill
+                    className="object-cover"
+                    sizes="64px"
+                  />
                 </div>
                 <div>
                   <div className="font-bold text-gray-900">Bisi Teru</div>
@@ -145,22 +146,21 @@ export default function AboutPage() {
                 />
               </div>
 
-              {/* Boss/founder photo placeholder */}
-              <div
-                className="rounded-2xl overflow-hidden aspect-video relative bg-gradient-to-br from-[#0b8441]/10 to-[#0b8441]/5 border-2 border-dashed border-[#0b8441]/20 flex flex-col items-center justify-center gap-2 text-center px-6"
-                title="Add founder/boss photo here"
-              >
-                {/* Replace this div with <Image src="/images/founder-photo.jpg" ... /> when photo is available */}
-                <div className="w-14 h-14 rounded-full bg-[#0b8441]/15 flex items-center justify-center">
-                  <span className="text-[#0b8441] text-xl font-black">BT</span>
+              {/* Founder portrait */}
+              <div className="rounded-2xl overflow-hidden aspect-square relative shadow-md">
+                <Image
+                  src="/images/founder-photo.jpg"
+                  alt="Bisi Teru, Founder & CEO of Dust and Wipes Limited"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent p-5 pt-14">
+                  <div className="text-white font-bold text-lg leading-tight">Bisi Teru</div>
+                  <div className="text-green-300 text-sm font-medium">
+                    Founder &amp; CEO
+                  </div>
                 </div>
-                <p className="text-[#0b8441]/60 text-sm font-medium">
-                  Founder photo coming soon
-                </p>
-                <p className="text-[#0b8441]/40 text-xs">
-                  Replace with{" "}
-                  <code className="bg-[#0b8441]/10 px-1 rounded">/images/founder-photo.jpg</code>
-                </p>
               </div>
             </div>
           </div>
