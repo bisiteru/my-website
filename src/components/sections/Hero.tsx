@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { ArrowRight, Star } from "lucide-react";
+import { ArrowRight, Star, Home, Building2, Sparkles, Bug, GraduationCap, Building } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { COMPANY } from "@/lib/constants";
 import LogoImg from "@/components/ui/LogoImg";
@@ -21,15 +21,15 @@ const itemVariants = {
 };
 
 const ORBITAL_SERVICES = [
-  { id: 1, label: "Residential Cleaning", color: "#0b8441" },
-  { id: 2, label: "Office Cleaning", color: "#22c55e" },
-  { id: 3, label: "Deep Cleaning", color: "#38bdf8" },
-  { id: 4, label: "Pest Control", color: "#dd4c2f" },
-  { id: 5, label: "Training & Consultancy", color: "#a855f7" },
-  { id: 6, label: "Facility Management", color: "#0ea5e9" },
+  { id: 1, label: "Residential Cleaning", color: "#0b8441", icon: Home },
+  { id: 2, label: "Office Cleaning", color: "#22c55e", icon: Building2 },
+  { id: 3, label: "Deep Cleaning", color: "#38bdf8", icon: Sparkles },
+  { id: 4, label: "Pest Control", color: "#dd4c2f", icon: Bug },
+  { id: 5, label: "Training & Consultancy", color: "#a855f7", icon: GraduationCap },
+  { id: 6, label: "Facility Management", color: "#0ea5e9", icon: Building },
 ];
 
-const ORBIT_RADIUS = 165;
+const ORBIT_RADIUS = 185;
 
 function OrbitalServices() {
   const [rotation, setRotation] = useState(0);
@@ -46,37 +46,31 @@ function OrbitalServices() {
   return (
     <div
       className="relative flex items-center justify-center select-none"
-      style={{ width: 500, height: 490 }}
+      style={{ width: 560, height: 560 }}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {/* Outer decorative ring */}
-      <div
-        className="absolute rounded-full pointer-events-none"
-        style={{
-          width: ORBIT_RADIUS * 2 + 52,
-          height: ORBIT_RADIUS * 2 + 52,
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          border: "1px solid rgba(255,255,255,0.05)",
-        }}
-      />
+      {/* Three concentric rings — all centered on the same point */}
+      {[
+        { size: ORBIT_RADIUS * 2 + 64, border: "1px solid rgba(255,255,255,0.06)" },
+        { size: ORBIT_RADIUS * 2, border: "1px dashed rgba(255,255,255,0.16)" },
+        { size: ORBIT_RADIUS * 2 - 80, border: "1px solid rgba(255,255,255,0.08)" },
+      ].map((ring, i) => (
+        <div
+          key={i}
+          className="absolute rounded-full pointer-events-none"
+          style={{
+            width: ring.size,
+            height: ring.size,
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            border: ring.border,
+          }}
+        />
+      ))}
 
-      {/* Dashed orbit ring */}
-      <div
-        className="absolute rounded-full pointer-events-none"
-        style={{
-          width: ORBIT_RADIUS * 2,
-          height: ORBIT_RADIUS * 2,
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          border: "1px dashed rgba(255,255,255,0.14)",
-        }}
-      />
-
-      {/* Spinning conic gradient ring */}
+      {/* Spinning conic gradient on the main orbit ring */}
       <div
         className="absolute rounded-full animate-spin-slow pointer-events-none"
         style={{
@@ -92,42 +86,48 @@ function OrbitalServices() {
         }}
       />
 
-      {/* Center logo orb */}
-      <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1, ease: ease, delay: 0.3 }}
-        className="absolute z-[15] flex flex-col items-center"
+      {/* Center logo orb — outer div owns the centering transform so the
+          motion scale animation cannot displace it */}
+      <div
+        className="absolute z-[15]"
         style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
       >
-        {/* Glow rings */}
-        <div
-          className="absolute rounded-full pointer-events-none"
-          style={{ inset: -20, border: "1px solid rgba(11,132,65,0.2)", borderRadius: "50%" }}
-        />
-        <div
-          className="absolute rounded-full pointer-events-none"
-          style={{ inset: -8, border: "1px solid rgba(255,255,255,0.08)", borderRadius: "50%" }}
-        />
-
-        <div
-          className="w-24 h-24 rounded-2xl flex items-center justify-center"
-          style={{
-            background:
-              "radial-gradient(circle at 40% 40%, rgba(11,132,65,0.28) 0%, rgba(3,26,12,0.92) 100%)",
-            border: "1px solid rgba(255,255,255,0.12)",
-            boxShadow: "0 0 48px rgba(11,132,65,0.22), 0 8px 32px rgba(0,0,0,0.5)",
-          }}
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1, ease: ease, delay: 0.3 }}
+          className="flex flex-col items-center"
         >
-          <LogoImg size={70} className="rounded-xl" />
-        </div>
-        <div className="mt-2.5 text-center">
-          <div className="text-white/80 text-[11px] font-bold tracking-widest uppercase">
-            Dust & Wipes
+          <div className="relative">
+            {/* Glow rings around the orb */}
+            <div
+              className="absolute rounded-full pointer-events-none"
+              style={{ inset: -22, border: "1px solid rgba(11,132,65,0.2)", borderRadius: "50%" }}
+            />
+            <div
+              className="absolute rounded-full pointer-events-none"
+              style={{ inset: -9, border: "1px solid rgba(255,255,255,0.08)", borderRadius: "50%" }}
+            />
+            <div
+              className="w-[108px] h-[108px] rounded-2xl flex items-center justify-center"
+              style={{
+                background:
+                  "radial-gradient(circle at 40% 40%, rgba(11,132,65,0.28) 0%, rgba(3,26,12,0.92) 100%)",
+                border: "1px solid rgba(255,255,255,0.12)",
+                boxShadow: "0 0 48px rgba(11,132,65,0.22), 0 8px 32px rgba(0,0,0,0.5)",
+              }}
+            >
+              <LogoImg size={80} className="rounded-xl" />
+            </div>
           </div>
-          <div className="text-white/55 text-[9px] tracking-widest uppercase">Limited</div>
-        </div>
-      </motion.div>
+          <div className="mt-3 text-center">
+            <div className="text-white/85 text-[12.5px] font-bold tracking-widest uppercase">
+              Dust & Wipes
+            </div>
+            <div className="text-white/55 text-[10px] tracking-widest uppercase">Limited</div>
+          </div>
+        </motion.div>
+      </div>
 
       {/* Service nodes */}
       {ORBITAL_SERVICES.map((service, index) => {
@@ -137,8 +137,9 @@ function OrbitalServices() {
         const y = ORBIT_RADIUS * Math.sin(rad);
         const depth = Math.sin(rad); // -1 = back/top, +1 = front/bottom
         const opacity = 0.42 + 0.58 * ((1 + depth) / 2);
-        const scale = 0.8 + 0.2 * ((1 + depth) / 2);
+        const scale = 0.82 + 0.18 * ((1 + depth) / 2);
         const zIndex = Math.round(10 + 12 * ((1 + depth) / 2));
+        const Icon = service.icon;
 
         return (
           <div
@@ -154,26 +155,29 @@ function OrbitalServices() {
             }}
           >
             <div
-              className="whitespace-nowrap flex items-center gap-1.5 rounded-full text-[11px] font-semibold"
+              className="whitespace-nowrap flex items-center gap-2 rounded-full text-[12.5px] font-semibold"
               style={{
-                padding: "5px 12px 5px 9px",
+                padding: "6px 14px 6px 8px",
                 background: "rgba(255,255,255,0.08)",
                 backdropFilter: "blur(10px)",
                 WebkitBackdropFilter: "blur(10px)",
                 border: "1px solid rgba(255,255,255,0.18)",
-                color: "rgba(255,255,255,0.92)",
+                color: "rgba(255,255,255,0.94)",
                 transform: `scale(${scale})`,
                 transformOrigin: "center",
                 boxShadow: "0 2px 12px rgba(0,0,0,0.3)",
               }}
             >
               <span
-                className="w-2 h-2 rounded-full shrink-0"
+                className="w-6 h-6 rounded-full shrink-0 flex items-center justify-center"
                 style={{
-                  background: service.color,
-                  boxShadow: `0 0 6px ${service.color}80`,
+                  background: `${service.color}30`,
+                  border: `1px solid ${service.color}60`,
+                  boxShadow: `0 0 8px ${service.color}50`,
                 }}
-              />
+              >
+                <Icon size={13} style={{ color: service.color }} />
+              </span>
               {service.label}
             </div>
           </div>
@@ -339,7 +343,7 @@ export default function Hero() {
           </motion.div>
 
           {/* ── Right: Orbital showcase (desktop) ── */}
-          <div className="hidden lg:flex justify-center items-center relative h-[480px]">
+          <div className="hidden lg:flex justify-center items-center relative h-[560px]">
             <OrbitalServices />
           </div>
 
