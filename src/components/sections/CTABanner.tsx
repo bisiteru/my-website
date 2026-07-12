@@ -79,7 +79,7 @@ export default function CTABanner() {
             </a>
           </div>
 
-          <p className="text-white/35 text-xs mt-8 tracking-wide">
+          <p className="text-white/55 text-xs mt-8 tracking-wide">
             We typically respond within 2 hours &middot; Mon–Sat, 7am–6pm
           </p>
         </motion.div>

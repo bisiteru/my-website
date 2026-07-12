@@ -289,6 +289,16 @@ export const FAQS = [
 
 export const BLOG_POSTS = [
   {
+    slug: "why-trained-cleaners-matter",
+    title: "Why Trained Cleaners Matter: The Hidden Link Between Cleaning Skills and Workplace Safety",
+    excerpt:
+      "Anyone can hold a mop — but professional cleaning is a skill. Here's why trained, well-equipped cleaning personnel are essential to hygiene and safety in hospitals, hotels, offices, and embassies.",
+    category: "Training & Safety",
+    date: "July 12, 2026",
+    readTime: "6 min read",
+    image: "/images/team-meeting.jpg",
+  },
+  {
     slug: "how-often-should-you-deep-clean",
     title: "How Often Should You Deep Clean Your Home?",
     excerpt:
@@ -296,7 +306,7 @@ export const BLOG_POSTS = [
     category: "Cleaning Tips",
     date: "May 5, 2025",
     readTime: "4 min read",
-    image: "/images/blog-1.jpg",
+    image: "/images/kitchen-cleaning.jpg",
   },
   {
     slug: "signs-of-termite-infestation",
@@ -306,7 +316,7 @@ export const BLOG_POSTS = [
     category: "Pest Control",
     date: "April 22, 2025",
     readTime: "5 min read",
-    image: "/images/blog-2.jpg",
+    image: "/images/pest-control-fumigation.jpg",
   },
   {
     slug: "office-cleaning-productivity",
@@ -316,7 +326,7 @@ export const BLOG_POSTS = [
     category: "Office Cleaning",
     date: "April 10, 2025",
     readTime: "3 min read",
-    image: "/images/blog-3.jpg",
+    image: "/images/commercial-office-sweeping.jpg",
   },
   {
     slug: "eco-friendly-cleaning-tips",
@@ -326,7 +336,7 @@ export const BLOG_POSTS = [
     category: "Cleaning Tips",
     date: "March 28, 2025",
     readTime: "4 min read",
-    image: "/images/blog-4.jpg",
+    image: "/images/green-uniform-office.jpg",
   },
   {
     slug: "pest-control-abuja-rainy-season",
@@ -336,7 +346,7 @@ export const BLOG_POSTS = [
     category: "Pest Control",
     date: "March 15, 2025",
     readTime: "5 min read",
-    image: "/images/blog-5.jpg",
+    image: "/images/fumigation-office-blue.jpg",
   },
   {
     slug: "move-out-cleaning-checklist",
@@ -346,6 +356,6 @@ export const BLOG_POSTS = [
     category: "Cleaning Tips",
     date: "March 1, 2025",
     readTime: "6 min read",
-    image: "/images/blog-6.jpg",
+    image: "/images/post-construction-living-room.jpg",
   },
 ];

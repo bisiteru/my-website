@@ -21,6 +21,7 @@ const blogCategoryColors: Record<string, { bg: string; text: string }> = {
   "Pest Control": { bg: "#fff7f5", text: "#dd4c2f" },
   "Office Cleaning": { bg: "#f0faf4", text: "#0b8441" },
   "Cleaning Tips": { bg: "#f0faf4", text: "#0b8441" },
+  "Training & Safety": { bg: "#f5f3ff", text: "#7c3aed" },
 };
 
 export default function HomePage() {
@@ -213,9 +214,19 @@ export default function HomePage() {
                     className="h-48 relative overflow-hidden"
                     style={{ background: `linear-gradient(135deg, ${colors.bg} 0%, #f8f9f6 100%)` }}
                   >
-                    <div className="absolute inset-0 flex items-center justify-center text-6xl opacity-20 group-hover:scale-110 transition-transform duration-500">
-                      {post.category === "Pest Control" ? "🐛" : post.category === "Office Cleaning" ? "🏢" : "🧹"}
-                    </div>
+                    {post.image && !post.image.startsWith("/images/blog-") ? (
+                      <Image
+                        src={post.image}
+                        alt={post.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 640px) 100vw, 33vw"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center text-6xl opacity-20 group-hover:scale-110 transition-transform duration-500">
+                        {post.category === "Pest Control" ? "🐛" : post.category === "Office Cleaning" ? "🏢" : post.category === "Training & Safety" ? "🎓" : "🧹"}
+                      </div>
+                    )}
                     <div
                       className="absolute top-4 left-4 text-xs font-semibold px-3 py-1.5 rounded-full"
                       style={{ background: colors.bg, color: colors.text }}
