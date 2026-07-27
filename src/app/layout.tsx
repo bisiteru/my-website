@@ -105,7 +105,7 @@ export default function RootLayout({
               description:
                 "Professional cleaning and pest control services in Abuja, Nigeria. Residential, commercial, deep cleaning, carpet cleaning, fumigation and training.",
               url: "https://dustandwipes.com",
-              logo: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=192,h=192,fit=crop,f=png/ALpeL1ljNpuX4VBM/dust-wipes-logo41-2-AGB2VD6oX7TQO8Nj.png",
+              logo: "https://dustandwipes.com/images/logo-192.png",
               image: "https://dustandwipes.com/images/og-image.jpg",
               telephone: "+2348099700001",
               email: "infodesk@dustandwipes.com",

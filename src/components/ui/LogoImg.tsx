@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { LOGO_URL } from "@/lib/constants";
 
 interface LogoImgProps {
@@ -6,16 +7,15 @@ interface LogoImgProps {
   priority?: boolean;
 }
 
-export default function LogoImg({ size = 48, className = "" }: LogoImgProps) {
+export default function LogoImg({ size = 48, className = "", priority = true }: LogoImgProps) {
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
+    <Image
       src={LOGO_URL}
       alt="Dust & Wipes Ltd. Logo"
       width={size}
       height={size}
       className={className}
-      loading="eager"
+      priority={priority}
     />
   );
 }

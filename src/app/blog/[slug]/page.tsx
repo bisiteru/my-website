@@ -161,7 +161,7 @@ export default async function BlogPostPage({ params }: Props) {
                 name: "Dust & Wipes Limited",
                 logo: {
                   "@type": "ImageObject",
-                  url: "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=192,h=192,fit=crop,f=png/ALpeL1ljNpuX4VBM/dust-wipes-logo41-2-AGB2VD6oX7TQO8Nj.png",
+                  url: "https://dustandwipes.com/images/logo-192.png",
                 },
               },
               mainEntityOfPage: `https://dustandwipes.com/blog/${post.slug}`,
