@@ -343,8 +343,12 @@ export default function Hero() {
           </motion.div>
 
           {/* ── Right: Orbital showcase (desktop) ── */}
-          <div className="hidden lg:flex justify-center items-center relative h-[560px]">
-            <OrbitalServices />
+          {/* At lg the column is ~448px wide, narrower than the 560px orbital,
+              so scale it down there and go full size from xl up. */}
+          <div className="hidden lg:flex justify-center items-center relative h-[450px] xl:h-[560px]">
+            <div className="scale-[0.78] xl:scale-100 origin-center">
+              <OrbitalServices />
+            </div>
           </div>
 
           {/* ── Mobile services grid ── */}

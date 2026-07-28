@@ -1,5 +1,6 @@
-export const LOGO_URL =
-  "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=192,h=192,fit=crop,f=png/ALpeL1ljNpuX4VBM/dust-wipes-logo41-2-AGB2VD6oX7TQO8Nj.png";
+// Self-hosted so the site never depends on the old Zyro CDN staying online.
+// Square 192x192 centre crop, matching the previous CDN transform.
+export const LOGO_URL = "/images/logo-192.png";
 
 export const COMPANY = {
   name: "Dust & Wipes Limited",
