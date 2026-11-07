@@ -31,7 +31,7 @@ export const LOCATIONS = {
   },
   lagos: {
     name: "Lagos",
-    address: "5 Admiralty Road, Lekki, Lagos.",
+    address: "5 Admiralty Road, Off Admiralty Way, Lekki Phase 1, Lekki, Lagos.",
   },
 } as const;
 

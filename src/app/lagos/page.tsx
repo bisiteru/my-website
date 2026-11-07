@@ -4,7 +4,7 @@ import { LOCATIONS } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Cleaning & Cleaner Training in Lagos",
-  description: "Dust & Wipes has an office at 5 Admiralty Road, Lekki, Lagos. Enquire about managed cleaning and practical training for your in-house cleaning team.",
+  description: "Dust & Wipes has an office at 5 Admiralty Road, Off Admiralty Way, Lekki Phase 1, Lekki, Lagos. Enquire about managed cleaning and practical training for your in-house cleaning team.",
 };
 
 export default function LagosPage() {
