@@ -67,10 +67,10 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
           <div className="max-w-2xl">
             <p className="section-eyebrow">Where we work</p>
-            <h2 id="cities-heading" className="mt-4 font-[family-name:var(--font-display)] text-4xl font-semibold text-[#173627] sm:text-5xl">Local teams. Shared standards.</h2>
+            <h2 id="cities-heading" className="mt-4 font-[family-name:var(--font-display)] text-4xl font-semibold text-[#173627] sm:text-5xl">Two offices. One approach.</h2>
           </div>
           <div className="mt-12 grid gap-5 md:grid-cols-2">
-            {[{ city: "Abuja", detail: "Established operations across the FCT", href: "/abuja" }, { city: "Lagos", detail: "Visit our Lekki office or enquire about a site assessment", href: "/lagos" }].map(({ city, detail, href }) => (
+            {[{ city: "Abuja", detail: "Established Abuja operations", href: "/abuja" }, { city: "Lagos", detail: "Visit our Lekki office or enquire about a site assessment", href: "/lagos" }].map(({ city, detail, href }) => (
               <Link key={city} href={href} className="group flex min-h-56 flex-col justify-between border border-[#cbd8ce] bg-white p-7 transition-colors hover:border-[#0b8441] sm:p-9">
                 <span className="text-sm text-[#53645a]">{detail}</span>
                 <span className="flex items-end justify-between font-[family-name:var(--font-display)] text-4xl text-[#173627]">{city}<ArrowUpRight size={27} className="text-[#0b8441] transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true" /></span>

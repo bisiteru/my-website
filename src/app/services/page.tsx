@@ -1,207 +1,58 @@
 import type { Metadata } from "next";
-import { CheckCircle, MessageCircle } from "lucide-react";
-import { SERVICES, COMPANY } from "@/lib/constants";
-import CTABanner from "@/components/sections/CTABanner";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Our Services",
-  description:
-    "Explore Dust & Wipes Limited's full range of cleaning and pest control services in Abuja — residential cleaning, office cleaning, deep cleaning, carpet cleaning, termite control, rodent control, bed bug treatment, training and more.",
-  keywords: [
-    "cleaning services Abuja",
-    "deep cleaning Abuja",
-    "office cleaning Abuja FCT",
-    "pest control Abuja",
-    "carpet cleaning Abuja",
-    "post-construction cleaning Abuja",
-    "upholstery cleaning Abuja",
-    "fumigation Abuja",
-    "termite control Abuja",
-  ],
+  title: "Cleaning, Property Care & Training Services",
+  description: "Explore managed workplace cleaning, residential care, pest control and cleaner training from Dust & Wipes in Abuja and Lagos.",
 };
 
+const services = [
+  { id: "commercial-cleaning", number: "01", title: "Workplace cleaning", body: "Plans for offices, diplomatic workplaces, hospitality spaces and other managed facilities. We discuss your site, routines, access and priorities before defining scope.", items: ["Daily and periodic cleaning", "Restrooms and shared spaces", "Detailed and post-construction cleaning"] },
+  { id: "residential-cleaning", number: "02", title: "Residential care", body: "Considered cleaning for homes and managed residences, with attention to the surfaces, routines and access requirements that matter to each household.", items: ["Regular home cleaning", "Deep cleaning", "Carpet and upholstery care"] },
+  { id: "pest-control", number: "03", title: "Pest control", body: "Assessment-led pest management for homes and workplaces. Treatment options and precautions are discussed for the site and problem identified.", items: ["Site assessment", "Treatment planning", "Follow-up needs"] },
+  { id: "training-consultancy", number: "04", title: "Cleaner training", body: "Practical, customised on-site training for organisations employing cleaners directly, including housekeeping, workplace hygiene, chemical handling and supervision.", items: ["In-house cleaning teams", "Supervisors", "Lagos and Abuja"] },
+];
+
 export default function ServicesPage() {
-  const cleaningServices = SERVICES.filter((s) => s.category === "cleaning");
-  const pestServices = SERVICES.filter((s) => s.category === "pest-control");
-  const trainingServices = SERVICES.filter((s) => s.category === "training");
-
-  const waMessage = encodeURIComponent("Hello! I'd like to book a service with Dust & Wipes Limited.");
-  const waUrl = `https://wa.me/${COMPANY.whatsapp.replace("+", "")}?text=${waMessage}`;
-
-  const ServiceCard = ({
-    service,
-    accentColor,
-  }: {
-    service: (typeof SERVICES)[0];
-    accentColor: string;
-  }) => (
-    <div
-      id={service.id}
-      className="bg-white rounded-2xl border border-gray-100 overflow-hidden card-hover shadow-sm"
-    >
-      <div className="h-2" style={{ background: accentColor }} />
-      <div className="p-6">
-        <div
-          className="h-32 -mx-6 -mt-6 mb-5 bg-cover bg-center"
-          style={{ backgroundImage: `url('${service.image}')` }}
-        />
-        <h3 className="text-xl font-bold text-gray-900 mb-2">{service.title}</h3>
-        <p className="text-gray-600 text-sm leading-relaxed mb-5">{service.description}</p>
-        <ul className="space-y-2 mb-6">
-          {service.features.map((f) => (
-            <li key={f} className="flex items-start gap-2 text-sm text-gray-700">
-              <CheckCircle size={15} className="mt-0.5 shrink-0" style={{ color: accentColor }} />
-              {f}
-            </li>
-          ))}
-        </ul>
-        <a
-          href={waUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-opacity hover:opacity-85 w-full justify-center"
-          style={{ background: accentColor }}
-        >
-          <MessageCircle size={15} />
-          Book This Service
-        </a>
-      </div>
-    </div>
-  );
-
   return (
     <>
-      {/* Hero */}
-      <section className="hero-bg pt-32 pb-20 relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px)`,
-            backgroundSize: "40px 40px",
-          }}
-        />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-          <span className="inline-block bg-white/10 border border-white/20 text-white/80 text-sm px-4 py-1.5 rounded-full mb-6">
-            What We Offer
-          </span>
-          <h1 className="text-4xl sm:text-5xl font-black text-white mb-5">Our Services</h1>
-          <p className="text-white/70 text-lg max-w-2xl mx-auto">
-            Comprehensive cleaning and pest control solutions for homes, offices, and commercial
-            facilities across Abuja FCT.
-          </p>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-            <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="white" />
-          </svg>
+      <section className="bg-[#f4f3ee] py-20 text-[#173627] sm:py-28">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20 lg:px-12">
+          <div>
+            <p className="section-eyebrow">Services</p>
+            <h1 className="mt-5 font-[family-name:var(--font-display)] text-[clamp(3rem,5vw,5.75rem)] font-semibold leading-[1.06] tracking-[-0.04em]">The right care for your space.</h1>
+            <p className="mt-7 max-w-xl text-lg leading-8 text-[#486052]">Cleaning and team development in Abuja and Lagos. We begin by understanding your building, people and operating needs.</p>
+            <Link href="/contact" className="mt-9 inline-flex min-h-12 items-center gap-3 rounded-md bg-[#0b8441] px-6 py-3 font-semibold text-white hover:bg-[#076634] active:scale-[0.98]">Discuss your requirements <ArrowUpRight size={18} aria-hidden="true" /></Link>
+          </div>
+          <div className="relative aspect-[4/3] overflow-hidden bg-[#d3d9d4]">
+            <Image src="/images/green-uniform-office.jpg" alt="Dust & Wipes staff member cleaning a residential kitchen" fill priority sizes="(max-width: 1024px) 100vw, 45vw" className="object-cover" />
+          </div>
         </div>
       </section>
-
-      {/* Cleaning Services */}
-      <section id="cleaning" className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12">
-            <div className="inline-flex items-center gap-2 bg-green-50 text-[#0b8441] px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              🧹 Cleaning Services
-            </div>
-            <h2 className="section-title">Professional Cleaning Solutions</h2>
-            <p className="text-gray-500 mt-3 max-w-xl">
-              From routine home cleans to post-construction deep cleans, our expert team delivers
-              consistent, thorough results every time.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {cleaningServices.map((service) => (
-              <ServiceCard
-                key={service.id}
-                service={service}
-                accentColor="#0b8441"
-              />
+      <section className="bg-white py-16 sm:py-24" aria-labelledby="service-list">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+          <div className="max-w-2xl"><p className="section-eyebrow">What we offer</p><h2 id="service-list" className="mt-4 font-[family-name:var(--font-display)] text-4xl font-semibold text-[#173627] sm:text-5xl">A clear scope, built around your needs.</h2></div>
+          <div className="mt-12 border-t border-[#dce5dc]">
+            {services.map((service) => (
+              <article key={service.id} id={service.id} className="grid gap-6 border-b border-[#dce5dc] py-9 lg:grid-cols-[0.15fr_0.85fr_1fr] lg:gap-12 lg:py-12">
+                {service.id === "commercial-cleaning" && <span id="post-construction" className="sr-only">Post-construction cleaning</span>}
+                {service.id === "residential-cleaning" && <><span id="deep-cleaning" className="sr-only">Deep cleaning</span><span id="carpet-upholstery" className="sr-only">Carpet and upholstery cleaning</span></>}
+                <span className="text-sm font-semibold text-[#0b8441]">{service.number}</span>
+                <h3 className="font-[family-name:var(--font-display)] text-3xl font-semibold text-[#173627]">{service.title}</h3>
+                <div><p className="leading-8 text-[#53645a]">{service.body}</p><ul className="mt-5 flex flex-wrap gap-2">{service.items.map((item) => <li key={item} className="border border-[#cbd8ce] px-3 py-1.5 text-xs font-medium text-[#345543]">{item}</li>)}</ul>{service.id === "training-consultancy" && <Link href="/training" className="mt-6 inline-flex min-h-11 items-center gap-2 font-semibold text-[#0b8441] hover:underline underline-offset-4">Explore training <ArrowUpRight size={17} aria-hidden="true" /></Link>}</div>
+              </article>
             ))}
           </div>
         </div>
       </section>
-
-      {/* Pest Control */}
-      <section id="pest-control" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12">
-            <div className="inline-flex items-center gap-2 bg-orange-50 text-[#dd4c2f] px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              🐛 Pest Control Services
-            </div>
-            <h2 className="section-title">Effective Pest Control Solutions</h2>
-            <p className="text-gray-500 mt-3 max-w-xl">
-              Certified pest control technicians using approved, low-toxicity treatments to
-              eliminate infestations and prevent re-entry.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {pestServices.map((service) => (
-              <ServiceCard
-                key={service.id}
-                service={service}
-                accentColor="#dd4c2f"
-              />
-            ))}
-          </div>
+      <section className="bg-[#173627] py-20 text-white sm:py-24">
+        <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 sm:px-8 lg:flex-row lg:items-end lg:justify-between lg:px-12">
+          <div><p className="text-xs font-bold uppercase tracking-[0.2em] text-[#a8d0b8]">Next step</p><h2 className="mt-4 max-w-2xl font-[family-name:var(--font-display)] text-4xl font-semibold sm:text-5xl">Let us plan around your space.</h2><p className="mt-5 text-white/75">Tell us your location and what you need. We will discuss suitable scope and availability.</p></div>
+          <Link href="/contact" className="inline-flex min-h-12 shrink-0 items-center gap-3 self-start rounded-md bg-white px-6 py-3 font-semibold text-[#173627] hover:bg-[#e9f2eb] active:scale-[0.98]">Send an enquiry <ArrowUpRight size={18} aria-hidden="true" /></Link>
         </div>
       </section>
-
-      {/* Training & Consultancy */}
-      <section id="training-consultancy" className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12">
-            <div className="inline-flex items-center gap-2 bg-purple-50 text-purple-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              🎓 Training &amp; Consultancy
-            </div>
-            <h2 className="section-title">Professional Development &amp; Consulting</h2>
-            <p className="text-gray-500 mt-3 max-w-xl">
-              We share our operational expertise with organizations that want to raise their cleaning
-              standards, train staff, or improve facility management practices.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {trainingServices.map((service) => (
-              <ServiceCard
-                key={service.id}
-                service={service}
-                accentColor="#7c3aed"
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Process */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="text-[#0b8441] font-semibold text-sm uppercase tracking-widest">
-              How It Works
-            </span>
-            <h2 className="section-title mt-2">Simple, Hassle-Free Booking</h2>
-            <div className="accent-line mt-3 mx-auto" />
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { step: "01", title: "Contact Us", desc: "Reach us via our website form, WhatsApp, or phone call." },
-              { step: "02", title: "Get a Quote", desc: "We assess your needs and provide a transparent, no-obligation quote." },
-              { step: "03", title: "We Show Up", desc: "Our uniformed team arrives on time, fully equipped, and ready to work." },
-              { step: "04", title: "Enjoy the Results", desc: "Inspect the job. If you're not 100% satisfied, we'll fix it free of charge." },
-            ].map(({ step, title, desc }) => (
-              <div key={step} className="text-center relative">
-                <div className="w-16 h-16 rounded-2xl bg-[#0b8441] text-white text-2xl font-black flex items-center justify-center mx-auto mb-4 shadow-lg">
-                  {step}
-                </div>
-                <h3 className="font-bold text-gray-900 mb-2">{title}</h3>
-                <p className="text-sm text-gray-500">{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <CTABanner />
     </>
   );
 }

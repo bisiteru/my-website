@@ -1,354 +1,85 @@
 "use client";
 
-import { useState } from "react";
-import { Phone, Mail, MapPin, MessageCircle, Clock, CheckCircle, Send } from "lucide-react";
-import { COMPANY } from "@/lib/constants";
+import { useState, type FormEvent } from "react";
+import Link from "next/link";
+import { ArrowUpRight, CheckCircle, Mail, Phone } from "lucide-react";
+import { COMPANY, LOCATIONS } from "@/lib/constants";
 
-const services = [
-  "Residential Cleaning",
-  "Office / Commercial Cleaning",
-  "Deep Cleaning",
-  "Post-Construction Cleaning",
-  "Carpet & Upholstery Cleaning",
-  "General Pest Control",
-  "Termite Control",
-  "Rodent Control",
-  "Mosquito Treatment",
-  "Bed Bug Treatment",
-  "Other",
-];
+const serviceOptions = ["Managed workplace cleaning", "Residential cleaning", "Cleaner training", "Pest control", "Other enquiry"];
+type ContactContentProps = { initialCity: "" | "Lagos" | "Abuja"; initialService: string };
 
-export default function ContactContent() {
+export default function ContactContent({ initialCity, initialService }: ContactContentProps) {
   const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    service: "",
-    location: "",
-    message: "",
-    frequency: "one-off",
+    name: "", organisation: "", email: "", phone: "", city: initialCity,
+    area: "", service: initialService, message: "",
   });
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setError(false);
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setStatus("sending");
     try {
-      const res = await fetch("https://formspree.io/f/mzdyqpka", {
+      const response = await fetch("https://formspree.io/f/mzdyqpka", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ ...form, _subject: "New Quote Request from Website" }),
+        body: JSON.stringify({ ...form, _subject: "New Dust & Wipes website enquiry" }),
       });
-      if (res.ok) {
-        setSubmitted(true);
-      } else {
-        setError(true);
-      }
+      setStatus(response.ok ? "success" : "error");
     } catch {
-      setError(true);
-    } finally {
-      setLoading(false);
+      setStatus("error");
     }
-  };
+  }
 
-  const waMessage = encodeURIComponent(
-    `Hello Dust & Wipes! I'd like to get a quote for: ${form.service || "your services"}.`
-  );
-  const waUrl = `https://wa.me/${COMPANY.whatsapp.replace("+", "")}?text=${waMessage}`;
+  const fieldClass = "mt-2 block min-h-12 w-full rounded-md border border-[#b9cbbd] bg-white px-4 py-3 text-[#173627] placeholder:text-[#728477]";
 
   return (
     <>
-      {/* Hero */}
-      <section className="hero-bg pt-32 pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10"
-          style={{ backgroundImage: `linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px)`, backgroundSize: "40px 40px" }}
-        />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-          <span className="inline-block bg-white/10 border border-white/20 text-white/80 text-sm px-4 py-1.5 rounded-full mb-6">
-            Get in Touch
-          </span>
-          <h1 className="text-4xl sm:text-5xl font-black text-white mb-5">
-            Book a Service or Get a Quote
-          </h1>
-          <p className="text-white/70 text-lg max-w-2xl mx-auto">
-            Fill in the form and we&apos;ll get back to you within 2 hours with a transparent, no-obligation quote.
-          </p>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-            <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="white" />
-          </svg>
+      <section className="bg-[#f4f3ee] py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+          <p className="section-eyebrow">Contact Dust &amp; Wipes</p>
+          <h1 className="mt-5 max-w-3xl font-[family-name:var(--font-display)] text-[clamp(3rem,5vw,5.5rem)] font-semibold leading-[1.07] text-[#173627]">Let us understand your space.</h1>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-[#486052]">Tell us about your cleaning or training needs. Our team will contact you to discuss scope and next steps.</p>
         </div>
       </section>
-
-      {/* Content */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Left: Contact info */}
-            <div className="space-y-6">
-              <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">Contact Information</h2>
-                <p className="text-gray-500 text-sm leading-relaxed">
-                  Prefer a quick chat? Reach us via WhatsApp for the fastest response.
-                </p>
-              </div>
-
-              {/* Contact cards */}
-              <div className="space-y-4">
-                <div className="flex items-start gap-4 p-4 bg-white rounded-2xl border border-gray-100 shadow-sm">
-                  <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center shrink-0">
-                    <Phone size={18} className="text-[#0b8441]" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-0.5">Phone</div>
-                    <a href={`tel:${COMPANY.phone}`} className="block font-semibold text-gray-900 hover:text-[#0b8441] transition-colors">{COMPANY.phone}</a>
-                    <a href={`tel:${COMPANY.phone2}`} className="block font-semibold text-gray-900 hover:text-[#0b8441] transition-colors">{COMPANY.phone2}</a>
-                    <div className="text-xs text-gray-400 mt-0.5">Mon–Sat, 7am–6pm</div>
-                  </div>
-                </div>
-
-                <a
-                  href={waUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-start gap-4 p-4 bg-white rounded-2xl border border-gray-100 shadow-sm hover:border-[#25d366] transition-colors group"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center shrink-0 group-hover:bg-[#25d366] transition-colors">
-                    <MessageCircle size={18} className="text-[#25d366] group-hover:text-white transition-colors" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-0.5">WhatsApp</div>
-                    <div className="font-semibold text-gray-900">{COMPANY.phone}</div>
-                    <div className="text-xs text-gray-400">We reply within minutes</div>
-                  </div>
-                </a>
-
-                <a
-                  href={`mailto:${COMPANY.email}`}
-                  className="flex items-start gap-4 p-4 bg-white rounded-2xl border border-gray-100 shadow-sm hover:border-[#0b8441] transition-colors group"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center shrink-0 group-hover:bg-[#0b8441] transition-colors">
-                    <Mail size={18} className="text-[#0b8441] group-hover:text-white transition-colors" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-0.5">Email</div>
-                    <div className="font-semibold text-gray-900">{COMPANY.email}</div>
-                    <div className="text-xs text-gray-400">We respond within 2 hours</div>
-                  </div>
-                </a>
-
-                <div className="flex items-start gap-4 p-4 bg-white rounded-2xl border border-gray-100 shadow-sm">
-                  <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center shrink-0">
-                    <MapPin size={18} className="text-[#0b8441]" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-0.5">Location</div>
-                    <div className="font-semibold text-gray-900">{COMPANY.address}</div>
-                    <div className="text-xs text-gray-400">Serving all FCT districts</div>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4 p-4 bg-white rounded-2xl border border-gray-100 shadow-sm">
-                  <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center shrink-0">
-                    <Clock size={18} className="text-[#0b8441]" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-0.5">Hours</div>
-                    <div className="text-sm text-gray-700">Mon–Fri: 7:00am – 6:00pm</div>
-                    <div className="text-sm text-gray-700">Saturday: 8:00am – 4:00pm</div>
-                    <div className="text-xs text-gray-400">Sunday: By appointment only</div>
-                  </div>
-                </div>
-              </div>
+      <section className="bg-white py-16 sm:py-24">
+        <div className="mx-auto grid max-w-7xl gap-14 px-5 sm:px-8 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20 lg:px-12">
+          <div>
+            <h2 className="text-2xl font-semibold text-[#173627]">Speak with our team</h2>
+            <div className="mt-7 space-y-5 border-t border-[#dce5dc] pt-7">
+              <a href={`tel:${COMPANY.phone.replaceAll(" ", "")}`} className="flex items-center gap-3 font-semibold text-[#0b8441] hover:underline"><Phone size={19} aria-hidden="true" />{COMPANY.phone}</a>
+              <a href={`mailto:${COMPANY.email}`} className="flex items-center gap-3 font-semibold text-[#0b8441] hover:underline"><Mail size={19} aria-hidden="true" />{COMPANY.email}</a>
             </div>
-
-            {/* Right: Form */}
-            <div className="lg:col-span-2">
-              {submitted ? (
-                <div className="bg-green-50 border border-green-100 rounded-3xl p-12 text-center h-full flex flex-col items-center justify-center">
-                  <div className="w-20 h-20 rounded-full bg-[#0b8441] flex items-center justify-center mb-6 mx-auto">
-                    <CheckCircle size={36} className="text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">Request Received!</h3>
-                  <p className="text-gray-600 mb-2">
-                    Thank you, <strong>{form.name}</strong>! We&apos;ve received your enquiry and will get back to you within 2 hours.
-                  </p>
-                  <p className="text-gray-500 text-sm mb-8">
-                    For immediate assistance, WhatsApp us directly.
-                  </p>
-                  <a
-                    href={waUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-[#25d366] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#1da851] transition-all"
-                  >
-                    <MessageCircle size={18} />
-                    Chat on WhatsApp
-                  </a>
-                </div>
-              ) : (
-                <form
-                  onSubmit={handleSubmit}
-                  className="bg-white rounded-3xl border border-gray-100 shadow-sm p-8"
-                >
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Request a Free Quote</h2>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                        Full Name <span className="text-[#dd4c2f]">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        name="name"
-                        required
-                        value={form.name}
-                        onChange={handleChange}
-                        placeholder="e.g. Amaka Okafor"
-                        className="form-input"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                        Phone Number <span className="text-[#dd4c2f]">*</span>
-                      </label>
-                      <input
-                        type="tel"
-                        name="phone"
-                        required
-                        value={form.phone}
-                        onChange={handleChange}
-                        placeholder="+234 800 000 0000"
-                        className="form-input"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={form.email}
-                      onChange={handleChange}
-                      placeholder="you@example.com"
-                      className="form-input"
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                        Service Required <span className="text-[#dd4c2f]">*</span>
-                      </label>
-                      <select
-                        name="service"
-                        required
-                        value={form.service}
-                        onChange={handleChange}
-                        className="form-input"
-                      >
-                        <option value="">Select a service…</option>
-                        {services.map((s) => (
-                          <option key={s} value={s}>{s}</option>
-                        ))}
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                        Service Frequency
-                      </label>
-                      <select
-                        name="frequency"
-                        value={form.frequency}
-                        onChange={handleChange}
-                        className="form-input"
-                      >
-                        <option value="one-off">One-off</option>
-                        <option value="weekly">Weekly</option>
-                        <option value="bi-weekly">Bi-weekly</option>
-                        <option value="monthly">Monthly</option>
-                        <option value="quarterly">Quarterly</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="mb-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                      Location / Area in Abuja <span className="text-[#dd4c2f]">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="location"
-                      required
-                      value={form.location}
-                      onChange={handleChange}
-                      placeholder="e.g. Maitama, Wuse 2, Gwarinpa…"
-                      className="form-input"
-                    />
-                  </div>
-
-                  <div className="mb-6">
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                      Additional Details
-                    </label>
-                    <textarea
-                      name="message"
-                      value={form.message}
-                      onChange={handleChange}
-                      rows={4}
-                      placeholder="Tell us more — property size, number of rooms, specific concerns, preferred date/time…"
-                      className="form-input resize-none"
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full bg-[#0b8441] text-white py-4 rounded-full font-bold text-base hover:bg-[#076634] transition-all hover:-translate-y-0.5 shadow-lg disabled:opacity-70 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2"
-                  >
-                    {loading ? (
-                      <>
-                        <div className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
-                        Sending…
-                      </>
-                    ) : (
-                      <>
-                        <Send size={18} />
-                        Send Quote Request
-                      </>
-                    )}
-                  </button>
-
-                  {error && (
-                    <p className="text-sm text-[#dd4c2f] text-center mt-4 font-medium">
-                      Sorry, something went wrong sending your request. Please try again, or reach
-                      us directly on{" "}
-                      <a href={waUrl} target="_blank" rel="noopener noreferrer" className="underline font-semibold">
-                        WhatsApp
-                      </a>{" "}
-                      or {COMPANY.phone}.
-                    </p>
-                  )}
-
-                  <p className="text-xs text-gray-400 text-center mt-4">
-                    By submitting, you agree to be contacted by Dust & Wipes Limited regarding your enquiry.
-                  </p>
-                </form>
-              )}
+            <div className="mt-12 space-y-7">
+              <div><h3 className="font-semibold text-[#173627]">Lagos office</h3><p className="mt-1 leading-7 text-[#53645a]">{LOCATIONS.lagos.address}</p><Link href="/lagos" className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-[#0b8441] hover:underline">Lagos details <ArrowUpRight size={15} aria-hidden="true" /></Link></div>
+              <div><h3 className="font-semibold text-[#173627]">Abuja office</h3><p className="mt-1 leading-7 text-[#53645a]">{LOCATIONS.abuja.address}</p><Link href="/abuja" className="mt-2 inline-flex items-center gap-1 text-sm font-semibold text-[#0b8441] hover:underline">Abuja details <ArrowUpRight size={15} aria-hidden="true" /></Link></div>
             </div>
+          </div>
+          <div className="border border-[#dce5dc] bg-[#fbfcfa] p-6 sm:p-10">
+            {status === "success" ? (
+              <div role="status" className="flex min-h-96 flex-col justify-center">
+                <CheckCircle size={37} className="text-[#0b8441]" aria-hidden="true" />
+                <h2 className="mt-6 font-[family-name:var(--font-display)] text-3xl font-semibold text-[#173627]">Enquiry sent.</h2>
+                <p className="mt-3 leading-7 text-[#53645a]">Thank you. Our team will review your details and contact you.</p>
+                <button type="button" onClick={() => setStatus("idle")} className="mt-7 self-start font-semibold text-[#0b8441] underline underline-offset-4">Send another enquiry</button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div><p className="section-eyebrow">Enquiry form</p><h2 className="mt-3 text-2xl font-semibold text-[#173627]">Tell us what you need</h2></div>
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <label className="block text-sm font-semibold text-[#173627]">Full name <span aria-hidden="true">*</span><input name="name" autoComplete="name" required value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} className={fieldClass} /></label>
+                  <label className="block text-sm font-semibold text-[#173627]">Organisation <span className="font-normal text-[#66796a]">(if applicable)</span><input name="organisation" autoComplete="organization" value={form.organisation} onChange={(event) => setForm({ ...form, organisation: event.target.value })} className={fieldClass} /></label>
+                  <label className="block text-sm font-semibold text-[#173627]">Email <span aria-hidden="true">*</span><input type="email" name="email" autoComplete="email" required value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} className={fieldClass} /></label>
+                  <label className="block text-sm font-semibold text-[#173627]">Phone <span aria-hidden="true">*</span><input type="tel" name="phone" autoComplete="tel" required value={form.phone} onChange={(event) => setForm({ ...form, phone: event.target.value })} className={fieldClass} /></label>
+                  <label className="block text-sm font-semibold text-[#173627]">City <span aria-hidden="true">*</span><select name="city" required value={form.city} onChange={(event) => setForm({ ...form, city: event.target.value as "" | "Lagos" | "Abuja" })} className={fieldClass}><option value="">Select city</option><option value="Lagos">Lagos</option><option value="Abuja">Abuja</option></select></label>
+                  <label className="block text-sm font-semibold text-[#173627]">Area or neighbourhood <span aria-hidden="true">*</span><input name="area" required value={form.area} onChange={(event) => setForm({ ...form, area: event.target.value })} placeholder="Where is your site?" className={fieldClass} /></label>
+                </div>
+                <label className="block text-sm font-semibold text-[#173627]">Service <span aria-hidden="true">*</span><select name="service" required value={form.service} onChange={(event) => setForm({ ...form, service: event.target.value })} className={fieldClass}><option value="">Select service</option>{serviceOptions.map((option) => <option key={option} value={option}>{option}</option>)}</select></label>
+                <label className="block text-sm font-semibold text-[#173627]">What should we know?<textarea name="message" required rows={5} value={form.message} onChange={(event) => setForm({ ...form, message: event.target.value })} placeholder="Describe your site, team or training priorities." className={fieldClass} /></label>
+                <p className="text-sm leading-6 text-[#53645a]">We will use your details to respond to this enquiry. See our <Link href="/privacy" className="font-semibold text-[#0b8441] underline underline-offset-4">privacy policy</Link>.</p>
+                <button type="submit" disabled={status === "sending"} className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-md bg-[#0b8441] px-6 py-3 font-semibold text-white hover:bg-[#076634] active:scale-[0.98] disabled:cursor-wait disabled:opacity-60">{status === "sending" ? "Sending…" : "Send enquiry"}{status !== "sending" && <ArrowUpRight size={18} aria-hidden="true" />}</button>
+                {status === "error" && <p role="alert" className="border-l-4 border-[#dd4c2f] bg-[#fff5f2] p-4 text-sm text-[#853b2a]">Enquiry could not be sent. Please email {COMPANY.email} or call {COMPANY.phone}.</p>}
+              </form>
+            )}
           </div>
         </div>
       </section>

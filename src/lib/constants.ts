@@ -6,7 +6,7 @@ export const COMPANY = {
   name: "Dust & Wipes Limited",
   tagline: "Restoring a Clean World",
   description:
-    "Abuja's most trusted cleaning and pest control company since 2017. We deliver spotless, safe environments for homes, offices, and facilities across the FCT.",
+    "Professionally managed cleaning and practical cleaner training in Abuja and Lagos.",
   phone: "0809 970 0001",
   phone2: "0809 845 7721",
   whatsapp: "+2348099700001",
@@ -23,6 +23,17 @@ export const COMPANY = {
     linkedin: "https://linkedin.com/company/dustandwipes",
   },
 };
+
+export const LOCATIONS = {
+  abuja: {
+    name: "Abuja",
+    address: "Suite D15, Irama Plaza, 4th Avenue, Gwarinpa, Abuja.",
+  },
+  lagos: {
+    name: "Lagos",
+    address: "5 Admiralty Road, Lekki, Lagos.",
+  },
+} as const;
 
 export const AFFILIATIONS = [
   { short: "ISSA", full: "International Sanitary Standards Association" },
@@ -145,7 +156,7 @@ export const SERVICES = [
       "Cleaning management training",
       "Hygiene standards consulting",
       "Facility operations guidance",
-      "Team certification programs",
+      "Customised on-site sessions",
     ],
     category: "training",
   },

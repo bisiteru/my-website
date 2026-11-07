@@ -23,11 +23,11 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   metadataBase: new URL("https://dustandwipes.com"),
   title: {
-    default: "Dust & Wipes Limited | Professional Cleaning & Pest Control in Abuja",
+    default: "Dust & Wipes Limited | Cleaning & Training in Abuja and Lagos",
     template: "%s | Dust & Wipes Limited",
   },
   description:
-    "Abuja's most trusted cleaning and pest control company since 2017. Residential cleaning, office cleaning, deep cleaning, carpet cleaning, termite control & more. Serving all FCT districts. 650+ happy clients. Get a free quote.",
+    "Professionally managed cleaning and practical cleaner training for homes and organisations in Abuja and Lagos.",
   keywords: [
     "cleaning company Abuja",
     "pest control Abuja",
@@ -53,9 +53,9 @@ export const metadata: Metadata = {
     locale: "en_NG",
     url: "https://dustandwipes.com",
     siteName: "Dust & Wipes Limited",
-    title: "Dust & Wipes Limited | Professional Cleaning & Pest Control in Abuja",
+    title: "Dust & Wipes Limited | Cleaning & Training in Abuja and Lagos",
     description:
-      "Abuja's most trusted cleaning and pest control company since 2017. 650+ satisfied clients across all FCT districts.",
+      "Managed cleaning and practical cleaner training in Abuja and Lagos.",
     images: [
       {
         url: "/images/og-image.jpg",
@@ -67,8 +67,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dust & Wipes Limited | Abuja Cleaning & Pest Control",
-    description: "Professional cleaning and pest control services across Abuja FCT. 650+ happy clients since 2017.",
+    title: "Dust & Wipes Limited | Abuja & Lagos",
+    description: "Managed cleaning and practical cleaner training in Abuja and Lagos.",
     images: ["/images/og-image.jpg"],
   },
   robots: {

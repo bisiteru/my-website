@@ -2,18 +2,11 @@ import type { Metadata } from "next";
 import ContactContent from "./ContactContent";
 
 export const metadata: Metadata = {
-  title: "Contact Us — Get a Free Quote",
-  description:
-    "Contact Dust & Wipes Limited for a free cleaning or pest control quote in Abuja. Call 0809 970 0001, WhatsApp, or fill our quick form — we respond within 2 hours.",
-  keywords: [
-    "cleaning quote Abuja",
-    "book cleaning service Abuja",
-    "pest control quote Abuja",
-    "contact Dust and Wipes",
-    "cleaning company phone number Abuja",
-  ],
+  title: "Enquire About Cleaning or Training",
+  description: "Contact Dust & Wipes about managed cleaning, property care or in-house cleaner training in Abuja and Lagos.",
 };
 
-export default function ContactPage() {
-  return <ContactContent />;
+export default async function ContactPage({ searchParams }: { searchParams: Promise<{ city?: string; service?: string }> }) {
+  const { city, service } = await searchParams;
+  return <ContactContent initialCity={city === "Lagos" || city === "Abuja" ? city : ""} initialService={service === "training" ? "Cleaner training" : ""} />;
 }

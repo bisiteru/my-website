@@ -59,7 +59,7 @@ export default function CTABanner() {
           </h2>
 
           <p className="text-white/55 text-lg mb-10 max-w-lg mx-auto leading-relaxed">
-            Get a free, no-obligation quote today. We serve all districts across Abuja FCT.
+            Discuss cleaning or training needs with our teams in Abuja and Lagos.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -80,7 +80,7 @@ export default function CTABanner() {
           </div>
 
           <p className="text-white/55 text-xs mt-8 tracking-wide">
-            We typically respond within 2 hours &middot; Mon–Sat, 7am–6pm
+            Contact us to discuss scope and availability.
           </p>
         </motion.div>
       </div>
