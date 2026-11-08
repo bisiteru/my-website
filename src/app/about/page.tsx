@@ -5,7 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About Dust & Wipes",
-  description: "Learn why Dust & Wipes was founded in Abuja in 2017, and how its work in Abuja and Lagos centres cleaning quality, practical training and respect for people.",
+  description: "Founder Bisi Teru shares why he started Dust & Wipes in Abuja in 2017, and how that purpose guides cleaning and staff training in Abuja and Lagos.",
 };
 
 export default function AboutPage() {
@@ -14,8 +14,8 @@ export default function AboutPage() {
       <section className="bg-[#f4f3ee] py-20 text-[#173627] sm:py-28">
         <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
           <p className="section-eyebrow">About Dust &amp; Wipes</p>
-          <h1 className="mt-5 max-w-4xl font-[family-name:var(--font-display)] text-[clamp(3rem,5vw,5.75rem)] font-semibold leading-[1.06] tracking-[-0.04em]">A higher standard, built through people.</h1>
-          <p className="mt-7 max-w-2xl text-lg leading-8 text-[#486052]">Dust & Wipes was founded in Abuja in 2017 with a belief that good cleaning depends on trained, respected people and clear standards. That belief guides our work in Abuja and Lagos.</p>
+          <h1 className="mt-5 max-w-4xl font-[family-name:var(--font-display)] text-[clamp(3rem,5vw,5.75rem)] font-semibold leading-[1.06] tracking-[-0.04em]">Why I started Dust &amp; Wipes.</h1>
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-[#486052]">It began with conversations I could not ignore. They changed how I saw cleaning, and why I built this company.</p>
         </div>
       </section>
       <section className="bg-white py-20 sm:py-28" aria-labelledby="story-heading">
@@ -25,11 +25,15 @@ export default function AboutPage() {
           </div>
           <div>
             <p className="section-eyebrow">Our story</p>
-            <h2 id="story-heading" className="mt-4 font-[family-name:var(--font-display)] text-4xl font-semibold text-[#173627] sm:text-5xl">Work worth doing well.</h2>
+            <h2 id="story-heading" className="mt-4 font-[family-name:var(--font-display)] text-4xl font-semibold text-[#173627] sm:text-5xl">It began with listening.</h2>
             <div className="mt-7 space-y-5 text-lg leading-8 text-[#53645a]">
-              <p>Before founding Dust & Wipes, Bisi Teru worked in organisations where she saw how essential cleaners were, and how often their training and working conditions were overlooked.</p>
-              <p>She started the company to bring stronger service standards together with greater respect for the people doing the work. Practical skills, supervision and clear expectations remain central to that aim.</p>
-              <p>Today, our Abuja operation and Lekki office create a base for conversations with homes, hospitality teams, institutions and workplaces seeking thoughtful cleaning and staff development.</p>
+              <p>I spent many years as an Information Technology consultant and manager for government agencies, international NGOs and corporate organisations. In those workplaces, I saw how much cleaners contributed to daily life, and how easily their work was overlooked.</p>
+              <p>In 2016, while working full-time as an IT manager, I got to know the cleaners in my organisation. I listened to their stories, struggles and aspirations. The wider pattern I had seen became impossible to ignore: difficult conditions, little training, delayed pay and work that was too often undervalued.</p>
+              <p>Those conversations opened my eyes. Cleaning was more than a service. It was a chance to care for the spaces people depend on while creating better opportunities for the people doing the work.</p>
+              <p>I founded Dust &amp; Wipes in Abuja in 2017 with both commitments in mind. I wanted clients to receive dependable, professional cleaning from well-trained people. I also wanted cleaners to be treated with dignity, respect and fairness. Those commitments belong together.</p>
+              <p>Today, our Abuja operation and Lagos office give us a base for conversations with homes, hospitality teams, institutions and workplaces seeking thoughtful cleaning and staff development. That includes practical training for organisations&apos; directly employed cleaners and supervisors. I carry the same belief into every conversation: the people behind the work always matter.</p>
+              <blockquote className="border-l-2 border-[#0b8441] pl-6 font-[family-name:var(--font-display)] text-2xl leading-snug text-[#173627]">I am privileged to lead a family of dedicated professionals whom I proudly call my brothers and sisters.</blockquote>
+              <p className="text-base font-semibold text-[#173627]">Bisi Teru <span className="block text-sm font-normal text-[#53645a]">Founder &amp; CEO, Dust &amp; Wipes Limited</span></p>
             </div>
             <Link href="/training" className="mt-8 inline-flex min-h-11 items-center gap-2 font-semibold text-[#0b8441] hover:underline underline-offset-4">Explore our training approach <ArrowUpRight size={17} aria-hidden="true" /></Link>
           </div>
