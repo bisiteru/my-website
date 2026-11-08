@@ -8,7 +8,7 @@ export default function WhatsAppButton() {
   const [showTooltip, setShowTooltip] = useState(false);
 
   const message = encodeURIComponent(
-    "Hello! I'd like to get a quote for your cleaning/pest control services."
+    "Hello, I'd like to discuss cleaning or cleaner training with Dust & Wipes."
   );
   const waUrl = `https://wa.me/${COMPANY.whatsapp.replace("+", "")}?text=${message}`;
 
@@ -23,7 +23,7 @@ export default function WhatsAppButton() {
               <X size={12} />
             </button>
           </div>
-          <p className="text-xs text-gray-500">We typically reply within minutes on WhatsApp.</p>
+          <p className="text-xs text-gray-500">Tell us about your cleaning or training needs.</p>
         </div>
       )}
 

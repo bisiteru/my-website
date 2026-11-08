@@ -26,7 +26,7 @@ export default function CityPage({ city, eyebrow, title, intro, address, note }:
             <p className="section-eyebrow">{eyebrow}</p>
             <h1 className="mt-6 max-w-3xl font-[family-name:var(--font-display)] text-[clamp(3rem,5vw,5.75rem)] font-semibold leading-[1.06] tracking-[-0.04em]">{title}</h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-[#486052]">{intro}</p>
-            <Link href={`/contact?city=${city}`} className="mt-9 inline-flex min-h-12 items-center gap-3 rounded-md bg-[#0b8441] px-6 py-3 font-semibold text-white hover:bg-[#076634] active:scale-[0.98]">Discuss a {city} requirement <ArrowUpRight size={18} aria-hidden="true" /></Link>
+            <Link href={`/contact?city=${city}`} className="mt-9 inline-flex min-h-12 items-center gap-3 rounded-md bg-[#0b8441] px-6 py-3 font-semibold text-white hover:bg-[#076634] active:scale-[0.98]">Discuss your {city} requirements <ArrowUpRight size={18} aria-hidden="true" /></Link>
           </div>
           <aside className="border-t-2 border-[#0b8441] bg-white p-7 sm:p-9" aria-label={`${city} office details`}>
             <MapPin className="text-[#0b8441]" size={25} aria-hidden="true" />
