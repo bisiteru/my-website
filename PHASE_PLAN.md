@@ -1,98 +1,157 @@
-# Phase Plan (proposed) — awaiting approval
+# Phase Plan — grounded in BUILD_BRIEF.md v2
 
-**Date:** 2026-11-10 · **Status:** 🟡 PROVISIONAL
-
-> ⚠️ **This plan is not grounded in `BUILD_BRIEF.md`.** That file does not exist in the repo, in
-> any branch, in git history, or in session uploads — so Phases 1–5 below are inferred from the
-> Phase 0 instructions plus what the audit found. **Treat it as a starting point for discussion,
-> not a committed scope.** Send the brief and I will rewrite this against it.
+**Date:** 2026-11-10 · **Status:** awaiting approval · **Brief:** `BUILD_BRIEF.md` (now saved in repo)
 
 ---
 
-## Phase 1 — SEO & indexing integrity *(highest value, lowest risk)*
+## 🔴 Blocker — none of the supplied assets are in the repo
 
-Fixes every issue the crawl surfaced. No visual change.
+The brief is explicitly **photo-led** and forbids placeholders ("Never use placeholder text, stock
+images, vector illustrations or generic graphics in place of real photos"). It depends on four
+asset directories. **All four are absent** — from the working tree, from `main`, from
+`codex/premium-lagos-training`, and from anywhere on this machine:
 
-1. **Settle one canonical host.** Decide apex vs `www`, then make `sitemap.ts`, `robots.ts`,
-   `metadataBase` and OG URLs all agree. Today the site serves `www`, the sitemap lists apex, and
-   OG tags use apex.
-2. **Per-page canonical tags** via `alternates.canonical` — *per page*, never site-wide
-   (a site-wide one pointing at `/` was a real bug removed earlier).
-3. **Redirect map** from Google Search Console → Pages → "Not found (404)". Implement as
-   `redirects()` in `next.config.ts` (permanent 301s).
-4. **Add `/privacy` + `/terms` to the sitemap**; write real meta descriptions for both.
-5. **De-duplicate JSON-LD** — `LocalBusiness` + the full 7-service `OfferCatalog` currently renders
-   on all 15 pages. Keep it on `/` (and `/contact`), reference by `@id` elsewhere.
-6. **Analytics** — none exists. Recommend Vercel Analytics (one line, privacy-friendly, no cookie
-   banner) or GA4 if you want demographics. *Your call — see Questions.*
+| Required (§2) | Contains | Status |
+|---|---|---|
+| `dust-and-wipes-photos/` | 56 web-ready JPEGs | ❌ **missing** |
+| `dust-and-wipes-badges/` | ISSA, EHCON, PECAN logos | ❌ **missing** |
+| `dust-and-wipes-logos/` | client logos incl. `skin101-clinics-logo.png` | ❌ **missing** |
+| `dust-and-wipes-video/` | glass-polishing clips + poster | ❌ **missing** |
 
-**Risk:** very low. **Verification:** re-run this crawl; diff before/after.
+I checked every filename in the §8 photo map against `public/images/` (34 files):
+**zero overlap.** The existing images are a different set entirely
+(`ac-cleaning-office.jpg`, `balcony-washing.jpg`, `clinic-cleaning-1.jpg`…). Not one of
+`chandelier-cleaning.jpg`, `lagos-team-uniform.jpg`, `bisi-teru-leading-training.jpg`,
+`dust-and-wipes-branded-van.jpg` etc. exists.
 
-## Phase 2 — Content structure & accessibility
+**Consequence:** under the brief's own no-placeholder rule, every photo-dependent section would
+have to be hidden. That is most of the site — hero collage, services cards, gallery, before/after,
+clients, our people, Lagos team, training. Building those now would produce a site that is mostly
+invisible. **Phases 1–3 below are deliberately sequenced to be asset-independent**, so real
+progress continues while the files are sent.
 
-7. **Section headings for 6 blog posts.** Only `why-trained-cleaners-matter` uses the `{heading}`
-   block; the rest are unbroken prose. The renderer already supports headings — this is purely
-   editorial.
-8. **FAQ questions become headings.** Currently `<span>` inside buttons: the page has one H2 for
-   10 questions. Fix markup while keeping the accordion and `FAQPage` JSON-LD.
-9. **Blog card titles** — featured card uses H2, the other six H3; normalise.
-10. **Accessibility pass** — heading order, focus-visible states, form labels/`aria-describedby`,
-    contrast re-check, reduced-motion handling for the hero orbital.
+**How to send them:** Google Drive works well (that's how the founder photo arrived). A single
+zip of the four directories is ideal.
 
-**Risk:** low. **Verification:** crawl heading structure; keyboard pass; axe audit.
+---
 
-## Phase 3 — Performance
+## ✅ What the brief resolves from my Phase 0 questions
 
-11. **Image weight.** `public/images/` is 11 MB / 34 files. `sofa-cleaning.jpg` 1.1 MB,
-    `post-construction-exterior.jpg` 1.1 MB, two more at 952 KB, `balcony-washing.jpg` 868 KB.
-    Convert to WebP/AVIF at sensible dimensions.
-12. **Delete dead assets** — `sofa-cleaning.webp` (1.1 MB, unreferenced), byte-identical duplicate
-    pairs (`ac-cleaning-office`/`ac-unit-cleaning`, `home-fan-cleaning`/`fan-cleaning-residential`),
-    and the unused `next.svg`/`vercel.svg`/`file.svg`/`globe.svg`/`window.svg` from the starter.
-13. **CSS `background-image` → `next/image`** in Hero and service cards, so the LCP image is
-    optimised, responsive and preloaded.
-14. **Dead config** — remove the `assets.zyrosite.com` `remotePatterns` entry (nothing uses it);
-    drop unused deps `@headlessui/react` and `react-hook-form`.
-15. **Hero orbital** re-renders ~20×/sec via `setInterval`; move to CSS transform or rAF.
+| Question | Brief's answer |
+|---|---|
+| Canonical host? | **`www`** — §9.4: canonical → `https://www.dustandwipes.com/...` |
+| Facility Management? | **Real service** — §6.2 #10, "old site listed it" |
+| Old site to reconcile? | §2 names the live URL — but see below |
 
-**Risk:** low–medium (image swaps are visible). **Verification:** Lighthouse before/after; screenshots.
+## ⚠️ Where the brief and the live site disagree
 
-## Phase 4 — Hardening & resilience
+**1. There is no older site at `www.dustandwipes.com`.** §2 calls it the "old site (content +
+structure source)", but my crawl proves it serves *this repo's* Next.js build on Vercel
+(`server: Vercel`, 180× `/_next/`, the `logo-192` asset from commit `6ee3b02`). Zero Zyro
+fingerprints. **So "freeze the existing structure" means freezing the current live site** — which
+`URL_INVENTORY.md` has now captured, satisfying §3.1's first bullet. If a pre-Vercel Zyro version
+needs reconciling, I need a separate source (Zyro export / Wayback / Search Console 404 report).
 
-16. **Security headers** — CSP, HSTS, X-Content-Type-Options, Referrer-Policy, Permissions-Policy
-    (none currently set).
-17. **Form robustness** — move the Formspree endpoint to an env var; add honeypot/rate-limiting;
-    consider a `/contact/thank-you` URL so conversions are measurable.
-18. **Content architecture** — `/about` milestones are hard-coded in the page while all other
-    content lives in `constants.ts`; unify.
-19. **Resolve the "Facility Management" gap** — advertised in the hero orbital but has no service
-    entry, section or anchor. Either add it as a service or stop advertising it.
-20. **Fix two stale `href`s** — `post-construction` and `carpet-upholstery` point at the generic
-    `/services#cleaning` though their own card anchors exist.
+**2. `#office-cleaning` does not exist.** §3.1 lists it among anchors to keep. The live
+`/services` has `#commercial-cleaning` instead (it was renamed in an earlier session). Per
+"Add new anchors alongside, never instead", **I will restore `#office-cleaning` as an alias**
+so any old external link still lands correctly. All other listed anchors verified present.
 
-**Risk:** low, except CSP (needs testing against inline JSON-LD + framer-motion).
+**3. Two §9 violations confirmed live** — both exactly as the brief predicts:
+- `<meta name="keywords">` is present on every page → §9.2 says remove everywhere
+- `og:url` is `https://dustandwipes.com` on **every** page → §9.3: "fixes the old and new sites
+  pointing everything at the homepage"
 
-## Phase 5 — Growth
+**4. "Keep the existing analytics ID" (§3.1, §9.11) — there is no analytics on the site at all.**
+No GA4, no GTM, no Vercel Analytics. So this is a genuine **[CONFIRM]**: a new property is needed.
 
-21. **Local SEO depth** — per-district landing pages (Gwarinpa, Maitama, Wuse, Asokoro…) are the
-    single biggest organic opportunity for a local service business; `SERVICE_AREAS` already lists 18.
-22. **Service-specific pages** — individual URLs per service instead of anchors, so each can rank.
-23. **Editorial cadence** — publishing schedule; `Service` + `Review` schema.
-24. **Conversion** — quote-form analytics, WhatsApp click tracking, trust signals near CTAs.
+**5. The codex branch is `codex/premium-lagos-training`** (slash, not dash as §1 writes). It
+exists on the remote and contains `/training`, `/abuja`, `/lagos` and a `CityPage` component.
+The `/training` page is well-written and matches the brief's four modules exactly — good source
+material. ⚠️ But the branch is a net **−1,339 lines** against `main`: it heavily strips Hero,
+Navbar, Footer, `/services` and the homepage. **I will port the Lagos/Training *direction*, not
+merge the branch wholesale**, so current content and SEO work aren't lost.
 
-**Risk:** scope-dependent. Phase 5 is a menu, not a commitment.
+---
+
+## Phase 1 — Foundation & SEO integrity *(no assets needed)*
+
+1. **Design tokens** from the logo and uniform: Deep Green primary, Brand Yellow accent, warm
+   off-white, stone grey, near-black — as CSS variables. WCAG AA checked on every pairing (§4.2).
+2. **Typography** (§4.3): Poppins *or* Montserrat headings + Inter body, self-hosted and subset,
+   `font-display: swap`, fluid clamp scale, eyebrow labels.
+3. **Layout system** (§4.4): 12-col, ~1240px max, 8px scale, 96–128/64px section padding, card radius.
+4. **Content files** (§7): `content/{clients,gallery,testimonials,faqs,services}.json` + types,
+   migrating existing content out of `constants.ts`. README docs on editing them.
+5. **SEO fixes** (§9): remove `keywords` everywhere · per-page `og:url` + canonical → **www** ·
+   fix sitemap/robots to www · `/privacy` + `/terms` into sitemap · de-duplicate the
+   `LocalBusiness` JSON-LD currently on all 15 pages · preview deployments `noindex`.
+6. **Structure-freeze script** (§3.1 final bullet): requests every `URL_INVENTORY.md` URL against
+   a preview and reports status. Required: 100% 200 at identical paths. Runs every phase after.
+7. **Restore `#office-cleaning`** as an alias anchor.
+
+*No visual change beyond tokens. Verification: crawl diff + URL script.*
+
+## Phase 2 — Component library & existing pages *(no assets needed)*
+
+8. **Components** (§4.7): header (transparent→solid), Services mega-menu, mobile drawer, sticky
+   mobile bar (Call · WhatsApp · Quote), button variants, stat counter, service card, sector tile,
+   testimonial carousel, process steps, FAQ accordion, CTA band, quote form, map block, footer.
+   Photo-bearing components get their image slot behind a flag that hides cleanly when empty.
+9. **Services → 11** (§6.2): add Disinfection & sanitisation, Window & glass cleaning,
+   Event & exhibition cleaning, Facility management support. All old anchors preserved, new ones
+   added alongside. Plus How it works, recurring plans, guarantee.
+10. **FAQs** (§6.9): keep all 10, add Lagos coverage, on-premises training, certificates,
+    recurring plans, pest-control safety.
+11. **Contact** (§6.10): add organisation, city, area fields + full service list + privacy note;
+    keep delivery working (Formspree is confirmed working — move endpoint to an env var).
+12. **Blog** (§6.11): index redesign with categories + featured, related-services block, author box.
+13. **Accessibility + motion** (§4.8, §9.10): keyboard for menu/carousel/accordion,
+    `prefers-reduced-motion`, focus states. Fix the "Post-construction cleaning01" label glitch (§4.10).
+
+## Phase 3 — New pages, text-first *(no assets needed; photo slots hidden)*
+
+14. `/training` (§6.3) — port from `codex/premium-lagos-training`, extend with delivery options,
+    employer benefits, founder credibility, 4-step process, training FAQs.
+15. `/abuja` (§6.4) and `/lagos` (§6.5) — port `CityPage`, unique copy per city, honest Lagos
+    wording ("Lagos address · Site assessments by appointment"), no airport claim.
+16. `/clients` (§6.7) — sector tiles, logo wall and case studies all driven by `clients.json`,
+    rendering **only** `consent: true` entries. Seeded with Skin 101 at `consent: false`, so it
+    stays hidden until written consent lands.
+17. `/gallery` (§6.8) — masonry, filters, lightbox, before/after slider, driven by `gallery.json`
+    (empty until photos arrive, so the page ships but shows nothing).
+18. **Branded 404** (§5).
+
+## Phase 4 — Assets 🔴 *blocked until the four directories arrive*
+
+19. Copy photos/badges/logos/video in; build WebP/AVIF + responsive sizes (never re-crop or upscale).
+20. Wire the §8 photo map; write accurate alt text per image.
+21. Populate `gallery.json` (55 approved; `polished-tile-floor-after-cleaning.jpg` **on hold**),
+    before/after pair, glass-polishing video at card size with poster + reduced-motion fallback.
+22. Affiliation badges on white tiles, greyscale→colour, ISSA ≤64px.
+23. Un-hide every photo-dependent section; apply the CSS colour grade (§4.5).
+
+## Phase 5 — Verification & launch
+
+24. URL check script: 100% 200 at identical paths; titles/H1s preserved.
+25. Schema validation in Rich Results Test; `AggregateRating` only from genuine figures.
+26. Lighthouse mobile ≥ 90 ×4, with screenshots.
+27. WCAG 2.1 AA pass.
+28. Screenshots at 360/768/1024/1280/1440.
+29. Final `OPEN_ITEMS.md` report of every [PLACEHOLDER]/[CONFIRM].
 
 ---
 
 ## Sequencing
 
 ```
-Phase 1 ──► Phase 2 ──► Phase 3 ──► Phase 4 ──► Phase 5
-(SEO)       (content)    (perf)      (harden)    (growth)
+Phase 1 ─► Phase 2 ─► Phase 3 ─────────► Phase 5
+(tokens,    (components,  (new pages,  ┌► (verify,
+ SEO)        existing)     text-first) │   launch)
+                                       │
+Phase 4 (assets) ──────────────────────┘
+   ▲ starts the moment the four directories arrive — can run parallel to 2–3
 ```
 
-Phase 1 first because indexing problems compound daily. Phases 2 and 3 are independent and could
-run in parallel. Phase 5 should not start until 1–4 are stable.
-
-**Per phase:** branch → change → `npm run build` → crawl/screenshot verification → PR → your
-review → merge → Vercel deploy. One PR per phase, so anything can be reverted cleanly.
+Phases 1–3 need **nothing from you but approval**. Phase 4 unblocks on the assets. One PR per
+phase, each verified by the URL script before merge, so any phase can be reverted cleanly.
