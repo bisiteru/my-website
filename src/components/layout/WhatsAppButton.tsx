@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { MessageCircle, X } from "lucide-react";
 import { COMPANY } from "@/lib/constants";
+import { track } from "@/lib/analytics";
 
 export default function WhatsAppButton() {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -34,6 +35,7 @@ export default function WhatsAppButton() {
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
         onMouseEnter={() => setShowTooltip(true)}
+        onClick={() => track("whatsapp_click", { from: "floating_button" })}
         className="animate-pulse-wa w-14 h-14 bg-[#25d366] rounded-full flex items-center justify-center text-white shadow-xl hover:scale-110 transition-transform"
       >
         <MessageCircle size={28} fill="white" />

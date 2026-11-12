@@ -13,6 +13,9 @@ export const COMPANY = {
   whatsappText: "Hello, I'd like to enquire about cleaning services",
   email: "infodesk@dustandwipes.com",
   address: "Suite D15, Irama Plaza, 4th Avenue, Gwarinpa, Abuja.",
+  /** §3.2 — a business address, not a staffed walk-in office.
+   *  Always presented as "Lagos address · Site assessments by appointment". */
+  lagosAddress: "5 Admiralty Road, off Admiralty Way, Lekki Phase 1, Lekki, Lagos.",
   googleMapsUrl:
     "https://maps.google.com/?q=Irama+Plaza+Gwarinpa+Abuja",
   foundedYear: 2017,

@@ -53,8 +53,11 @@ export default function ContactContent({ defaultService = "" }: { defaultService
                 <span className="block text-[0.75rem] font-bold uppercase tracking-[0.14em] text-[var(--c-ink-2)]">Offices</span>
                 <address className="not-italic font-semibold text-[var(--c-green-800)]">{COMPANY.address}</address>
                 {/* §3.2 — Lagos is a business address, not a walk-in office */}
-                <span className="mt-1 block text-[0.9375rem] text-[var(--c-ink-2)]">
-                  Lagos address · Site assessments by appointment
+                <address className="mt-1.5 not-italic text-[0.9375rem] text-[var(--c-ink-2)]">
+                  {COMPANY.lagosAddress}
+                </address>
+                <span className="block text-[0.9375rem] text-[var(--c-ink-2)]">
+                  Site assessments by appointment
                 </span>
               </span>
             </li>

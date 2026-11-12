@@ -83,6 +83,9 @@ export default function LagosPage() {
               <p className="mt-4 font-semibold text-[var(--c-green-800)]">
                 Lagos address · Site assessments by appointment
               </p>
+              <address className="mt-2 not-italic text-[0.9375rem] text-[var(--c-ink-2)]">
+                {COMPANY.lagosAddress}
+              </address>
               <dl className="mt-6 space-y-3 text-[0.9375rem]">
                 <div>
                   <dt className="font-semibold text-[var(--c-green-800)]">Phone &amp; WhatsApp</dt>

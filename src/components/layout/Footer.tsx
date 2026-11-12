@@ -159,7 +159,8 @@ export default function Footer() {
                   <address className="not-italic">{COMPANY.address}</address>
                   {/* §3.2 — Lagos is a business address, never a walk-in office */}
                   <span className="mt-1.5 block text-white/60">
-                    Lagos address · Site assessments by appointment
+                    {COMPANY.lagosAddress}
+                    <span className="mt-0.5 block">Site assessments by appointment</span>
                   </span>
                 </span>
               </li>

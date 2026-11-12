@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X, Phone, ChevronDown, ArrowRight } from "lucide-react";
 import { COMPANY } from "@/lib/constants";
 import LogoImg from "@/components/ui/LogoImg";
+import { track } from "@/lib/analytics";
 
 /* ── Site map — BUILD_BRIEF §5 ──
    Main menu: Home · Services (mega-menu) · Training · Locations · Clients ·
@@ -375,6 +376,7 @@ export default function Navbar() {
         <div className="xl:hidden fixed bottom-0 left-0 right-0 z-40 grid grid-cols-3 border-t border-[var(--c-border)] bg-[var(--c-surface)]/97 backdrop-blur-md pb-[env(safe-area-inset-bottom)]">
           <a
             href={`tel:${COMPANY.phone.replace(/\s/g, "")}`}
+            onClick={() => track("phone_click", { from: "sticky_bar" })}
             className="flex flex-col items-center justify-center gap-0.5 py-2.5 text-[var(--c-green-800)] active:bg-[var(--c-band)]"
           >
             <Phone size={19} aria-hidden="true" />
@@ -384,6 +386,7 @@ export default function Navbar() {
             href={waHref}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => track("whatsapp_click", { from: "sticky_bar" })}
             className="flex flex-col items-center justify-center gap-0.5 py-2.5 text-[var(--c-green-800)] border-x border-[var(--c-border)] active:bg-[var(--c-band)]"
           >
             <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

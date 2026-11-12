@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Send, CheckCircle, MessageCircle } from "lucide-react";
 import { COMPANY } from "@/lib/constants";
+import { track } from "@/lib/analytics";
 
 const SERVICES = [
   "Residential cleaning",
@@ -52,7 +53,12 @@ export default function QuoteForm({ defaultService = "" }: { defaultService?: st
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({ ...form, _subject: "New quote request from dustandwipes.com" }),
       });
-      setState(res.ok ? "sent" : "error");
+      if (res.ok) {
+        track("quote_form_submit", { service: form.service, city: form.city });
+        setState("sent");
+      } else {
+        setState("error");
+      }
     } catch {
       setState("error");
     }
@@ -67,7 +73,13 @@ export default function QuoteForm({ defaultService = "" }: { defaultService?: st
           Thank you{form.name ? `, ${form.name.split(" ")[0]}` : ""}. We&apos;ll come back to you
           within two hours during working hours.
         </p>
-        <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn--secondary mt-7">
+        <a
+          href={wa}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => track("whatsapp_click", { from: "quote_form_success" })}
+          className="btn btn--secondary mt-7"
+        >
           <MessageCircle size={16} aria-hidden="true" /> Message us on WhatsApp
         </a>
       </div>

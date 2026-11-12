@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import Analytics from "@/components/layout/Analytics";
 
 // §4.3 — Montserrat headings (600–700), Inter body (400/500).
 // next/font self-hosts and subsets automatically, with font-display: swap.
@@ -169,6 +170,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <WhatsAppButton />
+        <Analytics />
       </body>
     </html>
   );
