@@ -84,7 +84,7 @@ export default function HomePage() {
               { value: 650, suffix: "+", label: "Clients served" },
               { value: 5, suffix: "★", decimals: 1, label: "Google rating" },
               { value: 10, suffix: "", label: "Five-star reviews" },
-              { value: 2017, suffix: "", label: "Serving Abuja since" },
+              { value: 2017, suffix: "", label: "Serving Abuja since", animate: false },
             ]}
           />
           <ul className="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -92,15 +92,23 @@ export default function HomePage() {
               <li key={a.short} className="flex items-center gap-2.5 rounded-xl border border-[var(--c-border)] bg-white px-4 py-2.5">
                 <Image
                   src={`/badges/${BADGE_FILES[a.short]}`}
-                  alt={a.full}
+                  alt={`${a.full} logo`}
                   width={56}
                   height={56}
                   className="h-8 w-auto object-contain grayscale transition hover:grayscale-0"
                 />
-                <span className="text-[0.8125rem] font-semibold text-[var(--c-green-800)]">{a.short}</span>
+                <span className="leading-tight">
+                  <span className="block text-[0.8125rem] font-semibold text-[var(--c-green-800)]">
+                    {a.status} {a.short}
+                  </span>
+                  <span className="block text-[0.6875rem] text-[var(--c-ink-2)]">{a.full}</span>
+                </span>
               </li>
             ))}
           </ul>
+          <p className="mt-5 text-center text-[0.875rem] text-[var(--c-ink-2)]">
+            Our founder serves as Financial Secretary of the PECAN FCT chapter.
+          </p>
         </div>
       </section>
 

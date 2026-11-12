@@ -24,10 +24,25 @@ export const COMPANY = {
   },
 };
 
+/** §4.6 — membership status confirmed by the client, 2026-11-12.
+ *  These are verifiable claims, so the wording is theirs, not inferred. */
 export const AFFILIATIONS = [
-  { short: "ISSA", full: "International Sanitary Standards Association" },
-  { short: "EHCON", full: "Environmental Health Council of Nigeria" },
-  { short: "PECAN", full: "Pest Control Association of Nigeria" },
+  {
+    short: "ISSA",
+    full: "International Sanitary Standards Association",
+    status: "Member",
+  },
+  {
+    short: "EHCON",
+    full: "Environmental Health Council of Nigeria",
+    status: "Registered with",
+  },
+  {
+    short: "PECAN",
+    full: "Pest Control Association of Nigeria",
+    status: "Registered member",
+    note: "Our founder serves as Financial Secretary of the PECAN FCT chapter.",
+  },
 ];
 
 export const SERVICE_AREAS = [

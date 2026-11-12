@@ -14,10 +14,7 @@ Status: 🔴 blocking a visible feature · 🟡 needed before that section is co
 
 | # | Item | Brief | What is hidden right now |
 |---|---|---|---|
-| C1 | **Written consent — Skin 101 Clinics Limited** | §3.2, §6.7 | The `/clients` logo wall renders **nothing**; `LogoWall` returns `null` while `consent: false`. The Lagos clinic work appears only as an **anonymised sector story**, never naming the client. Flip `consent` to `true` in `content/clients.json` once permission is on file. |
-| C2 | Skin 101 services list — seeded as `["Commercial cleaning"]` | §6.7 | Not displayed. Confirm before the logo goes live. |
-| C3 | Other client entries | §6.7 | Logo wall stays hidden entirely. Send name · sector · city · years · consent for each. |
-| C4 | **Affiliation status wording** — "ISSA member" / "Registered with EHCON" / "PECAN member" | §4.6 | The badges display with the organisation **name only**. No membership status is claimed anywhere, because the exact wording is unconfirmed and these are verifiable claims. |
+| C3 | **More client entries + logos** | §6.7 | Only Skin 101 is on file, so the logo wall shows a single logo. You mentioned many clients are happy to be shown — send name · sector · city · years · `consent: true` and a logo file per client, and they appear automatically. |
 | C5 | Official ISSA member logo (supplied file is 256px) | §4.6 | Current file displays at ≤64px, within its native size. |
 | C6 | **Training two-day outline** | §6.3 | `/training` shows the four modules and delivery approach, but no day-by-day timetable. |
 | C7 | **Lagos areas** — Lekki, Ikoyi, Victoria Island, Ikeja? | §6.5 | `/lagos` names no specific areas. |
@@ -47,3 +44,6 @@ Status: 🔴 blocking a visible feature · 🟡 needed before that section is co
 | `#office-cleaning` anchor | Restored as an alias alongside `#commercial-cleaning` |
 | All 55 photos | Supplied, categorised and live with written alt text |
 | Badges, client logo, video | All supplied and in `public/` |
+| **Skin 101 consent** | ✅ Confirmed `true` (2026-11-12). Logo wall renders, and the engagement is named on `/clients` and `/lagos` as a **past** client — "served", never current. |
+| **Affiliation status wording** | ✅ Confirmed: **Member ISSA** · **Registered with EHCON** · **Registered member PECAN**, plus the founder serving as Financial Secretary of the PECAN FCT chapter. |
+| Lagos positioning | ✅ Confirmed as a **relaunch** — one past engagement (Skin 101, 2024–2025), no current Lagos clients, no airport claim. |

@@ -83,7 +83,7 @@ export default function ComponentsPage() {
               { value: 650, suffix: "+", label: "Clients served" },
               { value: 5, suffix: "★", decimals: 1, label: "Google rating" },
               { value: 10, suffix: "", label: "Five-star reviews" },
-              { value: 2017, suffix: "", label: "Serving Abuja since" },
+              { value: 2017, suffix: "", label: "Serving Abuja since", animate: false },
             ]}
           />
         </Spec>

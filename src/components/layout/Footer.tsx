@@ -184,12 +184,17 @@ export default function Footer() {
               <li key={a.short} className="flex items-center gap-3 rounded-xl bg-white px-4 py-3">
                 <Image
                   src={`/badges/${BADGE_FILES[a.short]}`}
-                  alt={a.full}
+                  alt={`${a.full} logo`}
                   width={64}
                   height={64}
                   className="h-10 w-auto object-contain grayscale transition hover:grayscale-0"
                 />
-                <span className="text-[0.8125rem] font-semibold text-[var(--c-green-800)]">{a.short}</span>
+                <span className="leading-tight">
+                  <span className="block text-[0.8125rem] font-semibold text-[var(--c-green-800)]">
+                    {a.status} {a.short}
+                  </span>
+                  <span className="block text-[0.6875rem] text-[var(--c-ink-2)]">{a.full}</span>
+                </span>
               </li>
             ))}
           </ul>

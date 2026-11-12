@@ -9,18 +9,22 @@ export function StatCounter({
   suffix = "",
   decimals = 0,
   label,
+  /** Years and similar fixed figures should not count up from zero —
+   *  animating 0 → 2017 reads as a glitch, not an achievement. */
+  animate = true,
 }: {
   value: number;
   suffix?: string;
   decimals?: number;
   label: string;
+  animate?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [shown, setShown] = useState(0);
+  const [shown, setShown] = useState(animate ? 0 : value);
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
+    if (!animate || reduce) {
       setShown(value);
       return;
     }
@@ -45,7 +49,7 @@ export function StatCounter({
     );
     io.observe(el);
     return () => io.disconnect();
-  }, [value]);
+  }, [value, animate]);
 
   return (
     <div ref={ref} className="text-center">
@@ -64,7 +68,7 @@ export function StatCounter({
 export function StatRow({
   stats,
 }: {
-  stats: { value: number; suffix?: string; decimals?: number; label: string }[];
+  stats: { value: number; suffix?: string; decimals?: number; label: string; animate?: boolean }[];
 }) {
   return (
     <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">

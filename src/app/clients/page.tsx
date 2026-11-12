@@ -73,7 +73,12 @@ export default function ClientsPage() {
       {consented.length > 0 && (
         <section className="section section--band">
           <div className="container-dw">
-            <SectionHeader eyebrow="Trusted by" title="Organisations we've served." center />
+            <SectionHeader
+              eyebrow="Trusted by"
+              title="Organisations we've served."
+              lede="Shown with each organisation's permission."
+              center
+            />
             <div className="mt-12">
               <LogoWall logos={consented.filter((c) => c.logo).map((c) => ({ name: c.name, file: c.logo! }))} />
             </div>
@@ -87,18 +92,18 @@ export default function ClientsPage() {
           <SectionHeader
             eyebrow="Our work"
             title="What the work looks like in practice."
-            lede="We name a client only once written permission is on file, so the story below is told by sector."
+            lede="We name a client only with their permission. Where we don't have it, the story is told by sector instead."
           />
           <div className="mt-12 grid gap-6 lg:grid-cols-2">
             <CaseStudyCard
               sector="Healthcare & clinics"
-              city="Lagos"
-              title="A Lagos clinic, cleaned to a healthcare standard"
-              challenge="Treatment rooms and a busy reception that needed the same standard every single day, not just on inspection days."
-              action="A trained team on a fixed daily routine, with colour-coded equipment separated by zone to stop cross-contamination."
-              result="A consistent standard the clinic could plan around, delivered across 2024 and 2025."
+              city="Lagos · 2024–2025"
+              title="Skin 101 Clinics Limited"
+              challenge="An aesthetics, dermatology and plastic surgery practice whose treatment rooms and busy reception needed the same standard every day, not just on inspection days."
+              action="A trained team on a fixed daily routine, with colour-coded equipment separated by zone to stop cross-contamination between clinical and general areas."
+              result="A consistent standard the clinic could plan around, delivered throughout 2024 and 2025."
               photo="clinic-treatment-chair-cleaning"
-              alt="A cleaner wiping down a clinic treatment chair"
+              alt="A cleaner wiping down a treatment chair at Skin 101 Clinics in Lagos"
             />
             <CaseStudyCard
               sector="Post-construction"
