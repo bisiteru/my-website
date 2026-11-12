@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
+import { pageSeo } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageSeo({
+  path: "/privacy",
   title: "Privacy Policy",
-  description: "Dust & Wipes Limited Privacy Policy",
-};
+  description:
+    "Dust & Wipes Limited Privacy Policy",
+});
 
 export default function PrivacyPage() {
   return (

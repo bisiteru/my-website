@@ -1,21 +1,20 @@
 import type { Metadata } from "next";
+import { pageSeo, JsonLd, breadcrumbs } from "@/lib/seo";
 import Image from "next/image";
 import { PHOTOS, photoSrc, type PhotoSlug } from "@/lib/photos";
 import Link from "next/link";
+import RelatedLinks from "@/components/ui/RelatedLinks";
 import { CheckCircle, ArrowRight, Award, Users, Leaf, Clock, Quote } from "lucide-react";
 import CTABanner from "@/components/sections/CTABanner";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageSeo({
+  path: "/about",
   title: "About Us",
   description:
     "Learn about Dust & Wipes Limited — founded in 2017 by Bisi Teru, Abuja's trusted professional cleaning and pest control company. Our story, values, and commitment to excellence.",
-  keywords: [
-    "Dust and Wipes Limited story",
-    "Bisi Teru cleaning company Abuja",
-    "professional cleaning company Abuja founded 2017",
-    "about Dust and Wipes Abuja",
-  ],
-};
+  image: "/photos/dust-and-wipes-team-uniform.jpg",
+  imageAlt: "Two Dust and Wipes team members in branded uniform",
+});
 
 const values = [
   { icon: Award, title: "Excellence", desc: "We hold ourselves to the highest standard in every job, big or small." },
@@ -34,6 +33,12 @@ const milestones = [
 export default function AboutPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbs([
+          { name: "Home", path: "/" },
+          { name: "About", path: "/about" },
+        ])}
+      />
       {/* Hero */}
       <section className="hero-bg pt-32 pb-20 relative overflow-hidden">
         <div
@@ -372,6 +377,14 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <RelatedLinks
+        links={[
+          { href: "/services", label: "All services", detail: "What we do" },
+          { href: "/clients", label: "Who we work with", detail: "Sectors and organisations served" },
+          { href: "/gallery", label: "See the work", detail: "Photographs from real jobs" },
+          { href: "/training", label: "Cleaner training", detail: "Our founding commitment, in practice" },
+        ]}
+      />
       <CTABanner />
     </>
   );

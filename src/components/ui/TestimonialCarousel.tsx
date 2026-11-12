@@ -63,7 +63,7 @@ export default function TestimonialCarousel({
     >
       <figure className="card relative p-8 sm:p-10">
         <Quote size={40} className="text-[var(--c-green-100)]" aria-hidden="true" />
-        <div className="mt-2 flex gap-0.5" aria-label={`${t.rating} out of 5 stars`}>
+        <div className="mt-2 flex gap-0.5" role="img" aria-label={`${t.rating} out of 5 stars`}>
           {Array.from({ length: t.rating }).map((_, n) => (
             <Star key={n} size={16} className="fill-[var(--c-orange-500)] text-[var(--c-orange-500)]" aria-hidden="true" />
           ))}
@@ -93,10 +93,14 @@ export default function TestimonialCarousel({
                 aria-selected={n === i}
                 aria-label={`Testimonial ${n + 1} of ${items.length}`}
                 onClick={() => setI(n)}
-                className={`h-2 rounded-full transition-all ${
-                  n === i ? "w-7 bg-[var(--c-green-700)]" : "w-2 bg-[var(--c-border)] hover:bg-[var(--c-green-500)]"
-                }`}
-              />
+                className="grid h-6 place-items-center px-1"
+              >
+                <span
+                  className={`block h-2 rounded-full transition-all ${
+                    n === i ? "w-7 bg-[var(--c-green-700)]" : "w-2 bg-[var(--c-border)] hover:bg-[var(--c-green-500)]"
+                  }`}
+                />
+              </button>
             ))}
           </div>
           <div className="flex gap-2">

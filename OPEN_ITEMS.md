@@ -20,7 +20,7 @@ Status: 🔴 blocking a visible feature · 🟡 needed before that section is co
 | C7 | **Lagos areas** — Lekki, Ikoyi, Victoria Island, Ikeja? | §6.5 | `/lagos` names no specific areas. |
 | C8 | **Full Lagos address** | §6.5, §6.12 | Footer and `/lagos` say "Lagos address · Site assessments by appointment" — the agreed §3.2 wording — with no street address. |
 | C9 | Staff consent for first-name profiles | §6.6 | "Our people" shows team photographs with role captions only; no individual is named. |
-| C10 | Analytics property | §9.11 | **No analytics installed.** Nothing is being measured. Phase 4 item. |
+| C10 | **Analytics property** | §9.11 | **Still the one §9 item not implemented.** The brief says "keep existing ID", but the site has never had analytics, so there is no ID to keep and I will not invent one. Tell me **Vercel Analytics** (one line, no cookie banner, no consent UI needed) or **GA4** (richer, needs a cookie notice) and it goes in with events for quote, WhatsApp, phone and form submit. |
 
 ## 🟡 Content that would improve a built section
 

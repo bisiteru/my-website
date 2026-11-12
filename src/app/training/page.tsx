@@ -1,16 +1,21 @@
 import type { Metadata } from "next";
+import { pageSeo, JsonLd, breadcrumbs } from "@/lib/seo";
 import Link from "next/link";
 import Image from "next/image";
 import { Check } from "lucide-react";
 import PageHero from "@/components/sections/PageHero";
+import RelatedLinks from "@/components/ui/RelatedLinks";
 import CTABanner from "@/components/sections/CTABanner";
 import { PHOTOS, photoSrc } from "@/lib/photos";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageSeo({
+  path: "/training",
   title: "Cleaner Training for Organisations in Abuja & Lagos",
   description:
     "Practical, customised on-site training for in-house cleaners and supervisors — housekeeping, workplace hygiene and safety, chemicals and PPE, supervision and quality. Delivered in Abuja and Lagos.",
-};
+  image: "/photos/bisi-teru-leading-training.jpg",
+  imageAlt: "Bisi Teru leading a professional training session",
+});
 
 const MODULES = [
   { n: "01", title: "Housekeeping practice", detail: "Daily routines, task sequencing, room standards and consistent inspection." },
@@ -39,6 +44,12 @@ export default function TrainingPage() {
 
   return (
     <>
+      <JsonLd
+        data={breadcrumbs([
+          { name: "Home", path: "/" },
+          { name: "Training", path: "/training" },
+        ])}
+      />
       <PageHero
         eyebrow="Training · Abuja & Lagos"
         title="Better cleaning starts with better equipped people."
@@ -132,6 +143,14 @@ export default function TrainingPage() {
         </div>
       </section>
 
+      <RelatedLinks
+        links={[
+          { href: "/services", label: "All services", detail: "Cleaning and pest control alongside training" },
+          { href: "/lagos", label: "Training in Lagos", detail: "Our Lagos relaunch is training-led" },
+          { href: "/abuja", label: "Training in Abuja", detail: "Where we are based" },
+          { href: "/clients", label: "Who we work with", detail: "Sectors and organisations served" },
+        ]}
+      />
       <CTABanner />
     </>
   );

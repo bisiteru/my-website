@@ -136,7 +136,7 @@ export default function Navbar() {
         <div className="container-dw">
           <div className={`flex items-center justify-between gap-4 transition-all ${solid ? "py-2.5" : "py-4"}`}>
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 shrink-0" aria-label="Dust &amp; Wipes Limited — home">
+            <Link href="/" className="flex items-center gap-3 shrink-0" aria-label="Dust & Wipes — Restoring a Clean World, home">
               <LogoImg size={solid ? 46 : 54} className="rounded-xl" />
               <span className="leading-tight hidden sm:block">
                 <span

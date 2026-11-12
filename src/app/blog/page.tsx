@@ -1,24 +1,25 @@
 import type { Metadata } from "next";
+import { pageSeo, JsonLd, breadcrumbs } from "@/lib/seo";
 import BlogList from "./BlogList";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageSeo({
+  path: "/blog",
   title: "Blog & Cleaning Tips",
   description:
     "Expert cleaning and pest control tips from Dust & Wipes Limited. Learn how to maintain a spotless, pest-free home or office in Abuja.",
-  keywords: [
-    "cleaning tips Abuja",
-    "pest control tips Nigeria",
-    "how to deep clean house",
-    "termite prevention tips",
-    "office cleaning advice",
-    "eco-friendly cleaning",
-    "Dust and Wipes blog",
-  ],
-};
+  image: "/photos/bisi-teru-training-room.jpg",
+  imageAlt: "Bisi Teru speaking in a training room",
+});
 
 export default function BlogPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbs([
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+        ])}
+      />
       {/* Hero */}
       <section className="hero-bg pt-32 pb-20 relative overflow-hidden">
         <div

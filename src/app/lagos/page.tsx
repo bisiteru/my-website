@@ -1,17 +1,22 @@
 import type { Metadata } from "next";
+import { pageSeo, JsonLd, breadcrumbs } from "@/lib/seo";
 import Link from "next/link";
 import Image from "next/image";
 import PageHero from "@/components/sections/PageHero";
+import RelatedLinks from "@/components/ui/RelatedLinks";
 import { CtaBand, SectionHeader } from "@/components/ui/Blocks";
 import { CaseStudyCard } from "@/components/ui/Cards";
 import { PHOTOS, photoSrc } from "@/lib/photos";
 import { COMPANY } from "@/lib/constants";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageSeo({
+  path: "/lagos",
   title: "Cleaning & Cleaner Training in Lagos",
   description:
     "Dust & Wipes in Lagos — a training-led relaunch for organisations with in-house cleaning teams, plus commercial cleaning. Lagos address; site assessments by appointment.",
-};
+  image: "/photos/lagos-team-uniform.jpg",
+  imageAlt: "The Dust and Wipes Lagos team in branded uniform",
+});
 
 const AUDIENCE = [
   { title: "Embassies & international organisations", detail: "Where cleaning staff are directly employed and standards are audited." },
@@ -25,6 +30,12 @@ export default function LagosPage() {
 
   return (
     <>
+      <JsonLd
+        data={breadcrumbs([
+          { name: "Home", path: "/" },
+          { name: "Lagos", path: "/lagos" },
+        ])}
+      />
       <PageHero
         eyebrow="Locations · Lagos"
         title="A training-led relaunch in Lagos."
@@ -131,6 +142,14 @@ export default function LagosPage() {
         </div>
       </section>
 
+      <RelatedLinks
+        links={[
+          { href: "/training", label: "Cleaner training", detail: "The heart of our Lagos offer" },
+          { href: "/services", label: "All services", detail: "Eleven services across cleaning and pest control" },
+          { href: "/clients", label: "Who we work with", detail: "Sectors and organisations served" },
+          { href: "/abuja", label: "Abuja", detail: "Our home city since 2017" },
+        ]}
+      />
       <CtaBand
         title="Starting with your team in Lagos."
         lede="Tell us about your premises and your cleaning staff, and we'll propose a programme."

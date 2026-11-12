@@ -4,6 +4,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Clock, Tag, Calendar } from "lucide-react";
 import { BLOG_POSTS, COMPANY } from "@/lib/constants";
+import { pageSeo, absolute, SITE_URL } from "@/lib/seo";
 import CTABanner from "@/components/sections/CTABanner";
 
 /** §6.11 — services related to each blog category. */
@@ -44,26 +45,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = BLOG_POSTS.find((p) => p.slug === slug);
   if (!post) return {};
-  return {
+  // §9.3 — each post carries its own canonical, og:url and image
+  const img = post.image?.startsWith("/photos/") ? post.image : "/images/og-image.jpg";
+  return pageSeo({
+    path: `/blog/${post.slug}`,
     title: post.title,
     description: post.excerpt,
-    keywords: [`${post.category} Abuja`, "cleaning tips", "Dust and Wipes blog"],
-    openGraph: {
-      type: "article",
-      title: post.title,
-      description: post.excerpt,
-      url: `https://dustandwipes.com/blog/${post.slug}`,
-      siteName: "Dust & Wipes Limited",
-      publishedTime: new Date(post.date).toISOString(),
-      images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: post.title }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: post.title,
-      description: post.excerpt,
-      images: ["/images/og-image.jpg"],
-    },
-  };
+    image: img,
+    imageAlt: post.title,
+    type: "article",
+    publishedTime: new Date(post.date).toISOString(),
+  });
 }
 
 const blogContent: Record<string, ContentBlock[]> = {
@@ -170,30 +162,30 @@ export default async function BlogPostPage({ params }: Props) {
               "@type": "Article",
               headline: post.title,
               description: post.excerpt,
-              image: "https://dustandwipes.com/images/og-image.jpg",
+              image: absolute("/images/og-image.jpg"),
               datePublished: new Date(post.date).toISOString(),
               author: {
                 "@type": "Organization",
                 name: "Dust & Wipes Limited",
-                url: "https://dustandwipes.com",
+                url: SITE_URL,
               },
               publisher: {
                 "@type": "Organization",
                 name: "Dust & Wipes Limited",
                 logo: {
                   "@type": "ImageObject",
-                  url: "https://dustandwipes.com/images/logo-192.png",
+                  url: absolute("/images/logo-192.png"),
                 },
               },
-              mainEntityOfPage: `https://dustandwipes.com/blog/${post.slug}`,
+              mainEntityOfPage: absolute(`/blog/${post.slug}`),
             },
             {
               "@context": "https://schema.org",
               "@type": "BreadcrumbList",
               itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Home", item: "https://dustandwipes.com" },
-                { "@type": "ListItem", position: 2, name: "Blog", item: "https://dustandwipes.com/blog" },
-                { "@type": "ListItem", position: 3, name: post.title, item: `https://dustandwipes.com/blog/${post.slug}` },
+                { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+                { "@type": "ListItem", position: 2, name: "Blog", item: absolute("/blog") },
+                { "@type": "ListItem", position: 3, name: post.title, item: absolute(`/blog/${post.slug}`) },
               ],
             },
           ]),

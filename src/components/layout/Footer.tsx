@@ -176,7 +176,7 @@ export default function Footer() {
 
         {/* Affiliations — §4.6 */}
         <div className="mt-14 border-t border-white/10 pt-10">
-          <p className="text-[0.75rem] font-bold uppercase tracking-[0.16em] text-white/50">
+          <p className="text-[0.75rem] font-bold uppercase tracking-[0.16em] text-white/75">
             Affiliations
           </p>
           <ul className="mt-5 flex flex-wrap items-center gap-4">

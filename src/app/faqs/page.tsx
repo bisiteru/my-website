@@ -1,22 +1,33 @@
 import type { Metadata } from "next";
+import { pageSeo, JsonLd, breadcrumbs } from "@/lib/seo";
 import Link from "next/link";
 import { MessageCircle } from "lucide-react";
 import PageHero from "@/components/sections/PageHero";
+import RelatedLinks from "@/components/ui/RelatedLinks";
 import Accordion from "@/components/ui/Accordion";
 import { CtaBand } from "@/components/ui/Blocks";
 import { FAQS, COMPANY } from "@/lib/constants";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageSeo({
+  path: "/faqs",
   title: "Frequently Asked Questions",
   description:
     "Answers to common questions about Dust & Wipes Limited's cleaning, pest control and training services in Abuja and Lagos — booking, pricing, safety, coverage, certificates and recurring plans.",
-};
+  image: "/photos/corridor-team-mopping.jpg",
+  imageAlt: "Two cleaners mopping an office corridor",
+});
 
 export default function FAQsPage() {
   const wa = `https://wa.me/${COMPANY.whatsapp.replace("+", "")}?text=${encodeURIComponent(COMPANY.whatsappText)}`;
 
   return (
     <>
+      <JsonLd
+        data={breadcrumbs([
+          { name: "Home", path: "/" },
+          { name: "FAQs", path: "/faqs" },
+        ])}
+      />
       {/* FAQPage structured data for rich results */}
       <script
         type="application/ld+json"
@@ -63,6 +74,13 @@ export default function FAQsPage() {
         </div>
       </section>
 
+      <RelatedLinks
+        links={[
+          { href: "/services", label: "All services", detail: "What we do" },
+          { href: "/contact", label: "Get a quote", detail: "We reply within two hours" },
+          { href: "/training", label: "Cleaner training", detail: "For organisations with in-house teams" },
+        ]}
+      />
       <CtaBand />
     </>
   );

@@ -1,17 +1,23 @@
 import type { Metadata } from "next";
+import { pageSeo } from "@/lib/seo";
 import Link from "next/link";
 import Image from "next/image";
 import { Check, MessageCircle } from "lucide-react";
 import PageHero from "@/components/sections/PageHero";
+import RelatedLinks from "@/components/ui/RelatedLinks";
 import { ProcessSteps } from "@/components/ui/Cards";
 import { CtaBand, SectionHeader } from "@/components/ui/Blocks";
 import { SERVICES, COMPANY } from "@/lib/constants";
+import { JsonLd, breadcrumbs, absolute, SITE_URL } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageSeo({
+  path: "/services",
   title: "Our Services",
   description:
     "Explore Dust & Wipes Limited's full range of cleaning and pest control services in Abuja and Lagos — residential, office, deep cleaning, post-construction, carpet and upholstery, pest control, disinfection, windows, events, facility support and cleaner training.",
-};
+  image: "/photos/office-floor-scrubbing-machine.jpg",
+  imageAlt: "An operator running a floor-scrubbing machine through an office",
+});
 
 /** §3.1 — legacy anchor aliases. Older external links used these IDs, so each
  *  is added alongside the current one, never instead of it. */
@@ -86,8 +92,34 @@ export default function ServicesPage() {
   const pest = SERVICES.filter((s) => s.category === "pest-control");
   const training = SERVICES.filter((s) => s.category === "training");
 
+  // §9.5 — one Service entity per service, each tied to the business @id
+  const serviceSchema = SERVICES.map((svc) => ({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": absolute(`/services#${svc.id}`),
+    name: svc.title,
+    description: svc.description,
+    serviceType: svc.title,
+    url: absolute(`/services#${svc.id}`),
+    image: absolute(svc.image),
+    provider: { "@id": `${SITE_URL}/#business` },
+    areaServed: [
+      { "@type": "AdministrativeArea", name: "Abuja Federal Capital Territory, Nigeria" },
+      { "@type": "AdministrativeArea", name: "Lagos State, Nigeria" },
+    ],
+  }));
+
   return (
     <>
+      <JsonLd
+        data={[
+          breadcrumbs([
+            { name: "Home", path: "/" },
+            { name: "Services", path: "/services" },
+          ]),
+          ...serviceSchema,
+        ]}
+      />
       <PageHero
         eyebrow="What we offer"
         title="Our Services"
@@ -189,6 +221,16 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      <RelatedLinks
+        links={[
+          { href: "/training", label: "Cleaner training", detail: "Programmes for in-house teams" },
+          { href: "/gallery", label: "See the work", detail: "Photographs from real jobs" },
+          { href: "/clients", label: "Who we work with", detail: "Sectors and organisations served" },
+          { href: "/abuja", label: "Abuja", detail: "Every district in the FCT" },
+          { href: "/lagos", label: "Lagos", detail: "Training-led relaunch" },
+          { href: "/faqs", label: "FAQs", detail: "Booking, safety and plans" },
+        ]}
+      />
       <CtaBand />
     </>
   );

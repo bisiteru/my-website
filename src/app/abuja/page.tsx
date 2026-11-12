@@ -1,18 +1,29 @@
 import type { Metadata } from "next";
+import { pageSeo, JsonLd, breadcrumbs } from "@/lib/seo";
 import Link from "next/link";
 import PageHero from "@/components/sections/PageHero";
+import RelatedLinks from "@/components/ui/RelatedLinks";
 import CTABanner from "@/components/sections/CTABanner";
 import { SERVICE_AREAS, COMPANY } from "@/lib/constants";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageSeo({
+  path: "/abuja",
   title: "Cleaning & Pest Control in Abuja",
   description:
     "Professional cleaning and pest control across Abuja FCT since 2017 — Gwarinpa, Maitama, Asokoro, Wuse, Jabi and every other district. 650+ clients and a 5.0 Google rating.",
-};
+  image: "/photos/team-uba-marketplace.jpg",
+  imageAlt: "The Dust and Wipes team at UBA Marketplace in Abuja",
+});
 
 export default function AbujaPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbs([
+          { name: "Home", path: "/" },
+          { name: "Abuja", path: "/abuja" },
+        ])}
+      />
       <PageHero
         eyebrow="Locations · Abuja"
         title="Our home city, since 2017."
@@ -65,6 +76,14 @@ export default function AbujaPage() {
         </div>
       </section>
 
+      <RelatedLinks
+        links={[
+          { href: "/services", label: "All services", detail: "Eleven services across cleaning and pest control" },
+          { href: "/gallery", label: "Our work in Abuja", detail: "Photographs from real jobs" },
+          { href: "/clients", label: "Who we work with", detail: "Sectors and organisations served" },
+          { href: "/lagos", label: "Lagos", detail: "Our other city" },
+        ]}
+      />
       <CTABanner />
     </>
   );

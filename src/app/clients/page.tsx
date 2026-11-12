@@ -1,18 +1,23 @@
 import type { Metadata } from "next";
+import { pageSeo, JsonLd, breadcrumbs } from "@/lib/seo";
 import Link from "next/link";
 import { Building2, Landmark, Stethoscope, Briefcase, Hotel, PartyPopper, Home as HomeIcon, HardHat } from "lucide-react";
 import PageHero from "@/components/sections/PageHero";
+import RelatedLinks from "@/components/ui/RelatedLinks";
 import { SectorTile, CaseStudyCard, LogoWall } from "@/components/ui/Cards";
 import TestimonialCarousel from "@/components/ui/TestimonialCarousel";
 import { CtaBand, SectionHeader } from "@/components/ui/Blocks";
 import { TESTIMONIALS } from "@/lib/constants";
 import clientsData from "../../../content/clients.json";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageSeo({
+  path: "/clients",
   title: "Clients & Sectors We Serve",
   description:
     "The sectors Dust & Wipes Limited serves across Abuja and Lagos — international organisations, diplomatic missions, healthcare, corporate offices, hospitality, events, premium residences and new builds.",
-};
+  image: "/photos/international-organisation-entrance-cleaning.jpg",
+  imageAlt: "A cleaner cleaning the entrance of an international organisation",
+});
 
 interface ClientRecord {
   name: string;
@@ -44,6 +49,12 @@ export default function ClientsPage() {
 
   return (
     <>
+      <JsonLd
+        data={breadcrumbs([
+          { name: "Home", path: "/" },
+          { name: "Clients", path: "/clients" },
+        ])}
+      />
       <PageHero
         eyebrow="Clients"
         title="Organisations we've served."
@@ -131,6 +142,15 @@ export default function ClientsPage() {
         </div>
       </section>
 
+      <RelatedLinks
+        links={[
+          { href: "/services", label: "All services", detail: "Eleven services across cleaning and pest control" },
+          { href: "/gallery", label: "See the work", detail: "Photographs from real jobs" },
+          { href: "/training", label: "Cleaner training", detail: "For organisations with in-house teams" },
+          { href: "/abuja", label: "Abuja", detail: "Every district in the FCT" },
+          { href: "/lagos", label: "Lagos", detail: "Training-led relaunch" },
+        ]}
+      />
       <CtaBand />
     </>
   );
