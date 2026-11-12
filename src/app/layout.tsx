@@ -1,24 +1,29 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Fraunces } from "next/font/google";
+import { Montserrat, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
 
-const jakarta = Plus_Jakarta_Sans({
-  variable: "--font-sans",
+// §4.3 — Montserrat headings (600–700), Inter body (400/500).
+// next/font self-hosts and subsets automatically, with font-display: swap.
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["600", "700"],
   display: "swap",
 });
 
-const fraunces = Fraunces({
-  variable: "--font-display",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["300", "400", "700", "900"],
-  style: ["normal", "italic"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
+
+// §3.1 / §9.7 — preview and staging deployments must never be indexed.
+// Vercel sets VERCEL_ENV to "production" only on the production deployment.
+const isProduction = process.env.VERCEL_ENV === "production" || process.env.VERCEL_ENV === undefined;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://dustandwipes.com"),
@@ -71,17 +76,20 @@ export const metadata: Metadata = {
     description: "Professional cleaning and pest control services across Abuja FCT. 650+ happy clients since 2017.",
     images: ["/images/og-image.jpg"],
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
+  robots: isProduction
+    ? {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          "max-video-preview": -1,
+          "max-image-preview": "large",
+          "max-snippet": -1,
+        },
+      }
+    : // §3.1 / §9.7 — preview & staging must never be indexed
+      { index: false, follow: false, nocache: true },
 };
 
 export default function RootLayout({
@@ -90,7 +98,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${jakarta.variable} ${fraunces.variable}`}>
+    <html lang="en" className={`${montserrat.variable} ${inter.variable}`}>
       <head>
         {/* Local Business structured data */}
         <script
@@ -147,7 +155,7 @@ export default function RootLayout({
               aggregateRating: {
                 "@type": "AggregateRating",
                 ratingValue: "5",
-                reviewCount: "7",
+                reviewCount: "10",
                 bestRating: "5",
               },
               hasMap: "https://maps.google.com/?q=Irama+Plaza+Gwarinpa+Abuja",

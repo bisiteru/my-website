@@ -1,24 +1,64 @@
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import Image from "next/image";
+import { PHOTOS, photoSrc } from "@/lib/photos";
+
+export const metadata = {
+  title: "Page not found",
+  robots: { index: false, follow: true },
+};
+
+const LINKS = [
+  { href: "/services", label: "Our services" },
+  { href: "/training", label: "Cleaner training" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/blog", label: "Blog" },
+  { href: "/faqs", label: "FAQs" },
+  { href: "/contact", label: "Contact us" },
+];
 
 export default function NotFound() {
+  const p = PHOTOS["corridor-team-mopping"];
   return (
-    <div className="min-h-screen hero-bg flex items-center justify-center px-4">
-      <div className="text-center">
-        <div className="text-8xl mb-6">🧹</div>
-        <h1 className="text-6xl font-black text-white mb-3">404</h1>
-        <h2 className="text-2xl font-bold text-white/80 mb-4">Page Not Found</h2>
-        <p className="text-white/60 mb-8 max-w-sm mx-auto">
-          Looks like this page has been swept away. Let&apos;s get you back on track.
-        </p>
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 bg-[#dd4c2f] text-white px-7 py-3.5 rounded-full font-semibold hover:bg-[#b83d25] transition-all"
-        >
-          <ArrowLeft size={18} />
-          Back to Home
-        </Link>
+    <section className="hero-bg min-h-[80vh] flex items-center pt-28 pb-20">
+      <div className="container-dw grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
+        <div>
+          <p className="eyebrow !text-[var(--c-orange-300)]">Error 404</p>
+          <h1 className="h1-display mt-4 font-semibold text-white">
+            This page has been cleared away.
+          </h1>
+          <p className="lede mt-6 !text-white/75">
+            The page you were looking for doesn&apos;t exist, or it has moved. Here is the way back.
+          </p>
+          <div className="mt-9 flex flex-wrap gap-3">
+            <Link href="/" className="btn btn--on-dark">Back to home</Link>
+            <Link
+              href="/contact"
+              className="btn btn--outline-dark"
+            >
+              Get a free quote
+            </Link>
+          </div>
+          <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-2">
+            {LINKS.map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className="text-[0.9375rem] text-white/70 underline underline-offset-4 hover:text-white">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="hidden lg:block rounded-2xl overflow-hidden">
+          <Image
+            src={photoSrc("corridor-team-mopping")}
+            alt="A Dust and Wipes team mopping an office corridor"
+            width={p.width}
+            height={p.height}
+            className="w-full h-auto photo-grade"
+            sizes="(max-width: 1024px) 0px, 50vw"
+          />
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

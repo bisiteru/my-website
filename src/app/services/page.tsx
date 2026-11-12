@@ -20,6 +20,17 @@ export const metadata: Metadata = {
   ],
 };
 
+/**
+ * BUILD_BRIEF §3.1 — "Keep existing anchor IDs … Add new anchors alongside,
+ * never instead." Older external links point at these IDs, so each service
+ * card also carries its historical alias.
+ *   #office-cleaning      → the Commercial & office cleaning card
+ *   #facility-management  → kept reserved; the service itself lands in Phase 3
+ */
+const ALIAS_ANCHORS: Record<string, string[]> = {
+  "commercial-cleaning": ["office-cleaning"],
+};
+
 export default function ServicesPage() {
   const cleaningServices = SERVICES.filter((s) => s.category === "cleaning");
   const pestServices = SERVICES.filter((s) => s.category === "pest-control");
@@ -37,8 +48,13 @@ export default function ServicesPage() {
   }) => (
     <div
       id={service.id}
-      className="bg-white rounded-2xl border border-gray-100 overflow-hidden card-hover shadow-sm"
+      className="bg-white rounded-2xl border border-gray-100 overflow-hidden card-hover shadow-sm scroll-mt-28"
     >
+      {/* §3.1 — legacy anchor aliases. Older external links used these IDs, so
+          they are added alongside the current ones, never instead of them. */}
+      {ALIAS_ANCHORS[service.id]?.map((alias) => (
+        <span key={alias} id={alias} className="block scroll-mt-28" aria-hidden="true" />
+      ))}
       <div className="h-2" style={{ background: accentColor }} />
       <div className="p-6">
         <div

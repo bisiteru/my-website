@@ -1,0 +1,16 @@
+{
+  "_comment": "BUILD_BRIEF §6.8/§8. Add a photo by adding an entry here; the file must exist at public/photos/<file>.jpg. polished-tile-floor-after-cleaning is ON HOLD (§3.3) and must not be added until a matching before exists.",
+  "categories": [
+    { "slug": "all", "label": "All" },
+    { "slug": "residential", "label": "Residential" },
+    { "slug": "office-commercial", "label": "Office & commercial" },
+    { "slug": "deep-cleaning", "label": "Deep cleaning" },
+    { "slug": "post-construction", "label": "Post-construction" },
+    { "slug": "pest-disinfection", "label": "Pest control & disinfection" },
+    { "slug": "windows-glass", "label": "Windows & glass" },
+    { "slug": "healthcare", "label": "Healthcare" },
+    { "slug": "events", "label": "Events" },
+    { "slug": "our-team", "label": "Our team" }
+  ],
+  "items": []
+}

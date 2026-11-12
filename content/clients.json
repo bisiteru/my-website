@@ -1,0 +1,26 @@
+{
+  "_comment": "BUILD_BRIEF §6.7. Only entries with consent:true are ever rendered. Flip consent once written permission is on file. Logos live in public/client-logos/.",
+  "clients": [
+    {
+      "name": "Skin 101 Clinics Limited",
+      "sector": "Healthcare & clinics",
+      "city": "Lagos",
+      "services": ["Commercial cleaning"],
+      "startYear": 2024,
+      "endYear": 2025,
+      "status": "past",
+      "consent": false,
+      "logo": "skin101-clinics-logo.png"
+    }
+  ],
+  "sectors": [
+    { "slug": "international-organisations", "label": "International organisations" },
+    { "slug": "diplomatic-missions", "label": "Diplomatic missions" },
+    { "slug": "healthcare-clinics", "label": "Healthcare & clinics" },
+    { "slug": "corporate-offices", "label": "Corporate offices" },
+    { "slug": "hospitality-salons", "label": "Hospitality & salons" },
+    { "slug": "events-exhibitions", "label": "Events & exhibitions" },
+    { "slug": "premium-residences", "label": "Premium residences" },
+    { "slug": "real-estate-new-builds", "label": "Real estate & new builds" }
+  ]
+}

@@ -13,7 +13,7 @@ export default function WhatsAppButton() {
   const waUrl = `https://wa.me/${COMPANY.whatsapp.replace("+", "")}?text=${message}`;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
+    <div className="hidden xl:flex fixed bottom-6 right-6 z-50 flex-col items-end gap-2">
       {/* Tooltip */}
       {showTooltip && (
         <div className="bg-white shadow-xl rounded-2xl p-4 max-w-[200px] border border-green-100 animate-fadeIn">
