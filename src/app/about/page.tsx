@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { PHOTOS, photoSrc, type PhotoSlug } from "@/lib/photos";
 import Link from "next/link";
 import { CheckCircle, ArrowRight, Award, Users, Leaf, Clock, Quote } from "lucide-react";
 import CTABanner from "@/components/sections/CTABanner";
@@ -296,6 +297,78 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Our people (§6.6) ── */}
+      <section className="section bg-[var(--c-surface)]">
+        <div className="container-dw">
+          <p className="eyebrow">Our people</p>
+          <h2 className="h2-section mt-4 max-w-[24ch]">
+            A family of professionals, not a roster of names.
+          </h2>
+          <p className="lede mt-5">
+            We were founded on the belief that cleaners deserve training, fair treatment and
+            professional respect. These are the people who carry the standard.
+          </p>
+
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { slug: "dust-and-wipes-team-uniform", alt: "Two Dust and Wipes team members in branded yellow uniform in an office", cap: "Abuja team, in uniform" },
+              { slug: "lagos-team-uniform", alt: "The Dust and Wipes Lagos team in branded uniform", cap: "Our Lagos team" },
+              { slug: "event-crew-team", alt: "The Dust and Wipes event crew in uniform", cap: "The event crew" },
+            ].map((t) => (
+              <figure key={t.slug} className="m-0">
+                <div className="photo-zoom overflow-hidden rounded-2xl">
+                  <Image
+                    src={photoSrc(t.slug as PhotoSlug)}
+                    alt={t.alt}
+                    width={PHOTOS[t.slug as PhotoSlug].width}
+                    height={PHOTOS[t.slug as PhotoSlug].height}
+                    sizes="(max-width: 640px) 100vw, 33vw"
+                    className="h-64 w-full object-cover photo-grade"
+                  />
+                </div>
+                <figcaption className="mt-2.5 text-[0.875rem] text-[var(--c-ink-2)]">{t.cap}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Culture + equipped (§6.6) ── */}
+      <section className="section section--band">
+        <div className="container-dw grid gap-12 lg:grid-cols-2 lg:gap-16">
+          <figure className="m-0">
+            <div className="photo-zoom overflow-hidden rounded-2xl">
+              <Image
+                src={photoSrc("staff-christmas-picnic")}
+                alt="Dust and Wipes staff together at the company Christmas picnic"
+                width={PHOTOS["staff-christmas-picnic"].width}
+                height={PHOTOS["staff-christmas-picnic"].height}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="w-full h-auto photo-grade"
+              />
+            </div>
+            <figcaption className="mt-3 text-[0.875rem] text-[var(--c-ink-2)]">
+              The team at our Christmas picnic.
+            </figcaption>
+          </figure>
+          <figure className="m-0">
+            <div className="photo-zoom overflow-hidden rounded-2xl">
+              <Image
+                src={photoSrc("dust-and-wipes-branded-van")}
+                alt="The branded Dust and Wipes van, listing the services offered"
+                width={PHOTOS["dust-and-wipes-branded-van"].width}
+                height={PHOTOS["dust-and-wipes-branded-van"].height}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="w-full h-auto photo-grade"
+              />
+            </div>
+            <figcaption className="mt-3 text-[0.875rem] text-[var(--c-ink-2)]">
+              We arrive fully equipped.
+            </figcaption>
+          </figure>
         </div>
       </section>
 

@@ -43,8 +43,8 @@ export const SERVICES = [
     shortDesc: "Thorough, eco-friendly cleaning for your home.",
     description:
       "Thorough, eco-friendly cleaning for your home — kitchens, bathrooms, bedrooms and living areas done to perfection.",
-    image: "/images/hero-corridor-cleaning.jpg",
-    href: "/services#cleaning",
+    image: "/photos/luxury-living-room-floor-cleaning.jpg",
+    href: "/services#residential-cleaning",
     features: [
       "Full home deep cleaning",
       "Kitchen and bathroom sanitation",
@@ -59,7 +59,7 @@ export const SERVICES = [
     shortDesc: "Expert office and commercial space cleaning.",
     description:
       "Expert office and commercial space cleaning that keeps your workplace professional, hygienic, and productive.",
-    image: "/images/office-sweeping-yellow.jpg",
+    image: "/photos/office-floor-scrubbing-machine.jpg",
     href: "/services#commercial-cleaning",
     features: [
       "Open-plan office cleaning",
@@ -75,7 +75,7 @@ export const SERVICES = [
     shortDesc: "Thorough room-by-room deep clean of your entire space.",
     description:
       "A comprehensive deep clean tackling every corner — inside appliances, grout lines, blinds, under furniture, and all the areas your regular clean misses.",
-    image: "/images/kitchen-cleaning.jpg",
+    image: "/photos/pantry-bar-stool-detail-cleaning.jpg",
     href: "/services#deep-cleaning",
     features: [
       "Inside appliances (oven, fridge, microwave)",
@@ -91,7 +91,7 @@ export const SERVICES = [
     shortDesc: "Safe, effective fumigation and pest management.",
     description:
       "Safe, effective fumigation and pest management to protect your home and business from unwanted infestations.",
-    image: "/images/fumigation-office-hallway.jpg",
+    image: "/photos/pest-control-spraying-driveway.jpg",
     href: "/services#pest-control",
     features: [
       "Multi-pest spray treatment",
@@ -107,8 +107,8 @@ export const SERVICES = [
     shortDesc: "Specialized deep-clean for newly built spaces.",
     description:
       "Specialized deep-clean for newly built or renovated properties — ready for immediate occupation.",
-    image: "/images/post-construction-interior.jpg",
-    href: "/services#cleaning",
+    image: "/photos/post-construction-granite-floor-scrubbing.jpg",
+    href: "/services#post-construction",
     features: [
       "Dust & debris clearance",
       "Window & glass polishing",
@@ -123,8 +123,8 @@ export const SERVICES = [
     shortDesc: "Professional deep cleaning for carpets & sofas.",
     description:
       "Professional deep cleaning for carpets, rugs, sofas and furniture using industry-grade Rug Doctor equipment.",
-    image: "/images/sofa-cleaning.jpg",
-    href: "/services#cleaning",
+    image: "/photos/upholstered-headboard-vacuuming.jpg",
+    href: "/services#carpet-upholstery",
     features: [
       "Hot-water extraction",
       "Stain & odour treatment",
@@ -134,12 +134,76 @@ export const SERVICES = [
     category: "cleaning",
   },
   {
+    id: "disinfection-sanitisation",
+    title: "Disinfection & Sanitisation",
+    shortDesc: "Targeted disinfection for high-traffic and clinical spaces.",
+    description:
+      "Targeted disinfection and misting for workplaces, clinics and any space where surface hygiene has to be demonstrable, not assumed.",
+    image: "/photos/office-disinfection-misting.jpg",
+    href: "/services#disinfection-sanitisation",
+    features: [
+      "High-touch point treatment",
+      "Fogging and misting application",
+      "Correct dwell times observed",
+      "Safe re-entry guidance",
+    ],
+    category: "pest-control",
+  },
+  {
+    id: "window-glass-cleaning",
+    title: "Window & Glass Cleaning",
+    shortDesc: "Streak-free glass, inside and out.",
+    description:
+      "Interior and exterior glass, frames, grilles and partitions cleaned to a streak-free finish, including work at height where access allows.",
+    image: "/photos/exterior-window-cleaning-ladder.jpg",
+    href: "/services#window-glass-cleaning",
+    features: [
+      "Interior and exterior glass",
+      "Frames, sills and grilles",
+      "Glass partitions and doors",
+      "Safe working at height",
+    ],
+    category: "cleaning",
+  },
+  {
+    id: "event-exhibition-cleaning",
+    title: "Event & Exhibition Cleaning",
+    shortDesc: "Before, during and after your event.",
+    description:
+      "Set-up, live and post-event cleaning for exhibitions, conferences and functions — crews that work around your programme, not through it.",
+    image: "/photos/exhibition-stand-cleaning.jpg",
+    href: "/services#event-exhibition-cleaning",
+    features: [
+      "Pre-event preparation",
+      "Discreet cleaning during the event",
+      "Full post-event clearance",
+      "Crew sized to the venue",
+    ],
+    category: "cleaning",
+  },
+  {
+    id: "facility-management",
+    title: "Facility Management Support",
+    shortDesc: "Ongoing day-to-day support for your site.",
+    description:
+      "Day-to-day cleaning and support staff embedded at your site, supervised to a documented standard, so your facilities team can plan around it.",
+    image: "/photos/office-lobby-mopping-equipment.jpg",
+    href: "/services#facility-management",
+    features: [
+      "Permanent or rotating site teams",
+      "Supervised to a written standard",
+      "Consumables and stock monitoring",
+      "Scheduled reporting",
+    ],
+    category: "cleaning",
+  },
+  {
     id: "training-consultancy",
     title: "Training & Consultancy",
     shortDesc: "Professional training in cleaning management.",
     description:
       "Professional training and consulting in cleaning management, hygiene standards, and facility operations.",
-    image: "/images/team-meeting.jpg",
+    image: "/photos/bisi-teru-leading-training.jpg",
     href: "/services#training-consultancy",
     features: [
       "Cleaning management training",
@@ -285,6 +349,31 @@ export const FAQS = [
     question: "Are your staff trained and vetted?",
     answer:
       "All our team members undergo thorough background checks, professional training, and are fully supervised. They are uniformed, courteous, and equipped with professional-grade tools and products.",
+  },
+  {
+    question: "Do you work in Lagos as well as Abuja?",
+    answer:
+      "Yes. Abuja has been our home since 2017 and we cover every district in the FCT. In Lagos our entry is training-led — we work with organisations that employ their own cleaners — and we also take on commercial cleaning. We hold a Lagos address and arrange site assessments by appointment.",
+  },
+  {
+    question: "Can you train our in-house cleaning team on our premises?",
+    answer:
+      "Yes. Most of our training is delivered on site, around your own routines, equipment and premises. We cover housekeeping practice, workplace hygiene and safety, chemicals, equipment and PPE, and supervision and quality. Sessions can also run at a separate venue if that suits you better.",
+  },
+  {
+    question: "Do trainees receive certificates?",
+    answer:
+      "Yes. Participants who complete the programme receive a certificate of completion. We also give supervisors a short written summary of what was covered, so standards can be reinforced after we leave.",
+  },
+  {
+    question: "What discount applies to recurring plans?",
+    answer:
+      "Recurring plans — weekly, bi-weekly, monthly or quarterly — are priced below equivalent one-off bookings, and the saving grows with frequency. The same team returns each visit, so they learn your space. Contact us with your requirements for exact figures.",
+  },
+  {
+    question: "Is pest control safe around children and pets?",
+    answer:
+      "Yes. Our technicians are certified and use approved, low-toxicity treatments chosen for occupied buildings. We will advise a short re-entry period after treatment and tell you about any area needing extra care, such as pet bedding or children's play surfaces.",
   },
 ];
 
