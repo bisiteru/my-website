@@ -1,8 +1,5 @@
 # Dust & Wipes Ltd — Website Rebuild Brief (v2)
 
-> Saved to the repo on 2026-11-10 from the version supplied in session. This is the single source
-> of truth for the rebuild. Where this brief and existing code disagree, the brief wins.
-
 Read this whole file before writing any code. It is the single source of truth. Where this brief and existing code disagree, follow the brief. **No placeholders on the live site.** Never use placeholder text, stock images, vector illustrations or generic graphics in place of real photos. Anything marked **[PLACEHOLDER]** or **[CONFIRM]** must be left out of the rendered page (hide the element or section) until the real content is supplied — never invent facts, clients, numbers, logos or quotes. Keep each omitted item behind a config flag or content-file entry, and list all of them in your report.
 
 ---
