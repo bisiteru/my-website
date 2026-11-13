@@ -122,7 +122,14 @@ export function CaseStudyCard({
   );
 }
 
-/** Logo wall — §6.7. Renders nothing at all when no consented logo exists. */
+/** Logo wall — §6.7. Renders nothing at all when no consented logo exists.
+ *
+ *  Client logos arrive in wildly different shapes: some wide wordmarks, some
+ *  square marks, several with baked-in white or dark backgrounds. Rendering
+ *  them inline makes a ragged wall. Each therefore sits in a fixed white tile
+ *  with `object-contain`, so every organisation gets equal visual weight and
+ *  opaque backgrounds blend into the tile instead of showing as boxes.
+ *  Monochrome at rest, full colour on hover, per the brief. */
 export function LogoWall({
   logos,
 }: {
@@ -130,16 +137,19 @@ export function LogoWall({
 }) {
   if (logos.length === 0) return null;
   return (
-    <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-8">
+    <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
       {logos.map((l) => (
         <li key={l.name}>
-          <Image
-            src={`/client-logos/${l.file}`}
-            alt={l.name}
-            width={180}
-            height={90}
-            className="h-12 w-auto object-contain grayscale opacity-80 transition hover:grayscale-0 hover:opacity-100"
-          />
+          <div className="flex h-28 items-center justify-center rounded-xl border border-[var(--c-border)] bg-white px-5 py-4">
+            <Image
+              src={`/client-logos/${l.file}`}
+              alt={l.name}
+              width={220}
+              height={110}
+              className="max-h-full w-auto object-contain opacity-70 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0"
+            />
+          </div>
+          <p className="mt-2 text-center text-[0.8125rem] text-[var(--c-ink-2)]">{l.name}</p>
         </li>
       ))}
     </ul>

@@ -22,6 +22,96 @@
       "status": "current",
       "consent": true,
       "logo": "radiance-wellness-spa-logo.png"
+    },
+    {
+      "name": "Mobus Property Nigeria",
+      "sector": "Real estate & new builds",
+      "city": "Abuja",
+      "services": [],
+      "status": "current",
+      "consent": true,
+      "logo": "mobus-logo.png",
+      "note": "Real estate and property development"
+    },
+    {
+      "name": "Deloitte Consulting LLP",
+      "sector": "International organisations",
+      "city": "Abuja",
+      "services": [],
+      "status": "past",
+      "consent": true,
+      "logo": "deloitte-logo.png",
+      "note": "USAID-funded programme"
+    },
+    {
+      "name": "Chayim Diagnostic Services",
+      "sector": "Healthcare & clinics",
+      "city": "Abuja",
+      "services": [],
+      "status": "current",
+      "consent": true,
+      "logo": "chayim-diagnostics-logo.png",
+      "note": "Medical diagnostics"
+    },
+    {
+      "name": "Embassy of Belgium Consulate",
+      "sector": "Diplomatic missions",
+      "city": "Abuja",
+      "services": [],
+      "status": "current",
+      "consent": true,
+      "logo": "belgium-logo.png",
+      "note": "Diplomatic mission"
+    },
+    {
+      "name": "Wassail Group of Companies Ltd",
+      "sector": "Corporate offices",
+      "city": "Abuja",
+      "services": [],
+      "status": "past",
+      "consent": true,
+      "logo": "wassail-group-logo.png",
+      "note": "Oil and gas"
+    },
+    {
+      "name": "First Ally Asset Management",
+      "sector": "Corporate offices",
+      "city": "Abuja",
+      "services": [],
+      "status": "current",
+      "consent": true,
+      "logo": "first-ally-logo.png",
+      "note": "Asset management"
+    },
+    {
+      "name": "National Assembly Complex",
+      "sector": "Government & public institutions",
+      "city": "Abuja",
+      "services": [],
+      "status": "past",
+      "consent": true,
+      "logo": "national-assembly-logo.png",
+      "note": "Federal Republic of Nigeria"
+    },
+    {
+      "name": "ISN Medical",
+      "sector": "Healthcare & clinics",
+      "city": "Abuja",
+      "services": [],
+      "status": "current",
+      "consent": true,
+      "logo": "isn-medical-logo.png",
+      "note": "Medical diagnostic equipment"
+    },
+    {
+      "name": "Chemonics International Inc",
+      "sector": "International organisations",
+      "city": "Abuja",
+      "services": [],
+      "status": "past",
+      "consent": true,
+      "logo": "chemonics-logo.png",
+      "note": "International development organisation"
     }
   ],
   "sectors": [
@@ -56,6 +146,10 @@
     {
       "slug": "real-estate-new-builds",
       "label": "Real estate & new builds"
+    },
+    {
+      "slug": "government-public",
+      "label": "Government & public institutions"
     }
   ]
 }

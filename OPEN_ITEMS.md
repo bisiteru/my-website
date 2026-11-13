@@ -14,8 +14,8 @@ Status: 🔴 blocking a visible feature · 🟡 needed before that section is co
 
 | # | Item | Brief | What is hidden right now |
 |---|---|---|---|
-| C3 | **Details for 6 supplied client logos** | §6.7 | Logos received and stored for **Mobus · Deloitte · Chayim Diagnostics · the Belgian organisation · National Assembly · First Ally**, but none are rendered. For each I need: exact legal name, sector (one of the eight), city, years, and current-or-past status. Without those the brief forbids publishing them. Skin 101 and Radiance Wellness Spa are live. |
-| C16 | **National Assembly and First Ally logo files** | §6.7 | Both came through as inline images only, so nothing reached disk. Re-send as file attachments. |
+| C16 | **INFRACORP logo file** | §6.7 | Details confirmed (Infrastructure Corporation of Nigeria, Abuja, current), but the logo arrived as an inline image so nothing reached disk. Re-send as a file attachment and it joins the wall. |
+| C17 | **Engagement years per client** | §6.7 | Eleven clients are live with sector, city and current/past status, but no start or end years except Skin 101 (2024–2025). Years would let the wall show tenure. |
 
 | C6 | **Training two-day outline** | §6.3 | `/training` shows the four modules and delivery approach, but no day-by-day timetable. |
 | C7 | **Lagos areas** — Lekki, Ikoyi, Victoria Island, Ikeja? | §6.5 | `/lagos` names no specific areas. |

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { pageSeo, JsonLd, breadcrumbs } from "@/lib/seo";
 import Link from "next/link";
-import { Building2, Landmark, Stethoscope, Briefcase, Hotel, PartyPopper, Home as HomeIcon, HardHat } from "lucide-react";
+import { Building2, Landmark, Stethoscope, Briefcase, Hotel, PartyPopper, Home as HomeIcon, HardHat, Scale } from "lucide-react";
 import PageHero from "@/components/sections/PageHero";
 import RelatedLinks from "@/components/ui/RelatedLinks";
 import { SectorTile, CaseStudyCard, LogoWall } from "@/components/ui/Cards";
@@ -40,6 +40,7 @@ const SECTOR_ICONS: Record<string, React.ElementType> = {
   "events-exhibitions": PartyPopper,
   "premium-residences": HomeIcon,
   "real-estate-new-builds": HardHat,
+  "government-public": Scale,
 };
 
 export default function ClientsPage() {

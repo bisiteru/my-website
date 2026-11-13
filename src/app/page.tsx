@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { pageSeo } from "@/lib/seo";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Building2, Landmark, Stethoscope, Briefcase, Hotel, PartyPopper, Home as HomeIcon, HardHat } from "lucide-react";
+import { ArrowRight, Building2, Landmark, Stethoscope, Briefcase, Hotel, PartyPopper, Home as HomeIcon, HardHat, Scale } from "lucide-react";
 import { CollageHero } from "@/components/ui/Heroes";
 import { ServiceCard, SectorTile, ProcessSteps } from "@/components/ui/Cards";
 import { StatRow } from "@/components/ui/StatCounter";
@@ -31,6 +31,7 @@ const SECTORS = [
   { label: "Events & exhibitions", Icon: PartyPopper },
   { label: "Premium residences", Icon: HomeIcon },
   { label: "Real estate & new builds", Icon: HardHat },
+  { label: "Government & public institutions", Icon: Scale },
 ];
 
 const PROCESS = [
