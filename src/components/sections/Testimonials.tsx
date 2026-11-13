@@ -177,8 +177,8 @@ export default function Testimonials() {
               <motion.button
                 key={i}
                 onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, ease: ease, delay: i * 0.07 }}
                 className={`testimonial-card text-left w-full transition-all duration-200 ${

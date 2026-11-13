@@ -1,207 +1,237 @@
 import type { Metadata } from "next";
-import { CheckCircle, MessageCircle } from "lucide-react";
+import { pageSeo } from "@/lib/seo";
+import Link from "next/link";
+import Image from "next/image";
+import { Check, MessageCircle } from "lucide-react";
+import PageHero from "@/components/sections/PageHero";
+import RelatedLinks from "@/components/ui/RelatedLinks";
+import { ProcessSteps } from "@/components/ui/Cards";
+import { CtaBand, SectionHeader } from "@/components/ui/Blocks";
 import { SERVICES, COMPANY } from "@/lib/constants";
-import CTABanner from "@/components/sections/CTABanner";
+import { JsonLd, breadcrumbs, absolute, SITE_URL } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageSeo({
+  path: "/services",
   title: "Our Services",
   description:
-    "Explore Dust & Wipes Limited's full range of cleaning and pest control services in Abuja — residential cleaning, office cleaning, deep cleaning, carpet cleaning, termite control, rodent control, bed bug treatment, training and more.",
-  keywords: [
-    "cleaning services Abuja",
-    "deep cleaning Abuja",
-    "office cleaning Abuja FCT",
-    "pest control Abuja",
-    "carpet cleaning Abuja",
-    "post-construction cleaning Abuja",
-    "upholstery cleaning Abuja",
-    "fumigation Abuja",
-    "termite control Abuja",
-  ],
+    "Explore Dust & Wipes Limited's full range of cleaning and pest control services in Abuja and Lagos — residential, office, deep cleaning, post-construction, carpet and upholstery, pest control, disinfection, windows, events, facility support and cleaner training.",
+  image: "/photos/office-floor-scrubbing-machine.jpg",
+  imageAlt: "An operator running a floor-scrubbing machine through an office",
+});
+
+/** §3.1 — legacy anchor aliases. Older external links used these IDs, so each
+ *  is added alongside the current one, never instead of it. */
+const ALIAS_ANCHORS: Record<string, string[]> = {
+  "commercial-cleaning": ["office-cleaning"],
 };
 
-export default function ServicesPage() {
-  const cleaningServices = SERVICES.filter((s) => s.category === "cleaning");
-  const pestServices = SERVICES.filter((s) => s.category === "pest-control");
-  const trainingServices = SERVICES.filter((s) => s.category === "training");
+const PROCESS = [
+  { title: "Contact us", detail: "Reach us through the website form, WhatsApp or a phone call." },
+  { title: "Get a quote", detail: "We assess what the work actually needs and quote transparently." },
+  { title: "We show up", detail: "A uniformed, trained team arrives on time, fully equipped." },
+  { title: "Inspect the result", detail: "If you are not satisfied, we return and put it right free of charge." },
+];
 
-  const waMessage = encodeURIComponent("Hello! I'd like to book a service with Dust & Wipes Limited.");
-  const waUrl = `https://wa.me/${COMPANY.whatsapp.replace("+", "")}?text=${waMessage}`;
+const PLANS = [
+  { name: "Weekly", detail: "For busy homes and offices that need a dependable rhythm." },
+  { name: "Bi-weekly", detail: "A middle ground that keeps on top of the work without daily disruption." },
+  { name: "Monthly", detail: "A reset for spaces that are maintained in between." },
+];
 
-  const ServiceCard = ({
-    service,
-    accentColor,
-  }: {
-    service: (typeof SERVICES)[0];
-    accentColor: string;
-  }) => (
-    <div
-      id={service.id}
-      className="bg-white rounded-2xl border border-gray-100 overflow-hidden card-hover shadow-sm"
-    >
-      <div className="h-2" style={{ background: accentColor }} />
-      <div className="p-6">
-        <div
-          className="h-32 -mx-6 -mt-6 mb-5 bg-cover bg-center"
-          style={{ backgroundImage: `url('${service.image}')` }}
-        />
-        <h3 className="text-xl font-bold text-gray-900 mb-2">{service.title}</h3>
-        <p className="text-gray-600 text-sm leading-relaxed mb-5">{service.description}</p>
-        <ul className="space-y-2 mb-6">
-          {service.features.map((f) => (
-            <li key={f} className="flex items-start gap-2 text-sm text-gray-700">
-              <CheckCircle size={15} className="mt-0.5 shrink-0" style={{ color: accentColor }} />
-              {f}
-            </li>
-          ))}
-        </ul>
-        <a
-          href={waUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-opacity hover:opacity-85 w-full justify-center"
-          style={{ background: accentColor }}
-        >
-          <MessageCircle size={15} />
-          Book This Service
-        </a>
+function ServiceSection({
+  service,
+  flip,
+}: {
+  service: (typeof SERVICES)[number];
+  flip: boolean;
+}) {
+  const wa = `https://wa.me/${COMPANY.whatsapp.replace("+", "")}?text=${encodeURIComponent(
+    `Hello Dust & Wipes! I'd like to book: ${service.title}.`
+  )}`;
+  return (
+    <article id={service.id} className="scroll-mt-28 py-12 first:pt-0">
+      {ALIAS_ANCHORS[service.id]?.map((alias) => (
+        <span key={alias} id={alias} className="block scroll-mt-28" aria-hidden="true" />
+      ))}
+      <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+        <div className={`photo-zoom overflow-hidden rounded-2xl ${flip ? "lg:order-2" : ""}`}>
+          <Image
+            src={service.image}
+            alt={`${service.title} — a Dust and Wipes team member at work`}
+            width={900}
+            height={675}
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="h-64 w-full object-cover photo-grade sm:h-80"
+          />
+        </div>
+        <div>
+          <h3 className="h3-card !text-[1.5rem]">{service.title}</h3>
+          <p className="mt-3 text-[var(--c-ink-2)] prose-measure">{service.description}</p>
+          <ul className="mt-6 space-y-2.5">
+            {service.features.map((f) => (
+              <li key={f} className="flex items-start gap-2.5 text-[0.9375rem]">
+                <Check size={17} className="mt-1 shrink-0 text-[var(--c-green-600)]" aria-hidden="true" />
+                <span>{f}</span>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-7 flex flex-wrap gap-3">
+            <Link href="/contact" className="btn btn--primary">Get a free quote</Link>
+            <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn--secondary">
+              <MessageCircle size={16} aria-hidden="true" /> Book on WhatsApp
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
+    </article>
   );
+}
+
+export default function ServicesPage() {
+  const cleaning = SERVICES.filter((s) => s.category === "cleaning");
+  const pest = SERVICES.filter((s) => s.category === "pest-control");
+  const training = SERVICES.filter((s) => s.category === "training");
+
+  // §9.5 — one Service entity per service, each tied to the business @id
+  const serviceSchema = SERVICES.map((svc) => ({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": absolute(`/services#${svc.id}`),
+    name: svc.title,
+    description: svc.description,
+    serviceType: svc.title,
+    url: absolute(`/services#${svc.id}`),
+    image: absolute(svc.image),
+    provider: { "@id": `${SITE_URL}/#business` },
+    areaServed: [
+      { "@type": "AdministrativeArea", name: "Abuja Federal Capital Territory, Nigeria" },
+      { "@type": "AdministrativeArea", name: "Lagos State, Nigeria" },
+    ],
+  }));
 
   return (
     <>
-      {/* Hero */}
-      <section className="hero-bg pt-32 pb-20 relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px)`,
-            backgroundSize: "40px 40px",
-          }}
-        />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-          <span className="inline-block bg-white/10 border border-white/20 text-white/80 text-sm px-4 py-1.5 rounded-full mb-6">
-            What We Offer
-          </span>
-          <h1 className="text-4xl sm:text-5xl font-black text-white mb-5">Our Services</h1>
-          <p className="text-white/70 text-lg max-w-2xl mx-auto">
-            Comprehensive cleaning and pest control solutions for homes, offices, and commercial
-            facilities across Abuja FCT.
-          </p>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-            <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="white" />
-          </svg>
+      <JsonLd
+        data={[
+          breadcrumbs([
+            { name: "Home", path: "/" },
+            { name: "Services", path: "/services" },
+          ]),
+          ...serviceSchema,
+        ]}
+      />
+      <PageHero
+        eyebrow="What we offer"
+        title="Our Services"
+        lede="Cleaning, pest control, facility support and cleaner training for homes, offices and facilities across Abuja and Lagos."
+      >
+        <Link href="/contact" className="btn btn--on-dark">Get a free quote</Link>
+      </PageHero>
+
+      {/* Cleaning */}
+      <section id="cleaning" className="section scroll-mt-28">
+        <div className="container-dw">
+          <SectionHeader
+            eyebrow="Cleaning services"
+            title="Professional cleaning solutions."
+            lede="From routine home cleans to post-construction handovers, delivered by trained teams working to a written standard."
+          />
+          <div className="mt-10 divide-y divide-[var(--c-border)]">
+            {cleaning.map((s, i) => (
+              <ServiceSection key={s.id} service={s} flip={i % 2 === 1} />
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Cleaning Services */}
-      <section id="cleaning" className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12">
-            <div className="inline-flex items-center gap-2 bg-green-50 text-[#0b8441] px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              🧹 Cleaning Services
-            </div>
-            <h2 className="section-title">Professional Cleaning Solutions</h2>
-            <p className="text-gray-500 mt-3 max-w-xl">
-              From routine home cleans to post-construction deep cleans, our expert team delivers
-              consistent, thorough results every time.
+      {/* Pest control & disinfection */}
+      <section id="pest-control-section" className="section section--band scroll-mt-28">
+        <div className="container-dw">
+          <SectionHeader
+            eyebrow="Pest control &amp; disinfection"
+            title="Treatments that are safe around people."
+            lede="Certified technicians using approved, low-toxicity treatments — safe for children and pets, with follow-up inspection."
+          />
+          <div className="mt-10 divide-y divide-[var(--c-border)]">
+            {pest.map((s, i) => (
+              <ServiceSection key={s.id} service={s} flip={i % 2 === 1} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Training */}
+      <section id="training-consultancy" className="section scroll-mt-28">
+        <div className="container-dw">
+          <SectionHeader
+            eyebrow="Training &amp; consultancy"
+            title="For organisations with their own cleaners."
+            lede="We train in-house teams in housekeeping, hygiene and safety, chemicals and PPE, and supervision."
+          />
+          <div className="mt-10 divide-y divide-[var(--c-border)]">
+            {training.map((s) => (
+              <ServiceSection key={s.id} service={s} flip={false} />
+            ))}
+          </div>
+          <div className="mt-8">
+            <Link href="/training" className="btn btn--secondary">See the full training programme</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section className="section section--band">
+        <div className="container-dw">
+          <SectionHeader eyebrow="How it works" title="Simple, hassle-free booking." center />
+          <div className="mt-12">
+            <ProcessSteps steps={PROCESS} />
+          </div>
+        </div>
+      </section>
+
+      {/* Recurring plans + guarantee */}
+      <section className="section">
+        <div className="container-dw grid gap-12 lg:grid-cols-[1fr_0.85fr] lg:gap-16">
+          <div>
+            <SectionHeader
+              eyebrow="Recurring plans"
+              title="Keep it clean, on a schedule."
+              lede="Choose a rhythm that suits the space. The same team returns each visit, so they learn your layout, your priorities and the areas that need extra attention. We agree pricing with you when we quote."
+            />
+            <ul className="mt-8 space-y-3">
+              {PLANS.map((p) => (
+                <li key={p.name} className="card flex gap-4 p-5">
+                  <span className="shrink-0 font-semibold text-[var(--c-green-700)]" style={{ fontFamily: "var(--font-heading)" }}>
+                    {p.name}
+                  </span>
+                  <span className="text-[0.9375rem] text-[var(--c-ink-2)]">{p.detail}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="card h-fit bg-[var(--c-green-50)] p-8">
+            <p className="eyebrow">Our guarantee</p>
+            <h2 className="h3-card mt-3">If you are not satisfied, we come back.</h2>
+            <p className="mt-4 text-[var(--c-ink-2)]">
+              Tell us within 24 hours and we will return and put the affected areas right at no
+              extra charge. That promise has not changed since 2017.
             </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {cleaningServices.map((service) => (
-              <ServiceCard
-                key={service.id}
-                service={service}
-                accentColor="#0b8441"
-              />
-            ))}
+            <Link href="/contact" className="btn btn--primary mt-7 w-full">Get a free quote</Link>
           </div>
         </div>
       </section>
 
-      {/* Pest Control */}
-      <section id="pest-control" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12">
-            <div className="inline-flex items-center gap-2 bg-orange-50 text-[#dd4c2f] px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              🐛 Pest Control Services
-            </div>
-            <h2 className="section-title">Effective Pest Control Solutions</h2>
-            <p className="text-gray-500 mt-3 max-w-xl">
-              Certified pest control technicians using approved, low-toxicity treatments to
-              eliminate infestations and prevent re-entry.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {pestServices.map((service) => (
-              <ServiceCard
-                key={service.id}
-                service={service}
-                accentColor="#dd4c2f"
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Training & Consultancy */}
-      <section id="training-consultancy" className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12">
-            <div className="inline-flex items-center gap-2 bg-purple-50 text-purple-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              🎓 Training &amp; Consultancy
-            </div>
-            <h2 className="section-title">Professional Development &amp; Consulting</h2>
-            <p className="text-gray-500 mt-3 max-w-xl">
-              We share our operational expertise with organizations that want to raise their cleaning
-              standards, train staff, or improve facility management practices.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {trainingServices.map((service) => (
-              <ServiceCard
-                key={service.id}
-                service={service}
-                accentColor="#7c3aed"
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Process */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="text-[#0b8441] font-semibold text-sm uppercase tracking-widest">
-              How It Works
-            </span>
-            <h2 className="section-title mt-2">Simple, Hassle-Free Booking</h2>
-            <div className="accent-line mt-3 mx-auto" />
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { step: "01", title: "Contact Us", desc: "Reach us via our website form, WhatsApp, or phone call." },
-              { step: "02", title: "Get a Quote", desc: "We assess your needs and provide a transparent, no-obligation quote." },
-              { step: "03", title: "We Show Up", desc: "Our uniformed team arrives on time, fully equipped, and ready to work." },
-              { step: "04", title: "Enjoy the Results", desc: "Inspect the job. If you're not 100% satisfied, we'll fix it free of charge." },
-            ].map(({ step, title, desc }) => (
-              <div key={step} className="text-center relative">
-                <div className="w-16 h-16 rounded-2xl bg-[#0b8441] text-white text-2xl font-black flex items-center justify-center mx-auto mb-4 shadow-lg">
-                  {step}
-                </div>
-                <h3 className="font-bold text-gray-900 mb-2">{title}</h3>
-                <p className="text-sm text-gray-500">{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <CTABanner />
+      <RelatedLinks
+        links={[
+          { href: "/training", label: "Cleaner training", detail: "Programmes for in-house teams" },
+          { href: "/gallery", label: "See the work", detail: "Photographs from real jobs" },
+          { href: "/clients", label: "Who we work with", detail: "Sectors and organisations served" },
+          { href: "/abuja", label: "Abuja", detail: "Every district in the FCT" },
+          { href: "/lagos", label: "Lagos", detail: "Training-led relaunch" },
+          { href: "/faqs", label: "FAQs", detail: "Booking, safety and plans" },
+        ]}
+      />
+      <CtaBand />
     </>
   );
 }

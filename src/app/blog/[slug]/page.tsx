@@ -4,7 +4,29 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Clock, Tag, Calendar } from "lucide-react";
 import { BLOG_POSTS, COMPANY } from "@/lib/constants";
+import { pageSeo, absolute, SITE_URL } from "@/lib/seo";
 import CTABanner from "@/components/sections/CTABanner";
+
+/** §6.11 — services related to each blog category. */
+const RELATED: Record<string, { label: string; href: string }[]> = {
+  "Cleaning Tips": [
+    { label: "Residential cleaning", href: "/services#residential-cleaning" },
+    { label: "Deep cleaning", href: "/services#deep-cleaning" },
+    { label: "Carpet & upholstery", href: "/services#carpet-upholstery" },
+  ],
+  "Pest Control": [
+    { label: "Pest control & fumigation", href: "/services#pest-control" },
+    { label: "Disinfection & sanitisation", href: "/services#disinfection-sanitisation" },
+  ],
+  "Office Cleaning": [
+    { label: "Commercial & office cleaning", href: "/services#commercial-cleaning" },
+    { label: "Facility management support", href: "/services#facility-management" },
+  ],
+  "Training & Safety": [
+    { label: "Training & consultancy", href: "/training" },
+    { label: "Facility management support", href: "/services#facility-management" },
+  ],
+};
 
 type ContentBlock =
   | string
@@ -23,26 +45,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = BLOG_POSTS.find((p) => p.slug === slug);
   if (!post) return {};
-  return {
+  // §9.3 — each post carries its own canonical, og:url and image
+  const img = post.image?.startsWith("/photos/") ? post.image : "/images/og-image.jpg";
+  return pageSeo({
+    path: `/blog/${post.slug}`,
     title: post.title,
     description: post.excerpt,
-    keywords: [`${post.category} Abuja`, "cleaning tips", "Dust and Wipes blog"],
-    openGraph: {
-      type: "article",
-      title: post.title,
-      description: post.excerpt,
-      url: `https://dustandwipes.com/blog/${post.slug}`,
-      siteName: "Dust & Wipes Limited",
-      publishedTime: new Date(post.date).toISOString(),
-      images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: post.title }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: post.title,
-      description: post.excerpt,
-      images: ["/images/og-image.jpg"],
-    },
-  };
+    image: img,
+    imageAlt: post.title,
+    type: "article",
+    publishedTime: new Date(post.date).toISOString(),
+  });
 }
 
 const blogContent: Record<string, ContentBlock[]> = {
@@ -149,30 +162,30 @@ export default async function BlogPostPage({ params }: Props) {
               "@type": "Article",
               headline: post.title,
               description: post.excerpt,
-              image: "https://dustandwipes.com/images/og-image.jpg",
+              image: absolute("/images/og-image.jpg"),
               datePublished: new Date(post.date).toISOString(),
               author: {
                 "@type": "Organization",
                 name: "Dust & Wipes Limited",
-                url: "https://dustandwipes.com",
+                url: SITE_URL,
               },
               publisher: {
                 "@type": "Organization",
                 name: "Dust & Wipes Limited",
                 logo: {
                   "@type": "ImageObject",
-                  url: "https://dustandwipes.com/images/logo-192.png",
+                  url: absolute("/images/logo-192.png"),
                 },
               },
-              mainEntityOfPage: `https://dustandwipes.com/blog/${post.slug}`,
+              mainEntityOfPage: absolute(`/blog/${post.slug}`),
             },
             {
               "@context": "https://schema.org",
               "@type": "BreadcrumbList",
               itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Home", item: "https://dustandwipes.com" },
-                { "@type": "ListItem", position: 2, name: "Blog", item: "https://dustandwipes.com/blog" },
-                { "@type": "ListItem", position: 3, name: post.title, item: `https://dustandwipes.com/blog/${post.slug}` },
+                { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+                { "@type": "ListItem", position: 2, name: "Blog", item: absolute("/blog") },
+                { "@type": "ListItem", position: 3, name: post.title, item: absolute(`/blog/${post.slug}`) },
               ],
             },
           ]),
@@ -281,48 +294,47 @@ export default async function BlogPostPage({ params }: Props) {
             })}
           </article>
 
-          {/* Author / CTA box */}
-          <div className="mt-12 bg-gradient-to-br from-[#0b8441]/5 to-[#dd4c2f]/5 rounded-3xl p-8 border border-gray-100">
+          {/* Author box (§6.11) */}
+          <div className="mt-12 card p-7">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#0b8441] flex items-center justify-center text-white font-black text-lg shrink-0">
-                D&W
-              </div>
-              <div className="flex-1">
-                <div className="font-bold text-gray-900 mb-1">Dust & Wipes Limited</div>
-                <p className="text-sm text-gray-500 mb-4">
-                  Professional cleaning and pest control services across Abuja FCT. We&apos;re here to help you maintain a spotless, pest-free space.
+              <Image
+                src="/images/founder-photo.jpg"
+                alt="Bisi Teru, Founder and CEO of Dust and Wipes Limited"
+                width={64}
+                height={64}
+                className="h-16 w-16 shrink-0 rounded-full object-cover"
+              />
+              <div>
+                <p className="eyebrow">Written by</p>
+                <p className="mt-1 font-semibold text-[var(--c-green-800)]">Bisi Teru</p>
+                <p className="text-[0.875rem] text-[var(--c-ink-2)]">
+                  Founder &amp; CEO, Dust and Wipes Limited
                 </p>
-                <a
-                  href={`https://wa.me/${COMPANY.whatsapp.replace("+", "")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-[#0b8441] text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#076634] transition-all"
-                >
-                  Book a Service Today
-                </a>
+                <p className="mt-3 text-[0.9375rem] text-[var(--c-ink-2)]">
+                  Bisi founded Dust and Wipes in Abuja in 2017 after more than a decade in
+                  operations and IT management, on the belief that better cleaning starts with
+                  better equipped people.
+                </p>
               </div>
             </div>
           </div>
 
-          {/* Related posts */}
-          {related.length > 0 && (
-            <div className="mt-16">
-              <h3 className="text-xl font-bold text-gray-900 mb-6">Related Articles</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {related.map((p) => (
-                  <Link key={p.slug} href={`/blog/${p.slug}`} className="group">
-                    <div className="h-28 bg-gradient-to-br from-[#0b8441]/10 to-[#dd4c2f]/10 rounded-xl flex items-center justify-center text-4xl mb-3">
-                      {p.category === "Pest Control" ? "🐛" : "🧹"}
-                    </div>
-                    <h4 className="text-sm font-bold text-gray-900 group-hover:text-[#0b8441] transition-colors line-clamp-2">
-                      {p.title}
-                    </h4>
-                    <p className="text-xs text-gray-400 mt-1">{p.date}</p>
+          {/* Related services (§6.11) */}
+          <div className="mt-8">
+            <p className="eyebrow">Related services</p>
+            <ul className="mt-4 flex flex-wrap gap-2.5">
+              {RELATED[post.category]?.map((r) => (
+                <li key={r.href}>
+                  <Link
+                    href={r.href}
+                    className="inline-flex rounded-full border border-[var(--c-border)] bg-[var(--c-surface)] px-4 py-2 text-[0.875rem] font-medium text-[var(--c-green-800)] transition-colors hover:border-[var(--c-green-600)] hover:text-[var(--c-green-700)]"
+                  >
+                    {r.label}
                   </Link>
-                ))}
-              </div>
-            </div>
-          )}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 

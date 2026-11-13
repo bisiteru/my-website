@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { MessageCircle, X } from "lucide-react";
 import { COMPANY } from "@/lib/constants";
+import { track } from "@/lib/analytics";
 
 export default function WhatsAppButton() {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -13,7 +14,7 @@ export default function WhatsAppButton() {
   const waUrl = `https://wa.me/${COMPANY.whatsapp.replace("+", "")}?text=${message}`;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
+    <div className="hidden xl:flex fixed bottom-6 right-6 z-50 flex-col items-end gap-2">
       {/* Tooltip */}
       {showTooltip && (
         <div className="bg-white shadow-xl rounded-2xl p-4 max-w-[200px] border border-green-100 animate-fadeIn">
@@ -34,6 +35,7 @@ export default function WhatsAppButton() {
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
         onMouseEnter={() => setShowTooltip(true)}
+        onClick={() => track("whatsapp_click", { from: "floating_button" })}
         className="animate-pulse-wa w-14 h-14 bg-[#25d366] rounded-full flex items-center justify-center text-white shadow-xl hover:scale-110 transition-transform"
       >
         <MessageCircle size={28} fill="white" />

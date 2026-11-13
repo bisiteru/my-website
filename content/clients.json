@@ -1,0 +1,166 @@
+{
+  "_comment": "BUILD_BRIEF \u00a76.7. Only entries with consent:true are rendered (name, logo and named case study). Logos live in public/client-logos/. status 'past' is described as 'served', never 'current'.",
+  "clients": [
+    {
+      "name": "Skin 101 Clinics Limited",
+      "sector": "Healthcare & clinics",
+      "city": "Abuja & Lagos",
+      "services": [
+        "Commercial cleaning"
+      ],
+      "startYear": 2024,
+      "endYear": 2025,
+      "status": "past",
+      "consent": true,
+      "logo": "skin101-clinics-logo.png",
+      "note": "Served in Abuja from 2018; the relationship there led to the Lagos engagement when their Lagos office opened."
+    },
+    {
+      "name": "Radiance Wellness Spa",
+      "sector": "Hospitality & salons",
+      "city": "Abuja",
+      "services": [],
+      "status": "current",
+      "consent": true,
+      "logo": "radiance-wellness-spa-logo.png"
+    },
+    {
+      "name": "Mobus Property Nigeria",
+      "sector": "Real estate & new builds",
+      "city": "Abuja",
+      "services": [],
+      "status": "current",
+      "consent": true,
+      "logo": "mobus-logo.png",
+      "note": "Real estate and property development"
+    },
+    {
+      "name": "Deloitte Consulting LLP",
+      "sector": "International organisations",
+      "city": "Abuja",
+      "services": [],
+      "status": "past",
+      "consent": true,
+      "logo": "deloitte-logo.png",
+      "note": "USAID-funded programme"
+    },
+    {
+      "name": "Chayim Diagnostic Services",
+      "sector": "Healthcare & clinics",
+      "city": "Abuja",
+      "services": [],
+      "status": "current",
+      "consent": true,
+      "logo": "chayim-diagnostics-logo.png",
+      "note": "Medical diagnostics"
+    },
+    {
+      "name": "Embassy of Belgium Consulate",
+      "sector": "Diplomatic missions",
+      "city": "Abuja",
+      "services": [],
+      "status": "current",
+      "consent": true,
+      "logo": "belgium-logo.png",
+      "note": "Diplomatic mission"
+    },
+    {
+      "name": "Wassail Group of Companies Ltd",
+      "sector": "Corporate offices",
+      "city": "Abuja",
+      "services": [],
+      "status": "past",
+      "consent": true,
+      "logo": "wassail-group-logo.png",
+      "note": "Oil and gas"
+    },
+    {
+      "name": "First Ally Asset Management",
+      "sector": "Corporate offices",
+      "city": "Abuja",
+      "services": [],
+      "status": "current",
+      "consent": true,
+      "logo": "first-ally-logo.png",
+      "note": "Asset management"
+    },
+    {
+      "name": "National Assembly Complex",
+      "sector": "Government & public institutions",
+      "city": "Abuja",
+      "services": [],
+      "status": "past",
+      "consent": true,
+      "logo": "national-assembly-logo.png",
+      "note": "Federal Republic of Nigeria"
+    },
+    {
+      "name": "ISN Medical",
+      "sector": "Healthcare & clinics",
+      "city": "Abuja",
+      "services": [],
+      "status": "current",
+      "consent": true,
+      "logo": "isn-medical-logo.png",
+      "note": "Medical diagnostic equipment"
+    },
+    {
+      "name": "Chemonics International Inc",
+      "sector": "International organisations",
+      "city": "Abuja",
+      "services": [],
+      "status": "past",
+      "consent": true,
+      "logo": "chemonics-logo.png",
+      "note": "International development organisation"
+    },
+    {
+      "name": "Infrastructure Corporation of Nigeria",
+      "sector": "Government & public institutions",
+      "city": "Abuja",
+      "services": [],
+      "status": "current",
+      "consent": true,
+      "logo": "infracorp-logo.png",
+      "note": "INFRACORP \u2014 power and renewable energy, transport and logistics, telecommunications, industrial, agricultural and social infrastructure"
+    }
+  ],
+  "sectors": [
+    {
+      "slug": "international-organisations",
+      "label": "International organisations"
+    },
+    {
+      "slug": "diplomatic-missions",
+      "label": "Diplomatic missions"
+    },
+    {
+      "slug": "healthcare-clinics",
+      "label": "Healthcare & clinics"
+    },
+    {
+      "slug": "corporate-offices",
+      "label": "Corporate offices"
+    },
+    {
+      "slug": "hospitality-salons",
+      "label": "Hospitality & salons"
+    },
+    {
+      "slug": "events-exhibitions",
+      "label": "Events & exhibitions"
+    },
+    {
+      "slug": "premium-residences",
+      "label": "Premium residences"
+    },
+    {
+      "slug": "real-estate-new-builds",
+      "label": "Real estate & new builds"
+    },
+    {
+      "slug": "government-public",
+      "label": "Government & public institutions"
+    }
+  ]
+}

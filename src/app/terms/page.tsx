@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
+import { pageSeo } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageSeo({
+  path: "/terms",
   title: "Terms of Service",
-  description: "Dust & Wipes Limited Terms of Service",
-};
+  description:
+    "Dust & Wipes Limited Terms of Service",
+});
 
 export default function TermsPage() {
   return (

@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
+import { pageSeo, JsonLd, breadcrumbs } from "@/lib/seo";
 import Image from "next/image";
+import { PHOTOS, photoSrc, type PhotoSlug } from "@/lib/photos";
 import Link from "next/link";
+import RelatedLinks from "@/components/ui/RelatedLinks";
 import { CheckCircle, ArrowRight, Award, Users, Leaf, Clock, Quote } from "lucide-react";
 import CTABanner from "@/components/sections/CTABanner";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageSeo({
+  path: "/about",
   title: "About Us",
   description:
     "Learn about Dust & Wipes Limited — founded in 2017 by Bisi Teru, Abuja's trusted professional cleaning and pest control company. Our story, values, and commitment to excellence.",
-  keywords: [
-    "Dust and Wipes Limited story",
-    "Bisi Teru cleaning company Abuja",
-    "professional cleaning company Abuja founded 2017",
-    "about Dust and Wipes Abuja",
-  ],
-};
+  image: "/photos/dust-and-wipes-team-uniform.jpg",
+  imageAlt: "Two Dust and Wipes team members in branded uniform",
+});
 
 const values = [
   { icon: Award, title: "Excellence", desc: "We hold ourselves to the highest standard in every job, big or small." },
@@ -33,6 +33,12 @@ const milestones = [
 export default function AboutPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbs([
+          { name: "Home", path: "/" },
+          { name: "About", path: "/about" },
+        ])}
+      />
       {/* Hero */}
       <section className="hero-bg pt-32 pb-20 relative overflow-hidden">
         <div
@@ -299,6 +305,86 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* ── Our people (§6.6) ── */}
+      <section className="section bg-[var(--c-surface)]">
+        <div className="container-dw">
+          <p className="eyebrow">Our people</p>
+          <h2 className="h2-section mt-4 max-w-[24ch]">
+            A family of professionals, not a roster of names.
+          </h2>
+          <p className="lede mt-5">
+            We were founded on the belief that cleaners deserve training, fair treatment and
+            professional respect. These are the people who carry the standard.
+          </p>
+
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { slug: "dust-and-wipes-team-uniform", alt: "Two Dust and Wipes team members in branded yellow uniform in an office", cap: "Abuja team, in uniform" },
+              { slug: "lagos-team-uniform", alt: "The Dust and Wipes Lagos team in branded uniform", cap: "Our Lagos team" },
+              { slug: "event-crew-team", alt: "The Dust and Wipes event crew in uniform", cap: "The event crew" },
+            ].map((t) => (
+              <figure key={t.slug} className="m-0">
+                <div className="photo-zoom overflow-hidden rounded-2xl">
+                  <Image
+                    src={photoSrc(t.slug as PhotoSlug)}
+                    alt={t.alt}
+                    width={PHOTOS[t.slug as PhotoSlug].width}
+                    height={PHOTOS[t.slug as PhotoSlug].height}
+                    sizes="(max-width: 640px) 100vw, 33vw"
+                    className="h-64 w-full object-cover photo-grade"
+                  />
+                </div>
+                <figcaption className="mt-2.5 text-[0.875rem] text-[var(--c-ink-2)]">{t.cap}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Culture + equipped (§6.6) ── */}
+      <section className="section section--band">
+        <div className="container-dw grid gap-12 lg:grid-cols-2 lg:gap-16">
+          <figure className="m-0">
+            <div className="photo-zoom overflow-hidden rounded-2xl">
+              <Image
+                src={photoSrc("staff-christmas-picnic")}
+                alt="Dust and Wipes staff together at the company Christmas picnic"
+                width={PHOTOS["staff-christmas-picnic"].width}
+                height={PHOTOS["staff-christmas-picnic"].height}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="w-full h-auto photo-grade"
+              />
+            </div>
+            <figcaption className="mt-3 text-[0.875rem] text-[var(--c-ink-2)]">
+              The team at our Christmas picnic.
+            </figcaption>
+          </figure>
+          <figure className="m-0">
+            <div className="photo-zoom overflow-hidden rounded-2xl">
+              <Image
+                src={photoSrc("dust-and-wipes-branded-van")}
+                alt="The branded Dust and Wipes van, listing the services offered"
+                width={PHOTOS["dust-and-wipes-branded-van"].width}
+                height={PHOTOS["dust-and-wipes-branded-van"].height}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="w-full h-auto photo-grade"
+              />
+            </div>
+            <figcaption className="mt-3 text-[0.875rem] text-[var(--c-ink-2)]">
+              We arrive fully equipped.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <RelatedLinks
+        links={[
+          { href: "/services", label: "All services", detail: "What we do" },
+          { href: "/clients", label: "Who we work with", detail: "Sectors and organisations served" },
+          { href: "/gallery", label: "See the work", detail: "Photographs from real jobs" },
+          { href: "/training", label: "Cleaner training", detail: "Our founding commitment, in practice" },
+        ]}
+      />
       <CTABanner />
     </>
   );

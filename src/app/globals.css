@@ -1,76 +1,290 @@
 @import "tailwindcss";
 
+/* ═══════════════════════════════════════════════════════════════
+   DESIGN TOKENS — BUILD_BRIEF.md §4.2 / §4.3 / §4.4
+   Brand colours are taken FROM THE LOGO ONLY (client direction):
+     green  #248F4D  sampled from the logo lettering (6,153 px average)
+     orange #DB4F32  sampled from the logo swoosh    (3,733 px average)
+   The logo carries exactly these two brand colours; everything else
+   below is a neutral or an accessibility-driven tint/shade of them.
+   Every pairing is WCAG AA verified — see DESIGN_TOKENS.md.
+   ═══════════════════════════════════════════════════════════════ */
+
 :root {
-  --green: #0b8441;
-  --green-dark: #062e18;
-  --green-mid: #076634;
-  --green-light: #12a853;
-  --orange: #dd4c2f;
-  --orange-dark: #b83d25;
-  --white: #ffffff;
+  /* ── Primary: Deep Green, from the logo lettering ──
+     headings, buttons, footer background (§4.2) */
+  --c-green-900: #0b3b21;  /* footer background, deepest surfaces  */
+  --c-green-800: #10492a;  /* headings on light                    */
+  --c-green-700: #155e35;  /* primary button / link                */
+  --c-green-600: #1a7442;  /* primary hover                        */
+  --c-green-500: #248f4d;  /* the logo green — accents, large text */
+  --c-green-100: #e3f1e8;  /* tinted band                          */
+  --c-green-50:  #f1f8f4;  /* lightest wash                        */
+
+  /* ── Accent: Orange, from the logo swoosh ──
+     highlights, small accents, stat numbers, hover states (§4.2).
+     Never set orange-500 as small text on a light surface — it is
+     3.89:1 (large text only). Use orange-700 there. */
+  --c-orange-300: #f1b9ad;  /* accent text/icons on dark green  4.58–7.39:1 */
+  --c-orange-500: #db4f32;  /* the logo swoosh — fills, graphics, large text */
+  --c-orange-600: #c23f23;  /* CTA button background (white text 5.21:1)     */
+  --c-orange-700: #c9482e;  /* small accent text on light       4.52:1       */
+
+  /* ── Neutrals ── */
+  --c-bg:      #fbfaf7;  /* warm off-white page background         */
+  --c-surface: #ffffff;  /* cards                                  */
+  --c-band:    #f2f1ec;  /* soft stone grey section band           */
+  --c-ink:     #15181a;  /* near-black body text    17.09:1 on bg  */
+  --c-ink-2:   #4a5350;  /* secondary text           7.61:1 on bg  */
+  --c-border:  #e3e1da;
+
+  /* ── Typography (§4.3) — fluid scale ── */
+  --font-heading: var(--font-montserrat), system-ui, sans-serif;
+  --font-body:    var(--font-inter), system-ui, sans-serif;
+
+  --fs-h1:   clamp(2.5rem, 1.6rem + 3.6vw, 4rem);      /* 40 → 64 */
+  --fs-h2:   clamp(1.875rem, 1.4rem + 1.9vw, 2.75rem); /* 30 → 44 */
+  --fs-h3:   clamp(1.375rem, 1.2rem + 0.75vw, 1.75rem);/* 22 → 28 */
+  --fs-body: clamp(1.0625rem, 1.03rem + 0.15vw, 1.125rem); /* 17 → 18 */
+  --fs-sm:   0.9375rem;
+  --fs-xs:   0.8125rem;
+  --lh-body: 1.6;
+  --measure: 70ch;  /* max line length */
+
+  /* ── Spacing: 8px scale (§4.4) ── */
+  --sp-1: 0.5rem;  --sp-2: 1rem;    --sp-3: 1.5rem;  --sp-4: 2rem;
+  --sp-5: 2.5rem;  --sp-6: 3rem;    --sp-8: 4rem;    --sp-10: 5rem;
+  --sp-12: 6rem;   --sp-16: 8rem;
+
+  --section-y: clamp(4rem, 2rem + 8vw, 8rem);  /* 64 → 128 */
+  --container: 1240px;                          /* §4.4 max width */
+
+  /* ── Radius & elevation (§4.4: soft shadows only on hover) ── */
+  --r-sm: 8px;  --r-md: 12px;  --r-lg: 16px;  --r-full: 999px;
+  --shadow-hover: 0 12px 32px rgba(11, 59, 33, 0.10);
+  --shadow-card:  0 1px 2px rgba(11, 59, 33, 0.04);
+
+  --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 html {
   scroll-behavior: smooth;
+  /* offset anchor targets so the fixed header never covers a heading */
+  scroll-padding-top: 6rem;
 }
 
-body {
-  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
-  color: #111827;
-  background: #ffffff;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Base element defaults live in @layer base so that Tailwind utilities
+   (text-white, etc.) can still override them. Unlayered rules would beat
+   every layered utility in the cascade regardless of specificity. */
+@layer base {
+  body {
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--c-ink);
+    background: var(--c-bg);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* clearance for the sticky mobile Call/WhatsApp/Quote bar (§4.7) */
+    padding-bottom: calc(4rem + env(safe-area-inset-bottom));
+  }
+
+  @media (min-width: 1280px) {
+    body { padding-bottom: 0; }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: var(--c-green-800);
+  }
 }
 
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #f4f4f4; }
-::-webkit-scrollbar-thumb { background: #0b8441; border-radius: 10px; }
-
-/* ─── Keyframes ────────────────────────────────────── */
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+/* ── Accessibility: visible focus on every interactive element ── */
+:focus-visible {
+  outline: 3px solid var(--c-green-600);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
-@keyframes pulse-wa {
-  0%, 100% { box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4); }
-  50% { box-shadow: 0 6px 40px rgba(37, 211, 102, 0.75); }
+::selection { background: var(--c-orange-300); color: var(--c-ink); }
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--c-band); }
+::-webkit-scrollbar-thumb { background: var(--c-green-700); border-radius: 10px; }
+
+@layer components {
+  /* ═══ Layout helpers ═══ */
+
+  .container-dw {
+    width: 100%;
+    max-width: var(--container);
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 640px) { .container-dw { padding-inline: 2rem; } }
+
+  .section { padding-block: var(--section-y); }
+  .section--band { background: var(--c-band); }
+  .section--tint { background: var(--c-green-50); }
+
+  /* ═══ Typography utilities (§4.3) ═══ */
+
+  .eyebrow {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--c-green-600);
+  }
+
+  .h1-display { font-size: var(--fs-h1); }
+  .h2-section { font-size: var(--fs-h2); }
+  .h3-card    { font-size: var(--fs-h3); }
+
+  .lede {
+    font-size: clamp(1.125rem, 1rem + 0.5vw, 1.3125rem);
+    line-height: 1.55;
+    color: var(--c-ink-2);
+    max-width: var(--measure);
+  }
+
+  .prose-measure { max-width: var(--measure); }
+
+  /* ═══ Buttons (§4.7) ═══ */
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 48px;              /* touch target */
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--r-full);
+    font-family: var(--font-heading);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1.5px solid transparent;
+    transition: background var(--transition), color var(--transition),
+                border-color var(--transition), transform var(--transition);
+  }
+  .btn:active { transform: scale(0.98); }
+
+  .btn--primary { background: var(--c-green-700); color: #fff; }
+  .btn--primary:hover { background: var(--c-green-600); }
+
+  .btn--secondary {
+    background: transparent;
+    color: var(--c-green-700);
+    border-color: var(--c-green-700);
+  }
+  .btn--secondary:hover { background: var(--c-green-50); }
+
+  .btn--ghost { background: transparent; color: var(--c-green-700); }
+  .btn--ghost:hover { background: var(--c-green-50); }
+
+  .btn--on-dark { background: #fff; color: var(--c-green-800); }
+  .btn--on-dark:hover { background: var(--c-green-50); }
+
+  /* outline variant for dark surfaces (hero, 404) */
+  .btn--outline-dark {
+    background: transparent;
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+  .btn--outline-dark:hover { background: rgba(255, 255, 255, 0.12); }
+
+  /* ═══ Cards (§4.4: soft shadows only on hover) ═══ */
+
+  .card {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-card);
+    transition: box-shadow var(--transition), transform var(--transition);
+  }
+  .card:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); }
+
+  /* ═══ Photography treatment (§4.5) ═══
+     Subtle warmth + lifted shadows applied in CSS, never by re-editing files. */
+
+  .photo-grade { filter: saturate(1.04) contrast(0.98) brightness(1.02); }
+
+  .photo-zoom { overflow: hidden; }
+  .photo-zoom img { transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1); }
+  .photo-zoom:hover img { transform: scale(1.03); }   /* §4.8 */
+
+  /* ═══ Forms ═══ */
+
+  .form-input {
+    width: 100%;
+    padding: 0.8125rem 1rem;
+    border: 1.5px solid var(--c-border);
+    border-radius: var(--r-md);
+    font-family: var(--font-body);
+    font-size: var(--fs-sm);
+    background: var(--c-surface);
+    color: var(--c-ink);
+    outline: none;
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+  .form-input:focus {
+    border-color: var(--c-green-600);
+    box-shadow: 0 0 0 4px rgba(26, 116, 66, 0.12);
+  }
+
+  /* ═══ Motion (§4.8) ═══ */
+
+  @keyframes dw-fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: none; }
+  }
+  @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes pulse-wa {
+    0%, 100% { box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4); }
+    50%      { box-shadow: 0 6px 40px rgba(37, 211, 102, 0.75); }
+  }
+
+  .animate-fade-up  { animation: dw-fade-up 600ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .animate-spin-slow { animation: spin-slow 24s linear infinite; }
+  .animate-pulse-wa  { animation: pulse-wa 2.5s ease-in-out infinite; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    .photo-zoom:hover img { transform: none; }
+  }
 }
 
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+/* ═══ Legacy aliases ═══
+   Kept so existing pages keep rendering while they are migrated page by
+   page in Phases 2–3. Remove once no component references them. */
+
+:root {
+  --green: var(--c-green-700);
+  --green-dark: var(--c-green-900);
+  --green-mid: var(--c-green-600);
+  --green-light: var(--c-green-500);
+  --orange: var(--c-orange-500);
+  --orange-dark: var(--c-orange-700);
+  --white: #ffffff;
 }
-
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-.animate-float { animation: float 6s ease-in-out infinite; }
-.animate-pulse-wa { animation: pulse-wa 2.5s ease-in-out infinite; }
-.animate-spin-slow { animation: spin-slow 24s linear infinite; }
-.animate-marquee { animation: marquee 28s linear infinite; }
-
-/* ─── Hero background ──────────────────────────────── */
 
 .hero-bg {
-  background: linear-gradient(150deg, #031a0c 0%, #052010 35%, #083318 65%, #0b5c2e 100%);
-}
-
-/* ─── Typography ───────────────────────────────────── */
-
-.display-heading {
-  font-family: var(--font-display), Georgia, serif;
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  background: linear-gradient(150deg, #06250f 0%, #0b3b21 38%, #10492a 68%, #166c3b 100%);
 }
 
 .section-eyebrow {
@@ -78,75 +292,52 @@ body {
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #0b8441;
+  color: var(--c-green-600);
 }
 
 .section-title {
-  font-family: var(--font-display), Georgia, serif;
-  font-size: clamp(1.875rem, 4vw, 3rem);
-  font-weight: 700;
-  color: #0d1f10;
+  font-family: var(--font-heading);
+  font-size: var(--fs-h2);
+  font-weight: 600;
+  color: var(--c-green-800);
   line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.display-heading {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.1;
   letter-spacing: -0.02em;
 }
 
 .accent-line {
   width: 44px;
   height: 3px;
-  background: linear-gradient(90deg, #0b8441, #dd4c2f);
+  background: linear-gradient(90deg, var(--c-green-600), var(--c-orange-500));
   border-radius: 2px;
 }
 
-/* ─── Cards ────────────────────────────────────────── */
-
-.card-hover {
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
-}
-.card-hover:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
-}
+.card-hover { transition: transform var(--transition), box-shadow var(--transition); }
+.card-hover:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
 
 .testimonial-card {
-  background: white;
-  border-radius: 1.5rem;
+  background: var(--c-surface);
+  border-radius: var(--r-lg);
   padding: 2rem;
-  border: 1.5px solid #f0f0ee;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04);
+  border: 1px solid var(--c-border);
+  box-shadow: var(--shadow-card);
 }
-
-/* ─── Form ─────────────────────────────────────────── */
-
-.form-input {
-  width: 100%;
-  padding: 0.8125rem 1.125rem;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 0.875rem;
-  font-family: var(--font-sans), sans-serif;
-  font-size: 0.9375rem;
-  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
-  background: #fafafa;
-  outline: none;
-  color: #111827;
-}
-
-.form-input:focus {
-  border-color: #0b8441;
-  background: white;
-  box-shadow: 0 0 0 4px rgba(11, 132, 65, 0.09);
-}
-
-/* ─── Gradients ────────────────────────────────────── */
 
 .gradient-text {
-  background: linear-gradient(135deg, #0b8441 0%, #dd4c2f 100%);
+  background: linear-gradient(135deg, var(--c-green-600) 0%, var(--c-orange-700) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .gradient-text-light {
-  background: linear-gradient(135deg, #86efac 0%, #fde68a 100%);
+  background: linear-gradient(135deg, #86efac 0%, var(--c-orange-300) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
