@@ -13,6 +13,15 @@
       "status": "past",
       "consent": true,
       "logo": "skin101-clinics-logo.png"
+    },
+    {
+      "name": "Radiance Wellness Spa",
+      "sector": "Hospitality & salons",
+      "city": "Abuja",
+      "services": [],
+      "status": "current",
+      "consent": true,
+      "logo": "radiance-wellness-spa-logo.png"
     }
   ],
   "sectors": [

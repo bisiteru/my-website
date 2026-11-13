@@ -14,8 +14,9 @@ Status: 🔴 blocking a visible feature · 🟡 needed before that section is co
 
 | # | Item | Brief | What is hidden right now |
 |---|---|---|---|
-| C3 | **More client entries + logos** | §6.7 | Only Skin 101 is on file, so the logo wall shows a single logo. You mentioned many clients are happy to be shown — send name · sector · city · years · `consent: true` and a logo file per client, and they appear automatically. |
-| C5 | Official ISSA member logo (supplied file is 256px) | §4.6 | Current file displays at ≤64px, within its native size. |
+| C3 | **Details for 6 supplied client logos** | §6.7 | Logos received and stored for **Mobus · Deloitte · Chayim Diagnostics · the Belgian organisation · National Assembly · First Ally**, but none are rendered. For each I need: exact legal name, sector (one of the eight), city, years, and current-or-past status. Without those the brief forbids publishing them. Skin 101 and Radiance Wellness Spa are live. |
+| C16 | **National Assembly and First Ally logo files** | §6.7 | Both came through as inline images only, so nothing reached disk. Re-send as file attachments. |
+
 | C6 | **Training two-day outline** | §6.3 | `/training` shows the four modules and delivery approach, but no day-by-day timetable. |
 | C7 | **Lagos areas** — Lekki, Ikoyi, Victoria Island, Ikeja? | §6.5 | `/lagos` names no specific areas. |
 | C8 | **Full Lagos address** | §6.5, §6.12 | Footer and `/lagos` say "Lagos address · Site assessments by appointment" — the agreed §3.2 wording — with no street address. |
@@ -44,6 +45,9 @@ Status: 🔴 blocking a visible feature · 🟡 needed before that section is co
 | `#office-cleaning` anchor | Restored as an alias alongside `#commercial-cleaning` |
 | All 55 photos | Supplied, categorised and live with written alt text |
 | Badges, client logo, video | All supplied and in `public/` |
+| **Official ISSA logo** | ✅ Received 2026-11-13 at 600px and installed (520×285 after trim), replacing the 256px file. |
+| **Lagos address** | ✅ 5 Admiralty Road, off Admiralty Way, Lekki Phase 1 — on /lagos, /contact and the footer, always with "site assessments by appointment". |
+| **Analytics** | ✅ GA4 `G-GXR7K2CX6K` live behind a consent banner; verified zero Google requests before consent. |
 | **Skin 101 consent** | ✅ Confirmed `true` (2026-11-12). Logo wall renders, and the engagement is named on `/clients` and `/lagos` as a **past** client — "served", never current. |
 | **Affiliation status wording** | ✅ Confirmed: **Member ISSA** · **Registered with EHCON** · **Registered member PECAN**, plus the founder serving as Financial Secretary of the PECAN FCT chapter. |
 | Lagos positioning | ✅ Confirmed as a **relaunch** — one past engagement (Skin 101, 2024–2025), no current Lagos clients, no airport claim. |
