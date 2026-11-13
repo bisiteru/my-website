@@ -102,8 +102,12 @@ export default function MasonryGallery({
                 alt={item.alt}
                 width={meta.width}
                 height={meta.height}
-                loading={n < 6 ? undefined : "lazy"}
+                // Only the first two load eagerly. With 55 photos, a larger
+                // eager batch starves the webfont and pushes text LCP out by
+                // seconds, even though the images themselves are below the fold.
+                loading={n < 2 ? undefined : "lazy"}
                 priority={n < 2}
+                fetchPriority={n < 2 ? "high" : "low"}
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw"
                 className="w-full h-auto photo-grade"
               />

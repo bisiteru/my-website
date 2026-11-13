@@ -157,7 +157,7 @@ export const SERVICES = [
     shortDesc: "Targeted disinfection for high-traffic and clinical spaces.",
     description:
       "Targeted disinfection and misting for workplaces, clinics and any space where surface hygiene has to be demonstrable, not assumed.",
-    image: "/photos/office-disinfection-misting.jpg",
+    image: "/photos/healthcare-clinic-room-cleaning.jpg",
     href: "/services#disinfection-sanitisation",
     features: [
       "High-touch point treatment",
