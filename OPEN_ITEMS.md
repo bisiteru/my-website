@@ -14,12 +14,7 @@ Status: 🔴 blocking a visible feature · 🟡 needed before that section is co
 
 | # | Item | Brief | What is hidden right now |
 |---|---|---|---|
-| C16 | **INFRACORP logo file** | §6.7 | Details confirmed (Infrastructure Corporation of Nigeria, Abuja, current), but the logo arrived as an inline image so nothing reached disk. Re-send as a file attachment and it joins the wall. |
-| C17 | **Engagement years per client** | §6.7 | Eleven clients are live with sector, city and current/past status, but no start or end years except Skin 101 (2024–2025). Years would let the wall show tenure. |
 
-| C6 | **Training two-day outline** | §6.3 | `/training` shows the four modules and delivery approach, but no day-by-day timetable. |
-| C7 | **Lagos areas** — Lekki, Ikoyi, Victoria Island, Ikeja? | §6.5 | `/lagos` names no specific areas. |
-| C8 | **Full Lagos address** | §6.5, §6.12 | Footer and `/lagos` say "Lagos address · Site assessments by appointment" — the agreed §3.2 wording — with no street address. |
 | C9 | Staff consent for first-name profiles | §6.6 | "Our people" shows team photographs with role captions only; no individual is named. |
 | C10 | **Analytics property** | §9.11 | **Still the one §9 item not implemented.** The brief says "keep existing ID", but the site has never had analytics, so there is no ID to keep and I will not invent one. Tell me **Vercel Analytics** (one line, no cookie banner, no consent UI needed) or **GA4** (richer, needs a cookie notice) and it goes in with events for quote, WhatsApp, phone and form submit. |
 
@@ -50,4 +45,9 @@ Status: 🔴 blocking a visible feature · 🟡 needed before that section is co
 | **Analytics** | ✅ GA4 `G-GXR7K2CX6K` live behind a consent banner; verified zero Google requests before consent. |
 | **Skin 101 consent** | ✅ Confirmed `true` (2026-11-12). Logo wall renders, and the engagement is named on `/clients` and `/lagos` as a **past** client — "served", never current. |
 | **Affiliation status wording** | ✅ Confirmed: **Member ISSA** · **Registered with EHCON** · **Registered member PECAN**, plus the founder serving as Financial Secretary of the PECAN FCT chapter. |
+| **Training outline** | ✅ Decided against publishing one (2026-11-13). Training is sold as a bespoke proposal per organisation, so the page shows the four modules and invites an enquiry instead of a timetable. |
+| **Lagos service areas** | ✅ Open to all Lagos; concentration on the Ikoyi / Victoria Island / Lekki axis. Live on /lagos. |
+| **Recurring plan discounts** | ✅ Resolved by removal. No discount structure exists, so the claim was taken off /services and out of two FAQ answers rather than left unsupported. |
+| **Engagement years** | ✅ Decided against showing. Ranges go stale and misrepresent one-off contracts. `"since": YYYY` can be added later for long-running clients — it ages well and never needs updating. |
+| **All 12 client logos** | ✅ Live, including INFRACORP. |
 | Lagos positioning | ✅ Confirmed as a **relaunch** — one past engagement (Skin 101, 2024–2025), no current Lagos clients, no airport claim. |

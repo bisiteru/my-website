@@ -65,6 +65,23 @@ export default function LagosPage() {
               </p>
             </div>
 
+            <h3 className="h3-card mt-10 !text-[1.25rem]">Where we work in Lagos</h3>
+            <p className="mt-3 text-[var(--c-ink-2)] prose-measure">
+              We take work across Lagos. Our concentration is the{" "}
+              <strong className="text-[var(--c-green-800)]">Ikoyi, Victoria Island and Lekki axis</strong>,
+              where most of our enquiries come from — but if you are elsewhere in Lagos, ask.
+            </p>
+            <ul className="mt-5 flex flex-wrap gap-2">
+              {["Ikoyi", "Victoria Island", "Lekki", "Lekki Phase 1", "Ikeja", "All Lagos — ask"].map((a) => (
+                <li
+                  key={a}
+                  className="rounded-full border border-[var(--c-border)] bg-[var(--c-surface)] px-3.5 py-1.5 text-[0.875rem] font-medium text-[var(--c-green-800)]"
+                >
+                  {a}
+                </li>
+              ))}
+            </ul>
+
             <h3 className="h3-card mt-10 !text-[1.25rem]">Who we are speaking to</h3>
             <ul className="mt-5 grid gap-4 sm:grid-cols-2">
               {AUDIENCE.map((a) => (

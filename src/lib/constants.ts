@@ -351,7 +351,7 @@ export const FAQS = [
   {
     question: "How often should I schedule pest control?",
     answer:
-      "For general prevention, we recommend quarterly treatments. If you're dealing with an active infestation, an initial treatment followed by a follow-up 2–4 weeks later is standard. We offer annual maintenance plans at discounted rates.",
+      "For general prevention, we recommend quarterly treatments. If you're dealing with an active infestation, an initial treatment followed by a follow-up 2–4 weeks later is standard. We also offer annual maintenance plans — talk to us about a schedule and we will quote for it.",
   },
   {
     question: "Do you offer a satisfaction guarantee?",
@@ -361,7 +361,7 @@ export const FAQS = [
   {
     question: "Can I get a fixed monthly cleaning plan?",
     answer:
-      "Definitely. We offer flexible recurring plans — weekly, bi-weekly, and monthly — at discounted rates compared to one-off bookings. Get in touch to discuss a plan that suits your schedule and budget.",
+      "Yes. We offer flexible recurring plans — weekly, bi-weekly, monthly or quarterly — and the same team returns each visit, so they learn your space. Get in touch with your schedule and requirements and we will quote for it.",
   },
   {
     question: "Are your staff trained and vetted?",

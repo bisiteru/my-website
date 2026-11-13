@@ -76,6 +76,20 @@ export default function AbujaPage() {
         </div>
       </section>
 
+      {/* Abuja track record */}
+      <section className="section section--band">
+        <div className="container-dw">
+          <p className="eyebrow">Abuja track record</p>
+          <h2 className="h2-section mt-4 max-w-[24ch]">Organisations that have trusted us here.</h2>
+          <p className="lede mt-5">
+            Diplomatic missions, international organisations, clinics, corporate offices and
+            premium homes across the FCT — including Skin 101 Clinics Limited, whom we served in
+            Abuja from 2018, and whose Lagos office we went on to clean when it opened.
+          </p>
+          <Link href="/clients" className="btn btn--secondary mt-8">See who we work with</Link>
+        </div>
+      </section>
+
       <RelatedLinks
         links={[
           { href: "/services", label: "All services", detail: "Eleven services across cleaning and pest control" },

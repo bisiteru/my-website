@@ -4,7 +4,7 @@
     {
       "name": "Skin 101 Clinics Limited",
       "sector": "Healthcare & clinics",
-      "city": "Lagos",
+      "city": "Abuja & Lagos",
       "services": [
         "Commercial cleaning"
       ],
@@ -12,7 +12,8 @@
       "endYear": 2025,
       "status": "past",
       "consent": true,
-      "logo": "skin101-clinics-logo.png"
+      "logo": "skin101-clinics-logo.png",
+      "note": "Served in Abuja from 2018; the relationship there led to the Lagos engagement when their Lagos office opened."
     },
     {
       "name": "Radiance Wellness Spa",

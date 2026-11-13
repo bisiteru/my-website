@@ -195,8 +195,8 @@ export default function ServicesPage() {
           <div>
             <SectionHeader
               eyebrow="Recurring plans"
-              title="Regular cleaning, at a better rate."
-              lede="Recurring plans are discounted against one-off bookings, and the same team returns each time, so they learn your space."
+              title="Keep it clean, on a schedule."
+              lede="Choose a rhythm that suits the space. The same team returns each visit, so they learn your layout, your priorities and the areas that need extra attention. We agree pricing with you when we quote."
             />
             <ul className="mt-8 space-y-3">
               {PLANS.map((p) => (
