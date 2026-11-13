@@ -112,6 +112,16 @@
       "consent": true,
       "logo": "chemonics-logo.png",
       "note": "International development organisation"
+    },
+    {
+      "name": "Infrastructure Corporation of Nigeria",
+      "sector": "Government & public institutions",
+      "city": "Abuja",
+      "services": [],
+      "status": "current",
+      "consent": true,
+      "logo": "infracorp-logo.png",
+      "note": "INFRACORP \u2014 power and renewable energy, transport and logistics, telecommunications, industrial, agricultural and social infrastructure"
     }
   ],
   "sectors": [
