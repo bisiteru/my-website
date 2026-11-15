@@ -2,7 +2,7 @@
 
 import Script from "next/script";
 import { useEffect, useState } from "react";
-import { GA_ID, readConsent, writeConsent, type ConsentState } from "@/lib/analytics";
+import { GA_ID, readConsent, writeConsent, track, type ConsentState } from "@/lib/analytics";
 
 /**
  * GA4 + consent banner — §9.11.
@@ -48,6 +48,42 @@ export default function Analytics() {
       e.preventDefault();
       setConsent(null);
       setReady(true);
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
+
+  /**
+   * Delegated contact tracking — SITE_REVIEW 5.7.
+   *
+   * Only four links were instrumented, all on the sticky mobile bar and the
+   * form. Every hero, header, footer and enquiry-section phone, WhatsApp and
+   * email link was invisible in Analytics, which made the numbers look like
+   * the phone bar was the only thing anyone used.
+   *
+   * Rather than hand-wiring an onClick onto twenty-odd links — easy to forget
+   * on the next one added — this listens once at the document and classifies
+   * by href. `section` is read from the nearest landmark so the report can
+   * still tell a footer call from a hero call.
+   *
+   * track() is a no-op until consent is granted, so this stays compliant.
+   */
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      const a = (e.target as HTMLElement | null)?.closest("a");
+      if (!a) return;
+      const href = a.getAttribute("href");
+      if (!href) return;
+
+      const where =
+        a.closest("footer") ? "footer" :
+        a.closest("header") ? "header" :
+        a.closest("form") ? "form" :
+        a.closest("[data-track-section]")?.getAttribute("data-track-section") ?? "body";
+
+      if (href.startsWith("tel:")) track("phone_click", { from: where });
+      else if (href.includes("wa.me")) track("whatsapp_click", { from: where });
+      else if (href.startsWith("mailto:")) track("email_click", { from: where });
     };
     document.addEventListener("click", onClick);
     return () => document.removeEventListener("click", onClick);

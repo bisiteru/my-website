@@ -85,6 +85,8 @@ export default function Navbar() {
   const [menu, setMenu] = useState<string | null>(null);
   const pathname = usePathname();
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const drawerRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -104,6 +106,51 @@ export default function Navbar() {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  /**
+   * Focus management for the drawer — SITE_REVIEW 6.2.
+   *
+   * The drawer opened without moving focus, so a keyboard or screen-reader
+   * user stayed on the toggle button behind it, tabbed into the page
+   * underneath, and had no way to tell the menu had appeared. It now takes
+   * focus on open, traps Tab inside itself while it is open, and returns focus
+   * to the toggle on close, which is where the user left off.
+   */
+  useEffect(() => {
+    if (!open) return;
+    const node = drawerRef.current;
+    if (!node) return;
+
+    const focusables = () =>
+      Array.from(
+        node.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter((el) => el.offsetParent !== null);
+
+    focusables()[0]?.focus();
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== "Tab") return;
+      const items = focusables();
+      if (items.length === 0) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    node.addEventListener("keydown", onKeyDown);
+    return () => {
+      node.removeEventListener("keydown", onKeyDown);
+      toggleRef.current?.focus();
     };
   }, [open]);
 
@@ -158,7 +205,7 @@ export default function Navbar() {
                   Dust &amp; Wipes
                 </span>
                 <span
-                  className={`block text-[10px] font-semibold tracking-[0.18em] uppercase ${
+                  className={`block text-[0.75rem] font-semibold tracking-[0.18em] uppercase ${
                     solid ? "text-[var(--c-green-600)]" : "text-white/75"
                   }`}
                 >
@@ -286,7 +333,7 @@ export default function Navbar() {
                 plus phone plus CTA overflows the viewport. */}
             <div className="hidden xl:flex items-center gap-3 shrink-0">
               <a
-                href={`tel:${COMPANY.phone.replace(/\s/g, "")}`}
+                href={`tel:${COMPANY.phoneE164}`}
                 className={`hidden 2xl:flex items-center gap-1.5 text-[0.8125rem] font-medium transition-colors ${
                   solid ? "text-[var(--c-ink-2)] hover:text-[var(--c-green-700)]" : "text-white/75 hover:text-white"
                 }`}
@@ -302,11 +349,12 @@ export default function Navbar() {
             {/* Mobile toggle */}
             <button
               type="button"
+              ref={toggleRef}
               onClick={() => setOpen((v) => !v)}
               aria-expanded={open}
               aria-controls="mobile-drawer"
               aria-label={open ? "Close menu" : "Open menu"}
-              className={`xl:hidden p-2.5 rounded-xl transition-colors ${
+              className={`xl:hidden grid h-11 w-11 place-items-center rounded-xl transition-colors ${
                 solid ? "text-[var(--c-green-800)] hover:bg-[var(--c-band)]" : "text-white hover:bg-white/10"
               }`}
             >
@@ -320,6 +368,10 @@ export default function Navbar() {
       {open && (
         <div
           id="mobile-drawer"
+          ref={drawerRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Site menu"
           className="xl:hidden fixed inset-0 z-40 bg-[var(--c-surface)] pt-[4.5rem] overflow-y-auto"
         >
           <nav className="container-dw py-6" aria-label="Mobile">
@@ -372,7 +424,7 @@ export default function Navbar() {
               <Link href="/contact" className="btn btn--primary w-full">
                 Get a free quote
               </Link>
-              <a href={`tel:${COMPANY.phone.replace(/\s/g, "")}`} className="btn btn--secondary w-full">
+              <a href={`tel:${COMPANY.phoneE164}`} className="btn btn--secondary w-full">
                 <Phone size={16} aria-hidden="true" /> {COMPANY.phone}
               </a>
             </div>
@@ -384,12 +436,12 @@ export default function Navbar() {
       {!open && (
         <div className="xl:hidden fixed bottom-0 left-0 right-0 z-40 grid grid-cols-3 border-t border-[var(--c-border)] bg-[var(--c-surface)]/97 backdrop-blur-md pb-[env(safe-area-inset-bottom)]">
           <a
-            href={`tel:${COMPANY.phone.replace(/\s/g, "")}`}
+            href={`tel:${COMPANY.phoneE164}`}
             onClick={() => track("phone_click", { from: "sticky_bar" })}
             className="flex flex-col items-center justify-center gap-0.5 py-2.5 text-[var(--c-green-800)] active:bg-[var(--c-band)]"
           >
             <Phone size={19} aria-hidden="true" />
-            <span className="text-[11px] font-semibold">Call</span>
+            <span className="text-[0.75rem] font-semibold">Call</span>
           </a>
           <a
             href={waHref}
@@ -401,14 +453,14 @@ export default function Navbar() {
             <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.122 1.525 5.856L.057 23.876a.5.5 0 0 0 .609.61l6.207-1.63C8.41 23.578 10.17 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.782 0-3.487-.47-4.97-1.362l-.356-.21-3.688.969.984-3.596-.232-.37A9.935 9.935 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
             </svg>
-            <span className="text-[11px] font-semibold">WhatsApp</span>
+            <span className="text-[0.75rem] font-semibold">WhatsApp</span>
           </a>
           <Link
             href="/contact"
             className="flex flex-col items-center justify-center gap-0.5 py-2.5 bg-[var(--c-green-700)] text-white active:bg-[var(--c-green-600)]"
           >
             <ArrowRight size={19} aria-hidden="true" />
-            <span className="text-[11px] font-semibold">Get a quote</span>
+            <span className="text-[0.75rem] font-semibold">Get a quote</span>
           </Link>
         </div>
       )}

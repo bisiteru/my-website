@@ -91,7 +91,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${hanken.variable}`}>
+    <html lang="en-NG" className={`${fraunces.variable} ${hanken.variable}`}>
       <head>
         {/* Local Business structured data */}
         <script
@@ -174,8 +174,11 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased min-h-screen flex flex-col">
+        {/* Skip link — review 6.2. First thing in the tab order, visible only
+            when focused, so a keyboard user can jump the 20-item menu. */}
+        <a href="#main" className="skip-link">Skip to content</a>
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main id="main" className="flex-1">{children}</main>
         <Footer />
         <Analytics />
       </body>

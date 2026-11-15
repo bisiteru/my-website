@@ -205,10 +205,10 @@ export default async function BlogPostPage({ params }: Props) {
         <div className="container-dw max-w-3xl">
           <nav aria-label="Breadcrumb">
             <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.8125rem] text-[var(--c-ink-2)]">
-              <li><Link href="/" className="hover:text-[var(--c-green-700)]">Home</Link></li>
+              <li><Link href="/" className="inline-flex min-h-[24px] items-center hover:text-[var(--c-green-700)]">Home</Link></li>
               <li className="flex items-center gap-2">
                 <span aria-hidden="true" className="text-[var(--c-border)]">/</span>
-                <Link href="/blog" className="hover:text-[var(--c-green-700)]">Blog</Link>
+                <Link href="/blog" className="inline-flex min-h-[24px] items-center hover:text-[var(--c-green-700)]">Blog</Link>
               </li>
               <li className="flex items-center gap-2">
                 <span aria-hidden="true" className="text-[var(--c-border)]">/</span>

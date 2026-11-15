@@ -128,7 +128,7 @@ export default function HomePage() {
                   <span className="block text-[0.8125rem] font-semibold text-[var(--c-green-800)]">
                     {a.status} {a.short}
                   </span>
-                  <span className="block text-[0.6875rem] text-[var(--c-ink-2)]">{a.full}</span>
+                  <span className="block text-[0.75rem] text-[var(--c-ink-2)]">{a.full}</span>
                 </span>
               </li>
             ))}
@@ -220,7 +220,7 @@ export default function HomePage() {
                 office in Gwarinpa you can visit. Pest control here runs under our EHCON and PECAN
                 licensing and our AMAC Operational Permit.
               </p>
-              <Link href="/abuja" className="mt-6 inline-flex items-center gap-1.5 font-semibold text-[var(--c-green-700)] hover:gap-2.5 transition-all">
+              <Link href="/abuja" className="mt-6 inline-flex min-h-[44px] items-center gap-1.5 font-semibold text-[var(--c-green-700)] transition-all hover:gap-2.5">
                 Abuja services <ArrowRight size={16} aria-hidden="true" />
               </Link>
             </div>
@@ -231,7 +231,7 @@ export default function HomePage() {
                 janitorial retainers across the state — and training for organisations that employ
                 their own cleaners. Site assessments by appointment.
               </p>
-              <Link href="/lagos" className="mt-6 inline-flex items-center gap-1.5 font-semibold text-[var(--c-green-700)] hover:gap-2.5 transition-all">
+              <Link href="/lagos" className="mt-6 inline-flex min-h-[44px] items-center gap-1.5 font-semibold text-[var(--c-green-700)] transition-all hover:gap-2.5">
                 Lagos services <ArrowRight size={16} aria-hidden="true" />
               </Link>
             </div>

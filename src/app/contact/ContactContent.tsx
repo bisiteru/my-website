@@ -27,8 +27,8 @@ export default function ContactContent({ defaultService = "" }: { defaultService
               <Phone size={19} className="mt-1 shrink-0 text-[var(--c-green-600)]" aria-hidden="true" />
               <span>
                 <span className="block text-[0.75rem] font-bold uppercase tracking-[0.14em] text-[var(--c-ink-2)]">Phone</span>
-                <a href={`tel:${COMPANY.phone.replace(/\s/g, "")}`} className="block font-semibold text-[var(--c-green-800)] hover:text-[var(--c-green-600)]">{COMPANY.phone}</a>
-                <a href={`tel:${COMPANY.phone2.replace(/\s/g, "")}`} className="block font-semibold text-[var(--c-green-800)] hover:text-[var(--c-green-600)]">{COMPANY.phone2}</a>
+                <a href={`tel:${COMPANY.phoneE164}`} className="block font-semibold text-[var(--c-green-800)] hover:text-[var(--c-green-600)]">{COMPANY.phone}</a>
+                <a href={`tel:${COMPANY.phone2E164}`} className="block font-semibold text-[var(--c-green-800)] hover:text-[var(--c-green-600)]">{COMPANY.phone2}</a>
               </span>
             </li>
             <li className="flex gap-4">
@@ -72,7 +72,10 @@ export default function ContactContent({ defaultService = "" }: { defaultService
           </ul>
 
           <div className="mt-8">
-            <MapBlock query={COMPANY.googleMapsUrl.split("q=")[1] ?? "Irama Plaza Gwarinpa Abuja"} />
+            <MapBlock
+              query={COMPANY.googleMapsUrl.split("q=")[1] ?? "Irama Plaza Gwarinpa Abuja"}
+              address={COMPANY.address}
+            />
           </div>
         </div>
 

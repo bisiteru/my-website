@@ -75,7 +75,7 @@ export default function Footer() {
                 <span className="block text-[1.0625rem] font-semibold text-white" style={{ fontFamily: "var(--font-heading)" }}>
                   Dust &amp; Wipes
                 </span>
-                <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--c-orange-300)]">
+                <span className="block text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-[var(--c-orange-300)]">
                   {COMPANY.tagline}
                 </span>
               </span>
@@ -92,7 +92,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white/80 transition-colors hover:border-white/40 hover:text-white"
+                    className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-white/80 transition-colors hover:border-white/40 hover:text-white"
                   >
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                       <path d={path} />
@@ -105,13 +105,13 @@ export default function Footer() {
 
           {/* Services */}
           <nav aria-labelledby="f-services">
-            <h2 id="f-services" className="text-[0.8125rem] font-bold uppercase tracking-[0.16em] !text-white">
+            <p id="f-services" className="text-[0.8125rem] font-bold uppercase tracking-[0.16em] !text-white">
               Services
-            </h2>
+            </p>
             <ul className="mt-5 space-y-2.5">
               {SERVICES.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="text-[0.9375rem] transition-colors hover:text-white">
+                  <Link href={l.href} className="inline-flex min-h-[44px] items-center text-[0.9375rem] transition-colors hover:text-white">
                     {l.label}
                   </Link>
                 </li>
@@ -121,13 +121,13 @@ export default function Footer() {
 
           {/* Company */}
           <nav aria-labelledby="f-company">
-            <h2 id="f-company" className="text-[0.8125rem] font-bold uppercase tracking-[0.16em] !text-white">
+            <p id="f-company" className="text-[0.8125rem] font-bold uppercase tracking-[0.16em] !text-white">
               Company
-            </h2>
+            </p>
             <ul className="mt-5 space-y-2.5">
               {COMPANY_LINKS.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="text-[0.9375rem] transition-colors hover:text-white">
+                  <Link href={l.href} className="inline-flex min-h-[44px] items-center text-[0.9375rem] transition-colors hover:text-white">
                     {l.label}
                   </Link>
                 </li>
@@ -137,13 +137,13 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h2 className="text-[0.8125rem] font-bold uppercase tracking-[0.16em] !text-white">Get in touch</h2>
+            <p className="text-[0.8125rem] font-bold uppercase tracking-[0.16em] !text-white">Get in touch</p>
             <ul className="mt-5 space-y-4 text-[0.9375rem]">
               <li className="flex gap-3">
                 <Phone size={17} className="mt-0.5 shrink-0 text-[var(--c-orange-300)]" aria-hidden="true" />
                 <span>
-                  <a href={`tel:${COMPANY.phone.replace(/\s/g, "")}`} className="block hover:text-white">{COMPANY.phone}</a>
-                  <a href={`tel:${COMPANY.phone2.replace(/\s/g, "")}`} className="block hover:text-white">{COMPANY.phone2}</a>
+                  <a href={`tel:${COMPANY.phoneE164}`} className="block hover:text-white">{COMPANY.phone}</a>
+                  <a href={`tel:${COMPANY.phone2E164}`} className="block hover:text-white">{COMPANY.phone2}</a>
                   <a href={wa} target="_blank" rel="noopener noreferrer" className="mt-1 inline-block text-[var(--c-orange-300)] hover:text-white">
                     WhatsApp us →
                   </a>
@@ -195,7 +195,7 @@ export default function Footer() {
                   <span className="block text-[0.8125rem] font-semibold text-[var(--c-green-800)]">
                     {a.status} {a.short}
                   </span>
-                  <span className="block text-[0.6875rem] text-[var(--c-ink-2)]">{a.full}</span>
+                  <span className="block text-[0.75rem] text-[var(--c-ink-2)]">{a.full}</span>
                 </span>
               </li>
             ))}
@@ -211,12 +211,12 @@ export default function Footer() {
             </span>
           </p>
           <ul className="flex flex-wrap gap-6">
-            <li><Link href="/privacy" className="hover:text-white">Privacy policy</Link></li>
-            <li><Link href="/terms" className="hover:text-white">Terms of service</Link></li>
+            <li><Link href="/privacy" className="inline-flex min-h-[24px] items-center hover:text-white">Privacy policy</Link></li>
+            <li><Link href="/terms" className="inline-flex min-h-[24px] items-center hover:text-white">Terms of service</Link></li>
             {/* Review 6.3 — a visitor must be able to change a cookie choice
                 after making it, not only on first visit. */}
             <li>
-              <button type="button" data-cookie-settings className="hover:text-white">
+              <button type="button" data-cookie-settings className="inline-flex min-h-[24px] items-center hover:text-white">
                 Cookie settings
               </button>
             </li>

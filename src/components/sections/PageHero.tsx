@@ -50,7 +50,7 @@ export default function PageHero({
           <nav aria-label="Breadcrumb">
             <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.8125rem] text-[var(--c-ink-2)]">
               <li>
-                <Link href="/" className="hover:text-[var(--c-green-700)]">
+                <Link href="/" className="inline-flex min-h-[24px] items-center hover:text-[var(--c-green-700)]">
                   Home
                 </Link>
               </li>
@@ -60,7 +60,7 @@ export default function PageHero({
                     /
                   </span>
                   {c.href && i < crumbs.length - 1 ? (
-                    <Link href={c.href} className="hover:text-[var(--c-green-700)]">
+                    <Link href={c.href} className="inline-flex min-h-[24px] items-center hover:text-[var(--c-green-700)]">
                       {c.label}
                     </Link>
                   ) : (

@@ -112,7 +112,7 @@ export default function PrivacyPage() {
                 {COMPANY.email}
               </a>{" "}
               or call{" "}
-              <a href={`tel:${COMPANY.phone.replace(/\s/g, "")}`} className="underline hover:text-[var(--c-green-700)]">
+              <a href={`tel:${COMPANY.phoneE164}`} className="underline hover:text-[var(--c-green-700)]">
                 {COMPANY.phone}
               </a>
               . See also our{" "}

@@ -25,7 +25,12 @@
      highlights, small accents, stat numbers, hover states (§4.2).
      Never set orange-500 as small text on a light surface — it is
      3.89:1 (large text only). Use orange-700 there. */
-  --c-orange-300: #f1b9ad;  /* accent text/icons on dark green  4.58–7.39:1 */
+  /* On the lightest stop of the hero gradient (#166c3b) orange-300 measures
+     3.79:1 — below AA for normal text (review 6.1). orange-200 is the tint for
+     small text on dark green: 4.82:1 there. orange-300 stays for icons and
+     large text, where 3:1 is the bar. */
+  --c-orange-200: #f8d7cf;  /* small text on dark green          4.82:1 */
+  --c-orange-300: #f1b9ad;  /* icons / large text on dark green  3.79:1 */
   --c-orange-500: #db4f32;  /* the logo swoosh — fills, graphics, large text */
   --c-orange-600: #c23f23;  /* CTA button background (white text 5.21:1)     */
   --c-orange-700: #c9482e;  /* small accent text on light       4.52:1       */
@@ -188,6 +193,25 @@ html {
   }
 
   .prose-measure { max-width: var(--measure); }
+
+  /* Skip link (review 6.2) — off-screen until focused. */
+  .skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 100;
+    transform: translateY(-200%);
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--r-full);
+    background: var(--c-green-800);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 150ms ease-out;
+  }
+  .skip-link:focus-visible { transform: translateY(0); }
 
   /* A secondary action that is reachable without competing with a button —
      used for the phone/WhatsApp/email line under an enquiry section. */

@@ -234,8 +234,11 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Training */}
-      <section id="training-consultancy" className="section scroll-mt-28">
+      {/* Training. The #training-consultancy id belongs to the service article
+          inside this section — it is one of the frozen anchors (section 3.1) —
+          so the wrapper carries a different one. Both elements used to claim
+          it, which is invalid and makes the anchor's destination ambiguous. */}
+      <section id="training" className="section scroll-mt-28">
         <div className="container-dw">
           <SectionHeader
             eyebrow="Training &amp; consultancy"

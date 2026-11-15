@@ -125,13 +125,13 @@ export default function LagosPage() {
                 <div>
                   <dt className="font-semibold text-[var(--c-green-800)]">Phone &amp; WhatsApp</dt>
                   <dd className="text-[var(--c-ink-2)]">
-                    <a className="hover:text-[var(--c-green-700)]" href={`tel:${COMPANY.phone.replace(/\s/g, "")}`}>{COMPANY.phone}</a>
+                    <a className="inline-flex min-h-[24px] items-center hover:text-[var(--c-green-700)]" href={`tel:${COMPANY.phoneE164}`}>{COMPANY.phone}</a>
                   </dd>
                 </div>
                 <div>
                   <dt className="font-semibold text-[var(--c-green-800)]">Email</dt>
                   <dd className="text-[var(--c-ink-2)]">
-                    <a className="hover:text-[var(--c-green-700)]" href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
+                    <a className="inline-flex min-h-[24px] items-center hover:text-[var(--c-green-700)]" href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
                   </dd>
                 </div>
               </dl>

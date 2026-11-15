@@ -61,4 +61,7 @@ export type AnalyticsEvent =
   | "quote_form_submit"
   | "whatsapp_click"
   | "phone_click"
+  /** Added with the delegated contact tracking (review 5.7) — email links
+   *  were not counted at all before. */
+  | "email_click"
   | "training_enquiry_start";

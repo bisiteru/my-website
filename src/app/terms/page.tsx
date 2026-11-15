@@ -116,11 +116,11 @@ export default function TermsPage() {
                 {COMPANY.email}
               </a>{" "}
               or call{" "}
-              <a href={`tel:${COMPANY.phone.replace(/\s/g, "")}`} className="underline hover:text-[var(--c-green-700)]">
+              <a href={`tel:${COMPANY.phoneE164}`} className="underline hover:text-[var(--c-green-700)]">
                 {COMPANY.phone}
               </a>
               {" "}or{" "}
-              <a href={`tel:${COMPANY.phone2.replace(/\s/g, "")}`} className="underline hover:text-[var(--c-green-700)]">
+              <a href={`tel:${COMPANY.phone2E164}`} className="underline hover:text-[var(--c-green-700)]">
                 {COMPANY.phone2}
               </a>
               . See also our{" "}

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { COMPANY } from "@/lib/constants";
+import MapBlockClient from "@/components/ui/MapBlockClient";
 
 /**
  * Enquiry section — §4.7, closes most pages.
@@ -49,7 +50,7 @@ export function EnquirySection({
           </div>
           <p className="mt-6 text-[0.9375rem] text-[var(--c-ink-2)]">
             Or reach us directly —{" "}
-            <a className="link-quiet" href={`tel:${COMPANY.phone.replace(/\s/g, "")}`}>
+            <a className="link-quiet" href={`tel:${COMPANY.phoneE164}`}>
               {COMPANY.phone}
             </a>
             ,{" "}
@@ -105,7 +106,19 @@ export function CtaBand(props: Partial<Parameters<typeof EnquirySection>[0]> = {
   );
 }
 
-/** Map block — §4.7, §6.10. */
+/**
+ * Map block — §4.7, §6.10, rebuilt for SITE_REVIEW 6.3.
+ *
+ * The Google Maps iframe used to load on page load, which set Google cookies
+ * on every visitor regardless of what they chose in the cookie banner. That
+ * undercut the banner entirely: declining analytics still handed Google a
+ * cookie from the Contact page.
+ *
+ * Nothing is now requested from Google until the visitor asks for it. Until
+ * then they get the address, a static panel and a link that opens the map in
+ * their own tab — which is what most people want anyway. Pressing "Load map"
+ * swaps in the iframe for that visit only.
+ */
 export function MapBlock({
   title = "Find us",
   query = "Irama Plaza Gwarinpa Abuja",
@@ -116,22 +129,7 @@ export function MapBlock({
   address?: string;
 }) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-[var(--c-border)]">
-      <iframe
-        title={`Map showing ${title}`}
-        src={`https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed`}
-        width="100%"
-        height="340"
-        style={{ border: 0 }}
-        loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
-      />
-      {address && (
-        <address className="not-italic bg-[var(--c-surface)] px-6 py-4 text-[0.9375rem] text-[var(--c-ink-2)]">
-          {address}
-        </address>
-      )}
-    </div>
+    <MapBlockClient title={title} query={query} address={address} />
   );
 }
 

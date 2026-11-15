@@ -84,16 +84,21 @@ export default function TestimonialCarousel({
 
       {items.length > 1 && (
         <div className="mt-6 flex items-center justify-between">
-          <div className="flex gap-2" role="tablist" aria-label="Choose testimonial">
+          {/* Review 6.2 — these were marked up as role="tab" inside a
+              role="tablist" with no tabpanels anywhere, which tells a screen
+              reader to expect panels that do not exist. They are plain buttons
+              that change the quote, so that is what they now are, with
+              aria-current marking the active one. The hit area is 44px even
+              though the dot itself stays small. */}
+          <div className="flex" aria-label="Choose testimonial">
             {items.map((item, n) => (
               <button
                 key={item.name}
                 type="button"
-                role="tab"
-                aria-selected={n === i}
-                aria-label={`Testimonial ${n + 1} of ${items.length}`}
+                aria-current={n === i ? "true" : undefined}
+                aria-label={`Show testimonial ${n + 1} of ${items.length}`}
                 onClick={() => setI(n)}
-                className="grid h-6 place-items-center px-1"
+                className="grid h-11 w-8 place-items-center"
               >
                 <span
                   className={`block h-2 rounded-full transition-all ${

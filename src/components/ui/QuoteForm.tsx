@@ -35,6 +35,13 @@ export default function QuoteForm({ defaultService = "" }: { defaultService?: st
     service: defaultService,
     frequency: "one-off",
     message: "",
+    /**
+     * Honeypot (review 4.3). A real person never sees or fills this; a bot
+     * that fills every field it finds does. Named "company_website" rather
+     * than anything containing "hp" or "honey", since the obvious names are
+     * the ones scrapers learn to skip.
+     */
+    company_website: "",
   });
   const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
@@ -46,6 +53,14 @@ export default function QuoteForm({ defaultService = "" }: { defaultService?: st
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
+
+    // A filled honeypot means a bot. Show the normal success state rather than
+    // an error, so an automated submitter gets no signal that it was caught.
+    if (form.company_website) {
+      setState("sent");
+      return;
+    }
+
     setState("sending");
     try {
       const res = await fetch(FORM_ENDPOINT, {
@@ -87,32 +102,68 @@ export default function QuoteForm({ defaultService = "" }: { defaultService?: st
   }
 
   return (
-    <form onSubmit={submit} className="card p-7 sm:p-8" noValidate={false}>
+    /* action and method are set so the form still posts if JavaScript fails or
+       is blocked (review 4.3) — Formspree accepts a plain form POST. With
+       scripts running, onSubmit preventDefaults and posts JSON instead, which
+       keeps the visitor on the page. Every field now carries a name attribute;
+       without them a no-JS POST arrives empty. */
+    <form
+      onSubmit={submit}
+      action={FORM_ENDPOINT}
+      method="POST"
+      className="card p-7 sm:p-8"
+      noValidate={false}
+    >
+      {/* Honeypot — see the note on the state field above. Positioned off-screen
+          rather than display:none, because some bots skip fields that are
+          display:none. aria-hidden and tabIndex -1 keep it away from people. */}
+      <div aria-hidden="true" className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
+        <label htmlFor="company_website">Leave this field empty</label>
+        <input
+          id="company_website"
+          name="company_website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={form.company_website}
+          onChange={(e) => set("company_website", e.target.value)}
+        />
+      </div>
+
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Full name" required>
-          <input required className="form-input" value={form.name} onChange={(e) => set("name", e.target.value)} autoComplete="name" />
+          <input required name="name" className="form-input" value={form.name} onChange={(e) => set("name", e.target.value)} autoComplete="name" />
         </Field>
         <Field label="Organisation" hint="Optional">
-          <input className="form-input" value={form.organisation} onChange={(e) => set("organisation", e.target.value)} autoComplete="organization" />
+          <input name="organisation" className="form-input" value={form.organisation} onChange={(e) => set("organisation", e.target.value)} autoComplete="organization" />
         </Field>
         <Field label="Phone" required>
-          <input required type="tel" className="form-input" value={form.phone} onChange={(e) => set("phone", e.target.value)} autoComplete="tel" />
+          <input
+            required
+            type="tel"
+            name="phone"
+            /* Review 4.2 — "abc" was accepted. Digits, spaces, +, - and
+               brackets only, 7 or more: loose enough for +234, 0809 and
+               international callers. */
+            pattern="[0-9+()\-\s]{7,}"
+            title="Enter a phone number — digits, spaces, + and - only"
+            className="form-input" value={form.phone} onChange={(e) => set("phone", e.target.value)} autoComplete="tel" />
         </Field>
         <Field label="Email" hint="Optional">
-          <input type="email" className="form-input" value={form.email} onChange={(e) => set("email", e.target.value)} autoComplete="email" />
+          <input type="email" name="email" className="form-input" value={form.email} onChange={(e) => set("email", e.target.value)} autoComplete="email" />
         </Field>
         <Field label="City" required>
-          <select required className="form-input" value={form.city} onChange={(e) => set("city", e.target.value)}>
+          <select required name="city" className="form-input" value={form.city} onChange={(e) => set("city", e.target.value)}>
             <option>Abuja</option>
             <option>Lagos</option>
             <option>Other</option>
           </select>
         </Field>
         <Field label="Area / district" required>
-          <input required className="form-input" value={form.area} onChange={(e) => set("area", e.target.value)} placeholder="e.g. Gwarinpa, Lekki" />
+          <input required name="area" className="form-input" value={form.area} onChange={(e) => set("area", e.target.value)} placeholder="e.g. Gwarinpa, Lekki" />
         </Field>
         <Field label="Service required" required>
-          <select required className="form-input" value={form.service} onChange={(e) => set("service", e.target.value)}>
+          <select required name="service" className="form-input" value={form.service} onChange={(e) => set("service", e.target.value)}>
             <option value="">Select a service…</option>
             {SERVICES.map((s) => (
               <option key={s}>{s}</option>
@@ -120,7 +171,7 @@ export default function QuoteForm({ defaultService = "" }: { defaultService?: st
           </select>
         </Field>
         <Field label="How often">
-          <select className="form-input" value={form.frequency} onChange={(e) => set("frequency", e.target.value)}>
+          <select name="frequency" className="form-input" value={form.frequency} onChange={(e) => set("frequency", e.target.value)}>
             <option value="one-off">One-off</option>
             <option value="weekly">Weekly</option>
             <option value="bi-weekly">Bi-weekly</option>
@@ -134,6 +185,7 @@ export default function QuoteForm({ defaultService = "" }: { defaultService?: st
         <Field label="Anything else we should know" hint="Optional">
           <textarea
             rows={4}
+            name="message"
             className="form-input resize-none"
             value={form.message}
             onChange={(e) => set("message", e.target.value)}

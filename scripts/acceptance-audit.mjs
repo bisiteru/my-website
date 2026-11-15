@@ -275,8 +275,17 @@ check("Contact", "Form posts to live endpoint",
 const waOk = !/wa\.me\/\+/.test(all);
 check("Contact", "WhatsApp links valid on mobile", waOk && /wa\.me\/234/.test(all),
   "all wa.me links strip the + (a leading + breaks WhatsApp deep links)");
-check("Contact", "Phone links valid", /href="tel:0809970001|href="tel:08099700001/.test(all),
-  "tel: links present with spaces stripped");
+// Review 3.6 — tel: links used the local format (tel:08099700001), which does
+// not dial from a foreign SIM. Embassies and international organisations are a
+// named audience, so this now requires E.164 and fails on any local-format or
+// space-bearing link anywhere on the site.
+const localTel = (all.match(/href="tel:0\d+/g) || []).length;
+const spacedTel = (all.match(/href="tel:[^"]*\s/g) || []).length;
+check("Contact", "Phone links are E.164",
+  /href="tel:\+234/.test(all) && localTel === 0 && spacedTel === 0,
+  localTel || spacedTel
+    ? `${localTel} local-format and ${spacedTel} space-bearing tel: links remain`
+    : "every tel: link is +234…, dialable from any country");
 
 /* ── §10.11 — open items ───────────────────────────────────────────── */
 check("Open items", "Register maintained", existsSync("OPEN_ITEMS.md"),

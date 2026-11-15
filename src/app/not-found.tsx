@@ -22,11 +22,11 @@ export default function NotFound() {
     <section className="hero-bg min-h-[80vh] flex items-center pt-28 pb-20">
       <div className="container-dw grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
         <div>
-          <p className="eyebrow !text-[var(--c-orange-300)]">Error 404</p>
+          <p className="eyebrow !text-[var(--c-orange-200)]">Error 404</p>
           <h1 className="h1-display mt-4 font-semibold text-white">
             This page has been cleared away.
           </h1>
-          <p className="lede mt-6 !text-white/75">
+          <p className="lede mt-6 !text-white/85">
             The page you were looking for doesn&apos;t exist, or it has moved. Here is the way back.
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
@@ -41,7 +41,7 @@ export default function NotFound() {
           <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-2">
             {LINKS.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="text-[0.9375rem] text-white/70 underline underline-offset-4 hover:text-white">
+                <Link href={l.href} className="text-[0.9375rem] text-white/85 underline underline-offset-4 hover:text-white">
                   {l.label}
                 </Link>
               </li>
