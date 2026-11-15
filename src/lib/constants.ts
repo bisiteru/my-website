@@ -32,7 +32,7 @@ export const COMPANY = {
 export const AFFILIATIONS = [
   {
     short: "ISSA",
-    full: "International Sanitary Standards Association",
+    full: "The Association for Cleaning & Facility Solutions",
     status: "Member",
   },
   {
@@ -108,12 +108,12 @@ export const SERVICES = [
     title: "Pest Control",
     shortDesc: "Safe, effective fumigation and pest management.",
     description:
-      "Safe, effective fumigation and pest management to protect your home and business from unwanted infestations.",
+      "Effective fumigation and pest management, applied by licensed technicians under a documented safety protocol — because the products that work on pests are not harmless to people.",
     image: "/photos/pest-control-spraying-driveway.jpg",
     href: "/services#pest-control",
     features: [
       "Multi-pest spray treatment",
-      "Safe for children & pets",
+      "Strict safety protocol on every job",
       "Indoor & outdoor application",
       "Follow-up inspection",
     ],
@@ -244,7 +244,7 @@ export const WHY_US = [
     number: "02",
     title: "Vetted, Professional Staff",
     description:
-      "Every team member is thoroughly background-checked, trained, and certified. Dedicated professionals who treat your space with respect.",
+      "Every team member is thoroughly background-checked, trained and supervised to a written standard. Our pest control technicians work under our EHCON and PECAN licensing and our AMAC Operational Permit.",
   },
   {
     number: "03",
@@ -256,7 +256,7 @@ export const WHY_US = [
     number: "04",
     title: "Eco-Friendly Products",
     description:
-      "Environmentally safe, non-toxic cleaning products — effective on dirt but gentle on your family, pets, and the planet.",
+      "Biodegradable, low-irritant cleaning products — effective on dirt but chosen to be gentle in occupied homes and offices.",
   },
   {
     number: "05",
@@ -329,9 +329,9 @@ export const FAQS = [
       "You can book via our online booking form on this website, send us a WhatsApp message, call us directly, or email us. We typically respond within 2 hours and can often schedule same-day or next-day appointments.",
   },
   {
-    question: "Are your cleaning products safe for children and pets?",
+    question: "Are your products safe around children and pets?",
     answer:
-      "Absolutely. We use eco-friendly, non-toxic, and biodegradable cleaning products that are safe for your family, including children and pets. For pest control, we use certified, low-toxicity pesticides and advise a brief re-entry period after treatment.",
+      "Our day-to-day cleaning products are eco-friendly and biodegradable, chosen to be gentle in occupied homes. Pest control is different and we will not pretend otherwise: the products that kill pests are hazardous by design. We control that risk rather than downplay it — a site assessment first, application strictly to the product label, full PPE for our technicians, and clear instructions on vacating and re-entry. See our pest control safety protocol for exactly what we do.",
   },
   {
     question: "Do I need to be home during the cleaning?",
@@ -391,7 +391,7 @@ export const FAQS = [
   {
     question: "Is pest control safe around children and pets?",
     answer:
-      "Yes. Our technicians are certified and use approved, low-toxicity treatments chosen for occupied buildings. We will advise a short re-entry period after treatment and tell you about any area needing extra care, such as pet bedding or children's play surfaces.",
+      "Pest control products are hazardous by design, so the honest answer is that safety comes from how they are handled, not from the chemicals being harmless. We are licensed by EHCON and PECAN and hold an AMAC Operational Permit. Every job begins with a site assessment, products are applied strictly to their label, our technicians wear full PPE, and we tell you before we start who must leave, what to cover or remove, and exactly when it is safe to return.",
   },
 ];
 

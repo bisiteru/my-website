@@ -6,6 +6,7 @@ import { Check, MessageCircle } from "lucide-react";
 import PageHero from "@/components/sections/PageHero";
 import RelatedLinks from "@/components/ui/RelatedLinks";
 import { ProcessSteps } from "@/components/ui/Cards";
+import PestSafetyProtocol from "@/components/sections/PestSafetyProtocol";
 import { CtaBand, SectionHeader } from "@/components/ui/Blocks";
 import { SERVICES, COMPANY } from "@/lib/constants";
 import { JsonLd, breadcrumbs, absolute, SITE_URL } from "@/lib/seo";
@@ -150,7 +151,7 @@ export default function ServicesPage() {
           <SectionHeader
             eyebrow="Pest control &amp; disinfection"
             title="Treatments that are safe around people."
-            lede="Certified technicians using approved, low-toxicity treatments — safe for children and pets, with follow-up inspection."
+            lede="Licensed under EHCON and PECAN, with an AMAC Operational Permit. Pest products are hazardous by design — what keeps people safe is the protocol around them, set out in full below."
           />
           <div className="mt-10 divide-y divide-[var(--c-border)]">
             {pest.map((s, i) => (
@@ -159,6 +160,8 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+
+      <PestSafetyProtocol />
 
       {/* Training */}
       <section id="training-consultancy" className="section scroll-mt-28">

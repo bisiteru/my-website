@@ -92,7 +92,7 @@ export default function ComponentsPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <ServiceCard title="Residential cleaning" benefit="Thorough, eco-friendly cleaning for your home." href="/services#residential-cleaning" photo="luxury-living-room-floor-cleaning" alt="Cleaner mopping a living-room floor" />
             <ServiceCard title="Commercial & office" benefit="Keeps your workplace professional and hygienic." href="/services#commercial-cleaning" photo="office-floor-scrubbing-machine" alt="Operator running a floor-scrubbing machine" />
-            <ServiceCard title="Pest control" benefit="Licensed technicians, safe for children and pets." href="/services#pest-control" photo="pest-control-spraying-driveway" alt="Technician spraying a driveway" />
+            <ServiceCard title="Pest control" benefit="EHCON and PECAN licensed, applied under a documented safety protocol." href="/services#pest-control" photo="pest-control-spraying-driveway" alt="Technician spraying a driveway" />
           </div>
         </Spec>
 

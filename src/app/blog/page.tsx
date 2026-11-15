@@ -33,7 +33,7 @@ export default function BlogPage() {
           <span className="inline-block bg-white/10 border border-white/20 text-white/80 text-sm px-4 py-1.5 rounded-full mb-6">
             Expert Advice
           </span>
-          <h1 className="text-4xl sm:text-5xl font-black text-white mb-5">
+          <h1 className="text-4xl sm:text-5xl font-semibold text-white mb-5">
             Cleaning &amp; Pest Control Tips
           </h1>
           <p className="text-white/70 text-lg max-w-2xl mx-auto">

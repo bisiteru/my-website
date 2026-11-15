@@ -145,7 +145,7 @@ export default function RootLayout({
               },
               hasMap: "https://maps.google.com/?q=Irama+Plaza+Gwarinpa+Abuja",
               memberOf: [
-                { "@type": "Organization", name: "International Sanitary Standards Association (ISSA)" },
+                { "@type": "Organization", name: "ISSA — The Association for Cleaning & Facility Solutions" },
                 { "@type": "Organization", name: "Pest Control Association of Nigeria (PECAN)" },
               ],
               knowsAbout: [

@@ -52,7 +52,7 @@ export default function AboutPage() {
           <span className="inline-block bg-white/10 border border-white/20 text-white/80 text-sm px-4 py-1.5 rounded-full mb-6">
             Who We Are
           </span>
-          <h1 className="text-4xl sm:text-5xl font-black text-white mb-5 leading-tight">
+          <h1 className="text-4xl sm:text-5xl font-semibold text-white mb-5 leading-tight">
             Cleaning Abuja, One Space at a Time
           </h1>
           <p className="text-white/70 text-lg max-w-2xl mx-auto leading-relaxed">
@@ -71,14 +71,14 @@ export default function AboutPage() {
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <span className="section-eyebrow">Our Story</span>
-            <h2 className="section-title mt-2">Born from a Simple but Powerful Desire</h2>
+            <span className="eyebrow">Our Story</span>
+            <h2 className="h2-section mt-2">Born from a Simple but Powerful Desire</h2>
             <div className="accent-line mt-3 mx-auto" />
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
             {/* Story text */}
-            <div className="space-y-5 text-gray-600 leading-relaxed text-[1.0625rem]">
+            <div className="space-y-5 text-[var(--c-ink-2)] leading-relaxed text-[1.0625rem]">
               <p>
                 Dust and Wipes Limited was born from a simple but powerful desire: to make a
                 difference.
@@ -99,7 +99,7 @@ export default function AboutPage() {
                 impact.
               </p>
               <p>
-                <strong className="text-gray-800">
+                <strong className="text-[var(--c-green-800)]">
                   That realization inspired the birth of Dust and Wipes Limited.
                 </strong>
               </p>
@@ -119,7 +119,7 @@ export default function AboutPage() {
               </p>
 
               {/* Signature */}
-              <div className="pt-4 border-t border-gray-100 flex items-center gap-4">
+              <div className="pt-4 border-t border-[var(--c-border)] flex items-center gap-4">
                 <div className="w-16 h-16 rounded-full border-2 border-[#0b8441]/25 shrink-0 overflow-hidden relative shadow-sm">
                   <Image
                     src="/images/founder-photo.jpg"
@@ -130,12 +130,12 @@ export default function AboutPage() {
                   />
                 </div>
                 <div>
-                  <div className="font-bold text-gray-900">Bisi Teru</div>
-                  <div className="text-sm text-[#0b8441] font-medium">
+                  <div className="font-bold text-[var(--c-green-800)]">Bisi Teru</div>
+                  <div className="text-sm text-[var(--c-green-700)] font-medium">
                     Founder &amp; CEO, Dust and Wipes Limited
                   </div>
                 </div>
-                <Quote size={32} className="text-[#0b8441]/15 ml-auto shrink-0" />
+                <Quote size={32} className="text-[var(--c-green-700)]/15 ml-auto shrink-0" />
               </div>
             </div>
 
@@ -178,11 +178,11 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <span className="text-[#0b8441] font-semibold text-sm uppercase tracking-widest">
+              <span className="text-[var(--c-green-700)] font-semibold text-sm uppercase tracking-widest">
                 What Sets Us Apart
               </span>
-              <h2 className="section-title mt-2 mb-6">A Company Built on Trust &amp; Quality</h2>
-              <div className="space-y-4 text-gray-600 leading-relaxed">
+              <h2 className="h2-section mt-2 mb-6">A Company Built on Trust &amp; Quality</h2>
+              <div className="space-y-4 text-[var(--c-ink-2)] leading-relaxed">
                 <p>
                   We saw a gap in the market — too many cleaning companies cutting corners, using
                   cheap products, and treating clients as transactions rather than partners. We
@@ -198,15 +198,15 @@ export default function AboutPage() {
 
               <div className="mt-8 space-y-3">
                 {[
-                  "Licensed and insured pest control technicians",
-                  "Eco-friendly, non-toxic cleaning products",
+                  "Pest control licensed by EHCON and PECAN, with an AMAC Operational Permit",
+                  "Biodegradable, low-irritant cleaning products",
                   "Thoroughly vetted and uniformed staff",
                   "Flexible scheduling — 7 days a week",
                   "100% satisfaction guarantee",
                 ].map((item) => (
                   <div key={item} className="flex items-start gap-3">
-                    <CheckCircle size={18} className="text-[#0b8441] mt-0.5 shrink-0" />
-                    <span className="text-gray-700 text-sm">{item}</span>
+                    <CheckCircle size={18} className="text-[var(--c-green-700)] mt-0.5 shrink-0" />
+                    <span className="text-[var(--c-ink-2)] text-sm">{item}</span>
                   </div>
                 ))}
               </div>
@@ -233,13 +233,13 @@ export default function AboutPage() {
                   ].map(({ emoji, label }) => (
                     <div key={label} className="bg-white rounded-2xl p-6 text-center shadow-sm card-hover">
                       <div className="text-4xl mb-2">{emoji}</div>
-                      <div className="text-sm font-semibold text-gray-700">{label}</div>
+                      <div className="text-sm font-semibold text-[var(--c-ink-2)]">{label}</div>
                     </div>
                   ))}
                 </div>
                 <div className="mt-6 bg-white rounded-2xl p-5 shadow-sm">
-                  <div className="text-3xl font-black gradient-text">650+</div>
-                  <div className="text-sm text-gray-500 mt-1">Satisfied clients across Abuja FCT</div>
+                  <div className="text-3xl font-semibold gradient-text">650+</div>
+                  <div className="text-sm text-[var(--c-ink-2)] mt-1">Satisfied clients across Abuja FCT</div>
                 </div>
               </div>
             </div>
@@ -251,23 +251,23 @@ export default function AboutPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <span className="text-[#0b8441] font-semibold text-sm uppercase tracking-widest">
+            <span className="text-[var(--c-green-700)] font-semibold text-sm uppercase tracking-widest">
               Our Values
             </span>
-            <h2 className="section-title mt-2">What We Stand For</h2>
+            <h2 className="h2-section mt-2">What We Stand For</h2>
             <div className="accent-line mt-3 mx-auto" />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map(({ icon: Icon, title, desc }) => (
               <div
                 key={title}
-                className="bg-white rounded-2xl p-6 text-center border border-gray-100 card-hover"
+                className="bg-white rounded-2xl p-6 text-center border border-[var(--c-border)] card-hover"
               >
                 <div className="w-14 h-14 rounded-2xl bg-[#0b8441]/10 flex items-center justify-center mx-auto mb-4">
-                  <Icon size={24} className="text-[#0b8441]" />
+                  <Icon size={24} className="text-[var(--c-green-700)]" />
                 </div>
-                <h3 className="font-bold text-gray-900 mb-2">{title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{desc}</p>
+                <h3 className="font-bold text-[var(--c-green-800)] mb-2">{title}</h3>
+                <p className="text-sm text-[var(--c-ink-2)] leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -281,7 +281,7 @@ export default function AboutPage() {
             <span className="text-[#dd4c2f] font-semibold text-sm uppercase tracking-widest">
               Our Journey
             </span>
-            <h2 className="section-title mt-2">From Humble Beginnings</h2>
+            <h2 className="h2-section mt-2">From Humble Beginnings</h2>
             <div className="accent-line mt-3 mx-auto" />
           </div>
           <div className="space-y-8">
@@ -296,8 +296,8 @@ export default function AboutPage() {
                   )}
                 </div>
                 <div className="pb-8">
-                  <h3 className="font-bold text-gray-900 mb-1">{m.title}</h3>
-                  <p className="text-sm text-gray-500 leading-relaxed">{m.desc}</p>
+                  <h3 className="font-bold text-[var(--c-green-800)] mb-1">{m.title}</h3>
+                  <p className="text-sm text-[var(--c-ink-2)] leading-relaxed">{m.desc}</p>
                 </div>
               </div>
             ))}
