@@ -30,6 +30,9 @@ export default async function ContactPage({
       />
       <PageHero
         eyebrow="Get in touch"
+        crumbs={[{ label: "Contact" }]}
+        photo="office-lobby-mopping-equipment"
+        alt="A cleaner mopping an office lobby beside cleaning equipment"
         title="Book a service or get a quote."
         lede="Fill in the form and we'll come back within two hours with a clear, no-obligation quote."
       />

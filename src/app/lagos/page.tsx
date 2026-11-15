@@ -47,10 +47,13 @@ export default function LagosPage() {
       />
       <PageHero
         eyebrow="Locations · Lagos"
+        crumbs={[{ label: "Locations", href: "/abuja" }, { label: "Lagos" }]}
+        photo="lagos-team-uniform"
+        alt="The Dust and Wipes Lagos team in branded uniform"
         title="Janitorial retainers and cleaner training in Lagos."
         lede="We take on monthly janitorial contracts for offices, clinics and commercial premises across Lagos — and where an organisation would rather keep its own cleaners, we train them instead."
       >
-        <Link href="/contact?service=janitorial" className="btn btn--on-dark">Request a proposal</Link>
+        <Link href="/contact?service=janitorial" className="btn btn--primary">Request a proposal</Link>
       </PageHero>
 
       <section className="section">

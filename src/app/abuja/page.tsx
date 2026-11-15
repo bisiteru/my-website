@@ -26,10 +26,13 @@ export default function AbujaPage() {
       />
       <PageHero
         eyebrow="Locations · Abuja"
-        title="Our home city, since 2017."
+        crumbs={[{ label: "Locations", href: "/abuja" }, { label: "Abuja" }]}
+        photo="team-uba-marketplace"
+        alt="The Dust and Wipes team at UBA Marketplace in Abuja"
+        title="Cleaning and pest control across Abuja, since 2017."
         lede="Dust & Wipes began in Abuja and still runs its operations here. Our teams cover every district in the FCT, for homes, offices and facilities alike."
       >
-        <Link href="/contact" className="btn btn--on-dark">Get a free quote</Link>
+        <Link href="/contact" className="btn btn--primary">Get a free quote</Link>
       </PageHero>
 
       <section className="section">

@@ -78,7 +78,7 @@ const blogContent: Record<string, ContentBlock[]> = {
     "Whether you manage a hospital, hotel, embassy, school, or office, ask any prospective cleaning provider these questions: Are your staff formally trained, and in what? Do you use colour-coded systems to prevent cross-contamination? Are your chemicals used strictly to their label and correctly diluted? Are staff trained on the equipment they operate? Can you show vetting and supervision processes? A professional provider will answer confidently; the rest will improvise.",
     { image: "/images/team-meeting.jpg", alt: "Dust and Wipes training session for cleaning professionals in Abuja", caption: "A Dust & Wipes training session — where cleaning skills, safety, and standards are built." },
     { heading: "Our commitment at Dust & Wipes" },
-    "At Dust and Wipes Limited, this philosophy is in our DNA — our company was founded on the belief that cleaners deserve proper training, fair treatment, and professional respect. Beyond delivering cleaning services, we offer professional training programmes for cleaners and pest control technicians, covering chemical safety, infection control, equipment operation, and workplace protocols. Our goal is simple: to raise the standard of cleanliness and safety in Abuja's workplaces — hospitals, hotels, embassies, offices, and beyond — one trained professional at a time.",
+    "At Dust and Wipes Limited this is the belief the company was founded on: that cleaners deserve proper training, fair treatment and professional respect. Beyond delivering cleaning services, we offer professional training programmes for cleaners and pest control technicians, covering chemical safety, infection control, equipment operation, and workplace protocols. Our goal is simple: to raise the standard of cleanliness and safety in Abuja's workplaces — hospitals, hotels, embassies, offices, and beyond — one trained professional at a time.",
     "If your organization would like to train its cleaning team, or you'd like your facility cleaned by personnel trained to these standards, contact us today. Cleanliness is too important to leave to chance.",
   ],
   "how-often-should-you-deep-clean": [
@@ -192,42 +192,47 @@ export default async function BlogPostPage({ params }: Props) {
         }}
       />
 
-      {/* Hero */}
-      <section className="hero-bg pt-32 pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10"
-          style={{ backgroundImage: `linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px)`, backgroundSize: "40px 40px" }}
-        />
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-white/70 hover:text-white text-sm mb-8 transition-colors"
-          >
-            <ArrowLeft size={16} />
-            Back to Blog
-          </Link>
-          <div className="flex items-center gap-3 mb-5 flex-wrap">
-            <span className="bg-white/10 border border-white/20 text-white/80 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1">
-              <Tag size={11} />
+      {/* Light article header — matches every other inner page (review 1.3) */}
+      <section className="border-b border-[var(--c-border)] bg-[var(--c-bg)] pt-28 pb-12 sm:pt-32 sm:pb-14">
+        <div className="container-dw max-w-3xl">
+          <nav aria-label="Breadcrumb">
+            <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.8125rem] text-[var(--c-ink-2)]">
+              <li><Link href="/" className="hover:text-[var(--c-green-700)]">Home</Link></li>
+              <li className="flex items-center gap-2">
+                <span aria-hidden="true" className="text-[var(--c-border)]">/</span>
+                <Link href="/blog" className="hover:text-[var(--c-green-700)]">Blog</Link>
+              </li>
+              <li className="flex items-center gap-2">
+                <span aria-hidden="true" className="text-[var(--c-border)]">/</span>
+                <span aria-current="page" className="font-medium text-[var(--c-green-800)]">{post.category}</span>
+              </li>
+            </ol>
+          </nav>
+          <div className="mt-7 flex flex-wrap items-center gap-3">
+            <span className="flex items-center gap-1 rounded-full bg-[var(--c-green-50)] px-3 py-1 text-xs font-semibold text-[var(--c-green-700)]">
+              <Tag size={11} aria-hidden="true" />
               {post.category}
             </span>
-            <span className="text-white/60 text-xs flex items-center gap-1">
-              <Clock size={11} />
+            <span className="flex items-center gap-1 text-xs text-[var(--c-ink-2)]">
+              <Clock size={11} aria-hidden="true" />
               {post.readTime}
             </span>
-            <span className="text-white/60 text-xs flex items-center gap-1">
-              <Calendar size={11} />
+            <span className="flex items-center gap-1 text-xs text-[var(--c-ink-2)]">
+              <Calendar size={11} aria-hidden="true" />
               {post.date}
             </span>
           </div>
-          <h1 className="h1-display !text-[clamp(1.875rem,1.4rem+1.9vw,2.75rem)] font-semibold text-white mb-5">
+          <h1 className="h1-display mt-4 !text-[clamp(1.875rem,1.4rem+1.9vw,2.75rem)]">
             {post.title}
           </h1>
-          <p className="text-white/70 text-lg">{post.excerpt}</p>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-            <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="white" />
-          </svg>
+          <p className="lede mt-5">{post.excerpt}</p>
+          <Link
+            href="/blog"
+            className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-[var(--c-green-700)] transition-colors hover:text-[var(--c-green-800)]"
+          >
+            <ArrowLeft size={16} aria-hidden="true" />
+            All articles
+          </Link>
         </div>
       </section>
 
@@ -247,7 +252,7 @@ export default async function BlogPostPage({ params }: Props) {
               />
             </div>
           ) : (
-            <div className="w-full h-64 bg-gradient-to-br from-[#0b8441]/10 to-[#dd4c2f]/10 rounded-3xl flex items-center justify-center text-8xl mb-10">
+            <div className="mb-10 flex h-64 w-full items-center justify-center rounded-2xl bg-[var(--c-green-50)]">
               {post.category === "Pest Control" ? "🐛" : post.category === "Office Cleaning" ? "🏢" : "🧹"}
             </div>
           )}
@@ -257,7 +262,7 @@ export default async function BlogPostPage({ params }: Props) {
             {content.map((block, i) => {
               if (typeof block === "string") {
                 return (
-                  <p key={i} className="text-gray-700 leading-relaxed mb-5 text-base">
+                  <p key={i} className="text-[var(--c-ink-2)] leading-relaxed mb-5 text-base">
                     {block}
                   </p>
                 );
@@ -266,7 +271,7 @@ export default async function BlogPostPage({ params }: Props) {
                 return (
                   <h2
                     key={i}
-                    className="text-2xl font-bold text-gray-900 mt-10 mb-4"
+                    className="text-2xl font-bold text-[var(--c-green-800)] mt-10 mb-4"
                     style={{ fontFamily: "var(--font-display), Georgia, serif" }}
                   >
                     {block.heading}
@@ -285,7 +290,7 @@ export default async function BlogPostPage({ params }: Props) {
                     />
                   </div>
                   {block.caption && (
-                    <figcaption className="text-center text-sm text-gray-400 mt-3 italic">
+                    <figcaption className="text-center text-sm text-[var(--c-ink-2)] mt-3 italic">
                       {block.caption}
                     </figcaption>
                   )}

@@ -66,10 +66,10 @@ export const SERVICE_AREAS = [
 export const SERVICES = [
   {
     id: "residential-cleaning",
-    title: "Residential Cleaning",
+    title: "Residential cleaning",
     shortDesc: "Thorough, eco-friendly cleaning for your home.",
     description:
-      "Thorough, eco-friendly cleaning for your home — kitchens, bathrooms, bedrooms and living areas done to perfection.",
+      "Thorough, eco-friendly cleaning for your home — kitchens, bathrooms, bedrooms and living areas, to a written room-by-room standard.",
     image: "/photos/luxury-living-room-floor-cleaning.jpg",
     href: "/services#residential-cleaning",
     features: [
@@ -82,7 +82,7 @@ export const SERVICES = [
   },
   {
     id: "commercial-cleaning",
-    title: "Commercial Cleaning",
+    title: "Commercial & office cleaning",
     shortDesc: "Expert office and commercial space cleaning.",
     description:
       "Expert office and commercial space cleaning that keeps your workplace professional, hygienic, and productive.",
@@ -98,7 +98,7 @@ export const SERVICES = [
   },
   {
     id: "deep-cleaning",
-    title: "Deep Cleaning",
+    title: "Deep cleaning",
     shortDesc: "Thorough room-by-room deep clean of your entire space.",
     description:
       "A comprehensive deep clean tackling every corner — inside appliances, grout lines, blinds, under furniture, and all the areas your regular clean misses.",
@@ -114,8 +114,8 @@ export const SERVICES = [
   },
   {
     id: "pest-control",
-    title: "Pest Control",
-    shortDesc: "Safe, effective fumigation and pest management.",
+    title: "Pest control",
+    shortDesc: "Licensed fumigation and pest management, under a written safety protocol.",
     description:
       "Effective fumigation and pest management, applied by licensed technicians under a documented safety protocol — because the products that work on pests are not harmless to people.",
     image: "/photos/pest-control-spraying-driveway.jpg",
@@ -130,7 +130,7 @@ export const SERVICES = [
   },
   {
     id: "post-construction",
-    title: "Post-Construction Cleaning",
+    title: "Post-construction cleaning",
     shortDesc: "Specialized deep-clean for newly built spaces.",
     description:
       "Specialized deep-clean for newly built or renovated properties — ready for immediate occupation.",
@@ -146,7 +146,7 @@ export const SERVICES = [
   },
   {
     id: "carpet-upholstery",
-    title: "Carpet & Upholstery Cleaning",
+    title: "Carpet & upholstery cleaning",
     shortDesc: "Professional deep cleaning for carpets & sofas.",
     description:
       "Professional deep cleaning for carpets, rugs, sofas and furniture using Rug Doctor and other professional carpet-washing machines.",
@@ -162,7 +162,7 @@ export const SERVICES = [
   },
   {
     id: "disinfection-sanitisation",
-    title: "Disinfection & Sanitisation",
+    title: "Disinfection & sanitisation",
     shortDesc: "Targeted disinfection for high-traffic and clinical spaces.",
     description:
       "Targeted disinfection and misting for workplaces, clinics and any space where surface hygiene has to be demonstrable, not assumed.",
@@ -178,7 +178,7 @@ export const SERVICES = [
   },
   {
     id: "window-glass-cleaning",
-    title: "Window & Glass Cleaning",
+    title: "Window & glass cleaning",
     shortDesc: "Streak-free glass, inside and out.",
     description:
       "Interior and exterior glass, frames, grilles and partitions cleaned to a streak-free finish, including work at height where access allows.",
@@ -194,7 +194,7 @@ export const SERVICES = [
   },
   {
     id: "event-exhibition-cleaning",
-    title: "Event & Exhibition Cleaning",
+    title: "Event & exhibition cleaning",
     shortDesc: "Before, during and after your event.",
     description:
       "Set-up, live and post-event cleaning for exhibitions, conferences and functions — crews that work around your programme, not through it.",
@@ -210,7 +210,7 @@ export const SERVICES = [
   },
   {
     id: "facility-management",
-    title: "Facility Management Support",
+    title: "Facility management support",
     shortDesc: "Ongoing day-to-day support for your site.",
     description:
       "Day-to-day cleaning and support staff embedded at your site, supervised to a documented standard, so your facilities team can plan around it.",
@@ -226,7 +226,7 @@ export const SERVICES = [
   },
   {
     id: "training-consultancy",
-    title: "Training & Consultancy",
+    title: "Training & consultancy",
     shortDesc: "Professional training in cleaning management.",
     description:
       "Professional training and consulting in cleaning management, hygiene standards, and facility operations.",
@@ -242,44 +242,36 @@ export const SERVICES = [
   },
 ];
 
+/**
+ * Three written promises with their proof beside them — SITE_REVIEW 1.3 / 2.3.
+ *
+ * This was six numbered cards whose first entry claimed "the latest
+ * professional equipment", "international cleaning standards" and that "every
+ * result exceeds expectations" — three claims with nothing behind any of them,
+ * all flagged in the review. Six vague promises persuade less than three that
+ * can be checked, so each one now carries the thing that makes it verifiable.
+ */
 export const WHY_US = [
   {
-    number: "01",
-    title: "Premium Cleaning Quality",
+    title: "The standard is in writing before we start",
     description:
-      "We use the latest professional equipment and eco-safe products, adhering to international cleaning standards — every result exceeds expectations.",
+      "Every contract begins with a written scope of work: each task, each area, each frequency. You are not relying on what a salesperson said, and neither are the cleaners.",
+    proof: "A scope of work, agreed and signed, on every contract",
   },
   {
-    number: "02",
-    title: "Vetted, Professional Staff",
+    title: "If it is not right, we come back",
     description:
-      "Every team member is thoroughly background-checked, trained and supervised to a written standard. Our pest control technicians work under our EHCON and PECAN licensing and our AMAC Operational Permit.",
+      "Tell us within 24 hours of the visit and we return and put it right at no extra cost. It is in our terms of service, not just on a page like this one.",
+    proof: "24-hour re-clean guarantee, stated in our terms",
   },
   {
-    number: "03",
-    title: "Affordable, Transparent Rates",
+    title: "The people are vetted, trained and supervised",
     description:
-      "Competitive pricing with no hidden fees. We work with your budget to deliver customised solutions — quality cleaning accessible to all.",
-  },
-  {
-    number: "04",
-    title: "Eco-Friendly Products",
-    description:
-      "Biodegradable cleaning products that are safe for children and pets — effective on dirt, gentle in occupied homes and offices.",
-  },
-  {
-    number: "05",
-    title: "Reliable & On-Time",
-    description:
-      "We show up when we say we will. With Dust & Wipes, you never have to chase your cleaner — reliability is at our core.",
-  },
-  {
-    number: "06",
-    title: "100% Satisfaction Guarantee",
-    description:
-      "Not satisfied? We'll come back and make it right at no extra cost. Your complete satisfaction is our commitment, every visit.",
+      "Every team member is background-checked, uniformed and trained to a written standard, with a named supervisor who answers for the work. Pest control runs under our EHCON and PECAN licensing and our AMAC Operational Permit.",
+    proof: "EHCON and PECAN licensed · AMAC Operational Permit",
   },
 ];
+
 
 export const TESTIMONIALS = [
   {
@@ -365,7 +357,7 @@ export const FAQS = [
   {
     question: "Do you offer a satisfaction guarantee?",
     answer:
-      "Yes! If you're not completely satisfied with our service, let us know within 24 hours and we will return to re-clean the affected areas at no extra charge. Your satisfaction is our top priority.",
+      "Yes. If you are not satisfied, tell us within 24 hours of the visit and we will return and re-clean the affected areas at no extra charge. It is written into our terms of service, not just stated on the website.",
   },
   {
     question: "Can I get a fixed monthly cleaning plan?",

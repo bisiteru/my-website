@@ -169,10 +169,13 @@ export default function ServicesPage() {
       />
       <PageHero
         eyebrow="What we offer"
-        title="Our Services"
+        crumbs={[{ label: "Services" }]}
+        photo="office-floor-scrubbing-machine"
+        alt="An operator running a floor-scrubbing machine through an open-plan office"
+        title="Cleaning, pest control and cleaner training in Abuja and Lagos."
         lede="Cleaning, pest control, facility support and cleaner training for homes, offices and facilities across Abuja and Lagos."
       >
-        <Link href="/contact" className="btn btn--on-dark">Get a free quote</Link>
+        <Link href="/contact" className="btn btn--primary">Get a free quote</Link>
       </PageHero>
 
       {/* Cleaning */}
@@ -180,7 +183,7 @@ export default function ServicesPage() {
         <div className="container-dw">
           <SectionHeader
             eyebrow="Cleaning services"
-            title="Professional cleaning solutions."
+            title="Eight cleaning services, one written standard."
             lede="From routine home cleans to post-construction handovers, delivered by trained teams working to a written standard."
           />
           <div className="mt-10 divide-y divide-[var(--c-border)]">
@@ -253,7 +256,7 @@ export default function ServicesPage() {
       {/* How it works */}
       <section className="section section--band">
         <div className="container-dw">
-          <SectionHeader eyebrow="How it works" title="Simple, hassle-free booking." center />
+          <SectionHeader eyebrow="How it works" title="Four steps, no surprises." center />
           <div className="mt-12">
             <ProcessSteps steps={PROCESS} />
           </div>

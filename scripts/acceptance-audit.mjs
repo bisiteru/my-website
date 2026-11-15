@@ -43,12 +43,18 @@ check("Content", "Satisfaction guarantee",
   /we come back|put it right|no extra charge/i.test(html["/services"]),
   "guarantee section on /services");
 
-check("Content", "Why choose us (6 points)",
-  (html["/"].match(/Premium Cleaning Quality|Vetted, Professional Staff|Affordable, Transparent Rates|Eco-Friendly Products|Reliable &amp; On-Time|100% Satisfaction Guarantee/g) || []).length >= 5,
-  "6 WHY_US points render on the homepage");
+// Six vague promises became three with their proof beside them (review 2.3).
+// The check now asserts the proof is there, which is the part that matters.
+check("Content", "Three promises, each with its proof",
+  /The standard is in writing before we start/.test(html["/"]) &&
+  /If it is not right, we come back/.test(html["/"]) &&
+  /The people are vetted, trained and supervised/.test(html["/"]) &&
+  /24-hour re-clean guarantee/.test(html["/"]) &&
+  /AMAC Operational Permit/.test(html["/"]),
+  "3 WHY_US promises render with their proof line on the homepage");
 
-check("Content", "Stats", /650/.test(html["/"]) && /2017/.test(html["/"]),
-  "650+ clients, 5.0 rating, 10 reviews, since 2017");
+check("Content", "Trust line renders server-side", /650/.test(html["/"]) && /2017/.test(html["/"]) && !/Five-star reviews/.test(html["/"]),
+  "650+ clients and 2017 present in the HTML; no review count published");
 
 const testimonialCount = (constants.match(/initials: "/g) || []).length;
 check("Content", "Testimonials", testimonialCount >= 4,
@@ -202,9 +208,16 @@ check("Photos", "No card-size-only photo used in a full-width section",
     `all ${serviceImgs.length} service photos are wide enough for their layout`);
 
 const imgs = [...all.matchAll(/<img[^>]*>/g)].map((m) => m[0]);
-const missingAlt = imgs.filter((t) => !/alt="[^"]+"/.test(t)).length;
-check("Photos", "Accurate alt text", missingAlt === 0,
-  `${imgs.length} images across all pages, ${missingAlt} missing alt text`);
+// An image with no alt attribute at all is a fault. alt="" is not: it is the
+// correct markup for a decorative image, and the service index deliberately
+// uses it because each of its photographs is already named by the link beside
+// it. Counting those as failures, as this check used to, would push someone
+// towards inventing alt text that a screen reader then reads out twice.
+const noAltAttr = imgs.filter((t) => !/\salt=/.test(t));
+const decorative = imgs.filter((t) => /\salt=""/.test(t));
+check("Photos", "Every image carries an alt attribute", noAltAttr.length === 0,
+  `${imgs.length} images across all pages, ${noAltAttr.length} with no alt attribute, ` +
+  `${decorative.length} intentionally decorative (alt="")`);
 
 /* ── §10.8 — SEO ───────────────────────────────────────────────────── */
 let canonicalOk = true, ogOk = true;

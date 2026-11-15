@@ -46,10 +46,13 @@ export default function FAQsPage() {
 
       <PageHero
         eyebrow="Got questions?"
+        crumbs={[{ label: "FAQs" }]}
+        photo="corridor-team-mopping"
+        alt="Two cleaners mopping an office corridor"
         title="Frequently asked questions."
         lede="Everything you need to know about our services. If your question isn't here, WhatsApp us — we reply in minutes."
       >
-        <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn--on-dark">
+        <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn--primary">
           <MessageCircle size={16} aria-hidden="true" /> Ask on WhatsApp
         </a>
       </PageHero>

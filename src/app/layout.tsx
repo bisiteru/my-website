@@ -4,7 +4,6 @@ import { Fraunces, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import Analytics from "@/components/layout/Analytics";
 
 // §4.3 — typeface pairing.
@@ -178,7 +177,6 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
-        <WhatsAppButton />
         <Analytics />
       </body>
     </html>

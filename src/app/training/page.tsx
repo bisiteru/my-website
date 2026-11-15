@@ -122,10 +122,13 @@ export default function TrainingPage() {
       />
       <PageHero
         eyebrow="Training · Abuja & Lagos"
+        crumbs={[{ label: "Training" }]}
+        photo="bisi-teru-leading-training"
+        alt="Bisi Teru standing before a seated group, leading a training session"
         title="Better cleaning starts with better equipped people."
         lede="Practical training for organisations that employ their own cleaners. We shape each session around your staff, premises, routines and hygiene priorities."
       >
-        <Link href="/contact?service=training" className="btn btn--on-dark">
+        <Link href="/contact?service=training" className="btn btn--primary">
           Discuss training
         </Link>
       </PageHero>
@@ -135,7 +138,7 @@ export default function TrainingPage() {
         <div className="container-dw grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div>
             <p className="eyebrow">Who it is for</p>
-            <h2 className="h2-section mt-4">Strengthen your in-house team.</h2>
+            <h2 className="h2-section mt-4">For the cleaners already on your payroll.</h2>
           </div>
           <div className="prose-measure">
             <p className="text-[var(--c-ink-2)]">

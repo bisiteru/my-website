@@ -21,8 +21,6 @@ export default function BlogList() {
   const featured = filtered[0];
   const rest = filtered.slice(1);
 
-  const categoryIcon = (cat: string) =>
-    cat === "Pest Control" ? "🐛" : cat === "Office Cleaning" ? "🏢" : cat === "Training & Safety" ? "🎓" : "🧹";
 
   return (
     <>
@@ -34,8 +32,8 @@ export default function BlogList() {
             onClick={() => setActiveCategory(cat)}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
               cat === activeCategory
-                ? "bg-[#0b8441] text-white shadow-md"
-                : "bg-gray-100 text-[var(--c-ink-2)] hover:bg-[var(--c-green-50)] hover:text-[var(--c-green-700)]"
+                ? "bg-[var(--c-green-700)] text-white shadow-sm"
+                : "bg-[var(--c-band)] text-[var(--c-ink-2)] hover:bg-[var(--c-green-50)] hover:text-[var(--c-green-700)]"
             }`}
           >
             {cat}
@@ -65,8 +63,10 @@ export default function BlogList() {
                 />
               </div>
             ) : (
-              <div className="h-64 lg:h-auto bg-gradient-to-br from-[#0b8441]/15 to-[#dd4c2f]/15 flex items-center justify-center text-8xl">
-                {categoryIcon(featured.category)}
+              <div className="flex h-64 items-center justify-center bg-[var(--c-green-50)] px-8 text-center lg:h-auto">
+                <span className="text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-[var(--c-green-700)]">
+                  {featured.category}
+                </span>
               </div>
             )}
             <div className="p-8 lg:p-10 flex flex-col justify-center">
@@ -115,8 +115,10 @@ export default function BlogList() {
                   />
                 </div>
               ) : (
-                <div className="h-44 bg-gradient-to-br from-[#0b8441]/10 to-[#dd4c2f]/10 flex items-center justify-center text-6xl">
-                  {categoryIcon(post.category)}
+                <div className="flex h-44 items-center justify-center bg-[var(--c-green-50)] px-6 text-center">
+                  <span className="text-[0.8125rem] font-semibold uppercase tracking-[0.16em] text-[var(--c-green-700)]">
+                    {post.category}
+                  </span>
                 </div>
               )}
               <div className="p-5">

@@ -51,10 +51,13 @@ export default function GalleryPage() {
       />
       <PageHero
         eyebrow="Gallery"
-        title="Our teams, at work."
+        crumbs={[{ label: "Gallery" }]}
+        photo="chandelier-cleaning"
+        alt="A cleaner carefully cleaning a hanging chandelier"
+        title="Our cleaning work in Abuja and Lagos."
         lede="Every photograph here is our own work in real client spaces across Abuja and Lagos. No stock photography."
       >
-        <Link href="/contact" className="btn btn--on-dark">Get a free quote</Link>
+        <Link href="/contact" className="btn btn--primary">Get a free quote</Link>
       </PageHero>
 
       <section className="section">
@@ -107,7 +110,7 @@ export default function GalleryPage() {
         ]}
       />
       <EnquirySection
-        title="Want results like these?"
+        title="Have a space like one of these?"
         lede="Every photograph above is our own team on a real job. Tell us about your space and we will tell you honestly what it would take."
         points={[
           "Send photographs of the space if you have them — it speeds up the quote considerably.",

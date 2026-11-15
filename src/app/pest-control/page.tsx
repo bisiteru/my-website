@@ -131,10 +131,13 @@ export default function PestControlPage() {
 
       <PageHero
         eyebrow="Pest control · Abuja &amp; Lagos"
+        crumbs={[{ label: "Services", href: "/services" }, { label: "Pest control" }]}
+        photo="pest-control-spraying-driveway"
+        alt="A technician in protective equipment applying a pest treatment along a driveway"
         title="Pest control, done to a written standard."
         lede="Licensed by EHCON and PECAN, with an Operational Permit from the Abuja Municipal Area Council. We inspect before we quote, we tell you what we are applying, and we put the re-entry instructions in writing."
       >
-        <Link href="/contact?service=pest-control" className="btn btn--on-dark">
+        <Link href="/contact?service=pest-control" className="btn btn--primary">
           Book an inspection
         </Link>
       </PageHero>

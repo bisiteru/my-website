@@ -157,20 +157,50 @@ export function LogoWall({
 }
 
 /** Process steps — §6.1 / §6.2 "How it works". */
+/**
+ * Process timeline — SITE_REVIEW 1.3.
+ *
+ * Was four numbered cards, the same "01-04 in a circle" pattern the review
+ * found on three separate pages. It is now a horizontal timeline carried by
+ * real photographs of each stage, so the steps are shown rather than counted.
+ * The rule runs behind the row on wide screens and down the left on narrow
+ * ones, which is what makes it read as a sequence without the numerals doing
+ * the work.
+ */
 export function ProcessSteps({
   steps,
 }: {
-  steps: { title: string; detail: string }[];
+  steps: { title: string; detail: string; photo?: PhotoSlug; alt?: string }[];
 }) {
   return (
-    <ol className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <ol className="relative grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+      {/* The connecting rule. Decorative, so it is hidden from assistive tech;
+          the ordered list already conveys the sequence. */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 right-0 top-[5.5rem] hidden h-px bg-[var(--c-border)] lg:block"
+      />
       {steps.map((s, i) => (
-        <li key={s.title} className="card p-6">
+        <li key={s.title} className="relative">
+          {s.photo ? (
+            <div className="photo-zoom overflow-hidden rounded-2xl">
+              <Image
+                src={photoSrc(s.photo)}
+                alt={s.alt ?? ""}
+                width={600}
+                height={450}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                className="h-40 w-full object-cover photo-grade"
+              />
+            </div>
+          ) : (
+            <div className="h-40 rounded-2xl bg-[var(--c-band)]" />
+          )}
           <span
-            className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--c-green-700)] text-[0.9375rem] font-bold text-white"
-            style={{ fontFamily: "var(--font-heading)" }}
+            className="relative z-10 mt-5 flex h-8 w-8 items-center justify-center rounded-full border border-[var(--c-border)] bg-[var(--c-surface)] text-[0.8125rem] font-semibold text-[var(--c-green-700)]"
+            aria-hidden="true"
           >
-            {String(i + 1).padStart(2, "0")}
+            {i + 1}
           </span>
           <h3 className="h3-card mt-4 !text-[1.0625rem]">{s.title}</h3>
           <p className="mt-2 text-[0.9375rem] text-[var(--c-ink-2)]">{s.detail}</p>

@@ -4,7 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Building2, Landmark, Stethoscope, Briefcase, Hotel, PartyPopper, Home as HomeIcon, HardHat, Scale } from "lucide-react";
 import { CollageHero } from "@/components/ui/Heroes";
-import { ServiceCard, SectorTile, ProcessSteps } from "@/components/ui/Cards";
+import { SectorTile, ProcessSteps } from "@/components/ui/Cards";
+import ServiceIndex from "@/components/ui/ServiceIndex";
 import TestimonialCarousel from "@/components/ui/TestimonialCarousel";
 import { EnquirySection, SectionHeader } from "@/components/ui/Blocks";
 import Reveal from "@/components/ui/Reveal";
@@ -33,11 +34,32 @@ const SECTORS = [
   { label: "Government & public institutions", Icon: Scale },
 ];
 
+/** Four steps, carried by photographs of each stage (review 1.3). */
 const PROCESS = [
-  { title: "Contact us", detail: "Website form, WhatsApp or a phone call — whichever suits you." },
-  { title: "Get a quote", detail: "We assess the work and come back within two hours." },
-  { title: "We show up", detail: "A uniformed, trained team, on time and fully equipped." },
-  { title: "Inspect the result", detail: "Not satisfied? We return and put it right, free." },
+  {
+    title: "Contact us",
+    detail: "Website form, WhatsApp or a phone call — whichever suits you.",
+    photo: "office-desk-equipment-wiping" as const,
+    alt: "A team member wiping down desk equipment in an office",
+  },
+  {
+    title: "Get a quote",
+    detail: "We assess the work and come back within two hours.",
+    photo: "dust-and-wipes-branded-van" as const,
+    alt: "The branded Dust and Wipes van arriving at a job",
+  },
+  {
+    title: "We show up",
+    detail: "A uniformed, trained team, on time and fully equipped.",
+    photo: "office-floor-scrubbing-team" as const,
+    alt: "A uniformed team scrubbing an office floor together",
+  },
+  {
+    title: "Inspect the result",
+    detail: "Not satisfied? We return and put it right, free.",
+    photo: "office-lobby-mopping" as const,
+    alt: "A finished office lobby after cleaning",
+  },
 ];
 
 const BADGE_FILES: Record<string, string> = {
@@ -125,20 +147,18 @@ export default function HomePage() {
             title="Everything a property needs, from one team."
             lede="Eleven services across cleaning, pest control, facility support and training."
           />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {featured.map((s, i) => (
-              <Reveal key={s.id} delay={i * 70}>
-                <ServiceCard
-                  title={s.title}
-                  benefit={s.shortDesc}
-                  href={s.href}
-                  photo={s.image.replace("/photos/", "").replace(".jpg", "") as Parameters<typeof photoSrc>[0]}
-                  alt={`${s.title} — a Dust and Wipes team member at work`}
-                />
-              </Reveal>
-            ))}
+          <div className="mt-12">
+            <ServiceIndex
+              services={featured.map((s) => ({
+                id: s.id,
+                title: s.title,
+                shortDesc: s.shortDesc,
+                href: s.href,
+                photo: s.image.replace("/photos/", "").replace(".jpg", "") as Parameters<typeof photoSrc>[0],
+              }))}
+            />
           </div>
-          <div className="mt-10 text-center">
+          <div className="mt-10">
             <Link href="/services" className="btn btn--secondary">View all 11 services</Link>
           </div>
         </div>
@@ -230,18 +250,20 @@ export default function HomePage() {
       {/* 8 — Why choose us (§6.1, six points from the old site) */}
       <section className="section section--band">
         <div className="container-dw">
-          <SectionHeader eyebrow="Why choose us" title="The Dust &amp; Wipes difference." />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {WHY_US.map((w, i) => (
-              <Reveal key={w.number} delay={i * 60}>
-                <div className="card h-full p-7">
-                  <span className="text-[var(--c-orange-700)] font-semibold" style={{ fontFamily: "var(--font-heading)" }}>
-                    {w.number}
-                  </span>
-                  <h3 className="h3-card mt-3 !text-[1.125rem]">{w.title}</h3>
-                  <p className="mt-2.5 text-[0.9375rem] text-[var(--c-ink-2)]">{w.description}</p>
-                </div>
-              </Reveal>
+          <SectionHeader
+            eyebrow="Why choose us"
+            title="What we put in writing."
+            lede="Three promises, each with the thing that makes it checkable sitting underneath it."
+          />
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {WHY_US.map((w) => (
+              <div key={w.title} className="card flex h-full flex-col p-8">
+                <h3 className="h3-card !text-[1.25rem]">{w.title}</h3>
+                <p className="mt-3 flex-1 text-[0.9375rem] text-[var(--c-ink-2)]">{w.description}</p>
+                <p className="mt-6 border-t border-[var(--c-border)] pt-4 text-[0.8125rem] font-semibold text-[var(--c-green-700)]">
+                  {w.proof}
+                </p>
+              </div>
             ))}
           </div>
         </div>

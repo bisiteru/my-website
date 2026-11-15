@@ -58,10 +58,13 @@ export default function ClientsPage() {
       />
       <PageHero
         eyebrow="Clients"
+        crumbs={[{ label: "Clients" }]}
+        photo="international-organisation-entrance-cleaning"
+        alt="A cleaner cleaning the entrance of an international organisation"
         title="Organisations we've served."
         lede="From diplomatic offices to clinics, new builds to premium homes — the standard does not change with the postcode."
       >
-        <Link href="/contact" className="btn btn--on-dark">Get a free quote</Link>
+        <Link href="/contact" className="btn btn--primary">Get a free quote</Link>
       </PageHero>
 
       {/* Sectors */}
@@ -87,7 +90,7 @@ export default function ClientsPage() {
           <div className="container-dw">
             <SectionHeader
               eyebrow="Trusted by"
-              title="Organisations we've served."
+              title="The organisations behind the logos."
               lede="Shown with each organisation's permission."
               center
             />
