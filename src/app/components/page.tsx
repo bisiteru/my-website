@@ -9,7 +9,7 @@ import BeforeAfterSlider from "@/components/ui/BeforeAfterSlider";
 import MasonryGallery from "@/components/ui/MasonryGallery";
 import Accordion from "@/components/ui/Accordion";
 import QuoteForm from "@/components/ui/QuoteForm";
-import { CtaBand, MapBlock, SectionHeader } from "@/components/ui/Blocks";
+import { EnquirySection, MapBlock, SectionHeader } from "@/components/ui/Blocks";
 import Reveal from "@/components/ui/Reveal";
 import { TESTIMONIALS, FAQS, COMPANY } from "@/lib/constants";
 
@@ -222,7 +222,15 @@ export default function ComponentsPage() {
         </Spec>
       </div>
 
-      <CtaBand />
+      <EnquirySection
+        title="Tell us what the space needs."
+        lede="The enquiry section that closes most pages. Heading, lede and points are passed per page so the ask matches what the reader has just read."
+        points={[
+          "One primary action; phone, WhatsApp and email sit beneath it as text links.",
+          "Three points that answer what you get, how fast, and what it costs to ask.",
+          "Light band with a top rule — it closes the page without shouting.",
+        ]}
+      />
 
       <div className="container-dw py-10">
         <Link href="/" className="text-[0.875rem] font-semibold text-[var(--c-green-700)] hover:underline">

@@ -5,7 +5,7 @@ import { PHOTOS, photoSrc, type PhotoSlug } from "@/lib/photos";
 import Link from "next/link";
 import RelatedLinks from "@/components/ui/RelatedLinks";
 import { CheckCircle, ArrowRight, Award, Users, Leaf, Clock, Quote } from "lucide-react";
-import CTABanner from "@/components/sections/CTABanner";
+import { EnquirySection } from "@/components/ui/Blocks";
 
 export const metadata: Metadata = pageSeo({
   path: "/about",
@@ -238,7 +238,7 @@ export default function AboutPage() {
                   ))}
                 </div>
                 <div className="mt-6 bg-white rounded-2xl p-5 shadow-sm">
-                  <div className="text-3xl font-semibold gradient-text">650+</div>
+                  <div className="text-3xl font-semibold text-[var(--c-green-700)]">650+</div>
                   <div className="text-sm text-[var(--c-ink-2)] mt-1">Satisfied clients across Abuja FCT</div>
                 </div>
               </div>
@@ -385,7 +385,16 @@ export default function AboutPage() {
           { href: "/training", label: "Cleaner training", detail: "Our founding commitment, in practice" },
         ]}
       />
-      <CTABanner />
+      <EnquirySection
+        eyebrow="Work with us"
+        title="Eight years of this, and still the same standard."
+        lede="If what you have read here sounds like the way you would want your premises looked after, tell us about the space and we will put a scope and a price to it."
+        points={[
+          "A written scope of work before anything is agreed.",
+          "A named supervisor, background-checked staff, and training to a written standard.",
+          "A reply within two working hours, and a site visit where the job warrants one.",
+        ]}
+      />
     </>
   );
 }

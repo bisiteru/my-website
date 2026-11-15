@@ -3,7 +3,7 @@ import { pageSeo, JsonLd, breadcrumbs } from "@/lib/seo";
 import Link from "next/link";
 import PageHero from "@/components/sections/PageHero";
 import RelatedLinks from "@/components/ui/RelatedLinks";
-import CTABanner from "@/components/sections/CTABanner";
+import { EnquirySection } from "@/components/ui/Blocks";
 import { SERVICE_AREAS, COMPANY } from "@/lib/constants";
 
 export const metadata: Metadata = pageSeo({
@@ -98,7 +98,16 @@ export default function AbujaPage() {
           { href: "/lagos", label: "Lagos", detail: "Our other city" },
         ]}
       />
-      <CTABanner />
+      <EnquirySection
+        eyebrow="Abuja enquiries"
+        title="Cleaning and pest control across the FCT."
+        lede="Tell us your district and what the space needs. We cover the whole of Abuja, and our office in Gwarinpa means a team is rarely far from you."
+        points={[
+          "All FCT districts — Gwarinpa, Maitama, Asokoro, Wuse, Jabi, Lugbe, Gudu and the rest.",
+          "A written quote within two working hours, itemised by task.",
+          "Pest work is carried out under our EHCON and PECAN licensing and our AMAC Operational Permit.",
+        ]}
+      />
     </>
   );
 }

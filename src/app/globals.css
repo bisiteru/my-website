@@ -39,8 +39,12 @@
   --c-border:  #e3e1da;
 
   /* ── Typography (§4.3) — fluid scale ── */
-  --font-heading: var(--font-montserrat), system-ui, sans-serif;
-  --font-body:    var(--font-inter), system-ui, sans-serif;
+  --font-heading: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-body:    var(--font-source-sans), system-ui, sans-serif;
+  /* --font-display was referenced by several components but never defined, so
+     those elements silently fell back to Georgia. It now resolves to the
+     heading face, which is what they were reaching for. */
+  --font-display: var(--font-heading);
 
   --fs-h1:   clamp(2.5rem, 1.6rem + 3.6vw, 4rem);      /* 40 → 64 */
   --fs-h2:   clamp(1.875rem, 1.4rem + 1.9vw, 2.75rem); /* 30 → 44 */
@@ -99,9 +103,15 @@ html {
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     font-weight: 600;
-    line-height: 1.12;
-    letter-spacing: -0.02em;
+    line-height: 1.15;
+    /* A serif needs far less negative tracking than Montserrat did; at -0.02em
+       Fraunces' serifs begin to collide. */
+    letter-spacing: -0.006em;
     color: var(--c-green-800);
+    /* opsz 32 suits the default (card/sub-heading) size. The display sizes
+       raise it below, which is what keeps large headlines from reading heavy:
+       Fraunces thins its strokes and tightens its serifs as opsz climbs. */
+    font-variation-settings: "SOFT" 20, "WONK" 0, "opsz" 32;
   }
 }
 
@@ -137,7 +147,10 @@ html {
 
   .eyebrow {
     display: inline-block;
-    font-family: var(--font-heading);
+    /* Body face, not the serif: letter-spaced uppercase at 13px is where a
+       display serif looks worst, and the sans keeps the eyebrow subordinate to
+       the heading beneath it. */
+    font-family: var(--font-body);
     font-size: var(--fs-xs);
     font-weight: 700;
     letter-spacing: 0.16em;
@@ -145,9 +158,27 @@ html {
     color: var(--c-green-600);
   }
 
-  .h1-display { font-size: var(--fs-h1); }
-  .h2-section { font-size: var(--fs-h2); }
-  .h3-card    { font-size: var(--fs-h3); }
+  /* Optical size tracks type size. Headlines on phones get opsz 60 rather than
+     the 144 maximum: the very top of the axis is drawn for poster sizes and
+     goes spindly at 40px. */
+  .h1-display {
+    font-size: var(--fs-h1);
+    font-weight: 600;
+    letter-spacing: -0.012em;
+    font-variation-settings: "SOFT" 20, "WONK" 0, "opsz" 60;
+  }
+  @media (min-width: 768px) {
+    .h1-display { font-variation-settings: "SOFT" 20, "WONK" 0, "opsz" 96; }
+  }
+  .h2-section {
+    font-size: var(--fs-h2);
+    letter-spacing: -0.008em;
+    font-variation-settings: "SOFT" 20, "WONK" 0, "opsz" 48;
+  }
+  .h3-card {
+    font-size: var(--fs-h3);
+    font-variation-settings: "SOFT" 20, "WONK" 0, "opsz" 28;
+  }
 
   .lede {
     font-size: clamp(1.125rem, 1rem + 0.5vw, 1.3125rem);
@@ -157,6 +188,22 @@ html {
   }
 
   .prose-measure { max-width: var(--measure); }
+
+  /* A secondary action that is reachable without competing with a button —
+     used for the phone/WhatsApp/email line under an enquiry section. */
+  .link-quiet {
+    color: var(--c-green-700);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+    text-decoration-color: color-mix(in srgb, var(--c-green-700) 35%, transparent);
+    transition: text-decoration-color var(--transition), color var(--transition);
+  }
+  .link-quiet:hover {
+    color: var(--c-green-800);
+    text-decoration-color: currentColor;
+  }
 
   /* ═══ Buttons (§4.7) ═══ */
 
@@ -168,7 +215,8 @@ html {
     min-height: 48px;              /* touch target */
     padding: 0.75rem 1.5rem;
     border-radius: var(--r-full);
-    font-family: var(--font-heading);
+    /* Buttons read as interface, not editorial — sans. */
+    font-family: var(--font-body);
     font-size: var(--fs-sm);
     font-weight: 600;
     text-decoration: none;
@@ -329,16 +377,6 @@ html {
   box-shadow: var(--shadow-card);
 }
 
-.gradient-text {
-  background: linear-gradient(135deg, var(--c-green-600) 0%, var(--c-orange-700) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.gradient-text-light {
-  background: linear-gradient(135deg, #86efac 0%, var(--c-orange-300) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+/* .gradient-text / .gradient-text-light removed — the clipped two-colour
+   gradients they applied to stat numbers and hero words read as decoration
+   rather than emphasis, and no markup references them any more. */

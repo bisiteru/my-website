@@ -6,7 +6,7 @@ import PageHero from "@/components/sections/PageHero";
 import RelatedLinks from "@/components/ui/RelatedLinks";
 import { SectorTile, CaseStudyCard, LogoWall } from "@/components/ui/Cards";
 import TestimonialCarousel from "@/components/ui/TestimonialCarousel";
-import { CtaBand, SectionHeader } from "@/components/ui/Blocks";
+import { EnquirySection, SectionHeader } from "@/components/ui/Blocks";
 import { TESTIMONIALS } from "@/lib/constants";
 import clientsData from "../../../content/clients.json";
 
@@ -152,7 +152,16 @@ export default function ClientsPage() {
           { href: "/lagos", label: "Lagos", detail: "Training-led relaunch" },
         ]}
       />
-      <CtaBand />
+      <EnquirySection
+        eyebrow="New enquiries"
+        title="Work with the team these organisations use."
+        lede="Embassies, clinics, asset managers and government complexes hold us to standards they audit. Tell us about your premises and we will put a scope and a price to it."
+        points={[
+          "A written scope of work before anything is agreed, so the standard is in writing.",
+          "A named supervisor on every contract, and a reporting routine you can check against.",
+          "Staff are background-checked, uniformed and trained to a written standard.",
+        ]}
+      />
     </>
   );
 }

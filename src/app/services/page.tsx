@@ -6,8 +6,7 @@ import { Check, MessageCircle } from "lucide-react";
 import PageHero from "@/components/sections/PageHero";
 import RelatedLinks from "@/components/ui/RelatedLinks";
 import { ProcessSteps } from "@/components/ui/Cards";
-import PestSafetyProtocol from "@/components/sections/PestSafetyProtocol";
-import { CtaBand, SectionHeader } from "@/components/ui/Blocks";
+import { EnquirySection, SectionHeader } from "@/components/ui/Blocks";
 import { SERVICES, COMPANY } from "@/lib/constants";
 import { JsonLd, breadcrumbs, absolute, SITE_URL } from "@/lib/seo";
 
@@ -161,7 +160,29 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <PestSafetyProtocol />
+      {/* The full protocol lives on /pest-control; repeating it here would make
+          two pages compete for the same query. This is the pointer to it. */}
+      <section className="section section--band">
+        <div className="container-dw grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
+          <div>
+            <p className="eyebrow">Pest control safety</p>
+            <h2 className="h2-section mt-4 max-w-[24ch]">
+              The chemicals that kill pests are not harmless to people.
+            </h2>
+            <p className="lede mt-5">
+              Our everyday cleaning products are biodegradable and safe around children and pets.
+              Pest control is different, and we will not advertise it otherwise. What makes it safe
+              is the procedure around the chemical — site assessment, application strictly to the
+              label, full PPE, and vacating and re-entry instructions in writing.
+            </p>
+          </div>
+          <div className="lg:justify-self-end">
+            <Link href="/pest-control" className="btn btn--primary">
+              Read the full safety protocol
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* Training */}
       <section id="training-consultancy" className="section scroll-mt-28">
@@ -234,7 +255,17 @@ export default function ServicesPage() {
           { href: "/faqs", label: "FAQs", detail: "Booking, safety and plans" },
         ]}
       />
-      <CtaBand />
+      <EnquirySection
+        eyebrow="Service enquiries"
+        title="Not sure which of these you need?"
+        lede="Describe the space and the problem rather than the service. We will tell you what fits, what it involves and what it costs — including when you do not need us."
+        action={{ href: "/contact", label: "Describe your space" }}
+        points={[
+          "Tell us the size of the premises and how it is used; we scope the job from that.",
+          "One-off, recurring or retainer — we will price the options side by side if it helps you compare.",
+          "Anything beyond a single visit gets a site assessment first, at no charge.",
+        ]}
+      />
     </>
   );
 }

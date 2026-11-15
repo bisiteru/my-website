@@ -5,7 +5,7 @@ import PageHero from "@/components/sections/PageHero";
 import RelatedLinks from "@/components/ui/RelatedLinks";
 import MasonryGallery, { type GalleryItem } from "@/components/ui/MasonryGallery";
 import BeforeAfterSlider from "@/components/ui/BeforeAfterSlider";
-import { CtaBand, SectionHeader } from "@/components/ui/Blocks";
+import { EnquirySection, SectionHeader } from "@/components/ui/Blocks";
 import galleryData from "../../../content/gallery.json";
 import { JsonLd, breadcrumbs, absolute } from "@/lib/seo";
 
@@ -89,9 +89,14 @@ export default function GalleryPage() {
           { href: "/blog", label: "Blog", detail: "Cleaning and pest control advice" },
         ]}
       />
-      <CtaBand
+      <EnquirySection
         title="Want results like these?"
-        lede="Tell us about your space and we'll come back within two hours with a clear quote."
+        lede="Every photograph above is our own team on a real job. Tell us about your space and we will tell you honestly what it would take."
+        points={[
+          "Send photographs of the space if you have them — it speeds up the quote considerably.",
+          "A written quote within two working hours, itemised by task.",
+          "Post-construction, deep cleans and one-off jobs are quoted after a site visit.",
+        ]}
       />
     </>
   );

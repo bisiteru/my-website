@@ -5,7 +5,7 @@ import { MessageCircle } from "lucide-react";
 import PageHero from "@/components/sections/PageHero";
 import RelatedLinks from "@/components/ui/RelatedLinks";
 import Accordion from "@/components/ui/Accordion";
-import { CtaBand } from "@/components/ui/Blocks";
+import { EnquirySection } from "@/components/ui/Blocks";
 import { FAQS, COMPANY } from "@/lib/constants";
 
 export const metadata: Metadata = pageSeo({
@@ -81,7 +81,17 @@ export default function FAQsPage() {
           { href: "/training", label: "Cleaner training", detail: "For organisations with in-house teams" },
         ]}
       />
-      <CtaBand />
+      <EnquirySection
+        eyebrow="Still unsure?"
+        title="Ask us the question that is not answered above."
+        lede="We would far rather you knew before you booked than found out afterwards. Ask about scope, chemicals, staffing, insurance or price — all of it is fair game."
+        action={{ href: "/contact", label: "Ask us a question" }}
+        points={[
+          "A straight answer, with no sales call attached to it.",
+          "A reply within two working hours on a working day.",
+          "If the honest answer is that we are not the right firm for the job, we will say so.",
+        ]}
+      />
     </>
   );
 }

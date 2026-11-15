@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Check } from "lucide-react";
 import PageHero from "@/components/sections/PageHero";
 import RelatedLinks from "@/components/ui/RelatedLinks";
-import CTABanner from "@/components/sections/CTABanner";
+import { EnquirySection } from "@/components/ui/Blocks";
 import { PHOTOS, photoSrc } from "@/lib/photos";
 
 export const metadata: Metadata = pageSeo({
@@ -30,6 +30,76 @@ const AUDIENCE = [
   "Hotels and hospitality",
   "Restaurants and food service",
   "Corporates with in-house cleaning teams",
+];
+
+/**
+ * Sample scope, deliverables and proposal path.
+ *
+ * Deliberately parameterised rather than fixed. The client has said they do not
+ * run a day-by-day outline and do not want one advertised, so nothing here
+ * states a number of days, a cohort size or a price — those are the things a
+ * proposal fills in after the site visit. What is stated is the shape of the
+ * engagement, which is true of every one of them.
+ *
+ * The deliverables list describes what a client receives. It follows ordinary
+ * professional practice for on-site training and is flagged for the client's
+ * confirmation in the same way the pest protocol was.
+ */
+const SCOPE = [
+  {
+    label: "Who attends",
+    detail:
+      "Cleaners, housekeeping staff and the supervisors who lead them. Numbers and groupings are set with you — supervisors often sit a separate session so they can be taught to inspect, not just to clean.",
+  },
+  {
+    label: "Where and when",
+    detail:
+      "At your premises, on your equipment, timed around your shift pattern so you do not lose cover while we are there.",
+  },
+  {
+    label: "Which modules",
+    detail:
+      "Any of the four, or all of them, weighted to your priorities. A clinic weights hygiene and cross-contamination; a hotel weights room standards and sequencing.",
+  },
+  {
+    label: "Built on your site",
+    detail:
+      "Your chemicals, your equipment, your floor plan and your risk areas — not generic examples. We walk the site before we write the session.",
+  },
+];
+
+const DELIVERABLES = [
+  "A written scope of work, agreed before anything is scheduled.",
+  "Delivery on site, in your building, on the products and equipment your team actually uses.",
+  "A written summary at the end: what was covered, who attended and what we observed while there.",
+  "Practical recommendations — what the team needs next, and anything about the premises or the products that is working against them.",
+];
+
+const PROPOSAL_PATH = [
+  {
+    n: "01",
+    title: "Tell us about your team",
+    detail:
+      "An email or a call is enough to start. How many cleaners, what kind of premises, and what is prompting the enquiry — a failed audit, a new contract, high turnover, or simply that nobody has ever been trained.",
+  },
+  {
+    n: "02",
+    title: "We walk the site",
+    detail:
+      "We visit, see the premises in use, look at the products and equipment on hand and talk to whoever supervises the team. There is no charge for this visit.",
+  },
+  {
+    n: "03",
+    title: "You get a written proposal",
+    detail:
+      "Scope, modules, who attends, where and when, deliverables and cost — in writing, itemised, with no obligation to proceed.",
+  },
+  {
+    n: "04",
+    title: "We schedule and deliver",
+    detail:
+      "Agreed around your shift pattern. You receive the written summary and recommendations afterwards.",
+  },
 ];
 
 const BENEFITS = [
@@ -104,6 +174,73 @@ export default function TrainingPage() {
         </div>
       </section>
 
+      {/* Sample scope + deliverables */}
+      <section className="section">
+        <div className="container-dw grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-20">
+          <div>
+            <p className="eyebrow">A typical scope</p>
+            <h2 className="h2-section mt-4 max-w-[20ch]">What an engagement actually looks like.</h2>
+            <p className="lede mt-5">
+              We do not sell a fixed course off a shelf. Every engagement is built on the same four
+              decisions, taken with you before anything is scheduled.
+            </p>
+            <dl className="mt-10 space-y-6">
+              {SCOPE.map((s) => (
+                <div key={s.label} className="border-l-2 border-[var(--c-green-600)] pl-5">
+                  <dt className="font-semibold text-[var(--c-green-800)]">{s.label}</dt>
+                  <dd className="mt-1.5 text-[0.9375rem] text-[var(--c-ink-2)]">{s.detail}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          <div className="lg:pt-[3.5rem]">
+            <div className="card p-8 sm:p-9">
+              <p className="eyebrow">What you receive</p>
+              <h3 className="h3-card mt-3">Deliverables</h3>
+              <ul className="mt-6 space-y-4">
+                {DELIVERABLES.map((d) => (
+                  <li key={d} className="flex items-start gap-3 text-[0.9375rem] text-[var(--c-ink-2)]">
+                    <Check size={17} className="mt-1 shrink-0 text-[var(--c-green-600)]" aria-hidden="true" />
+                    <span>{d}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-7 border-t border-[var(--c-border)] pt-5 text-[0.875rem] text-[var(--c-ink-2)]">
+                Training is delivered in both Abuja and Lagos. Where a team works across several
+                sites, we will say in the proposal whether one session covers them or each site
+                needs its own.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Proposal path */}
+      <section className="section section--band">
+        <div className="container-dw">
+          <p className="eyebrow">How to commission it</p>
+          <h2 className="h2-section mt-4 max-w-[22ch]">From first enquiry to a proposal you can sign off.</h2>
+          <p className="lede mt-5">
+            Four steps, and you are not committed to anything until the third one is in your hands.
+          </p>
+          <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {PROPOSAL_PATH.map((s) => (
+              <li key={s.n} className="card p-7">
+                <span
+                  className="font-semibold text-[var(--c-orange-700)]"
+                  style={{ fontFamily: "var(--font-heading)" }}
+                >
+                  {s.n}
+                </span>
+                <h3 className="h3-card mt-3 !text-[1.125rem]">{s.title}</h3>
+                <p className="mt-2.5 text-[0.9375rem] text-[var(--c-ink-2)]">{s.detail}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
       {/* Founder credibility — honest caption per §3.2 */}
       <section className="section">
         <div className="container-dw grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
@@ -146,12 +283,22 @@ export default function TrainingPage() {
       <RelatedLinks
         links={[
           { href: "/services", label: "All services", detail: "Cleaning and pest control alongside training" },
-          { href: "/lagos", label: "Training in Lagos", detail: "Our Lagos relaunch is training-led" },
+          { href: "/lagos", label: "Lagos", detail: "Janitorial retainers and team training" },
           { href: "/abuja", label: "Training in Abuja", detail: "Where we are based" },
           { href: "/clients", label: "Who we work with", detail: "Sectors and organisations served" },
         ]}
       />
-      <CTABanner />
+      <EnquirySection
+        eyebrow="Training enquiries"
+        title="Start with a conversation about your team."
+        lede="Tell us how many cleaners you employ, what kind of premises they work in and what prompted the enquiry. The site visit and the written proposal that follow cost you nothing."
+        action={{ href: "/contact?service=training", label: "Request a training proposal" }}
+        points={[
+          "A site visit before we write anything — we do not quote training blind.",
+          "A written proposal: scope, modules, attendees, deliverables and cost, itemised.",
+          "Delivered in Abuja and Lagos, timed around your shift pattern.",
+        ]}
+      />
     </>
   );
 }

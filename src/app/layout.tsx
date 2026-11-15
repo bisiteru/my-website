@@ -1,25 +1,37 @@
 import type { Metadata } from "next";
 import { SITE_URL, absolute } from "@/lib/seo";
-import { Montserrat, Inter } from "next/font/google";
+import { Fraunces, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import Analytics from "@/components/layout/Analytics";
 
-// §4.3 — Montserrat headings (600–700), Inter body (400/500).
+// §4.3 — typeface pairing.
+//
+// Fraunces (display serif) for headings, Source Sans 3 for body. This replaces
+// Montserrat + Inter: Inter is the default-looking grotesque this project set
+// out to avoid, and long Montserrat headlines sat heavy on narrow screens
+// because a geometric sans has no optical-size axis to thin out as it scales.
+//
+// Fraunces is variable on wght and opsz, so the same face can be set light and
+// airy at hero size and sturdier at card size — see the font-variation-settings
+// in globals.css. SOFT is held low (rounded terminals read friendly, not
+// childish) and WONK is left at 0, since its canted forms are too playful for a
+// facility-services brand.
+//
 // next/font self-hosts and subsets automatically, with font-display: swap.
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["600", "700"],
+  axes: ["SOFT", "WONK", "opsz"],
   display: "swap",
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const sourceSans = Source_Sans_3({
+  variable: "--font-source-sans",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -30,19 +42,19 @@ const isProduction = process.env.VERCEL_ENV === "production" || process.env.VERC
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Dust & Wipes Limited | Professional Cleaning & Pest Control in Abuja",
+    default: "Dust & Wipes Limited | Cleaning, Pest Control & Cleaner Training in Abuja & Lagos",
     template: "%s | Dust & Wipes Limited",
   },
   description:
-    "Abuja's most trusted cleaning and pest control company since 2017. Residential cleaning, office cleaning, deep cleaning, carpet cleaning, termite control & more. Serving all FCT districts. 650+ happy clients. Get a free quote.",
+    "Professional cleaning, pest control, facility support and cleaner training since 2017. Offices in Abuja and Lagos: residential and office cleaning, deep cleans, pest control under EHCON and PECAN licensing, and janitorial retainers. 650+ clients served.",
   openGraph: {
     type: "website",
     locale: "en_NG",
     url: SITE_URL,
     siteName: "Dust & Wipes Limited",
-    title: "Dust & Wipes Limited | Professional Cleaning & Pest Control in Abuja",
+    title: "Dust & Wipes Limited | Cleaning, Pest Control & Cleaner Training in Abuja & Lagos",
     description:
-      "Abuja's most trusted cleaning and pest control company since 2017. 650+ satisfied clients across all FCT districts.",
+      "Cleaning, pest control and cleaner training since 2017, from offices in Abuja and Lagos. 650+ clients served.",
     images: [
       {
         url: absolute("/images/og-image.jpg"),
@@ -54,8 +66,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dust & Wipes Limited | Abuja Cleaning & Pest Control",
-    description: "Professional cleaning and pest control services across Abuja FCT. 650+ happy clients since 2017.",
+    title: "Dust & Wipes Limited | Cleaning & Pest Control, Abuja & Lagos",
+    description: "Cleaning, pest control and cleaner training across Abuja FCT and Lagos. 650+ clients served since 2017.",
     images: [absolute("/images/og-image.jpg")],
   },
   robots: isProduction
@@ -80,7 +92,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${inter.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${sourceSans.variable}`}>
       <head>
         {/* Local Business structured data */}
         <script

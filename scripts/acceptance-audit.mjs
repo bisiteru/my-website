@@ -15,7 +15,7 @@ function check(section, item, pass, evidence) {
 }
 
 const PAGES = [
-  "/", "/services", "/training", "/abuja", "/lagos", "/clients", "/gallery",
+  "/", "/services", "/training", "/pest-control", "/abuja", "/lagos", "/clients", "/gallery",
   "/about", "/blog", "/faqs", "/contact", "/privacy", "/terms",
 ];
 
@@ -96,8 +96,25 @@ check("New pages", "Training", /Housekeeping practice/.test(html["/training"]) &
   "4 modules, audience, founder credibility, CTA");
 check("New pages", "Abuja", /Every district/.test(html["/abuja"]) && /Abuja track record/.test(html["/abuja"]),
   "districts, office card, track record");
-check("New pages", "Lagos", /relaunch/i.test(html["/lagos"]) && /Lekki/.test(html["/lagos"]),
-  "relaunch framing, areas, address, Skin 101 case study");
+check("New pages", "Lagos",
+  /[Jj]anitorial retainer/.test(html["/lagos"]) && /Lekki/.test(html["/lagos"]) &&
+  /Skin 101/.test(html["/lagos"]) && !/relaunch/i.test(html["/lagos"]),
+  "janitorial retainer framing, areas, address, Skin 101 case study, no 'relaunch' left");
+
+check("New pages", "Pest control page",
+  /EHCON/.test(html["/pest-control"]) && /Before we arrive/.test(html["/pest-control"]) &&
+  /When you return/.test(html["/pest-control"]) && /pest-safety-protocol/.test(html["/pest-control"]),
+  "process, preparation, re-entry, safety protocol and FAQs on a page of its own");
+
+check("New pages", "One action per enquiry section",
+  // The old CTA band closed every page with two buttons of equal weight. Each
+  // enquiry section must now offer exactly one .btn; phone/WhatsApp/email are
+  // text links beneath it.
+  ["/", "/services", "/lagos", "/training", "/pest-control", "/faqs"].every((p) => {
+    const sec = html[p].split("Or reach us directly")[0].split('class="eyebrow"').pop() || "";
+    return (sec.match(/class="btn /g) || []).length <= 1;
+  }),
+  "no page ends with two competing calls to action");
 
 const clientsJson = JSON.parse(readFileSync("content/clients.json", "utf8"));
 const consented = clientsJson.clients.filter((c) => c.consent);

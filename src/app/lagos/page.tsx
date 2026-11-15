@@ -2,27 +2,36 @@ import type { Metadata } from "next";
 import { pageSeo, JsonLd, breadcrumbs } from "@/lib/seo";
 import Link from "next/link";
 import Image from "next/image";
+import { Check } from "lucide-react";
 import PageHero from "@/components/sections/PageHero";
 import RelatedLinks from "@/components/ui/RelatedLinks";
-import { CtaBand, SectionHeader } from "@/components/ui/Blocks";
+import { EnquirySection, SectionHeader } from "@/components/ui/Blocks";
 import { CaseStudyCard } from "@/components/ui/Cards";
 import { PHOTOS, photoSrc } from "@/lib/photos";
 import { COMPANY } from "@/lib/constants";
 
 export const metadata: Metadata = pageSeo({
   path: "/lagos",
-  title: "Cleaning & Cleaner Training in Lagos",
+  title: "Janitorial Retainers & Cleaner Training in Lagos",
   description:
-    "Dust & Wipes in Lagos — a training-led relaunch for organisations with in-house cleaning teams, plus commercial cleaning. Lagos address; site assessments by appointment.",
+    "Dust & Wipes in Lagos — monthly janitorial retainership contracts for offices, clinics and commercial premises, plus training for in-house cleaning teams. Lagos address; site assessments by appointment.",
   image: "/photos/lagos-team-uniform.jpg",
   imageAlt: "The Dust and Wipes Lagos team in branded uniform",
 });
 
 const AUDIENCE = [
-  { title: "Embassies & international organisations", detail: "Where cleaning staff are directly employed and standards are audited." },
-  { title: "Hotels & hospitality", detail: "Housekeeping teams who need a consistent, inspectable routine." },
-  { title: "Clinics & healthcare", detail: "Clinical and general zones that must never share equipment." },
-  { title: "Corporates with in-house cleaners", detail: "Teams already on payroll who have never been formally trained." },
+  { title: "Offices & corporate premises", detail: "Daily or scheduled janitorial cover on a fixed monthly scope, with a named supervisor." },
+  { title: "Clinics & healthcare", detail: "Clinical and general zones kept separate, on equipment that never crosses between them." },
+  { title: "Hotels & hospitality", detail: "Housekeeping support, or training for the housekeeping team you already employ." },
+  { title: "Embassies & international organisations", detail: "Where standards are audited and the cleaning has to survive the audit." },
+];
+
+const RETAINER = [
+  "A written scope of work — every task, every area, every frequency, agreed before we start.",
+  "A fixed monthly figure, so the cost is predictable and budgetable.",
+  "Our own staff, uniformed, background-checked and trained to a written standard.",
+  "Our own equipment and consumables, included unless you ask us to use yours.",
+  "A named supervisor who answers for the standard, and a reporting routine you can check against.",
 ];
 
 export default function LagosPage() {
@@ -38,10 +47,10 @@ export default function LagosPage() {
       />
       <PageHero
         eyebrow="Locations · Lagos"
-        title="A training-led relaunch in Lagos."
-        lede="We are rebuilding our Lagos presence around what we do best: equipping in-house cleaning teams to work to a professional standard."
+        title="Janitorial retainers and cleaner training in Lagos."
+        lede="We take on monthly janitorial contracts for offices, clinics and commercial premises across Lagos — and where an organisation would rather keep its own cleaners, we train them instead."
       >
-        <Link href="/contact?service=training" className="btn btn--on-dark">Discuss training</Link>
+        <Link href="/contact?service=janitorial" className="btn btn--on-dark">Request a proposal</Link>
       </PageHero>
 
       <section className="section">
@@ -49,19 +58,25 @@ export default function LagosPage() {
           <div>
             <SectionHeader
               eyebrow="How we work in Lagos"
-              title="Training first, cleaning alongside."
+              title="Two ways in, depending on who cleans."
             />
             <div className="mt-5 space-y-4 text-[var(--c-ink-2)] prose-measure">
               <p>
-                Many Lagos organisations already employ their own cleaners. Rather than replace
-                them, we train them — housekeeping routines, hygiene and safety, correct use of
-                chemicals and equipment, and the supervision that holds a standard in place.
+                Most Lagos enquiries come down to one question: do you want to employ the
+                cleaners, or would you rather not? If you would rather not, we take the premises on
+                a monthly janitorial retainer — a fixed scope of work, a fixed monthly figure, our
+                own staff and equipment, and a named supervisor who answers for the standard. This
+                is the work we are actively pursuing in Lagos.
               </p>
               <p>
-                We also take on commercial cleaning for organisations that would rather outsource
-                it. Our Lagos track record to date is the work we delivered for Skin 101 Clinics
-                Limited across 2024 and 2025; we are now relaunching here and taking on new
-                clients.
+                If the cleaners are already on your payroll, replacing them is usually the wrong
+                answer. We train them instead — housekeeping routines, hygiene and safety, correct
+                use of chemicals and equipment, and the supervision that holds a standard in place.
+              </p>
+              <p>
+                Our Lagos track record to date is the work we delivered for Skin 101 Clinics
+                Limited across 2024 and 2025. We hold a Lagos address on Admiralty Road in Lekki
+                Phase 1 and are taking on new contracts across the state.
               </p>
             </div>
 
@@ -139,6 +154,35 @@ export default function LagosPage() {
         </div>
       </section>
 
+      {/* What a janitorial retainer covers — the Lagos push */}
+      <section className="section">
+        <div className="container-dw grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
+          <div>
+            <p className="eyebrow">Janitorial retainers</p>
+            <h2 className="h2-section mt-4 max-w-[18ch]">What a monthly contract covers.</h2>
+            <p className="lede mt-5">
+              A retainer is not an open-ended arrangement with a cleaner who turns up when they
+              can. It is a written scope at a fixed monthly cost, and somebody whose job it is to
+              answer when the standard slips.
+            </p>
+            <Link href="/contact?service=janitorial" className="btn btn--primary mt-8">
+              Request a Lagos proposal
+            </Link>
+          </div>
+          <ul className="space-y-3 lg:pt-[2.4rem]">
+            {RETAINER.map((r) => (
+              <li
+                key={r}
+                className="flex items-start gap-3 rounded-xl border border-[var(--c-border)] bg-[var(--c-surface)] px-5 py-4 text-[0.9375rem] text-[var(--c-ink-2)]"
+              >
+                <Check size={17} className="mt-0.5 shrink-0 text-[var(--c-green-600)]" aria-hidden="true" />
+                <span>{r}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       {/* Lagos track record — named, with consent on file */}
       <section className="section section--band">
         <div className="container-dw">
@@ -164,17 +208,22 @@ export default function LagosPage() {
 
       <RelatedLinks
         links={[
-          { href: "/training", label: "Cleaner training", detail: "The heart of our Lagos offer" },
+          { href: "/training", label: "Cleaner training", detail: "For teams already on your payroll" },
           { href: "/services", label: "All services", detail: "Eleven services across cleaning and pest control" },
           { href: "/clients", label: "Who we work with", detail: "Sectors and organisations served" },
           { href: "/abuja", label: "Abuja", detail: "Our home city since 2017" },
         ]}
       />
-      <CtaBand
-        title="Starting with your team in Lagos."
-        lede="Tell us about your premises and your cleaning staff, and we'll propose a programme."
-        primary={{ href: "/contact?service=training", label: "Discuss training" }}
-        secondary={{ href: "/contact", label: "Get a cleaning quote" }}
+      <EnquirySection
+        eyebrow="Lagos enquiries"
+        title="Janitorial retainers across Lagos."
+        lede="Send us the premises, the hours it needs covered and whether you have cleaners of your own. We will come back with a scope, a monthly figure and the name of the supervisor who would run it."
+        action={{ href: "/contact?service=janitorial", label: "Request a Lagos proposal" }}
+        points={[
+          "Monthly janitorial retainer — fixed scope, fixed cost, a named supervisor and a reporting routine.",
+          "Site assessment at your Lagos premises by appointment, before any figure is quoted.",
+          "If you would rather keep your own cleaners, we train them to the same standard instead.",
+        ]}
       />
     </>
   );

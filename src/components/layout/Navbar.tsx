@@ -35,7 +35,7 @@ const SERVICE_COLUMNS: { heading: string; items: MegaItem[] }[] = [
     heading: "Specialist",
     items: [
       { label: "Carpet & upholstery", href: "/services#carpet-upholstery", blurb: "Hot-water extraction" },
-      { label: "Pest control & fumigation", href: "/services#pest-control", blurb: "Licensed technicians" },
+      { label: "Pest control & fumigation", href: "/pest-control", blurb: "EHCON & PECAN licensed" },
       
     ],
   },
@@ -50,6 +50,7 @@ const SERVICE_COLUMNS: { heading: string; items: MegaItem[] }[] = [
 const NAV: { label: string; href: string; mega?: boolean; children?: { label: string; href: string }[] }[] = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services", mega: true },
+  { label: "Pest control", href: "/pest-control" },
   { label: "Training", href: "/training" },
   {
     label: "Locations",

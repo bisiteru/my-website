@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, Clock, Tag, Calendar } from "lucide-react";
 import { BLOG_POSTS, COMPANY } from "@/lib/constants";
 import { pageSeo, absolute, SITE_URL } from "@/lib/seo";
-import CTABanner from "@/components/sections/CTABanner";
+import { EnquirySection } from "@/components/ui/Blocks";
 
 /** §6.11 — services related to each blog category. */
 const RELATED: Record<string, { label: string; href: string }[]> = {
@@ -219,7 +219,7 @@ export default async function BlogPostPage({ params }: Props) {
               {post.date}
             </span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-black text-white mb-5 leading-tight">
+          <h1 className="h1-display !text-[clamp(1.875rem,1.4rem+1.9vw,2.75rem)] font-semibold text-white mb-5">
             {post.title}
           </h1>
           <p className="text-white/70 text-lg">{post.excerpt}</p>
@@ -338,7 +338,16 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       </section>
 
-      <CTABanner />
+      <EnquirySection
+        eyebrow="From reading to doing"
+        title="Would you rather we handled it?"
+        lede="Everything above is written so you can do it yourself. If you would rather not, that is what we are for — in Abuja and Lagos, for homes and for organisations."
+        points={[
+          "A written quote itemised by task, within two working hours.",
+          "One-off, recurring or a monthly retainer — whichever suits the space.",
+          "No charge and no obligation for the quote or the site assessment.",
+        ]}
+      />
     </>
   );
 }

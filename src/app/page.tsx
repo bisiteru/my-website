@@ -7,7 +7,7 @@ import { CollageHero } from "@/components/ui/Heroes";
 import { ServiceCard, SectorTile, ProcessSteps } from "@/components/ui/Cards";
 import { StatRow } from "@/components/ui/StatCounter";
 import TestimonialCarousel from "@/components/ui/TestimonialCarousel";
-import { CtaBand, SectionHeader } from "@/components/ui/Blocks";
+import { EnquirySection, SectionHeader } from "@/components/ui/Blocks";
 import Reveal from "@/components/ui/Reveal";
 import { photoSrc, PHOTOS } from "@/lib/photos";
 import { SERVICES, TESTIMONIALS, WHY_US, AFFILIATIONS, COMPANY } from "@/lib/constants";
@@ -89,7 +89,7 @@ export default function HomePage() {
               { value: 650, suffix: "+", label: "Clients served" },
               { value: 5, suffix: "★", decimals: 1, label: "Google rating" },
               { value: 10, suffix: "", label: "Five-star reviews" },
-              { value: 2017, suffix: "", label: "Serving Abuja since", animate: false },
+              { value: 2017, suffix: "", label: "Serving clients since", animate: false },
             ]}
           />
           <ul className="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -177,8 +177,12 @@ export default function HomePage() {
             <SectionHeader
               eyebrow="Training"
               title="Better cleaning starts with better equipped people."
-              lede="We train in-house cleaning teams for embassies, international organisations, hotels and corporates — housekeeping, hygiene and safety, chemicals and PPE, supervision and quality."
+              lede="We train in-house cleaning teams for embassies, international organisations, hotels and corporates — housekeeping, hygiene and safety, chemicals and PPE, supervision and quality. Delivered on site in both Abuja and Lagos, built around your premises and your products."
             />
+            <p className="mt-5 text-[0.9375rem] text-[var(--c-ink-2)] prose-measure">
+              We walk the site before we write the session, and the written proposal that follows
+              costs you nothing.
+            </p>
             <Link href="/training" className="btn btn--primary mt-8">Explore training</Link>
           </div>
         </div>
@@ -193,7 +197,8 @@ export default function HomePage() {
               <h3 className="h3-card">Abuja</h3>
               <p className="mt-3 text-[var(--c-ink-2)]">
                 Our home city since 2017, with teams covering every district in the FCT — and an
-                office in Gwarinpa you can visit.
+                office in Gwarinpa you can visit. Pest control here runs under our EHCON and PECAN
+                licensing and our AMAC Operational Permit.
               </p>
               <Link href="/abuja" className="mt-6 inline-flex items-center gap-1.5 font-semibold text-[var(--c-green-700)] hover:gap-2.5 transition-all">
                 Abuja services <ArrowRight size={16} aria-hidden="true" />
@@ -202,8 +207,9 @@ export default function HomePage() {
             <div className="card p-8">
               <h3 className="h3-card">Lagos</h3>
               <p className="mt-3 text-[var(--c-ink-2)]">
-                A training-led start, working with organisations that employ their own cleaners.
-                Lagos address · site assessments by appointment.
+                An established Lagos base on Admiralty Road, Lekki Phase 1, taking on monthly
+                janitorial retainers across the state — and training for organisations that employ
+                their own cleaners. Site assessments by appointment.
               </p>
               <Link href="/lagos" className="mt-6 inline-flex items-center gap-1.5 font-semibold text-[var(--c-green-700)] hover:gap-2.5 transition-all">
                 Lagos services <ArrowRight size={16} aria-hidden="true" />
@@ -286,7 +292,15 @@ export default function HomePage() {
       </section>
 
       {/* 11 — Final CTA */}
-      <CtaBand />
+      <EnquirySection
+        title="Tell us what the space needs."
+        lede="Cleaning, pest control, facility support, or training for the cleaners already on your payroll — send us the space and your timing and we will price it."
+        points={[
+          "A written quote itemised by task, so you can see what you are paying for.",
+          "A reply within two working hours, and a site visit where the job warrants one.",
+          "No charge and no obligation for the quote or the assessment.",
+        ]}
+      />
     </>
   );
 }

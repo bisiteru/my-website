@@ -110,7 +110,7 @@ export const SERVICES = [
     description:
       "Effective fumigation and pest management, applied by licensed technicians under a documented safety protocol — because the products that work on pests are not harmless to people.",
     image: "/photos/pest-control-spraying-driveway.jpg",
-    href: "/services#pest-control",
+    href: "/pest-control",
     features: [
       "Multi-pest spray treatment",
       "Strict safety protocol on every job",
@@ -392,6 +392,59 @@ export const FAQS = [
     question: "Is pest control safe around children and pets?",
     answer:
       "Pest control products are hazardous by design, so the honest answer is that safety comes from how they are handled, not from the chemicals being harmless. We are licensed by EHCON and PECAN and hold an AMAC Operational Permit. Every job begins with a site assessment, products are applied strictly to their label, our technicians wear full PPE, and we tell you before we start who must leave, what to cover or remove, and exactly when it is safe to return.",
+  },
+];
+
+/**
+ * Pest control FAQs — the questions that come up on the /pest-control page
+ * specifically, kept separate from the general FAQS list so the page can carry
+ * its own FAQPage structured data without diluting it with cleaning questions.
+ *
+ * Every answer here is held to §3.2: the chemicals are described as hazardous,
+ * which they are, and the credentials named are the real ones (EHCON, PECAN,
+ * the AMAC Operational Permit). Nothing promises a timescale or a guarantee
+ * that has not been confirmed by the company.
+ */
+export const PEST_FAQS = [
+  {
+    question: "Is pest control safe around children and pets?",
+    answer:
+      "Pest control products are hazardous by design, so the honest answer is that safety comes from how they are handled, not from the chemicals being harmless. We are licensed by EHCON and PECAN and hold an AMAC Operational Permit. Every job begins with a site assessment, products are applied strictly to their label, our technicians wear full PPE, and we tell you before we start who must leave, what to cover or remove, and exactly when it is safe to return. Our everyday cleaning products are a separate matter — those are biodegradable and safe around children and pets.",
+  },
+  {
+    question: "How long do we have to stay out of the building?",
+    answer:
+      "It depends on the product used, the treatment method and how well the space ventilates, so we will not quote you a single figure before we have seen the premises. What we will do is tell you the re-entry time in writing before we start, so you can plan around it rather than find out on the day. If the time we give you does not work for your household or your operation, say so at the assessment — there is often another product or another method that does.",
+  },
+  {
+    question: "What do I need to do before you arrive?",
+    answer:
+      "We give every client a written preparation list after the assessment, tailored to the premises and the treatment. It typically covers putting away food, utensils and pet bowls, covering or relocating fish tanks and turning off their air pumps, clearing access to skirting boards and cupboards, and arranging for people and pets to be out of the building for the stated period. If anything on the list is impractical, tell us before the day rather than on it.",
+  },
+  {
+    question: "Do you issue a certificate after treatment?",
+    answer:
+      "Our Operational Permit from the Abuja Municipal Area Council allows us to issue AMAC certification for pest services within the municipality, which is what most landlords, facility managers and regulators ask to see. Tell us at the enquiry stage if you need one, so the paperwork is prepared alongside the job.",
+  },
+  {
+    question: "Which pests do you treat?",
+    answer:
+      "The common structural and household pests in Abuja and Lagos — termites, cockroaches, rodents, bedbugs, mosquitoes, ants and flies. The treatment differs sharply between them, which is why we inspect before we quote: a termite problem and a cockroach problem look nothing alike in cost, method or disruption.",
+  },
+  {
+    question: "Will one treatment solve the problem?",
+    answer:
+      "Sometimes, and sometimes not — it depends on the pest, the severity and what is drawing them in. A heavy infestation, or a species with an egg stage that survives the first application, needs a follow-up. We will tell you at the assessment whether we expect one treatment or a programme, rather than quoting for one and discovering the rest later.",
+  },
+  {
+    question: "What if pests come back?",
+    answer:
+      "We return for a follow-up inspection to confirm the treatment worked. If the problem persists within the period we agreed with you, we come back. Where the cause is structural — a drainage fault, a gap in the building fabric, a refuse arrangement next door — we will tell you plainly, because no amount of re-spraying fixes that.",
+  },
+  {
+    question: "Do you work in occupied offices and clinics?",
+    answer:
+      "Yes, and it is a large part of what we do. The constraint is usually scheduling rather than chemistry: treatment is timed for evenings, weekends or shutdown periods so the re-entry window falls outside working hours. Clinics and food premises get particular attention to what must be covered, removed or re-sanitised afterwards.",
   },
 ];
 
