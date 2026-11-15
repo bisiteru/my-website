@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Check, MessageCircle } from "lucide-react";
 import PageHero from "@/components/sections/PageHero";
+import LoopVideo from "@/components/ui/LoopVideo";
 import RelatedLinks from "@/components/ui/RelatedLinks";
 import { ProcessSteps } from "@/components/ui/Cards";
 import { EnquirySection, SectionHeader } from "@/components/ui/Blocks";
@@ -38,6 +39,37 @@ const PLANS = [
   { name: "Monthly", detail: "A reset for spaces that are maintained in between." },
 ];
 
+/**
+ * Review 3.7 — service-card alt text was a template, "<Service> — a Dust and
+ * Wipes team member at work", which was wrong on at least one card (the
+ * training photo shows the founder presenting, not a cleaner working). These
+ * describe what each photograph actually shows.
+ */
+const PHOTO_ALTS: Record<string, string> = {
+  "residential-cleaning": "A cleaner mopping the floor of a furnished living room",
+  "commercial-cleaning": "An operator running a floor-scrubbing machine across an open-plan office",
+  "deep-cleaning": "A cleaner working on a detailed deep clean with a cloth and spray",
+  "post-construction": "An operator machine-scrubbing a granite floor in a newly built interior",
+  "carpet-upholstery": "A carpet being washed with a professional extraction machine",
+  "pest-control": "A technician in protective equipment applying a pest treatment along a driveway",
+  "window-glass-cleaning": "A cleaner drawing a squeegee down a large pane of glass",
+  "facility-management": "A uniformed team member on a scheduled facility round",
+  "training-consultancy": "Bisi Teru standing before a seated group, leading a training session",
+};
+
+function serviceAlt(service: (typeof SERVICES)[number]) {
+  return PHOTO_ALTS[service.id] ?? `${service.title} at a Dust and Wipes job`;
+}
+
+/** Silent loops that accompany a service, keyed by service id. */
+const VIDEOS: Record<string, { src: string; poster: string; label: string }> = {
+  "window-glass-cleaning": {
+    src: "/videos/glass-polishing-loop.mp4",
+    poster: "/videos/glass-polishing-poster.jpg",
+    label: "A Dust and Wipes cleaner polishing a pane of glass to a streak-free finish",
+  },
+};
+
 function ServiceSection({
   service,
   flip,
@@ -54,15 +86,30 @@ function ServiceSection({
         <span key={alias} id={alias} className="block scroll-mt-28" aria-hidden="true" />
       ))}
       <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-        <div className={`photo-zoom overflow-hidden rounded-2xl ${flip ? "lg:order-2" : ""}`}>
-          <Image
-            src={service.image}
-            alt={`${service.title} — a Dust and Wipes team member at work`}
-            width={900}
-            height={675}
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            className="h-64 w-full object-cover photo-grade sm:h-80"
-          />
+        <div className={flip ? "lg:order-2" : ""}>
+          {/* Where footage of the work exists it runs beside the photograph at
+              the same height, so the row keeps one silhouette. Only the glass
+              section has a clip today. */}
+          <div className={VIDEOS[service.id] ? "grid grid-cols-[1.5fr_1fr] gap-3" : ""}>
+            <div className="photo-zoom overflow-hidden rounded-2xl">
+              <Image
+                src={service.image}
+                alt={serviceAlt(service)}
+                width={900}
+                height={675}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="h-64 w-full object-cover photo-grade sm:h-80"
+              />
+            </div>
+            {VIDEOS[service.id] && (
+              <LoopVideo
+                {...VIDEOS[service.id]}
+                width={352}
+                height={640}
+                className="!aspect-auto h-64 sm:h-80"
+              />
+            )}
+          </div>
         </div>
         <div>
           <h3 className="h3-card !text-[1.5rem]">{service.title}</h3>

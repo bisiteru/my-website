@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { pageSeo } from "@/lib/seo";
 import Link from "next/link";
 import PageHero from "@/components/sections/PageHero";
+import LoopVideo from "@/components/ui/LoopVideo";
 import RelatedLinks from "@/components/ui/RelatedLinks";
 import MasonryGallery, { type GalleryItem } from "@/components/ui/MasonryGallery";
 import { EnquirySection } from "@/components/ui/Blocks";
@@ -59,6 +60,34 @@ export default function GalleryPage() {
       <section className="section">
         <div className="container-dw">
           <MasonryGallery items={items} categories={categories} />
+        </div>
+      </section>
+
+      {/* Footage — the one clip we hold, placed where the review asked for it.
+          Portrait, so it sits as a card beside the text rather than running
+          full width. */}
+      <section className="section section--band">
+        <div className="container-dw grid items-center gap-10 sm:grid-cols-[1fr_1.4fr] sm:gap-14">
+          <LoopVideo
+            src="/videos/glass-polishing-loop.mp4"
+            poster="/videos/glass-polishing-poster.jpg"
+            width={352}
+            height={640}
+            label="A Dust and Wipes cleaner polishing a pane of glass to a streak-free finish"
+            className="mx-auto w-full max-w-[280px]"
+          />
+          <div>
+            <p className="eyebrow">On the job</p>
+            <h2 className="h2-section mt-4 max-w-[18ch]">Twelve seconds of glass work.</h2>
+            <p className="lede mt-5">
+              Filmed on one of our own jobs. It runs silently and only starts once you have
+              scrolled to it — and if you have asked your device to reduce motion, it stays a
+              photograph.
+            </p>
+            <Link href="/services#window-glass-cleaning" className="btn btn--primary mt-8">
+              Window &amp; glass cleaning
+            </Link>
+          </div>
         </div>
       </section>
 
