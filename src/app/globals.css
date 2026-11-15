@@ -40,7 +40,7 @@
 
   /* ── Typography (§4.3) — fluid scale ── */
   --font-heading: var(--font-fraunces), Georgia, "Times New Roman", serif;
-  --font-body:    var(--font-source-sans), system-ui, sans-serif;
+  --font-body:    var(--font-hanken), system-ui, sans-serif;
   /* --font-display was referenced by several components but never defined, so
      those elements silently fell back to Georgia. It now resolves to the
      heading face, which is what they were reaching for. */

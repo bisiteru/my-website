@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Building2, Home, Sparkles, Bug } from "lucide-react";
 import { SplitHero, CollageHero } from "@/components/ui/Heroes";
 import { ServiceCard, SectorTile, CaseStudyCard, LogoWall, ProcessSteps } from "@/components/ui/Cards";
-import { StatRow } from "@/components/ui/StatCounter";
 import TestimonialCarousel from "@/components/ui/TestimonialCarousel";
 import BeforeAfterSlider from "@/components/ui/BeforeAfterSlider";
 import MasonryGallery from "@/components/ui/MasonryGallery";
@@ -77,15 +76,11 @@ export default function ComponentsPage() {
           </div>
         </Spec>
 
-        <Spec id="stats" name="Stat counter row" brief="§4.8 count-up on scroll; static under reduced motion">
-          <StatRow
-            stats={[
-              { value: 650, suffix: "+", label: "Clients served" },
-              { value: 5, suffix: "★", decimals: 1, label: "Google rating" },
-              { value: 10, suffix: "", label: "Five-star reviews" },
-              { value: 2017, suffix: "", label: "Serving Abuja since", animate: false },
-            ]}
-          />
+        <Spec id="stats" name="Trust line" brief="replaces the old count-up row — true in the HTML, no animation">
+          <p className="mx-auto max-w-[46rem] text-center text-[1.0625rem] leading-relaxed text-[var(--c-ink-2)] sm:text-[1.125rem]">
+            <strong className="font-semibold text-[var(--c-green-800)]">650+ clients served since 2017</strong>
+            {" · "}5.0 on Google{" · "}members of ISSA, and licensed by EHCON and PECAN
+          </p>
         </Spec>
 
         <Spec id="service-card" name="Service card" brief="photo · one-line benefit · link to anchor">

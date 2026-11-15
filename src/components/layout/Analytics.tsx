@@ -38,6 +38,21 @@ export default function Analytics() {
     return () => clearTimeout(t);
   }, []);
 
+  // Review 6.3 — the footer's "Cookie settings" button reopens the banner so a
+  // choice can be changed. Delegated from document so the footer stays a server
+  // component and no context is needed.
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      const t = e.target as HTMLElement | null;
+      if (!t?.closest("[data-cookie-settings]")) return;
+      e.preventDefault();
+      setConsent(null);
+      setReady(true);
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
+
   if (!GA_ID) return null;
 
   const decide = (state: "granted" | "denied") => {
@@ -77,8 +92,11 @@ export default function Analytics() {
           role="dialog"
           aria-live="polite"
           aria-label="Cookie choices"
-          className="fixed inset-x-0 bottom-0 z-[70] border-t border-[var(--c-border)] bg-[var(--c-surface)] p-4 shadow-[0_-4px_24px_rgba(11,59,33,0.10)] xl:bottom-0"
-          style={{ paddingBottom: "max(1rem, env(safe-area-inset-bottom))" }}
+          /* Review 1.7 / 5.1 — the banner used to sit flush to the bottom on a
+             phone, covering the sticky Call/WhatsApp/Quote bar. It now clears
+             that bar (4rem plus the safe-area inset) below xl, where the bar
+             exists, and returns to the bottom edge above it. */
+          className="fixed inset-x-0 bottom-[calc(4rem+env(safe-area-inset-bottom))] z-[70] border-t border-[var(--c-border)] bg-[var(--c-surface)] p-4 shadow-[0_-4px_24px_rgba(11,59,33,0.10)] xl:bottom-0"
         >
           <div className="container-dw flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-[0.9375rem] text-[var(--c-ink-2)]">

@@ -4,8 +4,7 @@ import Link from "next/link";
 import PageHero from "@/components/sections/PageHero";
 import RelatedLinks from "@/components/ui/RelatedLinks";
 import MasonryGallery, { type GalleryItem } from "@/components/ui/MasonryGallery";
-import BeforeAfterSlider from "@/components/ui/BeforeAfterSlider";
-import { EnquirySection, SectionHeader } from "@/components/ui/Blocks";
+import { EnquirySection } from "@/components/ui/Blocks";
 import galleryData from "../../../content/gallery.json";
 import { JsonLd, breadcrumbs, absolute } from "@/lib/seo";
 
@@ -63,23 +62,12 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {/* Before & during — §6.8 allows only genuine same-job pairs */}
-      <section className="section section--band">
-        <div className="container-dw grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:gap-16">
-          <SectionHeader
-            eyebrow="Before &amp; during"
-            title="Post-construction, from debris to finished floor."
-            lede="Drag the handle to compare. We only ever pair photographs from the same job — so this one is labelled during, not after, because that is what the second photograph shows."
-          />
-          <BeforeAfterSlider
-            before="post-construction-before-debris"
-            beforeAlt="A newly built interior strewn with construction debris before cleaning"
-            after="post-construction-granite-floor-scrubbing"
-            afterAlt="An operator machine-scrubbing the granite floor of the same type of space"
-            afterLabel="During"
-          />
-        </div>
-      </section>
+      {/* Before & after section removed at the owner's request (15 Nov).
+          The only pair available was before/during from two different jobs,
+          which is not the comparison a visitor reads it as. The
+          BeforeAfterSlider component is kept and still demonstrated on
+          /components; this section returns when a true same-job pair is
+          supplied. */}
 
       <RelatedLinks
         links={[

@@ -6,9 +6,15 @@ export const COMPANY = {
   name: "Dust & Wipes Limited",
   tagline: "Restoring a Clean World",
   description:
-    "Abuja's most trusted cleaning and pest control company since 2017. We deliver spotless, safe environments for homes, offices, and facilities across the FCT.",
+    "Cleaning, pest control, facility support and cleaner training since 2017, from offices in Abuja and Lagos.",
+  /** Displayed in local format; every tel: link is built from phoneE164 /
+   *  phone2E164 so a foreign SIM can dial it (review 3.6). */
   phone: "0809 970 0001",
+  phoneE164: "+2348099700001",
   phone2: "0809 845 7721",
+  phone2E164: "+2348098457721",
+  /** CAC registration, confirmed by the owner 15 Nov 2026. */
+  rcNumber: "RC 1397102",
   whatsapp: "+2348099700001",
   whatsappText: "Hello, I'd like to enquire about cleaning services",
   email: "infodesk@dustandwipes.com",
@@ -16,6 +22,9 @@ export const COMPANY = {
   /** §3.2 — a business address, not a staffed walk-in office.
    *  Always presented as "Lagos address · Site assessments by appointment". */
   lagosAddress: "5 Admiralty Road, off Admiralty Way, Lekki Phase 1, Lekki, Lagos.",
+  /** Review 2.1 / 4.6 — one answer to "when do you work", used everywhere. */
+  hours: "Monday–Saturday, 7am–6pm",
+  hoursNote: "Sundays by appointment",
   googleMapsUrl:
     "https://maps.google.com/?q=Irama+Plaza+Gwarinpa+Abuja",
   foundedYear: 2017,
@@ -140,7 +149,7 @@ export const SERVICES = [
     title: "Carpet & Upholstery Cleaning",
     shortDesc: "Professional deep cleaning for carpets & sofas.",
     description:
-      "Professional deep cleaning for carpets, rugs, sofas and furniture using industry-grade Rug Doctor equipment.",
+      "Professional deep cleaning for carpets, rugs, sofas and furniture using Rug Doctor and other professional carpet-washing machines.",
     image: "/photos/upholstered-headboard-vacuuming.jpg",
     href: "/services#carpet-upholstery",
     features: [

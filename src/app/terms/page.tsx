@@ -38,7 +38,22 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="h3-card !text-[1.25rem]">3. Pest control services</h2>
+            <h2 className="h3-card !text-[1.25rem]">3. Payment</h2>
+            <p className="mt-3">
+              Charges, payment schedule and any deposit are set out in the written quotation or
+              proposal for the job and are agreed before work begins. We do not vary an agreed
+              price after the fact; where the scope changes on site, we stop and agree the change
+              with you in writing first. Recurring and retainer contracts are invoiced on the cycle
+              stated in the contract.
+            </p>
+            <p className="mt-3">
+              Where a service has been delivered to the agreed scope, charges are payable in full.
+              Our satisfaction guarantee below sets out what happens where it has not.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="h3-card !text-[1.25rem]">4. Pest control services</h2>
             <p className="mt-3">
               Pest control products are hazardous by design. We are licensed by EHCON and PECAN
               and hold an Operational Permit from the Abuja Municipal Area Council (AMAC). Before
@@ -58,7 +73,24 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="h3-card !text-[1.25rem]">4. Satisfaction guarantee</h2>
+            <h2 className="h3-card !text-[1.25rem]">5. Cleaner training</h2>
+            <p className="mt-3">
+              Training engagements are governed by the written proposal issued after the site
+              visit, which sets out who attends, which modules are covered, where and when delivery
+              takes place, the deliverables and the cost. The site visit and the proposal are free
+              of charge and carry no obligation.
+            </p>
+            <p className="mt-3">
+              Training is delivered on the client&apos;s premises unless otherwise agreed.
+              Rescheduling is accommodated where practicable; a session cancelled at short notice
+              may incur a charge, which will have been stated in the proposal. Participants receive
+              a certificate of completion. We make no claim of external accreditation for our
+              training and do not represent it as accredited by any body.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="h3-card !text-[1.25rem]">6. Satisfaction guarantee</h2>
             <p className="mt-3">
               If you are not satisfied with any aspect of our service, tell us within 24 hours of
               completion. We will return and remedy the issue at no additional charge, subject to
@@ -67,7 +99,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="h3-card !text-[1.25rem]">5. Liability</h2>
+            <h2 className="h3-card !text-[1.25rem]">7. Liability</h2>
             <p className="mt-3">
               While we take every precaution, {COMPANY.name} is not liable for pre-existing damage,
               or for damage resulting from following client instructions. Except where pest control
@@ -77,7 +109,7 @@ export default function TermsPage() {
           </section>
 
           <section>
-            <h2 className="h3-card !text-[1.25rem]">6. Contact</h2>
+            <h2 className="h3-card !text-[1.25rem]">8. Contact</h2>
             <p className="mt-3">
               For service-related enquiries, email{" "}
               <a href={`mailto:${COMPANY.email}`} className="underline hover:text-[var(--c-green-700)]">
@@ -96,6 +128,12 @@ export default function TermsPage() {
                 privacy policy
               </Link>
               .
+            </p>
+            <p className="mt-3">
+              {COMPANY.name} is registered in Nigeria with the Corporate Affairs Commission under{" "}
+              <strong className="text-[var(--c-green-800)]">{COMPANY.rcNumber}</strong>. Registered
+              office: {COMPANY.address} Our working hours are {COMPANY.hours.toLowerCase()},{" "}
+              {COMPANY.hoursNote.toLowerCase()}.
             </p>
           </section>
         </div>

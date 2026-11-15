@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { SITE_URL, absolute } from "@/lib/seo";
-import { Fraunces, Source_Sans_3 } from "next/font/google";
+import { Fraunces, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -9,7 +9,7 @@ import Analytics from "@/components/layout/Analytics";
 
 // §4.3 — typeface pairing.
 //
-// Fraunces (display serif) for headings, Source Sans 3 for body. This replaces
+// Fraunces (display serif) for headings, Hanken Grotesk for body. This replaces
 // Montserrat + Inter: Inter is the default-looking grotesque this project set
 // out to avoid, and long Montserrat headlines sat heavy on narrow screens
 // because a geometric sans has no optical-size axis to thin out as it scales.
@@ -28,8 +28,8 @@ const fraunces = Fraunces({
   display: "swap",
 });
 
-const sourceSans = Source_Sans_3({
-  variable: "--font-source-sans",
+const hanken = Hanken_Grotesk({
+  variable: "--font-hanken",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
@@ -92,7 +92,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${sourceSans.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${hanken.variable}`}>
       <head>
         {/* Local Business structured data */}
         <script
@@ -147,18 +147,15 @@ export default function RootLayout({
                   closes: "18:00",
                 },
               ],
-              // §3.2 / §9.5 — genuine Google figures only
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: "5",
-                reviewCount: "10",
-                bestRating: "5",
-                worstRating: "1",
-              },
+              // aggregateRating removed. Google's own guidance requires a
+              // review count alongside a rating, and the owner has asked that
+              // the count not be published. A rating without it is both invalid
+              // structured data and an unverifiable claim, so neither is shown.
               hasMap: "https://maps.google.com/?q=Irama+Plaza+Gwarinpa+Abuja",
               memberOf: [
                 { "@type": "Organization", name: "ISSA — The Association for Cleaning & Facility Solutions" },
                 { "@type": "Organization", name: "Pest Control Association of Nigeria (PECAN)" },
+                { "@type": "Organization", name: "Environmental Health Council of Nigeria (EHCON)" },
               ],
               knowsAbout: [
                 "Commercial cleaning",

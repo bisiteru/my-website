@@ -167,8 +167,9 @@ export default function Footer() {
               <li className="flex gap-3">
                 <Clock size={17} className="mt-0.5 shrink-0 text-[var(--c-orange-300)]" aria-hidden="true" />
                 <span>
-                  Monday–Saturday, 7am–6pm
-                  <span className="mt-1 block text-white/60">We reply within 2 hours</span>
+                  {COMPANY.hours}
+                  <span className="mt-1 block text-white/60">{COMPANY.hoursNote}</span>
+                  <span className="mt-1 block text-white/60">We reply within two hours</span>
                 </span>
               </li>
             </ul>
@@ -203,10 +204,22 @@ export default function Footer() {
 
         {/* Legal */}
         <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-8 text-[0.8125rem] sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} {COMPANY.name}. All rights reserved.</p>
-          <ul className="flex gap-6">
+          <p>
+            © {new Date().getFullYear()} {COMPANY.name}. All rights reserved.
+            <span className="mt-1 block text-white/55">
+              Registered in Nigeria · {COMPANY.rcNumber}
+            </span>
+          </p>
+          <ul className="flex flex-wrap gap-6">
             <li><Link href="/privacy" className="hover:text-white">Privacy policy</Link></li>
             <li><Link href="/terms" className="hover:text-white">Terms of service</Link></li>
+            {/* Review 6.3 — a visitor must be able to change a cookie choice
+                after making it, not only on first visit. */}
+            <li>
+              <button type="button" data-cookie-settings className="hover:text-white">
+                Cookie settings
+              </button>
+            </li>
           </ul>
         </div>
       </div>

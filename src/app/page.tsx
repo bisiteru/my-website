@@ -5,7 +5,6 @@ import Image from "next/image";
 import { ArrowRight, Building2, Landmark, Stethoscope, Briefcase, Hotel, PartyPopper, Home as HomeIcon, HardHat, Scale } from "lucide-react";
 import { CollageHero } from "@/components/ui/Heroes";
 import { ServiceCard, SectorTile, ProcessSteps } from "@/components/ui/Cards";
-import { StatRow } from "@/components/ui/StatCounter";
 import TestimonialCarousel from "@/components/ui/TestimonialCarousel";
 import { EnquirySection, SectionHeader } from "@/components/ui/Blocks";
 import Reveal from "@/components/ui/Reveal";
@@ -84,14 +83,15 @@ export default function HomePage() {
       {/* 2 — Trust strip (§6.1) */}
       <section className="border-b border-[var(--c-border)] bg-[var(--c-surface)] py-12">
         <div className="container-dw">
-          <StatRow
-            stats={[
-              { value: 650, suffix: "+", label: "Clients served" },
-              { value: 5, suffix: "★", decimals: 1, label: "Google rating" },
-              { value: 10, suffix: "", label: "Five-star reviews" },
-              { value: 2017, suffix: "", label: "Serving clients since", animate: false },
-            ]}
-          />
+          {/* The counter row is gone. Four numbers animating from zero read as
+              decoration, server-rendered as "0+" and "0.0★" before scripts ran,
+              and the review count is no longer published at the owner's
+              request. One sentence carries the same facts and is true in the
+              HTML from the first byte. */}
+          <p className="mx-auto max-w-[46rem] text-center text-[1.0625rem] leading-relaxed text-[var(--c-ink-2)] sm:text-[1.125rem]">
+            <strong className="font-semibold text-[var(--c-green-800)]">650+ clients served since 2017</strong>
+            {" · "}5.0 on Google{" · "}members of ISSA, and licensed by EHCON and PECAN
+          </p>
           <ul className="mt-10 flex flex-wrap items-center justify-center gap-4">
             {AFFILIATIONS.map((a) => (
               <li key={a.short} className="flex items-center gap-2.5 rounded-xl border border-[var(--c-border)] bg-white px-4 py-2.5">
@@ -253,7 +253,7 @@ export default function HomePage() {
           <SectionHeader
             eyebrow="What clients say"
             title="Five stars, from every review."
-            lede="Ten five-star Google reviews and counting — and the referrals that come with them."
+            lede="Every rating on our Google profile is a five. The referrals that follow them are how most of our work arrives."
           />
           <TestimonialCarousel items={TESTIMONIALS} />
         </div>

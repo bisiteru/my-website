@@ -124,9 +124,13 @@ check("New pages", "Clients driven by clients.json",
   `${consented.length} consented clients, ${logosRendered} logo references rendered`);
 
 const galleryJson = JSON.parse(readFileSync("content/gallery.json", "utf8"));
-check("New pages", "Gallery: filters, lightbox, before/after, data-driven",
-  galleryJson.items.length === 55 && /Residential/.test(html["/gallery"]) && /Before/.test(html["/gallery"]),
-  `${galleryJson.items.length} photos from gallery.json, 9 category filters, before/during slider`);
+// The before/after section was withdrawn at the owner's request until a true
+// same-job pair exists, so the gallery check no longer asserts it. It asserts
+// instead that no before/after comparison is being shown without one.
+check("New pages", "Gallery: filters, lightbox, data-driven",
+  galleryJson.items.length === 55 && /Residential/.test(html["/gallery"]) &&
+  !/Drag the handle/.test(html["/gallery"]),
+  `${galleryJson.items.length} photos from gallery.json, 9 category filters, no unsupported before/after pair`);
 
 /* ── §10.5 — design system ─────────────────────────────────────────── */
 const css = readFileSync("src/app/globals.css", "utf8");

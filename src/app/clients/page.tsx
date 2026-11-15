@@ -137,7 +137,7 @@ export default function ClientsPage() {
           <SectionHeader
             eyebrow="In their words"
             title="Five stars, from every review."
-            lede="Ten five-star Google reviews, and the referrals that follow them."
+            lede="Every rating on our Google profile is a five, and the referrals that follow them are how most of our work arrives."
           />
           <TestimonialCarousel items={TESTIMONIALS} />
         </div>
