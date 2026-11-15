@@ -202,10 +202,15 @@ check("Photos", "No upscaling past native width",
 const SMALL = entries.filter((e) => e.w < 700).map((e) => e.slug);
 const serviceImgs = [...constants.matchAll(/image: "\/photos\/([a-z0-9-]+)\.jpg"/g)].map((m) => m[1]);
 const tooSmall = serviceImgs.filter((x) => SMALL.includes(x));
-check("Photos", "No card-size-only photo used in a full-width section",
+// This scans every photo referenced from constants.ts - service sections,
+// blog cards and article headers alike - because all of them render into a
+// container wider than 700px somewhere. BUILD_BRIEF section 8 forbids
+// upscaling a supplied photograph, so a source narrower than that is a fault
+// wherever it is used, not only in a service section.
+check("Photos", "No card-size-only photo rendered at full width",
   tooSmall.length === 0,
-  tooSmall.length ? `too small for a service section: ${tooSmall.join(", ")}` :
-    `all ${serviceImgs.length} service photos are wide enough for their layout`);
+  tooSmall.length ? `source narrower than 700px used in a full-width slot: ${tooSmall.join(", ")}` :
+    `all ${serviceImgs.length} photos referenced from constants are wide enough for their layout`);
 
 const imgs = [...all.matchAll(/<img[^>]*>/g)].map((m) => m[0]);
 // An image with no alt attribute at all is a fault. alt="" is not: it is the

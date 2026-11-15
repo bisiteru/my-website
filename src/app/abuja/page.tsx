@@ -10,7 +10,7 @@ export const metadata: Metadata = pageSeo({
   path: "/abuja",
   title: "Cleaning & Pest Control in Abuja",
   description:
-    "Professional cleaning and pest control across Abuja FCT since 2017 — Gwarinpa, Maitama, Asokoro, Wuse, Jabi and every other district. 650+ clients and a 5.0 Google rating.",
+    "Cleaning and pest control across every Abuja FCT district since 2017 — Gwarinpa, Maitama, Asokoro, Wuse and Jabi. 650+ clients and a 5.0 Google rating.",
   image: "/photos/team-uba-marketplace.jpg",
   imageAlt: "The Dust and Wipes team at UBA Marketplace in Abuja",
 });

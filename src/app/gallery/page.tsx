@@ -11,9 +11,9 @@ import { JsonLd, breadcrumbs, absolute } from "@/lib/seo";
 
 export const metadata: Metadata = pageSeo({
   path: "/gallery",
-  title: "Gallery — Our Cleaning Work in Abuja & Lagos",
+  title: "Our Cleaning Work in Abuja & Lagos",
   description:
-    "Photographs of Dust & Wipes teams at work across Abuja and Lagos — residential and office cleaning, deep cleans, post-construction, pest control, windows, healthcare and events.",
+    "Photographs of our own teams at work across Abuja and Lagos — office and residential cleaning, deep cleans, post-construction, pest control and healthcare.",
   image: "/photos/chandelier-cleaning.jpg",
   imageAlt: "A cleaner carefully cleaning a hanging chandelier",
 });

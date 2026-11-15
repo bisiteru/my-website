@@ -46,11 +46,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = BLOG_POSTS.find((p) => p.slug === slug);
   if (!post) return {};
   // §9.3 — each post carries its own canonical, og:url and image
+  // Every post now carries a /photos/ image, so this fallback should never
+  // fire; it stays as a guard if a future post is added without one.
   const img = post.image?.startsWith("/photos/") ? post.image : "/images/og-image.jpg";
   return pageSeo({
     path: `/blog/${post.slug}`,
-    title: post.title,
-    description: post.excerpt,
+    title: ("seoTitle" in post && post.seoTitle) || post.title,
+    // Excerpts are written for the card, where length does not matter; a meta
+    // description over ~160 characters is truncated by search engines
+    // mid-word (review 3.1). Trimmed here on a word boundary instead.
+    description:
+      post.excerpt.length > 157
+        ? post.excerpt.slice(0, post.excerpt.lastIndexOf(" ", 157)) + "…"
+        : post.excerpt,
     image: img,
     imageAlt: post.title,
     type: "article",
@@ -64,19 +72,19 @@ const blogContent: Record<string, ContentBlock[]> = {
     { heading: "Cleaning is chemistry, not just elbow grease" },
     "Every professional cleaner works with chemicals daily — disinfectants, degreasers, descalers, sanitisers. Used correctly, they protect health. Used incorrectly, they can be dangerous. Mixing chlorine bleach with acidic cleaners releases toxic chlorine gas. Using the wrong product on the wrong surface destroys expensive finishes. Under-diluting wastes money; over-diluting leaves surfaces looking clean but still contaminated.",
     "Trained cleaners understand dwell time — the period a disinfectant must remain wet on a surface to actually kill germs. An untrained cleaner sprays and immediately wipes, achieving little more than a cosmetic shine. In a hospital ward or hotel kitchen, that difference is the difference between hygiene and the illusion of hygiene.",
-    { image: "/images/clinic-cleaning-1.jpg", alt: "Professional cleaner sanitising a clinic in Abuja", caption: "Healthcare environments demand trained hands — every surface has its own protocol." },
+    { image: "/photos/healthcare-clinic-room-cleaning.jpg", alt: "A cleaner working through a clinic treatment room", caption: "Healthcare environments demand trained hands — every surface has its own protocol." },
     { heading: "The hidden safety stakes" },
     "The International Labour Organization estimates that unsafe cleaning practices contribute to thousands of preventable workplace injuries every year — chemical burns, slip-and-fall accidents from improper wet-floor procedures, respiratory harm from poor ventilation during chemical use, and cross-contamination incidents in food and healthcare settings.",
     "Cross-contamination deserves special attention. A cloth used on a toilet and then on a door handle actively spreads pathogens through a building. Professional training instils colour-coded cloth and mop systems — red for sanitary areas, blue for general surfaces, green for kitchens — a simple discipline that dramatically cuts the spread of infection. Untrained staff, through no fault of their own, simply don't know these systems exist.",
     "There's also the equipment dimension. Modern professional cleaning relies on machines — rotary scrubbers, hot-water extraction units, industrial vacuums with HEPA filtration. In untrained hands these machines are hazards; in trained hands they deliver results no amount of manual scrubbing can match.",
     { heading: "Why it matters most in high-stakes environments" },
     "In hospitals and clinics, cleaning staff are genuinely part of the infection-control team. Studies show that improved cleaning protocols alone can cut hospital-acquired infections significantly. In hotels, cleanliness is the single biggest driver of guest reviews. In embassies and secure facilities, cleaning personnel need discipline, vetting, and protocol awareness that goes far beyond the mop. In offices, the quality of cleaning quietly shapes sick-day rates and staff morale.",
-    { image: "/images/green-uniform-office.jpg", alt: "Uniformed professional cleaner at work in an Abuja office", caption: "Uniformed, trained personnel signal professionalism — and deliver measurably better outcomes." },
+    { image: "/photos/corridor-team-mopping.jpg", alt: "Two uniformed cleaners mopping an office corridor", caption: "Uniformed, trained personnel signal professionalism — and the work shows it." },
     { heading: "Training transforms the cleaner too" },
     "There's a human side to this. When cleaning staff are trained and properly equipped, their work changes character — from casual labour to a profession with standards, career progression, and dignity. Trained cleaners take visible pride in their work, stay longer with employers, and become trusted custodians of the spaces they maintain. Investing in cleaner training is one of the rare decisions that improves safety, quality, staff retention, and morale simultaneously.",
     { heading: "What to look for in a cleaning provider" },
     "Whether you manage a hospital, hotel, embassy, school, or office, ask any prospective cleaning provider these questions: Are your staff formally trained, and in what? Do you use colour-coded systems to prevent cross-contamination? Are your chemicals used strictly to their label and correctly diluted? Are staff trained on the equipment they operate? Can you show vetting and supervision processes? A professional provider will answer confidently; the rest will improvise.",
-    { image: "/images/team-meeting.jpg", alt: "Dust and Wipes training session for cleaning professionals in Abuja", caption: "A Dust & Wipes training session — where cleaning skills, safety, and standards are built." },
+    { image: "/photos/bisi-teru-leading-training.jpg", alt: "Bisi Teru standing before a seated group, leading a training session", caption: "A Dust & Wipes training session — where cleaning skills, safety and standards are built." },
     { heading: "Our commitment at Dust & Wipes" },
     "At Dust and Wipes Limited this is the belief the company was founded on: that cleaners deserve proper training, fair treatment and professional respect. Beyond delivering cleaning services, we offer professional training programmes for cleaners and pest control technicians, covering chemical safety, infection control, equipment operation, and workplace protocols. Our goal is simple: to raise the standard of cleanliness and safety in Abuja's workplaces — hospitals, hotels, embassies, offices, and beyond — one trained professional at a time.",
     "If your organization would like to train its cleaning team, or you'd like your facility cleaned by personnel trained to these standards, contact us today. Cleanliness is too important to leave to chance.",

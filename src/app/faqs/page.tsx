@@ -12,7 +12,7 @@ export const metadata: Metadata = pageSeo({
   path: "/faqs",
   title: "Frequently Asked Questions",
   description:
-    "Answers to common questions about Dust & Wipes Limited's cleaning, pest control and training services in Abuja and Lagos — booking, pricing, safety, coverage, certificates and recurring plans.",
+    "Answers on booking, pricing, safety, chemicals, staffing, coverage and recurring plans for our cleaning, pest control and training services in Abuja and Lagos.",
   image: "/photos/corridor-team-mopping.jpg",
   imageAlt: "Two cleaners mopping an office corridor",
 });
@@ -50,7 +50,7 @@ export default function FAQsPage() {
         photo="corridor-team-mopping"
         alt="Two cleaners mopping an office corridor"
         title="Frequently asked questions."
-        lede="Everything you need to know about our services. If your question isn't here, WhatsApp us — we reply in minutes."
+        lede="Everything you need to know about our services. If your question isn't here, ask us directly — we reply within two hours during working hours."
       >
         <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn--primary">
           <MessageCircle size={16} aria-hidden="true" /> Ask on WhatsApp

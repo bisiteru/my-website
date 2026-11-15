@@ -453,12 +453,15 @@ export const BLOG_POSTS = [
   {
     slug: "why-trained-cleaners-matter",
     title: "Why Trained Cleaners Matter: The Hidden Link Between Cleaning Skills and Workplace Safety",
+    /** Shown in the <title>, which must stay under ~60 characters including the
+     *  site suffix. The full title still heads the article (review 3.1). */
+    seoTitle: "Why Trained Cleaners Matter",
     excerpt:
       "Anyone can hold a mop — but professional cleaning is a skill. Here's why trained, well-equipped cleaning personnel are essential to hygiene and safety in hospitals, hotels, offices, and embassies.",
     category: "Training & Safety",
     date: "July 12, 2026",
     readTime: "6 min read",
-    image: "/images/team-meeting.jpg",
+    image: "/photos/bisi-teru-leading-training.jpg",
   },
   {
     slug: "how-often-should-you-deep-clean",
@@ -468,7 +471,7 @@ export const BLOG_POSTS = [
     category: "Cleaning Tips",
     date: "May 5, 2025",
     readTime: "4 min read",
-    image: "/images/kitchen-cleaning.jpg",
+    image: "/photos/residential-kitchen-cabinet-cleaning.jpg",
   },
   {
     slug: "signs-of-termite-infestation",
@@ -478,17 +481,17 @@ export const BLOG_POSTS = [
     category: "Pest Control",
     date: "April 22, 2025",
     readTime: "5 min read",
-    image: "/images/pest-control-fumigation.jpg",
+    image: "/photos/pest-control-spraying-driveway.jpg",
   },
   {
     slug: "office-cleaning-productivity",
-    title: "How a Clean Office Boosts Employee Productivity by Up to 15%",
+    title: "How a Clean Office Changes the Way People Work",
     excerpt:
       "Research shows clutter and uncleanliness directly impact focus and morale. Here's how a professionally cleaned workspace drives business performance.",
     category: "Office Cleaning",
     date: "April 10, 2025",
     readTime: "3 min read",
-    image: "/images/commercial-office-sweeping.jpg",
+    image: "/photos/office-floor-scrubbing-machine.jpg",
   },
   {
     slug: "eco-friendly-cleaning-tips",
@@ -498,7 +501,7 @@ export const BLOG_POSTS = [
     category: "Cleaning Tips",
     date: "March 28, 2025",
     readTime: "4 min read",
-    image: "/images/green-uniform-office.jpg",
+    image: "/photos/office-desk-equipment-wiping.jpg",
   },
   {
     slug: "pest-control-abuja-rainy-season",
@@ -508,16 +511,16 @@ export const BLOG_POSTS = [
     category: "Pest Control",
     date: "March 15, 2025",
     readTime: "5 min read",
-    image: "/images/fumigation-office-blue.jpg",
+    image: "/photos/pest-control-spraying-driveway.jpg",
   },
   {
     slug: "move-out-cleaning-checklist",
-    title: "The Ultimate Move-Out Cleaning Checklist for Abuja Renters",
+    title: "The Move-Out Cleaning Checklist for Abuja Renters",
     excerpt:
       "Moving out? Don't lose your security deposit. Use this room-by-room checklist to leave your property spotless and dispute-free.",
     category: "Cleaning Tips",
     date: "March 1, 2025",
     readTime: "6 min read",
-    image: "/images/post-construction-living-room.jpg",
+    image: "/photos/empty-apartment-vacuuming.jpg",
   },
 ];

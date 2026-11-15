@@ -15,9 +15,9 @@ import galleryData from "../../content/gallery.json";
 
 export const metadata: Metadata = pageSeo({
   path: "/",
-  title: "Professional Cleaning, Pest Control & Cleaner Training in Abuja and Lagos",
+  title: "Cleaning & Pest Control in Abuja & Lagos",
   description:
-    "Dust & Wipes Limited — professional cleaning, pest control, facility support and cleaner training in Abuja and Lagos since 2017. 650+ clients, 5.0 on Google. Get a free quote.",
+    "Cleaning, pest control, facility support and cleaner training in Abuja and Lagos since 2017. Licensed by EHCON and PECAN. 650+ clients, 5.0 on Google.",
   image: "/photos/team-uba-marketplace.jpg",
   imageAlt: "The Dust and Wipes team at UBA Marketplace in Abuja",
 });

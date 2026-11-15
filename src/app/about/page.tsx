@@ -10,9 +10,9 @@ import { EnquirySection } from "@/components/ui/Blocks";
 
 export const metadata: Metadata = pageSeo({
   path: "/about",
-  title: "About Us",
+  title: "About Us — Our Story & Founder",
   description:
-    "Dust & Wipes Limited was founded in Abuja in March 2017 by Bisi Teru. Why the company exists, what it stands for, and how it has grown across Abuja and Lagos.",
+    "Dust & Wipes was founded in Abuja in March 2017 by Bisi Teru. Why the company exists, what it stands for, and how it has grown across Abuja and Lagos.",
   image: "/photos/dust-and-wipes-team-uniform.jpg",
   imageAlt: "Two Dust and Wipes team members in branded uniform",
 });

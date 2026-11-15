@@ -14,7 +14,7 @@ export const metadata: Metadata = pageSeo({
   path: "/clients",
   title: "Clients & Sectors We Serve",
   description:
-    "The sectors Dust & Wipes Limited serves across Abuja and Lagos — international organisations, diplomatic missions, healthcare, corporate offices, hospitality, events, premium residences and new builds.",
+    "The sectors we serve in Abuja and Lagos: diplomatic missions, international organisations, healthcare, corporate offices, hospitality, events and new builds.",
   image: "/photos/international-organisation-entrance-cleaning.jpg",
   imageAlt: "A cleaner cleaning the entrance of an international organisation",
 });

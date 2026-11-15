@@ -5,9 +5,9 @@ import BlogList from "./BlogList";
 
 export const metadata: Metadata = pageSeo({
   path: "/blog",
-  title: "Blog & Cleaning Tips",
+  title: "Cleaning & Pest Control Tips",
   description:
-    "Expert cleaning and pest control tips from Dust & Wipes Limited. Learn how to maintain a spotless, pest-free home or office in Abuja.",
+    "Practical cleaning and pest control advice from our own teams — deep cleaning, termites, office hygiene, eco-friendly habits and cleaner training in Nigeria.",
   image: "/photos/bisi-teru-training-room.jpg",
   imageAlt: "Bisi Teru speaking in a training room",
 });

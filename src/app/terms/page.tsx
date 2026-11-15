@@ -7,7 +7,7 @@ export const metadata: Metadata = pageSeo({
   path: "/terms",
   title: "Terms of Service",
   description:
-    "The terms under which Dust & Wipes Limited provides cleaning, pest control, facility support and training services in Abuja and Lagos.",
+    "The terms covering our cleaning, pest control and training services in Abuja and Lagos: booking, payment, pest safety, the re-clean guarantee and liability.",
 });
 
 export default function TermsPage() {

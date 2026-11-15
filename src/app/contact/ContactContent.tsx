@@ -36,7 +36,7 @@ export default function ContactContent({ defaultService = "" }: { defaultService
               <span>
                 <span className="block text-[0.75rem] font-bold uppercase tracking-[0.14em] text-[var(--c-ink-2)]">WhatsApp</span>
                 <a href={wa} target="_blank" rel="noopener noreferrer" className="font-semibold text-[var(--c-green-800)] hover:text-[var(--c-green-600)]">
-                  Message us — we reply in minutes
+                  Message us on WhatsApp — we reply within two hours
                 </a>
               </span>
             </li>

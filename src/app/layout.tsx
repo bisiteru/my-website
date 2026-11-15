@@ -41,11 +41,11 @@ const isProduction = process.env.VERCEL_ENV === "production" || process.env.VERC
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Dust & Wipes Limited | Cleaning, Pest Control & Cleaner Training in Abuja & Lagos",
-    template: "%s | Dust & Wipes Limited",
+    default: "Cleaning & Pest Control in Abuja & Lagos | Dust & Wipes",
+    template: "%s | Dust & Wipes",
   },
   description:
-    "Professional cleaning, pest control, facility support and cleaner training since 2017. Offices in Abuja and Lagos: residential and office cleaning, deep cleans, pest control under EHCON and PECAN licensing, and janitorial retainers. 650+ clients served.",
+    "Cleaning, pest control, facility support and cleaner training in Abuja and Lagos since 2017. Licensed by EHCON and PECAN. 650+ clients served.",
   openGraph: {
     type: "website",
     locale: "en_NG",

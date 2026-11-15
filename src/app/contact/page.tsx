@@ -7,7 +7,7 @@ export const metadata: Metadata = pageSeo({
   path: "/contact",
   title: "Contact Us — Get a Free Quote",
   description:
-    "Contact Dust & Wipes Limited for a free cleaning, pest control or training quote in Abuja and Lagos. Call 0809 970 0001, WhatsApp, or use the form — we reply within 2 hours.",
+    "Request a free quote for cleaning, pest control or cleaner training in Abuja or Lagos. We reply within two hours during working hours, Monday to Saturday.",
   image: "/photos/office-lobby-mopping-equipment.jpg",
   imageAlt: "A cleaner mopping an office lobby beside cleaning equipment",
 });

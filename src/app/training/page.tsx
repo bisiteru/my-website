@@ -10,9 +10,9 @@ import { PHOTOS, photoSrc } from "@/lib/photos";
 
 export const metadata: Metadata = pageSeo({
   path: "/training",
-  title: "Cleaner Training for Organisations in Abuja & Lagos",
+  title: "Cleaner Training for Organisations",
   description:
-    "Practical, customised on-site training for in-house cleaners and supervisors — housekeeping, workplace hygiene and safety, chemicals and PPE, supervision and quality. Delivered in Abuja and Lagos.",
+    "On-site training for in-house cleaners and supervisors in Abuja and Lagos: housekeeping, hygiene and safety, chemicals and PPE, supervision and quality.",
   image: "/photos/bisi-teru-leading-training.jpg",
   imageAlt: "Bisi Teru leading a professional training session",
 });

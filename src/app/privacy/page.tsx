@@ -7,7 +7,7 @@ export const metadata: Metadata = pageSeo({
   path: "/privacy",
   title: "Privacy Policy",
   description:
-    "How Dust & Wipes Limited collects, uses and protects your personal information, including our use of Google Analytics and your choices about cookies.",
+    "How Dust & Wipes Limited collects, uses and protects your personal data under the Nigeria Data Protection Act, including analytics, cookies and your rights.",
 });
 
 export default function PrivacyPage() {

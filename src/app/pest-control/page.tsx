@@ -28,9 +28,9 @@ import { PEST_FAQS } from "@/lib/constants";
  */
 export const metadata: Metadata = pageSeo({
   path: "/pest-control",
-  title: "Pest Control & Fumigation in Abuja & Lagos",
+  title: "Pest Control & Fumigation in Abuja",
   description:
-    "Licensed pest control and fumigation for homes, offices, clinics and commercial premises in Abuja and Lagos. Termites, cockroaches, rodents, bedbugs and mosquitoes — carried out under EHCON and PECAN licensing with an AMAC Operational Permit, and a written safety protocol.",
+    "Termites, cockroaches, rodents and bedbugs treated under EHCON and PECAN licensing and an AMAC permit. Written safety protocol and re-entry instructions.",
   image: "/photos/pest-control-spraying-driveway.jpg",
   imageAlt: "A Dust and Wipes technician applying a pest treatment to a driveway",
 });

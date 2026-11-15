@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { OG_SIZES } from "@/lib/og";
 
 /**
  * Central SEO helper — BUILD_BRIEF §9.
@@ -43,6 +44,21 @@ export function pageSeo({
   publishedTime,
 }: PageSeoInput): Metadata {
   const url = absolute(path);
+
+  /**
+   * Resolve a /photos/<slug>.jpg to its purpose-built 1.91:1 Open Graph crop
+   * in /og, and declare that file's real pixel size.
+   *
+   * Previously every page claimed width 1200 height 630 while serving the
+   * original photograph, most of which are portrait (review 3.7). Share cards
+   * were being cropped by the platform from the wrong aspect ratio. Five
+   * sources are narrower than 1200px and BUILD_BRIEF section 8 forbids
+   * upscaling, so those crops are smaller and say so.
+   */
+  const slug = image.startsWith("/photos/") ? image.slice(8, -4) : null;
+  const og = slug && OG_SIZES[slug] ? { url: `/og/${slug}.jpg`, ...OG_SIZES[slug] } : null;
+  const ogUrl = absolute(og ? og.url : image);
+
   return {
     title,
     description,
@@ -54,14 +70,14 @@ export function pageSeo({
       title,
       description,
       locale: "en_NG",
-      images: [{ url: absolute(image), width: 1200, height: 630, alt: imageAlt }],
+      images: [{ url: ogUrl, width: og ? og.w : 1200, height: og ? og.h : 630, alt: imageAlt }],
       ...(publishedTime ? { publishedTime } : {}),
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [absolute(image)],
+      images: [ogUrl],
     },
   };
 }

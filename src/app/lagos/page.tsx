@@ -12,9 +12,9 @@ import { COMPANY } from "@/lib/constants";
 
 export const metadata: Metadata = pageSeo({
   path: "/lagos",
-  title: "Janitorial Retainers & Cleaner Training in Lagos",
+  title: "Janitorial Retainers in Lagos",
   description:
-    "Dust & Wipes in Lagos — monthly janitorial retainership contracts for offices, clinics and commercial premises, plus training for in-house cleaning teams. Lagos address; site assessments by appointment.",
+    "Monthly janitorial contracts for offices, clinics and commercial premises across Lagos, plus training for in-house cleaning teams. Assessments by appointment.",
   image: "/photos/lagos-team-uniform.jpg",
   imageAlt: "The Dust and Wipes Lagos team in branded uniform",
 });

@@ -34,9 +34,17 @@ const SERVICE_COLUMNS: { heading: string; items: MegaItem[] }[] = [
   {
     heading: "Specialist",
     items: [
-      { label: "Carpet & upholstery", href: "/services#carpet-upholstery", blurb: "Hot-water extraction" },
+      { label: "Carpet & upholstery", href: "/services#carpet-upholstery", blurb: "Rug Doctor and other machines" },
+      { label: "Window & glass cleaning", href: "/services#window-glass-cleaning", blurb: "Streak-free, inside and out" },
+      { label: "Disinfection & sanitisation", href: "/services#disinfection-sanitisation", blurb: "Clinical and general zones" },
+      { label: "Event & exhibition cleaning", href: "/services#event-exhibition-cleaning", blurb: "Before, during and after" },
+    ],
+  },
+  {
+    heading: "Pest & facilities",
+    items: [
       { label: "Pest control & fumigation", href: "/pest-control", blurb: "EHCON & PECAN licensed" },
-      
+      { label: "Facility management support", href: "/services#facility-management", blurb: "Ongoing site support" },
     ],
   },
   {

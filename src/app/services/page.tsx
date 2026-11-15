@@ -13,9 +13,9 @@ import { JsonLd, breadcrumbs, absolute, SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = pageSeo({
   path: "/services",
-  title: "Our Services",
+  title: "Cleaning & Pest Control Services",
   description:
-    "Explore Dust & Wipes Limited's full range of cleaning and pest control services in Abuja and Lagos — residential, office, deep cleaning, post-construction, carpet and upholstery, pest control, disinfection, windows, events, facility support and cleaner training.",
+    "Eleven services across cleaning, pest control, facility support and cleaner training, in Abuja and Lagos. Each one quoted in writing before we start.",
   image: "/photos/office-floor-scrubbing-machine.jpg",
   imageAlt: "An operator running a floor-scrubbing machine through an office",
 });
