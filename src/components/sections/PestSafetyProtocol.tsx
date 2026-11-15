@@ -3,15 +3,18 @@ import { ClipboardCheck, FlaskConical, ShieldCheck, DoorOpen, FileCheck } from "
 /**
  * Pest control safety protocol — §3.2 honesty.
  *
- * The site previously claimed treatments were "safe for children and pets".
- * They are not: pest control products are hazardous by design. This section
- * replaces that claim with what actually protects people — the procedure
- * around the chemical.
+ * The site previously claimed PEST treatments were "safe for children and
+ * pets". They are not: pest control chemicals are hazardous by design. This
+ * section replaces that claim with what actually protects people — the
+ * procedure around the chemical.
  *
- * ⚠️ The specifics below (re-entry windows, PPE items, what clients must
- * remove) describe Dust & Wipes' own operating procedure and MUST be
- * confirmed by the company before launch. Where a figure is given it is the
- * common professional standard, not a measured commitment.
+ * The distinction matters and is drawn explicitly in the opening copy: the
+ * everyday CLEANING products are biodegradable and safe around children and
+ * pets (confirmed by the company); only the pest chemicals are hazardous.
+ * Do not flatten the two back together.
+ *
+ * The specifics below (assessment, label compliance, PPE, re-entry
+ * instructions, licensing) were reviewed and approved by Dust & Wipes.
  */
 
 const STEPS = [
@@ -52,10 +55,11 @@ export default function PestSafetyProtocol() {
             The products that kill pests are not harmless to people.
           </h2>
           <p className="lede mt-5">
-            Plenty of pest companies advertise treatments as &ldquo;safe for children and
-            pets&rdquo;. We will not, because it is not true of any product effective enough to
-            clear an infestation. What makes pest control safe is the procedure around the
-            chemical — so here is ours, in full.
+            Our everyday cleaning products are biodegradable and safe around children and pets.
+            Pest control is different. Plenty of companies advertise treatments as &ldquo;safe
+            for children and pets&rdquo; — we will not, because it is not true of any product
+            effective enough to clear an infestation. What makes pest control safe is the
+            procedure around the chemical, so here is ours, in full.
           </p>
         </div>
 

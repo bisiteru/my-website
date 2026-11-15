@@ -199,7 +199,7 @@ export default function AboutPage() {
               <div className="mt-8 space-y-3">
                 {[
                   "Pest control licensed by EHCON and PECAN, with an AMAC Operational Permit",
-                  "Biodegradable, low-irritant cleaning products",
+                  "Biodegradable cleaning products, safe for children and pets",
                   "Thoroughly vetted and uniformed staff",
                   "Flexible scheduling — 7 days a week",
                   "100% satisfaction guarantee",

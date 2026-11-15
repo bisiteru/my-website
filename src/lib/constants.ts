@@ -256,7 +256,7 @@ export const WHY_US = [
     number: "04",
     title: "Eco-Friendly Products",
     description:
-      "Biodegradable, low-irritant cleaning products — effective on dirt but chosen to be gentle in occupied homes and offices.",
+      "Biodegradable cleaning products that are safe for children and pets — effective on dirt, gentle in occupied homes and offices.",
   },
   {
     number: "05",
@@ -329,9 +329,9 @@ export const FAQS = [
       "You can book via our online booking form on this website, send us a WhatsApp message, call us directly, or email us. We typically respond within 2 hours and can often schedule same-day or next-day appointments.",
   },
   {
-    question: "Are your products safe around children and pets?",
+    question: "Are your cleaning products safe for children and pets?",
     answer:
-      "Our day-to-day cleaning products are eco-friendly and biodegradable, chosen to be gentle in occupied homes. Pest control is different and we will not pretend otherwise: the products that kill pests are hazardous by design. We control that risk rather than downplay it — a site assessment first, application strictly to the product label, full PPE for our technicians, and clear instructions on vacating and re-entry. See our pest control safety protocol for exactly what we do.",
+      "Yes. The products we use for everyday cleaning in homes and offices are eco-friendly, biodegradable and safe around children and pets. Pest control is a different matter and we will not pretend otherwise: the chemicals that eliminate pests are hazardous by design. We control that risk rather than downplay it — a site assessment first, application strictly to the product label, full PPE for our technicians, and clear instructions on vacating and re-entry. See our pest control safety protocol for exactly what we do.",
   },
   {
     question: "Do I need to be home during the cleaning?",
