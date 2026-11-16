@@ -1,53 +1,64 @@
-# Open Items — [PLACEHOLDER] / [CONFIRM] register
+# Open Items — what is still waiting on you
 
-**Updated:** end of Phase 3 · Required by `BUILD_BRIEF.md` §10 (final checkbox) and the
-Phase 3 prompt ("List all open placeholders").
+**Updated:** after the SITE_REVIEW.md pass (16 November 2026).
 
-Per the brief's opening rule, **every unresolved item below is hidden on the rendered site** —
-nothing is invented, nothing is filled with placeholder text or stock imagery.
+Per the brief's opening rule, **every unresolved item below is hidden on the rendered
+site** — nothing is invented, nothing is filled with placeholder text or stock imagery.
 
-Status: 🔴 blocking a visible feature · 🟡 needed before that section is complete · 🟢 resolved
+Status: 🔴 blocking a visible feature · 🟡 would improve a built section · 🟢 resolved
 
 ---
 
-## 🔴 Hidden on the live site until you confirm
+## 🔴 Waiting on you
 
-| # | Item | Brief | What is hidden right now |
+| # | Item | Why it matters | What the site does meanwhile |
 |---|---|---|---|
+| C9 | **Staff consent for named profiles** | §6.6 | "Our people" shows team photographs with role captions only. Nobody is named. |
+| C11 | **A true before/after pair from one job** | §3.3, §6.8 · review "Fix first" 10 | The before/after section is **removed**. The only pair we held was before/during, from two different jobs, which is not the comparison a visitor reads it as. `BeforeAfterSlider` is kept and still demonstrated on `/components`; the section returns the day a real pair arrives. |
+| C15 | **Recurring-plan discount figures** | §6.2 | Plans are described as discounted with no percentage quoted, because none was supplied. |
+| C16 | **Typical price ranges per service** | review 5.3 | The review asks for ranges. None exist, so instead of inventing them every service page carries **"what moves the price"** — the factors that change the number. If you want figures published, send them and they go in. |
+| C17 | **Formspree auto-reply** | review 4.3 | An enquirer gets no confirmation email. This is a switch in your Formspree dashboard, not something in the code — turn on auto-reply and nothing here needs to change. |
+| C18 | **Search Console verification** | review 3.8 | No verification tag in the HTML. It may already be verified by DNS; check in your account. Send me a tag if you want the meta method instead. |
+| C19 | **Google Business Profile link** | review 3.8 | The Contact map is a plain search for the address, not your GBP listing. Send the profile URL and the map and the schema can point at the real listing. |
 
-| C9 | Staff consent for first-name profiles | §6.6 | "Our people" shows team photographs with role captions only; no individual is named. |
-| C10 | **Analytics property** | §9.11 | **Still the one §9 item not implemented.** The brief says "keep existing ID", but the site has never had analytics, so there is no ID to keep and I will not invent one. Tell me **Vercel Analytics** (one line, no cookie banner, no consent UI needed) or **GA4** (richer, needs a cookie notice) and it goes in with events for quote, WhatsApp, phone and form submit. |
+## 🟡 Would improve a built section
 
-## 🟡 Content that would improve a built section
-
-| # | Item | Brief | Note |
-|---|---|---|---|
-| C11 | A genuine **"after"** photo for the post-construction job | §3.3, §6.8 | The slider is labelled **Before / During**, because the second photo shows work in progress. `polished-tile-floor-after-cleaning.jpg` is correctly withheld as on-hold. One matching after-shot unlocks a true before/after. |
-| C12 | More same-job before/after pairs | §6.8 | The component is built and reusable; only one pair exists. |
-| C13 | Case studies for consented clients | §6.7 | Two anonymised sector stories are published in their place. |
-| C14 | Hero video | §4.8 | Optional. `glass-polishing-loop.mp4` is in `public/video/` and can be wired at card size whenever you want it. |
-| C15 | Recurring-plan discount figures | §6.2 | The page says plans are discounted but quotes no percentage, since none was supplied. |
+| # | Item | Note |
+|---|---|---|
+| C12 | More same-job before/after pairs | The component is built and reusable. |
+| C13 | Case studies for more consented clients | Two named case studies are published; the rest of the wall is logos only. |
+| C20 | A second video | `glass-polishing-loop.mp4` is wired into the Windows & glass section and the Gallery. One clip is doing a lot of work — footage of a deep clean or a post-construction job would spread it. |
+| C21 | Larger source photographs for pest control | Only one pest photograph is wide enough to render at full width without upscaling, so both pest blog posts share it. |
 
 ## 🟢 Resolved
 
 | Item | Resolution |
 |---|---|
-| Brand colour source | **Logo only**, per your direction — green `#248F4D`, orange `#DB4F32`. No uniform-derived colour. |
-| Heading font | **Montserrat** + Inter |
-| Google review count | **10 five-star reviews**, reflected in the stats row and `AggregateRating` |
-| Canonical host | `www` (§9.4) — applied in Phase 4 |
-| Facility Management | Now a real service with its own `#facility-management` anchor |
-| `#office-cleaning` anchor | Restored as an alias alongside `#commercial-cleaning` |
-| All 55 photos | Supplied, categorised and live with written alt text |
-| Badges, client logo, video | All supplied and in `public/` |
-| **Official ISSA logo** | ✅ Received 2026-11-13 at 600px and installed (520×285 after trim), replacing the 256px file. |
-| **Lagos address** | ✅ 5 Admiralty Road, off Admiralty Way, Lekki Phase 1 — on /lagos, /contact and the footer, always with "site assessments by appointment". |
-| **Analytics** | ✅ GA4 `G-GXR7K2CX6K` live behind a consent banner; verified zero Google requests before consent. |
-| **Skin 101 consent** | ✅ Confirmed `true` (2026-11-12). Logo wall renders, and the engagement is named on `/clients` and `/lagos` as a **past** client — "served", never current. |
-| **Affiliation status wording** | ✅ Confirmed: **Member ISSA** · **Registered with EHCON** · **Registered member PECAN**, plus the founder serving as Financial Secretary of the PECAN FCT chapter. |
-| **Training outline** | ✅ Decided against publishing one (2026-11-13). Training is sold as a bespoke proposal per organisation, so the page shows the four modules and invites an enquiry instead of a timetable. |
-| **Lagos service areas** | ✅ Open to all Lagos; concentration on the Ikoyi / Victoria Island / Lekki axis. Live on /lagos. |
-| **Recurring plan discounts** | ✅ Resolved by removal. No discount structure exists, so the claim was taken off /services and out of two FAQ answers rather than left unsupported. |
-| **Engagement years** | ✅ Decided against showing. Ranges go stale and misrepresent one-off contracts. `"since": YYYY` can be added later for long-running clients — it ages well and never needs updating. |
-| **All 12 client logos** | ✅ Live, including INFRACORP. |
-| Lagos positioning | ✅ Confirmed as a **relaunch** — one past engagement (Skin 101, 2024–2025), no current Lagos clients, no airport claim. |
+| Brand colour source | **Logo only** — green `#248F4D`, orange `#DB4F32`. No uniform-derived colour. |
+| Heading font | **Fraunces**, after Montserrat was judged heavy on mobile. |
+| Body font | **Hanken Grotesk**, replacing Inter and then Source Sans 3, at your direction. |
+| Google review count | **Not published anywhere**, at your direction. "5.0 on Google" remains; `aggregateRating` was removed from the schema, since Google requires a count alongside a rating. |
+| Analytics | GA4 `G-GXR7K2CX6K`, consent-gated, with quote, WhatsApp, phone and email events. |
+| CAC registration | **RC 1397102**, confirmed by you, now in the footer and in the Terms. |
+| Opening hours | Monday–Saturday 7am–6pm, Sundays by appointment. Held in one place in `constants.ts`. |
+| Terms contact details | Corrected to `infodesk@dustandwipes.com` and the two real numbers, read from `constants.ts` so they cannot drift again. |
+| ISSA name | "The Association for Cleaning & Facility Solutions", at your direction. |
+| "Safe for children and pets" | True of the **cleaning** products, and said so. Not claimed for pest control, where the page says plainly why not. |
+| "Licensed and insured" | Removed. The site claims only EHCON, PECAN and the AMAC Operational Permit. |
+| Glass-polishing video | Wired into `/services#window-glass-cleaning` and `/gallery`. |
+| Canonical host | `www` (§9.4). |
+| `#office-cleaning` anchor | Still resolves as an alias of `#commercial-cleaning`. |
+
+---
+
+## Before launch
+
+1. **Submit the enquiry form on the preview** and confirm the message reaches the
+   Formspree inbox. The form posts correctly in-browser, but the final delivery hop
+   cannot be tested from this sandbox.
+2. **Re-run Lighthouse on the preview**, not locally. Sandbox numbers are not
+   trustworthy — see `ACCEPTANCE_AUDIT.md`.
+3. **Test the Content-Security-Policy on the preview.** It was driven through eight
+   pages in a real browser here with zero violations, but a CSP is exactly the kind of
+   thing that behaves differently against a real deployment. If anything breaks, the
+   relevant directive is commented in `next.config.ts`.
