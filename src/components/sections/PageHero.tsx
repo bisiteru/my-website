@@ -73,9 +73,10 @@ export default function PageHero({
             </ol>
           </nav>
 
-          <p className="eyebrow mt-7">{eyebrow}</p>
-          <h1 className="h1-display mt-3 max-w-[19ch]">{title}</h1>
-          {lede && <p className="lede mt-5">{lede}</p>}
+          <p className="eyebrow anim-rise-fade mt-7">{eyebrow}</p>
+          {/* rise only, no fade — this or the photo is the LCP element */}
+          <h1 className="h1-display anim-rise anim-d1 mt-3 max-w-[19ch]">{title}</h1>
+          {lede && <p className="lede anim-rise-fade anim-d2 mt-5">{lede}</p>}
           {children && <div className="mt-8 flex flex-wrap gap-3">{children}</div>}
         </div>
 
@@ -88,7 +89,7 @@ export default function PageHero({
               height={p.height}
               priority
               sizes="(max-width: 1024px) 100vw, 45vw"
-              className="h-56 w-full object-cover photo-grade sm:h-72 lg:h-[22rem]"
+              className="anim-settle h-56 w-full object-cover photo-grade sm:h-72 lg:h-[22rem]"
             />
           </div>
         )}

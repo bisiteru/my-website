@@ -26,9 +26,9 @@ const SERVICE_COLUMNS: { heading: string; items: MegaItem[] }[] = [
     heading: "Cleaning",
     items: [
       { label: "Residential cleaning", href: "/services#residential-cleaning", blurb: "Homes and apartments" },
-      { label: "Commercial & office cleaning", href: "/services#commercial-cleaning", blurb: "Workplaces and facilities" },
-      { label: "Deep cleaning", href: "/services#deep-cleaning", blurb: "Room-by-room detail" },
-      { label: "Post-construction cleaning", href: "/services#post-construction", blurb: "New builds and refits" },
+      { label: "Commercial & office cleaning", href: "/services/commercial-cleaning", blurb: "Fixed scope, named supervisor" },
+      { label: "Deep cleaning", href: "/services/deep-cleaning", blurb: "Room-by-room detail" },
+      { label: "Post-construction cleaning", href: "/services/post-construction", blurb: "New builds and refits" },
     ],
   },
   {

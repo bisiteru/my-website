@@ -16,6 +16,7 @@ function check(section, item, pass, evidence) {
 
 const PAGES = [
   "/", "/services", "/training", "/pest-control", "/abuja", "/lagos", "/clients", "/gallery",
+  "/services/deep-cleaning", "/services/post-construction", "/services/commercial-cleaning",
   "/about", "/blog", "/faqs", "/contact", "/privacy", "/terms",
 ];
 
@@ -111,6 +112,28 @@ check("New pages", "Pest control page",
   /EHCON/.test(html["/pest-control"]) && /Before we arrive/.test(html["/pest-control"]) &&
   /When you return/.test(html["/pest-control"]) && /pest-safety-protocol/.test(html["/pest-control"]),
   "process, preparation, re-entry, safety protocol and FAQs on a page of its own");
+
+check("New pages", "Per-service detail pages",
+  ["/services/deep-cleaning", "/services/post-construction", "/services/commercial-cleaning"].every(
+    (p) => /What moves the price\./.test(html[p]) && /From enquiry to the final walk-through\./.test(html[p]) &&
+           /What people ask before booking\./.test(html[p]) && /FAQPage/.test(html[p])
+  ),
+  "each carries process, what-affects-the-price, FAQs and FAQPage schema");
+
+// These pages were ADDED beside the anchors, never instead of them (3.1).
+check("New pages", "Service anchors survive their new detail pages",
+  ["deep-cleaning", "post-construction", "commercial-cleaning", "office-cleaning", "pest-control"]
+    .every((a) => html["/services"].includes(`id="${a}"`)),
+  "every /services#anchor still resolves on /services");
+
+// Motion direction: nothing may render hidden and wait for a script.
+check("Motion", "No content hidden before scripts run",
+  !/style="[^"]*opacity:\s*0/.test(all) && !/opacity:0;/.test(all),
+  "no server-rendered opacity:0 — the old scroll reveal shipped it on every card");
+
+check("Motion", "Counting numbers and the pulsing bubble are gone",
+  !/animate-spin-slow|animate-fadeIn/.test(all) && !/StatCounter/.test(all),
+  "spin-slow, animate-fadeIn, the stat count-up and the WhatsApp bubble all removed");
 
 check("New pages", "One action per enquiry section",
   // The old CTA band closed every page with two buttons of equal weight. Each

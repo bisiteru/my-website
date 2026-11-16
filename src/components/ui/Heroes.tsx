@@ -26,9 +26,9 @@ export function SplitHero({
     <section className="hero-bg relative overflow-hidden pt-28 pb-16 sm:pt-32 lg:pb-20">
       <div className="container-dw grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <div>
-          <p className="eyebrow !text-[var(--c-orange-200)]">{eyebrow}</p>
-          <h1 className="h1-display mt-4 max-w-[16ch] font-semibold text-white">{title}</h1>
-          {lede && <p className="lede mt-6 !text-white/85">{lede}</p>}
+          <p className="eyebrow anim-rise-fade !text-[var(--c-orange-200)]">{eyebrow}</p>
+          <h1 className="h1-display anim-rise anim-d1 mt-4 max-w-[16ch] font-semibold text-white">{title}</h1>
+          {lede && <p className="lede anim-rise-fade anim-d2 mt-6 !text-white/85">{lede}</p>}
           {actions && <div className="mt-9 flex flex-wrap gap-3">{actions}</div>}
         </div>
         <div className="photo-zoom rounded-2xl overflow-hidden shadow-2xl">
@@ -72,13 +72,14 @@ export function CollageHero({
     <section className="hero-bg relative overflow-hidden pt-28 pb-16 sm:pt-32 lg:pb-20">
       <div className="container-dw grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
         <div>
-          <p className="eyebrow !text-[var(--c-orange-200)]">{eyebrow}</p>
-          <h1 className="h1-display mt-4 max-w-[17ch] font-semibold text-white">{title}</h1>
-          {lede && <p className="lede mt-6 !text-white/85">{lede}</p>}
-          {actions && <div className="mt-9 flex flex-wrap gap-3">{actions}</div>}
+          <p className="eyebrow anim-rise-fade !text-[var(--c-orange-200)]">{eyebrow}</p>
+          {/* rise only, no fade: this H1 is the home page's LCP element */}
+          <h1 className="h1-display anim-rise anim-d1 mt-4 max-w-[17ch] font-semibold text-white">{title}</h1>
+          {lede && <p className="lede anim-rise-fade anim-d2 mt-6 !text-white/85">{lede}</p>}
+          {actions && <div className="anim-rise-fade anim-d2 mt-9 flex flex-wrap gap-3">{actions}</div>}
         </div>
         <div className="grid grid-cols-2 gap-3 sm:gap-4">
-          <div className="photo-zoom col-span-2 rounded-2xl overflow-hidden shadow-2xl">
+          <div className="photo-zoom anim-settle col-span-2 rounded-2xl overflow-hidden shadow-2xl">
             <Image
               src={photoSrc(lead)}
               alt={alts[0]}

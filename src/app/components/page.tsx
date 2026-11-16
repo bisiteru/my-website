@@ -9,7 +9,6 @@ import MasonryGallery from "@/components/ui/MasonryGallery";
 import Accordion from "@/components/ui/Accordion";
 import QuoteForm from "@/components/ui/QuoteForm";
 import { EnquirySection, MapBlock, SectionHeader } from "@/components/ui/Blocks";
-import Reveal from "@/components/ui/Reveal";
 import { TESTIMONIALS, FAQS, COMPANY } from "@/lib/constants";
 
 /** Component showcase — PROMPTS.md Phase 2.
@@ -202,13 +201,16 @@ export default function ComponentsPage() {
           </div>
         </Spec>
 
-        <Spec id="reveal" name="Scroll reveal" brief="§4.8 IntersectionObserver + CSS transition; no animation library">
-          <div className="grid gap-4 sm:grid-cols-3">
-            {[0, 120, 240].map((d) => (
-              <Reveal key={d} delay={d}>
-                <div className="card p-6 text-[0.9375rem] text-[var(--c-ink-2)]">Reveals at {d}ms</div>
-              </Reveal>
-            ))}
+        <Spec id="reveal" name="Header motion" brief="CSS only; rise 500ms, 80ms apart; no scroll reveal anywhere">
+          <div className="card p-7">
+            <p className="eyebrow anim-rise-fade">Eyebrow</p>
+            <h3 className="h3-card anim-rise anim-d1 mt-3">Heading rises without fading</h3>
+            <p className="anim-rise-fade anim-d2 mt-2 text-[0.9375rem] text-[var(--c-ink-2)]">
+              The heading is the LCP element on most pages, and Chrome does not count an element
+              as painted while its opacity is 0 — so it moves but never fades. The site-wide
+              scroll reveal is gone: it rendered opacity:0 in the server HTML, which hid content
+              from anyone whose scripts failed.
+            </p>
           </div>
         </Spec>
 

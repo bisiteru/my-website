@@ -122,7 +122,7 @@ export default function MasonryGallery({
           role="dialog"
           aria-modal="true"
           aria-label={active.alt}
-          className="fixed inset-0 z-[60] flex flex-col bg-black/92 p-4 backdrop-blur-sm"
+          className="anim-lightbox fixed inset-0 z-[60] flex flex-col bg-black/92 p-4 backdrop-blur-sm"
           onClick={(e) => e.target === e.currentTarget && setOpen(null)}
         >
           <div className="flex justify-end">

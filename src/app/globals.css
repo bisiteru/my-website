@@ -194,6 +194,54 @@ html {
 
   .prose-measure { max-width: var(--measure); }
 
+  /* ═══ Motion (SITE_REVIEW "Motion direction") ═══
+   *
+   * Plain CSS animations, no library and no IntersectionObserver: these run on
+   * elements that are above the fold anyway, so scroll-triggering them would
+   * add JavaScript for nothing. Because they are CSS, content never waits for a
+   * script — if JavaScript fails the page is fully readable, which is the rule
+   * the old scroll-reveal broke (it rendered opacity:0 on the server).
+   *
+   * Durations 0.5s, or 1s for the hero settle. Only opacity and transform are
+   * animated. Movement is 12px, inside the 16px ceiling.
+   *
+   * WHY THE H1 AND THE HERO PHOTO RISE BUT DO NOT FADE:
+   * the same section requires that Largest Contentful Paint must not get
+   * slower, and those two ARE the LCP element — the H1 on the home page, the
+   * header photograph on every inner page (measured, not assumed). Chrome does
+   * not count an element as painted while its opacity is 0, so fading them in
+   * would push LCP out by the length of the animation. A transform-only rise
+   * reads almost identically and costs nothing, so the eyebrow and the lede
+   * fade while the heading itself only moves.
+   */
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes dw-rise {
+      from { transform: translateY(12px); }
+      to   { transform: none; }
+    }
+    @keyframes dw-rise-fade {
+      from { transform: translateY(12px); opacity: 0; }
+      to   { transform: none; opacity: 1; }
+    }
+    @keyframes dw-settle {
+      from { transform: scale(1.04); }
+      to   { transform: none; }
+    }
+
+    .anim-rise      { animation: dw-rise 500ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+    .anim-rise-fade { animation: dw-rise-fade 500ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+    .anim-settle    { animation: dw-settle 1000ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+    .anim-d1        { animation-delay: 80ms; }
+    .anim-d2        { animation-delay: 160ms; }
+
+    /* Lightbox cross-fade, 0.25s in (Motion direction). There is no exit
+       animation: the dialog unmounts on close, and keeping it mounted purely
+       to animate it out would leave an aria-modal dialog in the tree after
+       the user has dismissed it. */
+    @keyframes dw-fade-in { from { opacity: 0; } to { opacity: 1; } }
+    .anim-lightbox { animation: dw-fade-in 250ms ease-out both; }
+  }
+
   /* Skip link (review 6.2) — off-screen until focused. */
   .skip-link {
     position: fixed;
@@ -320,14 +368,12 @@ html {
     from { opacity: 0; transform: translateY(16px); }
     to   { opacity: 1; transform: none; }
   }
-  @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
   @keyframes pulse-wa {
     0%, 100% { box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4); }
     50%      { box-shadow: 0 6px 40px rgba(37, 211, 102, 0.75); }
   }
 
   .animate-fade-up  { animation: dw-fade-up 600ms cubic-bezier(0.22, 1, 0.36, 1) both; }
-  .animate-spin-slow { animation: spin-slow 24s linear infinite; }
   .animate-pulse-wa  { animation: pulse-wa 2.5s ease-in-out infinite; }
 
   @media (prefers-reduced-motion: reduce) {

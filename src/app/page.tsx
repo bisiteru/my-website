@@ -8,7 +8,6 @@ import { SectorTile, ProcessSteps } from "@/components/ui/Cards";
 import ServiceIndex from "@/components/ui/ServiceIndex";
 import TestimonialCarousel from "@/components/ui/TestimonialCarousel";
 import { EnquirySection, SectionHeader } from "@/components/ui/Blocks";
-import Reveal from "@/components/ui/Reveal";
 import { photoSrc, PHOTOS } from "@/lib/photos";
 import { SERVICES, TESTIMONIALS, WHY_US, AFFILIATIONS, COMPANY } from "@/lib/constants";
 import galleryData from "../../content/gallery.json";

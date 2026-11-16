@@ -87,7 +87,7 @@ export const SERVICES = [
     description:
       "Expert office and commercial space cleaning that keeps your workplace professional, hygienic, and productive.",
     image: "/photos/office-floor-scrubbing-machine.jpg",
-    href: "/services#commercial-cleaning",
+    href: "/services/commercial-cleaning",
     features: [
       "Open-plan office cleaning",
       "Restroom sanitisation",
@@ -103,7 +103,7 @@ export const SERVICES = [
     description:
       "A comprehensive deep clean tackling every corner — inside appliances, grout lines, blinds, under furniture, and all the areas your regular clean misses.",
     image: "/photos/pantry-bar-stool-detail-cleaning.jpg",
-    href: "/services#deep-cleaning",
+    href: "/services/deep-cleaning",
     features: [
       "Inside appliances (oven, fridge, microwave)",
       "Grout scrubbing & tile deep-clean",
@@ -135,7 +135,7 @@ export const SERVICES = [
     description:
       "Specialized deep-clean for newly built or renovated properties — ready for immediate occupation.",
     image: "/photos/post-construction-granite-floor-scrubbing.jpg",
-    href: "/services#post-construction",
+    href: "/services/post-construction",
     features: [
       "Dust & debris clearance",
       "Window & glass polishing",

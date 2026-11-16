@@ -62,6 +62,18 @@ function serviceAlt(service: (typeof SERVICES)[number]) {
 }
 
 /** Silent loops that accompany a service, keyed by service id. */
+/**
+ * Services that have a page of their own (review 2.5). The anchor section on
+ * this page stays exactly where it is — it is part of the frozen URL set — and
+ * now links through to the detail page rather than being replaced by it.
+ */
+const DETAIL_PAGES: Record<string, string> = {
+  "commercial-cleaning": "/services/commercial-cleaning",
+  "deep-cleaning": "/services/deep-cleaning",
+  "post-construction": "/services/post-construction",
+  "pest-control": "/pest-control",
+};
+
 const VIDEOS: Record<string, { src: string; poster: string; label: string }> = {
   "window-glass-cleaning": {
     src: "/videos/glass-polishing-loop.mp4",
@@ -123,7 +135,13 @@ function ServiceSection({
             ))}
           </ul>
           <div className="mt-7 flex flex-wrap gap-3">
-            <Link href="/contact" className="btn btn--primary">Get a free quote</Link>
+            {DETAIL_PAGES[service.id] ? (
+              <Link href={DETAIL_PAGES[service.id]} className="btn btn--primary">
+                {service.title}: process, pricing &amp; FAQs
+              </Link>
+            ) : (
+              <Link href="/contact" className="btn btn--primary">Get a free quote</Link>
+            )}
             <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn--secondary">
               <MessageCircle size={16} aria-hidden="true" /> Book on WhatsApp
             </a>
