@@ -1,0 +1,322 @@
+{
+  "_comment": "BUILD_BRIEF §6.8/§8. Add a photo by adding an entry here; the file must exist at public/photos/<file>.jpg. polished-tile-floor-after-cleaning is ON HOLD (§3.3) and must not be added until a matching before exists.",
+  "categories": [
+    {
+      "slug": "all",
+      "label": "All"
+    },
+    {
+      "slug": "residential",
+      "label": "Residential"
+    },
+    {
+      "slug": "office-commercial",
+      "label": "Office & commercial"
+    },
+    {
+      "slug": "deep-cleaning",
+      "label": "Deep cleaning"
+    },
+    {
+      "slug": "post-construction",
+      "label": "Post-construction"
+    },
+    {
+      "slug": "pest-disinfection",
+      "label": "Pest control & disinfection"
+    },
+    {
+      "slug": "windows-glass",
+      "label": "Windows & glass"
+    },
+    {
+      "slug": "healthcare",
+      "label": "Healthcare"
+    },
+    {
+      "slug": "events",
+      "label": "Events"
+    },
+    {
+      "slug": "our-team",
+      "label": "Our team"
+    }
+  ],
+  "items": [
+    {
+      "file": "luxury-living-room-floor-cleaning",
+      "alt": "A cleaner mopping the floor of a furnished living room",
+      "category": "residential"
+    },
+    {
+      "file": "kitchen-sink-grate-cleaning",
+      "alt": "A cleaner scrubbing a kitchen sink drainer grate",
+      "category": "residential"
+    },
+    {
+      "file": "residential-shelf-dusting",
+      "alt": "A cleaner dusting a shelf in a home",
+      "category": "residential"
+    },
+    {
+      "file": "residential-skirting-mopping",
+      "alt": "A cleaner mopping along a skirting board",
+      "category": "residential"
+    },
+    {
+      "file": "residential-kitchen-cabinet-cleaning",
+      "alt": "A cleaner wiping down kitchen cabinet doors",
+      "category": "residential"
+    },
+    {
+      "file": "wardrobe-top-dusting",
+      "alt": "A cleaner reaching up to dust the top of a bedroom wardrobe",
+      "category": "residential"
+    },
+    {
+      "file": "room-floor-mopping",
+      "alt": "A cleaner mopping a bedroom floor",
+      "category": "residential"
+    },
+    {
+      "file": "skirting-board-cleaning",
+      "alt": "A cleaner wiping a skirting board by hand",
+      "category": "residential"
+    },
+    {
+      "file": "office-floor-scrubbing-machine",
+      "alt": "An operator running a floor-scrubbing machine through an office",
+      "category": "office-commercial"
+    },
+    {
+      "file": "boardroom-tv-unit-dusting",
+      "alt": "A cleaner dusting a boardroom television unit",
+      "category": "office-commercial"
+    },
+    {
+      "file": "corridor-team-mopping",
+      "alt": "Two cleaners mopping an office corridor together",
+      "category": "office-commercial"
+    },
+    {
+      "file": "office-lobby-mopping-equipment",
+      "alt": "A cleaner mopping an office lobby beside cleaning equipment",
+      "category": "office-commercial"
+    },
+    {
+      "file": "office-desk-equipment-wiping",
+      "alt": "A cleaner wiping down desk equipment in an office",
+      "category": "office-commercial"
+    },
+    {
+      "file": "office-floor-deep-clean-team",
+      "alt": "A team deep-cleaning an office floor",
+      "category": "office-commercial"
+    },
+    {
+      "file": "office-floor-scrubbing-team",
+      "alt": "A team scrubbing an office floor with machinery",
+      "category": "office-commercial"
+    },
+    {
+      "file": "office-corridor-mopping",
+      "alt": "A cleaner mopping a long office corridor",
+      "category": "office-commercial"
+    },
+    {
+      "file": "office-lobby-mopping",
+      "alt": "A cleaner mopping an office lobby floor",
+      "category": "office-commercial"
+    },
+    {
+      "file": "office-wall-frame-dusting",
+      "alt": "A cleaner dusting a framed picture on an office wall",
+      "category": "office-commercial"
+    },
+    {
+      "file": "pantry-bar-stool-detail-cleaning",
+      "alt": "A cleaner detail-cleaning the base of a pantry bar stool",
+      "category": "deep-cleaning"
+    },
+    {
+      "file": "bar-stool-base-polishing",
+      "alt": "A cleaner polishing the chrome base of a bar stool",
+      "category": "deep-cleaning"
+    },
+    {
+      "file": "standing-fan-cleaning",
+      "alt": "A cleaner cleaning the blades of a standing fan",
+      "category": "deep-cleaning"
+    },
+    {
+      "file": "table-base-cleaning",
+      "alt": "A cleaner cleaning the base of a table",
+      "category": "deep-cleaning"
+    },
+    {
+      "file": "chandelier-cleaning",
+      "alt": "A cleaner carefully cleaning a hanging chandelier",
+      "category": "deep-cleaning"
+    },
+    {
+      "file": "library-bookshelf-dusting",
+      "alt": "A cleaner dusting the shelves of a library bookcase",
+      "category": "deep-cleaning"
+    },
+    {
+      "file": "post-construction-before-debris",
+      "alt": "A newly built interior strewn with construction debris before cleaning",
+      "category": "post-construction"
+    },
+    {
+      "file": "post-construction-granite-floor-scrubbing",
+      "alt": "An operator machine-scrubbing a granite floor after construction work",
+      "category": "post-construction"
+    },
+    {
+      "file": "post-construction-paint-removal",
+      "alt": "A cleaner removing paint splatter from a surface after construction",
+      "category": "post-construction"
+    },
+    {
+      "file": "new-build-kitchen-cabinet-cleaning",
+      "alt": "A cleaner cleaning kitchen cabinets in a newly built property",
+      "category": "post-construction"
+    },
+    {
+      "file": "empty-apartment-vacuuming",
+      "alt": "A cleaner vacuuming an empty apartment",
+      "category": "post-construction"
+    },
+    {
+      "file": "upholstered-headboard-vacuuming",
+      "alt": "A cleaner vacuuming an upholstered bed headboard",
+      "category": "deep-cleaning"
+    },
+    {
+      "file": "wet-vacuum-floor-cleaning",
+      "alt": "A cleaner using a wet vacuum on a hard floor",
+      "category": "deep-cleaning"
+    },
+    {
+      "file": "pest-control-spraying-driveway",
+      "alt": "A technician spraying a treatment along a driveway",
+      "category": "pest-disinfection"
+    },
+    {
+      "file": "office-fogging-treatment",
+      "alt": "A technician carrying out a fogging treatment in an office",
+      "category": "pest-disinfection"
+    },
+    {
+      "file": "office-disinfection-misting",
+      "alt": "A technician misting disinfectant across an office",
+      "category": "pest-disinfection"
+    },
+    {
+      "file": "exterior-window-cleaning-ladder",
+      "alt": "A cleaner on a ladder cleaning an exterior window",
+      "category": "windows-glass"
+    },
+    {
+      "file": "high-window-frame-cleaning",
+      "alt": "A cleaner cleaning a high window frame",
+      "category": "windows-glass"
+    },
+    {
+      "file": "residential-window-cleaning",
+      "alt": "A cleaner cleaning the windows of a home",
+      "category": "windows-glass"
+    },
+    {
+      "file": "window-grille-wiping",
+      "alt": "A cleaner wiping down a window grille",
+      "category": "windows-glass"
+    },
+    {
+      "file": "glass-wardrobe-wiping",
+      "alt": "A cleaner wiping the glass doors of a wardrobe",
+      "category": "windows-glass"
+    },
+    {
+      "file": "healthcare-clinic-room-cleaning",
+      "alt": "A cleaner cleaning a clinic consulting room",
+      "category": "healthcare"
+    },
+    {
+      "file": "clinic-treatment-chair-cleaning",
+      "alt": "A cleaner wiping down a clinic treatment chair",
+      "category": "healthcare"
+    },
+    {
+      "file": "clinic-reception-mopping",
+      "alt": "A cleaner mopping a clinic reception floor",
+      "category": "healthcare"
+    },
+    {
+      "file": "salon-floor-cleaning",
+      "alt": "Two cleaners mopping the floor of a hair salon",
+      "category": "deep-cleaning"
+    },
+    {
+      "file": "international-organisation-entrance-cleaning",
+      "alt": "A cleaner cleaning the entrance area of an international organisation",
+      "category": "office-commercial"
+    },
+    {
+      "file": "event-stage-cleanup",
+      "alt": "A team clearing confetti from an event stage after a function",
+      "category": "events"
+    },
+    {
+      "file": "exhibition-stand-cleaning",
+      "alt": "A cleaner cleaning an exhibition stand",
+      "category": "events"
+    },
+    {
+      "file": "event-crew-team",
+      "alt": "The Dust and Wipes event crew in uniform",
+      "category": "our-team"
+    },
+    {
+      "file": "lagos-team-uniform",
+      "alt": "The Dust and Wipes Lagos team in branded uniform",
+      "category": "our-team"
+    },
+    {
+      "file": "team-uba-marketplace",
+      "alt": "The Dust and Wipes team at UBA Marketplace in Abuja",
+      "category": "our-team"
+    },
+    {
+      "file": "dust-and-wipes-team-uniform",
+      "alt": "Two Dust and Wipes team members in branded yellow uniform in an office",
+      "category": "our-team"
+    },
+    {
+      "file": "staff-christmas-picnic",
+      "alt": "Dust and Wipes staff together at the company Christmas picnic",
+      "category": "our-team"
+    },
+    {
+      "file": "dust-and-wipes-branded-van",
+      "alt": "The branded Dust and Wipes van, listing the services offered",
+      "category": "our-team"
+    },
+    {
+      "file": "bisi-teru-leading-training",
+      "alt": "Bisi Teru leading a professional training session for a seated group",
+      "category": "our-team"
+    },
+    {
+      "file": "bisi-teru-training-room",
+      "alt": "Bisi Teru speaking in a training room",
+      "category": "our-team"
+    },
+    {
+      "file": "rooftop-terrace-machine-scrubbing",
+      "alt": "An operator machine-scrubbing a rooftop terrace",
+      "category": "office-commercial"
+    }
+  ]
+}

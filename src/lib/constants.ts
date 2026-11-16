@@ -6,13 +6,25 @@ export const COMPANY = {
   name: "Dust & Wipes Limited",
   tagline: "Restoring a Clean World",
   description:
-    "Abuja's most trusted cleaning and pest control company since 2017. We deliver spotless, safe environments for homes, offices, and facilities across the FCT.",
+    "Cleaning, pest control, facility support and cleaner training since 2017, from offices in Abuja and Lagos.",
+  /** Displayed in local format; every tel: link is built from phoneE164 /
+   *  phone2E164 so a foreign SIM can dial it (review 3.6). */
   phone: "0809 970 0001",
+  phoneE164: "+2348099700001",
   phone2: "0809 845 7721",
+  phone2E164: "+2348098457721",
+  /** CAC registration, confirmed by the owner 15 Nov 2026. */
+  rcNumber: "RC 1397102",
   whatsapp: "+2348099700001",
   whatsappText: "Hello, I'd like to enquire about cleaning services",
   email: "infodesk@dustandwipes.com",
   address: "Suite D15, Irama Plaza, 4th Avenue, Gwarinpa, Abuja.",
+  /** §3.2 — a business address, not a staffed walk-in office.
+   *  Always presented as "Lagos address · Site assessments by appointment". */
+  lagosAddress: "5 Admiralty Road, off Admiralty Way, Lekki Phase 1, Lekki, Lagos.",
+  /** Review 2.1 / 4.6 — one answer to "when do you work", used everywhere. */
+  hours: "Monday–Saturday, 7am–6pm",
+  hoursNote: "Sundays by appointment",
   googleMapsUrl:
     "https://maps.google.com/?q=Irama+Plaza+Gwarinpa+Abuja",
   foundedYear: 2017,
@@ -24,10 +36,25 @@ export const COMPANY = {
   },
 };
 
+/** §4.6 — membership status confirmed by the client, 2026-11-12.
+ *  These are verifiable claims, so the wording is theirs, not inferred. */
 export const AFFILIATIONS = [
-  { short: "ISSA", full: "International Sanitary Standards Association" },
-  { short: "EHCON", full: "Environmental Health Council of Nigeria" },
-  { short: "PECAN", full: "Pest Control Association of Nigeria" },
+  {
+    short: "ISSA",
+    full: "The Association for Cleaning & Facility Solutions",
+    status: "Member",
+  },
+  {
+    short: "EHCON",
+    full: "Environmental Health Council of Nigeria",
+    status: "Registered with",
+  },
+  {
+    short: "PECAN",
+    full: "Pest Control Association of Nigeria",
+    status: "Registered member",
+    note: "Our founder serves as Financial Secretary of the PECAN FCT chapter.",
+  },
 ];
 
 export const SERVICE_AREAS = [
@@ -39,12 +66,12 @@ export const SERVICE_AREAS = [
 export const SERVICES = [
   {
     id: "residential-cleaning",
-    title: "Residential Cleaning",
+    title: "Residential cleaning",
     shortDesc: "Thorough, eco-friendly cleaning for your home.",
     description:
-      "Thorough, eco-friendly cleaning for your home — kitchens, bathrooms, bedrooms and living areas done to perfection.",
-    image: "/images/hero-corridor-cleaning.jpg",
-    href: "/services#cleaning",
+      "Thorough, eco-friendly cleaning for your home — kitchens, bathrooms, bedrooms and living areas, to a written room-by-room standard.",
+    image: "/photos/luxury-living-room-floor-cleaning.jpg",
+    href: "/services#residential-cleaning",
     features: [
       "Full home deep cleaning",
       "Kitchen and bathroom sanitation",
@@ -55,12 +82,12 @@ export const SERVICES = [
   },
   {
     id: "commercial-cleaning",
-    title: "Commercial Cleaning",
+    title: "Commercial & office cleaning",
     shortDesc: "Expert office and commercial space cleaning.",
     description:
       "Expert office and commercial space cleaning that keeps your workplace professional, hygienic, and productive.",
-    image: "/images/office-sweeping-yellow.jpg",
-    href: "/services#commercial-cleaning",
+    image: "/photos/office-floor-scrubbing-machine.jpg",
+    href: "/services/commercial-cleaning",
     features: [
       "Open-plan office cleaning",
       "Restroom sanitisation",
@@ -71,12 +98,12 @@ export const SERVICES = [
   },
   {
     id: "deep-cleaning",
-    title: "Deep Cleaning",
+    title: "Deep cleaning",
     shortDesc: "Thorough room-by-room deep clean of your entire space.",
     description:
       "A comprehensive deep clean tackling every corner — inside appliances, grout lines, blinds, under furniture, and all the areas your regular clean misses.",
-    image: "/images/kitchen-cleaning.jpg",
-    href: "/services#deep-cleaning",
+    image: "/photos/pantry-bar-stool-detail-cleaning.jpg",
+    href: "/services/deep-cleaning",
     features: [
       "Inside appliances (oven, fridge, microwave)",
       "Grout scrubbing & tile deep-clean",
@@ -87,15 +114,15 @@ export const SERVICES = [
   },
   {
     id: "pest-control",
-    title: "Pest Control",
-    shortDesc: "Safe, effective fumigation and pest management.",
+    title: "Pest control",
+    shortDesc: "Licensed fumigation and pest management, under a written safety protocol.",
     description:
-      "Safe, effective fumigation and pest management to protect your home and business from unwanted infestations.",
-    image: "/images/fumigation-office-hallway.jpg",
-    href: "/services#pest-control",
+      "Effective fumigation and pest management, applied by licensed technicians under a documented safety protocol — because the products that work on pests are not harmless to people.",
+    image: "/photos/pest-control-spraying-driveway.jpg",
+    href: "/pest-control",
     features: [
       "Multi-pest spray treatment",
-      "Safe for children & pets",
+      "Strict safety protocol on every job",
       "Indoor & outdoor application",
       "Follow-up inspection",
     ],
@@ -103,12 +130,12 @@ export const SERVICES = [
   },
   {
     id: "post-construction",
-    title: "Post-Construction Cleaning",
+    title: "Post-construction cleaning",
     shortDesc: "Specialized deep-clean for newly built spaces.",
     description:
       "Specialized deep-clean for newly built or renovated properties — ready for immediate occupation.",
-    image: "/images/post-construction-interior.jpg",
-    href: "/services#cleaning",
+    image: "/photos/post-construction-granite-floor-scrubbing.jpg",
+    href: "/services/post-construction",
     features: [
       "Dust & debris clearance",
       "Window & glass polishing",
@@ -119,12 +146,12 @@ export const SERVICES = [
   },
   {
     id: "carpet-upholstery",
-    title: "Carpet & Upholstery Cleaning",
+    title: "Carpet & upholstery cleaning",
     shortDesc: "Professional deep cleaning for carpets & sofas.",
     description:
-      "Professional deep cleaning for carpets, rugs, sofas and furniture using industry-grade Rug Doctor equipment.",
-    image: "/images/sofa-cleaning.jpg",
-    href: "/services#cleaning",
+      "Professional deep cleaning for carpets, rugs, sofas and furniture using Rug Doctor and other professional carpet-washing machines.",
+    image: "/photos/upholstered-headboard-vacuuming.jpg",
+    href: "/services#carpet-upholstery",
     features: [
       "Hot-water extraction",
       "Stain & odour treatment",
@@ -134,12 +161,76 @@ export const SERVICES = [
     category: "cleaning",
   },
   {
+    id: "disinfection-sanitisation",
+    title: "Disinfection & sanitisation",
+    shortDesc: "Targeted disinfection for high-traffic and clinical spaces.",
+    description:
+      "Targeted disinfection and misting for workplaces, clinics and any space where surface hygiene has to be demonstrable, not assumed.",
+    image: "/photos/healthcare-clinic-room-cleaning.jpg",
+    href: "/services#disinfection-sanitisation",
+    features: [
+      "High-touch point treatment",
+      "Fogging and misting application",
+      "Correct dwell times observed",
+      "Safe re-entry guidance",
+    ],
+    category: "pest-control",
+  },
+  {
+    id: "window-glass-cleaning",
+    title: "Window & glass cleaning",
+    shortDesc: "Streak-free glass, inside and out.",
+    description:
+      "Interior and exterior glass, frames, grilles and partitions cleaned to a streak-free finish, including work at height where access allows.",
+    image: "/photos/exterior-window-cleaning-ladder.jpg",
+    href: "/services#window-glass-cleaning",
+    features: [
+      "Interior and exterior glass",
+      "Frames, sills and grilles",
+      "Glass partitions and doors",
+      "Safe working at height",
+    ],
+    category: "cleaning",
+  },
+  {
+    id: "event-exhibition-cleaning",
+    title: "Event & exhibition cleaning",
+    shortDesc: "Before, during and after your event.",
+    description:
+      "Set-up, live and post-event cleaning for exhibitions, conferences and functions — crews that work around your programme, not through it.",
+    image: "/photos/exhibition-stand-cleaning.jpg",
+    href: "/services#event-exhibition-cleaning",
+    features: [
+      "Pre-event preparation",
+      "Discreet cleaning during the event",
+      "Full post-event clearance",
+      "Crew sized to the venue",
+    ],
+    category: "cleaning",
+  },
+  {
+    id: "facility-management",
+    title: "Facility management support",
+    shortDesc: "Ongoing day-to-day support for your site.",
+    description:
+      "Day-to-day cleaning and support staff embedded at your site, supervised to a documented standard, so your facilities team can plan around it.",
+    image: "/photos/office-lobby-mopping-equipment.jpg",
+    href: "/services#facility-management",
+    features: [
+      "Permanent or rotating site teams",
+      "Supervised to a written standard",
+      "Consumables and stock monitoring",
+      "Scheduled reporting",
+    ],
+    category: "cleaning",
+  },
+  {
     id: "training-consultancy",
-    title: "Training & Consultancy",
+    title: "Training & consultancy",
     shortDesc: "Professional training in cleaning management.",
     description:
       "Professional training and consulting in cleaning management, hygiene standards, and facility operations.",
-    image: "/images/team-meeting.jpg",
+    image: "/photos/bisi-teru-leading-training.jpg",
     href: "/services#training-consultancy",
     features: [
       "Cleaning management training",
@@ -151,44 +242,36 @@ export const SERVICES = [
   },
 ];
 
+/**
+ * Three written promises with their proof beside them — SITE_REVIEW 1.3 / 2.3.
+ *
+ * This was six numbered cards whose first entry claimed "the latest
+ * professional equipment", "international cleaning standards" and that "every
+ * result exceeds expectations" — three claims with nothing behind any of them,
+ * all flagged in the review. Six vague promises persuade less than three that
+ * can be checked, so each one now carries the thing that makes it verifiable.
+ */
 export const WHY_US = [
   {
-    number: "01",
-    title: "Premium Cleaning Quality",
+    title: "The standard is in writing before we start",
     description:
-      "We use the latest professional equipment and eco-safe products, adhering to international cleaning standards — every result exceeds expectations.",
+      "Every contract begins with a written scope of work: each task, each area, each frequency. You are not relying on what a salesperson said, and neither are the cleaners.",
+    proof: "A scope of work, agreed and signed, on every contract",
   },
   {
-    number: "02",
-    title: "Vetted, Professional Staff",
+    title: "If it is not right, we come back",
     description:
-      "Every team member is thoroughly background-checked, trained, and certified. Dedicated professionals who treat your space with respect.",
+      "Tell us within 24 hours of the visit and we return and put it right at no extra cost. It is in our terms of service, not just on a page like this one.",
+    proof: "24-hour re-clean guarantee, stated in our terms",
   },
   {
-    number: "03",
-    title: "Affordable, Transparent Rates",
+    title: "The people are vetted, trained and supervised",
     description:
-      "Competitive pricing with no hidden fees. We work with your budget to deliver customised solutions — quality cleaning accessible to all.",
-  },
-  {
-    number: "04",
-    title: "Eco-Friendly Products",
-    description:
-      "Environmentally safe, non-toxic cleaning products — effective on dirt but gentle on your family, pets, and the planet.",
-  },
-  {
-    number: "05",
-    title: "Reliable & On-Time",
-    description:
-      "We show up when we say we will. With Dust & Wipes, you never have to chase your cleaner — reliability is at our core.",
-  },
-  {
-    number: "06",
-    title: "100% Satisfaction Guarantee",
-    description:
-      "Not satisfied? We'll come back and make it right at no extra cost. Your complete satisfaction is our commitment, every visit.",
+      "Every team member is background-checked, uniformed and trained to a written standard, with a named supervisor who answers for the work. Pest control runs under our EHCON and PECAN licensing and our AMAC Operational Permit.",
+    proof: "EHCON and PECAN licensed · AMAC Operational Permit",
   },
 ];
+
 
 export const TESTIMONIALS = [
   {
@@ -249,7 +332,7 @@ export const FAQS = [
   {
     question: "Are your cleaning products safe for children and pets?",
     answer:
-      "Absolutely. We use eco-friendly, non-toxic, and biodegradable cleaning products that are safe for your family, including children and pets. For pest control, we use certified, low-toxicity pesticides and advise a brief re-entry period after treatment.",
+      "Yes. The products we use for everyday cleaning in homes and offices are eco-friendly, biodegradable and safe around children and pets. Pest control is a different matter and we will not pretend otherwise: the chemicals that eliminate pests are hazardous by design. We control that risk rather than downplay it — a site assessment first, application strictly to the product label, full PPE for our technicians, and clear instructions on vacating and re-entry. See our pest control safety protocol for exactly what we do.",
   },
   {
     question: "Do I need to be home during the cleaning?",
@@ -269,22 +352,100 @@ export const FAQS = [
   {
     question: "How often should I schedule pest control?",
     answer:
-      "For general prevention, we recommend quarterly treatments. If you're dealing with an active infestation, an initial treatment followed by a follow-up 2–4 weeks later is standard. We offer annual maintenance plans at discounted rates.",
+      "For general prevention, we recommend quarterly treatments. If you're dealing with an active infestation, an initial treatment followed by a follow-up 2–4 weeks later is standard. We also offer annual maintenance plans — talk to us about a schedule and we will quote for it.",
   },
   {
     question: "Do you offer a satisfaction guarantee?",
     answer:
-      "Yes! If you're not completely satisfied with our service, let us know within 24 hours and we will return to re-clean the affected areas at no extra charge. Your satisfaction is our top priority.",
+      "Yes. If you are not satisfied, tell us within 24 hours of the visit and we will return and re-clean the affected areas at no extra charge. It is written into our terms of service, not just stated on the website.",
   },
   {
     question: "Can I get a fixed monthly cleaning plan?",
     answer:
-      "Definitely. We offer flexible recurring plans — weekly, bi-weekly, and monthly — at discounted rates compared to one-off bookings. Get in touch to discuss a plan that suits your schedule and budget.",
+      "Yes. We offer flexible recurring plans — weekly, bi-weekly, monthly or quarterly — and the same team returns each visit, so they learn your space. Get in touch with your schedule and requirements and we will quote for it.",
   },
   {
     question: "Are your staff trained and vetted?",
     answer:
       "All our team members undergo thorough background checks, professional training, and are fully supervised. They are uniformed, courteous, and equipped with professional-grade tools and products.",
+  },
+  {
+    question: "Do you work in Lagos as well as Abuja?",
+    answer:
+      "Yes. Abuja has been our home since 2017 and we cover every district in the FCT. In Lagos our entry is training-led — we work with organisations that employ their own cleaners — and we also take on commercial cleaning. We hold a Lagos address and arrange site assessments by appointment.",
+  },
+  {
+    question: "Can you train our in-house cleaning team on our premises?",
+    answer:
+      "Yes. Most of our training is delivered on site, around your own routines, equipment and premises. We cover housekeeping practice, workplace hygiene and safety, chemicals, equipment and PPE, and supervision and quality. Sessions can also run at a separate venue if that suits you better.",
+  },
+  {
+    question: "Do trainees receive certificates?",
+    answer:
+      "Yes. Participants who complete the programme receive a certificate of completion. We also give supervisors a short written summary of what was covered, so standards can be reinforced after we leave.",
+  },
+  {
+    question: "What discount applies to recurring plans?",
+    answer:
+      "Recurring plans — weekly, bi-weekly, monthly or quarterly — are priced below equivalent one-off bookings, and the saving grows with frequency. The same team returns each visit, so they learn your space. Contact us with your requirements for exact figures.",
+  },
+  {
+    question: "Is pest control safe around children and pets?",
+    answer:
+      "Pest control products are hazardous by design, so the honest answer is that safety comes from how they are handled, not from the chemicals being harmless. We are licensed by EHCON and PECAN and hold an AMAC Operational Permit. Every job begins with a site assessment, products are applied strictly to their label, our technicians wear full PPE, and we tell you before we start who must leave, what to cover or remove, and exactly when it is safe to return.",
+  },
+];
+
+/**
+ * Pest control FAQs — the questions that come up on the /pest-control page
+ * specifically, kept separate from the general FAQS list so the page can carry
+ * its own FAQPage structured data without diluting it with cleaning questions.
+ *
+ * Every answer here is held to §3.2: the chemicals are described as hazardous,
+ * which they are, and the credentials named are the real ones (EHCON, PECAN,
+ * the AMAC Operational Permit). Nothing promises a timescale or a guarantee
+ * that has not been confirmed by the company.
+ */
+export const PEST_FAQS = [
+  {
+    question: "Is pest control safe around children and pets?",
+    answer:
+      "Pest control products are hazardous by design, so the honest answer is that safety comes from how they are handled, not from the chemicals being harmless. We are licensed by EHCON and PECAN and hold an AMAC Operational Permit. Every job begins with a site assessment, products are applied strictly to their label, our technicians wear full PPE, and we tell you before we start who must leave, what to cover or remove, and exactly when it is safe to return. Our everyday cleaning products are a separate matter — those are biodegradable and safe around children and pets.",
+  },
+  {
+    question: "How long do we have to stay out of the building?",
+    answer:
+      "It depends on the product used, the treatment method and how well the space ventilates, so we will not quote you a single figure before we have seen the premises. What we will do is tell you the re-entry time in writing before we start, so you can plan around it rather than find out on the day. If the time we give you does not work for your household or your operation, say so at the assessment — there is often another product or another method that does.",
+  },
+  {
+    question: "What do I need to do before you arrive?",
+    answer:
+      "We give every client a written preparation list after the assessment, tailored to the premises and the treatment. It typically covers putting away food, utensils and pet bowls, covering or relocating fish tanks and turning off their air pumps, clearing access to skirting boards and cupboards, and arranging for people and pets to be out of the building for the stated period. If anything on the list is impractical, tell us before the day rather than on it.",
+  },
+  {
+    question: "Do you issue a certificate after treatment?",
+    answer:
+      "Our Operational Permit from the Abuja Municipal Area Council allows us to issue AMAC certification for pest services within the municipality, which is what most landlords, facility managers and regulators ask to see. Tell us at the enquiry stage if you need one, so the paperwork is prepared alongside the job.",
+  },
+  {
+    question: "Which pests do you treat?",
+    answer:
+      "The common structural and household pests in Abuja and Lagos — termites, cockroaches, rodents, bedbugs, mosquitoes, ants and flies. The treatment differs sharply between them, which is why we inspect before we quote: a termite problem and a cockroach problem look nothing alike in cost, method or disruption.",
+  },
+  {
+    question: "Will one treatment solve the problem?",
+    answer:
+      "Sometimes, and sometimes not — it depends on the pest, the severity and what is drawing them in. A heavy infestation, or a species with an egg stage that survives the first application, needs a follow-up. We will tell you at the assessment whether we expect one treatment or a programme, rather than quoting for one and discovering the rest later.",
+  },
+  {
+    question: "What if pests come back?",
+    answer:
+      "We return for a follow-up inspection to confirm the treatment worked. If the problem persists within the period we agreed with you, we come back. Where the cause is structural — a drainage fault, a gap in the building fabric, a refuse arrangement next door — we will tell you plainly, because no amount of re-spraying fixes that.",
+  },
+  {
+    question: "Do you work in occupied offices and clinics?",
+    answer:
+      "Yes, and it is a large part of what we do. The constraint is usually scheduling rather than chemistry: treatment is timed for evenings, weekends or shutdown periods so the re-entry window falls outside working hours. Clinics and food premises get particular attention to what must be covered, removed or re-sanitised afterwards.",
   },
 ];
 
@@ -292,12 +453,15 @@ export const BLOG_POSTS = [
   {
     slug: "why-trained-cleaners-matter",
     title: "Why Trained Cleaners Matter: The Hidden Link Between Cleaning Skills and Workplace Safety",
+    /** Shown in the <title>, which must stay under ~60 characters including the
+     *  site suffix. The full title still heads the article (review 3.1). */
+    seoTitle: "Why Trained Cleaners Matter",
     excerpt:
       "Anyone can hold a mop — but professional cleaning is a skill. Here's why trained, well-equipped cleaning personnel are essential to hygiene and safety in hospitals, hotels, offices, and embassies.",
     category: "Training & Safety",
     date: "July 12, 2026",
     readTime: "6 min read",
-    image: "/images/team-meeting.jpg",
+    image: "/photos/bisi-teru-leading-training.jpg",
   },
   {
     slug: "how-often-should-you-deep-clean",
@@ -307,7 +471,7 @@ export const BLOG_POSTS = [
     category: "Cleaning Tips",
     date: "May 5, 2025",
     readTime: "4 min read",
-    image: "/images/kitchen-cleaning.jpg",
+    image: "/photos/residential-kitchen-cabinet-cleaning.jpg",
   },
   {
     slug: "signs-of-termite-infestation",
@@ -317,17 +481,17 @@ export const BLOG_POSTS = [
     category: "Pest Control",
     date: "April 22, 2025",
     readTime: "5 min read",
-    image: "/images/pest-control-fumigation.jpg",
+    image: "/photos/pest-control-spraying-driveway.jpg",
   },
   {
     slug: "office-cleaning-productivity",
-    title: "How a Clean Office Boosts Employee Productivity by Up to 15%",
+    title: "How a Clean Office Changes the Way People Work",
     excerpt:
       "Research shows clutter and uncleanliness directly impact focus and morale. Here's how a professionally cleaned workspace drives business performance.",
     category: "Office Cleaning",
     date: "April 10, 2025",
     readTime: "3 min read",
-    image: "/images/commercial-office-sweeping.jpg",
+    image: "/photos/office-floor-scrubbing-machine.jpg",
   },
   {
     slug: "eco-friendly-cleaning-tips",
@@ -337,7 +501,7 @@ export const BLOG_POSTS = [
     category: "Cleaning Tips",
     date: "March 28, 2025",
     readTime: "4 min read",
-    image: "/images/green-uniform-office.jpg",
+    image: "/photos/office-desk-equipment-wiping.jpg",
   },
   {
     slug: "pest-control-abuja-rainy-season",
@@ -347,16 +511,16 @@ export const BLOG_POSTS = [
     category: "Pest Control",
     date: "March 15, 2025",
     readTime: "5 min read",
-    image: "/images/fumigation-office-blue.jpg",
+    image: "/photos/pest-control-spraying-driveway.jpg",
   },
   {
     slug: "move-out-cleaning-checklist",
-    title: "The Ultimate Move-Out Cleaning Checklist for Abuja Renters",
+    title: "The Move-Out Cleaning Checklist for Abuja Renters",
     excerpt:
       "Moving out? Don't lose your security deposit. Use this room-by-room checklist to leave your property spotless and dispute-free.",
     category: "Cleaning Tips",
     date: "March 1, 2025",
     readTime: "6 min read",
-    image: "/images/post-construction-living-room.jpg",
+    image: "/photos/empty-apartment-vacuuming.jpg",
   },
 ];

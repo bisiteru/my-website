@@ -1,64 +1,62 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Fraunces } from "next/font/google";
+import { SITE_URL, absolute } from "@/lib/seo";
+import { Fraunces, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import Analytics from "@/components/layout/Analytics";
 
-const jakarta = Plus_Jakarta_Sans({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  display: "swap",
-});
-
+// §4.3 — typeface pairing.
+//
+// Fraunces (display serif) for headings, Hanken Grotesk for body. This replaces
+// Montserrat + Inter: Inter is the default-looking grotesque this project set
+// out to avoid, and long Montserrat headlines sat heavy on narrow screens
+// because a geometric sans has no optical-size axis to thin out as it scales.
+//
+// Fraunces is variable on wght and opsz, so the same face can be set light and
+// airy at hero size and sturdier at card size — see the font-variation-settings
+// in globals.css. SOFT is held low (rounded terminals read friendly, not
+// childish) and WONK is left at 0, since its canted forms are too playful for a
+// facility-services brand.
+//
+// next/font self-hosts and subsets automatically, with font-display: swap.
 const fraunces = Fraunces({
-  variable: "--font-display",
+  variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["300", "400", "700", "900"],
-  style: ["normal", "italic"],
+  axes: ["SOFT", "WONK", "opsz"],
   display: "swap",
 });
+
+const hanken = Hanken_Grotesk({
+  variable: "--font-hanken",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+// §3.1 / §9.7 — preview and staging deployments must never be indexed.
+// Vercel sets VERCEL_ENV to "production" only on the production deployment.
+const isProduction = process.env.VERCEL_ENV === "production" || process.env.VERCEL_ENV === undefined;
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://dustandwipes.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Dust & Wipes Limited | Professional Cleaning & Pest Control in Abuja",
-    template: "%s | Dust & Wipes Limited",
+    default: "Cleaning & Pest Control in Abuja & Lagos | Dust & Wipes",
+    template: "%s | Dust & Wipes",
   },
   description:
-    "Abuja's most trusted cleaning and pest control company since 2017. Residential cleaning, office cleaning, deep cleaning, carpet cleaning, termite control & more. Serving all FCT districts. 650+ happy clients. Get a free quote.",
-  keywords: [
-    "cleaning company Abuja",
-    "pest control Abuja",
-    "professional cleaners Abuja FCT",
-    "deep cleaning Abuja",
-    "office cleaning Abuja",
-    "residential cleaning Abuja",
-    "carpet cleaning Abuja",
-    "termite control Abuja",
-    "rodent control Abuja",
-    "bed bug treatment Abuja",
-    "post-construction cleaning Abuja",
-    "fumigation Abuja",
-    "cleaning services Gwarinpa",
-    "cleaning services Maitama",
-    "cleaning services Wuse",
-    "cleaning services Asokoro",
-    "Dust and Wipes Limited",
-    "Dust and Wipes Abuja",
-  ],
+    "Cleaning, pest control, facility support and cleaner training in Abuja and Lagos since 2017. Licensed by EHCON and PECAN. 650+ clients served.",
   openGraph: {
     type: "website",
     locale: "en_NG",
-    url: "https://dustandwipes.com",
+    url: SITE_URL,
     siteName: "Dust & Wipes Limited",
-    title: "Dust & Wipes Limited | Professional Cleaning & Pest Control in Abuja",
+    title: "Dust & Wipes Limited | Cleaning, Pest Control & Cleaner Training in Abuja & Lagos",
     description:
-      "Abuja's most trusted cleaning and pest control company since 2017. 650+ satisfied clients across all FCT districts.",
+      "Cleaning, pest control and cleaner training since 2017, from offices in Abuja and Lagos. 650+ clients served.",
     images: [
       {
-        url: "/images/og-image.jpg",
+        url: absolute("/images/og-image.jpg"),
         width: 1200,
         height: 630,
         alt: "Dust and Wipes Limited — Professional Cleaning Team Abuja",
@@ -67,21 +65,24 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dust & Wipes Limited | Abuja Cleaning & Pest Control",
-    description: "Professional cleaning and pest control services across Abuja FCT. 650+ happy clients since 2017.",
-    images: ["/images/og-image.jpg"],
+    title: "Dust & Wipes Limited | Cleaning & Pest Control, Abuja & Lagos",
+    description: "Cleaning, pest control and cleaner training across Abuja FCT and Lagos. 650+ clients served since 2017.",
+    images: [absolute("/images/og-image.jpg")],
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
+  robots: isProduction
+    ? {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          "max-video-preview": -1,
+          "max-image-preview": "large",
+          "max-snippet": -1,
+        },
+      }
+    : // §3.1 / §9.7 — preview & staging must never be indexed
+      { index: false, follow: false, nocache: true },
 };
 
 export default function RootLayout({
@@ -90,7 +91,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${jakarta.variable} ${fraunces.variable}`}>
+    <html lang="en-NG" className={`${fraunces.variable} ${hanken.variable}`}>
       <head>
         {/* Local Business structured data */}
         <script
@@ -98,15 +99,15 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              "@id": "https://dustandwipes.com/#business",
+              "@type": ["LocalBusiness", "ProfessionalService"],
+              "@id": `${SITE_URL}/#business`,
               name: "Dust & Wipes Limited",
               legalName: "Dust and Wipes Limited",
               description:
-                "Professional cleaning and pest control services in Abuja, Nigeria. Residential, commercial, deep cleaning, carpet cleaning, fumigation and training.",
-              url: "https://dustandwipes.com",
-              logo: "https://dustandwipes.com/images/logo-192.png",
-              image: "https://dustandwipes.com/images/og-image.jpg",
+                "Professional cleaning, pest control, facility support and cleaner training in Abuja and Lagos, Nigeria.",
+              url: SITE_URL,
+              logo: absolute("/images/logo-192.png"),
+              image: absolute("/images/og-image.jpg"),
               telephone: "+2348099700001",
               email: "infodesk@dustandwipes.com",
               foundingDate: "2017-03",
@@ -114,8 +115,9 @@ export default function RootLayout({
                 "@type": "Person",
                 name: "Bisi Teru",
                 jobTitle: "Founder & CEO",
-                image: "https://dustandwipes.com/images/founder-photo.jpg",
+                image: absolute("/images/founder-photo.jpg"),
               },
+              // §9.5 — the office is in Abuja; Lagos is areaServed, not a second address
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "Suite D15, Irama Plaza, 4th Avenue",
@@ -123,11 +125,11 @@ export default function RootLayout({
                 addressRegion: "FCT",
                 addressCountry: "NG",
               },
-              geo: {
-                "@type": "GeoCoordinates",
-                latitude: 9.0765,
-                longitude: 7.3986,
-              },
+              geo: { "@type": "GeoCoordinates", latitude: 9.0765, longitude: 7.3986 },
+              areaServed: [
+                { "@type": "AdministrativeArea", name: "Abuja Federal Capital Territory, Nigeria" },
+                { "@type": "AdministrativeArea", name: "Lagos State, Nigeria" },
+              ],
               priceRange: "₦₦",
               currenciesAccepted: "NGN",
               openingHoursSpecification: [
@@ -140,49 +142,45 @@ export default function RootLayout({
                 {
                   "@type": "OpeningHoursSpecification",
                   dayOfWeek: "Saturday",
-                  opens: "08:00",
-                  closes: "16:00",
+                  opens: "07:00",
+                  closes: "18:00",
                 },
               ],
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: "5",
-                reviewCount: "7",
-                bestRating: "5",
-              },
+              // aggregateRating removed. Google's own guidance requires a
+              // review count alongside a rating, and the owner has asked that
+              // the count not be published. A rating without it is both invalid
+              // structured data and an unverifiable claim, so neither is shown.
               hasMap: "https://maps.google.com/?q=Irama+Plaza+Gwarinpa+Abuja",
-              hasOfferCatalog: {
-                "@type": "OfferCatalog",
-                name: "Cleaning & Pest Control Services",
-                itemListElement: [
-                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Residential Cleaning" } },
-                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Office Cleaning" } },
-                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Deep Cleaning" } },
-                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Pest Control" } },
-                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Carpet & Upholstery Cleaning" } },
-                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Post-Construction Cleaning" } },
-                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Training & Consultancy" } },
-                ],
-              },
+              memberOf: [
+                { "@type": "Organization", name: "ISSA — The Association for Cleaning & Facility Solutions" },
+                { "@type": "Organization", name: "Pest Control Association of Nigeria (PECAN)" },
+                { "@type": "Organization", name: "Environmental Health Council of Nigeria (EHCON)" },
+              ],
+              knowsAbout: [
+                "Commercial cleaning",
+                "Residential cleaning",
+                "Pest control",
+                "Facility management",
+                "Cleaner training",
+              ],
               sameAs: [
                 "https://instagram.com/dustandwipes",
                 "https://facebook.com/dustandwipes",
                 "https://x.com/dustandwipes",
                 "https://linkedin.com/company/dustandwipes",
               ],
-              areaServed: {
-                "@type": "AdministrativeArea",
-                name: "Abuja FCT, Nigeria",
-              },
             }),
           }}
         />
       </head>
       <body className="antialiased min-h-screen flex flex-col">
+        {/* Skip link — review 6.2. First thing in the tab order, visible only
+            when focused, so a keyboard user can jump the 20-item menu. */}
+        <a href="#main" className="skip-link">Skip to content</a>
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main id="main" className="flex-1">{children}</main>
         <Footer />
-        <WhatsAppButton />
+        <Analytics />
       </body>
     </html>
   );

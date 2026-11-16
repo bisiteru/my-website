@@ -4,7 +4,29 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Clock, Tag, Calendar } from "lucide-react";
 import { BLOG_POSTS, COMPANY } from "@/lib/constants";
-import CTABanner from "@/components/sections/CTABanner";
+import { pageSeo, absolute, SITE_URL } from "@/lib/seo";
+import { EnquirySection } from "@/components/ui/Blocks";
+
+/** §6.11 — services related to each blog category. */
+const RELATED: Record<string, { label: string; href: string }[]> = {
+  "Cleaning Tips": [
+    { label: "Residential cleaning", href: "/services#residential-cleaning" },
+    { label: "Deep cleaning", href: "/services#deep-cleaning" },
+    { label: "Carpet & upholstery", href: "/services#carpet-upholstery" },
+  ],
+  "Pest Control": [
+    { label: "Pest control & fumigation", href: "/services#pest-control" },
+    { label: "Disinfection & sanitisation", href: "/services#disinfection-sanitisation" },
+  ],
+  "Office Cleaning": [
+    { label: "Commercial & office cleaning", href: "/services#commercial-cleaning" },
+    { label: "Facility management support", href: "/services#facility-management" },
+  ],
+  "Training & Safety": [
+    { label: "Training & consultancy", href: "/training" },
+    { label: "Facility management support", href: "/services#facility-management" },
+  ],
+};
 
 type ContentBlock =
   | string
@@ -23,26 +45,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = BLOG_POSTS.find((p) => p.slug === slug);
   if (!post) return {};
-  return {
-    title: post.title,
-    description: post.excerpt,
-    keywords: [`${post.category} Abuja`, "cleaning tips", "Dust and Wipes blog"],
-    openGraph: {
-      type: "article",
-      title: post.title,
-      description: post.excerpt,
-      url: `https://dustandwipes.com/blog/${post.slug}`,
-      siteName: "Dust & Wipes Limited",
-      publishedTime: new Date(post.date).toISOString(),
-      images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: post.title }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: post.title,
-      description: post.excerpt,
-      images: ["/images/og-image.jpg"],
-    },
-  };
+  // §9.3 — each post carries its own canonical, og:url and image
+  // Every post now carries a /photos/ image, so this fallback should never
+  // fire; it stays as a guard if a future post is added without one.
+  const img = post.image?.startsWith("/photos/") ? post.image : "/images/og-image.jpg";
+  return pageSeo({
+    path: `/blog/${post.slug}`,
+    title: ("seoTitle" in post && post.seoTitle) || post.title,
+    // Excerpts are written for the card, where length does not matter; a meta
+    // description over ~160 characters is truncated by search engines
+    // mid-word (review 3.1). Trimmed here on a word boundary instead.
+    description:
+      post.excerpt.length > 157
+        ? post.excerpt.slice(0, post.excerpt.lastIndexOf(" ", 157)) + "…"
+        : post.excerpt,
+    image: img,
+    imageAlt: post.title,
+    type: "article",
+    publishedTime: new Date(post.date).toISOString(),
+  });
 }
 
 const blogContent: Record<string, ContentBlock[]> = {
@@ -51,21 +72,21 @@ const blogContent: Record<string, ContentBlock[]> = {
     { heading: "Cleaning is chemistry, not just elbow grease" },
     "Every professional cleaner works with chemicals daily — disinfectants, degreasers, descalers, sanitisers. Used correctly, they protect health. Used incorrectly, they can be dangerous. Mixing chlorine bleach with acidic cleaners releases toxic chlorine gas. Using the wrong product on the wrong surface destroys expensive finishes. Under-diluting wastes money; over-diluting leaves surfaces looking clean but still contaminated.",
     "Trained cleaners understand dwell time — the period a disinfectant must remain wet on a surface to actually kill germs. An untrained cleaner sprays and immediately wipes, achieving little more than a cosmetic shine. In a hospital ward or hotel kitchen, that difference is the difference between hygiene and the illusion of hygiene.",
-    { image: "/images/clinic-cleaning-1.jpg", alt: "Professional cleaner sanitising a clinic in Abuja", caption: "Healthcare environments demand trained hands — every surface has its own protocol." },
+    { image: "/photos/healthcare-clinic-room-cleaning.jpg", alt: "A cleaner working through a clinic treatment room", caption: "Healthcare environments demand trained hands — every surface has its own protocol." },
     { heading: "The hidden safety stakes" },
     "The International Labour Organization estimates that unsafe cleaning practices contribute to thousands of preventable workplace injuries every year — chemical burns, slip-and-fall accidents from improper wet-floor procedures, respiratory harm from poor ventilation during chemical use, and cross-contamination incidents in food and healthcare settings.",
     "Cross-contamination deserves special attention. A cloth used on a toilet and then on a door handle actively spreads pathogens through a building. Professional training instils colour-coded cloth and mop systems — red for sanitary areas, blue for general surfaces, green for kitchens — a simple discipline that dramatically cuts the spread of infection. Untrained staff, through no fault of their own, simply don't know these systems exist.",
     "There's also the equipment dimension. Modern professional cleaning relies on machines — rotary scrubbers, hot-water extraction units, industrial vacuums with HEPA filtration. In untrained hands these machines are hazards; in trained hands they deliver results no amount of manual scrubbing can match.",
     { heading: "Why it matters most in high-stakes environments" },
     "In hospitals and clinics, cleaning staff are genuinely part of the infection-control team. Studies show that improved cleaning protocols alone can cut hospital-acquired infections significantly. In hotels, cleanliness is the single biggest driver of guest reviews. In embassies and secure facilities, cleaning personnel need discipline, vetting, and protocol awareness that goes far beyond the mop. In offices, the quality of cleaning quietly shapes sick-day rates and staff morale.",
-    { image: "/images/green-uniform-office.jpg", alt: "Uniformed professional cleaner at work in an Abuja office", caption: "Uniformed, trained personnel signal professionalism — and deliver measurably better outcomes." },
+    { image: "/photos/corridor-team-mopping.jpg", alt: "Two uniformed cleaners mopping an office corridor", caption: "Uniformed, trained personnel signal professionalism — and the work shows it." },
     { heading: "Training transforms the cleaner too" },
-    "There's a human side to this. When cleaning staff are trained, certified, and properly equipped, their work changes character — from casual labour to a profession with standards, career progression, and dignity. Trained cleaners take visible pride in their work, stay longer with employers, and become trusted custodians of the spaces they maintain. Investing in cleaner training is one of the rare decisions that improves safety, quality, staff retention, and morale simultaneously.",
+    "There's a human side to this. When cleaning staff are trained and properly equipped, their work changes character — from casual labour to a profession with standards, career progression, and dignity. Trained cleaners take visible pride in their work, stay longer with employers, and become trusted custodians of the spaces they maintain. Investing in cleaner training is one of the rare decisions that improves safety, quality, staff retention, and morale simultaneously.",
     { heading: "What to look for in a cleaning provider" },
-    "Whether you manage a hospital, hotel, embassy, school, or office, ask any prospective cleaning provider these questions: Are your staff formally trained, and in what? Do you use colour-coded systems to prevent cross-contamination? Are your chemicals certified and correctly diluted? Are staff trained on the equipment they operate? Can you show vetting and supervision processes? A professional provider will answer confidently; the rest will improvise.",
-    { image: "/images/team-meeting.jpg", alt: "Dust and Wipes training session for cleaning professionals in Abuja", caption: "A Dust & Wipes training session — where cleaning skills, safety, and standards are built." },
+    "Whether you manage a hospital, hotel, embassy, school, or office, ask any prospective cleaning provider these questions: Are your staff formally trained, and in what? Do you use colour-coded systems to prevent cross-contamination? Are your chemicals used strictly to their label and correctly diluted? Are staff trained on the equipment they operate? Can you show vetting and supervision processes? A professional provider will answer confidently; the rest will improvise.",
+    { image: "/photos/bisi-teru-leading-training.jpg", alt: "Bisi Teru standing before a seated group, leading a training session", caption: "A Dust & Wipes training session — where cleaning skills, safety and standards are built." },
     { heading: "Our commitment at Dust & Wipes" },
-    "At Dust and Wipes Limited, this philosophy is in our DNA — our company was founded on the belief that cleaners deserve proper training, fair treatment, and professional respect. Beyond delivering cleaning services, we offer professional training programmes for cleaners and pest control technicians, covering chemical safety, infection control, equipment operation, and workplace protocols. Our goal is simple: to raise the standard of cleanliness and safety in Abuja's workplaces — hospitals, hotels, embassies, offices, and beyond — one trained professional at a time.",
+    "At Dust and Wipes Limited this is the belief the company was founded on: that cleaners deserve proper training, fair treatment and professional respect. Beyond delivering cleaning services, we offer professional training programmes for cleaners and pest control technicians, covering chemical safety, infection control, equipment operation, and workplace protocols. Our goal is simple: to raise the standard of cleanliness and safety in Abuja's workplaces — hospitals, hotels, embassies, offices, and beyond — one trained professional at a time.",
     "If your organization would like to train its cleaning team, or you'd like your facility cleaned by personnel trained to these standards, contact us today. Cleanliness is too important to leave to chance.",
   ],
   "how-often-should-you-deep-clean": [
@@ -102,7 +123,7 @@ const blogContent: Record<string, ContentBlock[]> = {
     "3. Make vinegar and baking soda your allies. White vinegar cuts grease, descales kettles, and shines windows; baking soda deodorises fridges, lifts stains, and scrubs sinks without scratching. Together they handle a surprising share of household cleaning safely and cheaply.",
     "4. Ventilate naturally. Instead of masking odours with aerosol fresheners — which add chemicals to your indoor air — open windows during cooler morning hours, use indoor plants, and place bowls of baking soda in problem areas.",
     "5. Dose correctly. More detergent does not mean cleaner clothes or floors — it means residue, wasted money, and more chemicals down the drain. Follow dosage instructions and you'll often find half the recommended amount does the job.",
-    "At Dust & Wipes Limited, eco-friendly practice is one of our core values — we use non-toxic, biodegradable products across all our residential and commercial cleaning services in Abuja. If you'd like a professional clean that's safe for children, pets, and the planet, get in touch for a free quote.",
+    "At Dust & Wipes Limited, eco-friendly practice is one of our core values — we use biodegradable products that are safe for children and pets across our residential and commercial cleaning services in Abuja and Lagos. (Pest control is a separate matter: those chemicals are hazardous by design, which is why we treat them under a strict written protocol.) If you'd like a professional clean that is gentle on your home and the environment, get in touch for a free quote.",
   ],
   "pest-control-abuja-rainy-season": [
     "Every year between April and October, Abuja's rainy season transforms the pest landscape of the FCT. Heavy rains flood burrows, saturate soil, and drive cockroaches, rodents, ants, and termites out of their natural habitats — and straight into homes and offices. If you've noticed more unwanted visitors when the rains arrive, you're not imagining it.",
@@ -110,7 +131,7 @@ const blogContent: Record<string, ContentBlock[]> = {
     "Cockroaches and ants move indoors seeking dry shelter and food. Kitchens, bathrooms, and drainage areas are their first stops. Sealing entry points, fixing leaking pipes, and applying targeted gel baits and residual treatments keeps them out before an infestation establishes.",
     "Termites become especially active in moist soil. The rainy season is when subterranean termites expand their colonies and send out swarmers — those winged insects you see around lights after a downpour. Pre-emptive soil treatment around your foundation is far cheaper than repairing structural damage later.",
     "Rodents also seek higher, drier ground when burrows flood. Store food in sealed containers, clear clutter from stores and garages, and treat at the first sign of droppings — a single pair of rats can produce dozens of offspring in one season.",
-    "Our advice to Abuja residents: schedule a comprehensive pest treatment just before the rains begin (March–April), with a follow-up mid-season. Dust & Wipes Limited's certified technicians use family-safe, low-toxicity treatments and provide follow-up inspections. Book your rainy-season treatment today — prevention costs far less than cure.",
+    "Our advice to Abuja residents: schedule a comprehensive pest treatment just before the rains begin (March–April), with a follow-up mid-season. Dust & Wipes Limited is licensed by EHCON and PECAN and holds an AMAC Operational Permit. Pest products are hazardous by design, so every job starts with a site assessment and ends with clear written re-entry instructions. Book your rainy-season treatment today — prevention costs far less than cure.",
   ],
   "move-out-cleaning-checklist": [
     "Moving out of a rented property in Abuja? Your security deposit — often equivalent to months of rent — can hinge on the state you leave the property in. Landlords and agents inspect thoroughly, and 'cleaning costs' are the most common deduction. This room-by-room checklist will help you leave nothing to chance.",
@@ -149,72 +170,77 @@ export default async function BlogPostPage({ params }: Props) {
               "@type": "Article",
               headline: post.title,
               description: post.excerpt,
-              image: "https://dustandwipes.com/images/og-image.jpg",
+              image: absolute("/images/og-image.jpg"),
               datePublished: new Date(post.date).toISOString(),
               author: {
                 "@type": "Organization",
                 name: "Dust & Wipes Limited",
-                url: "https://dustandwipes.com",
+                url: SITE_URL,
               },
               publisher: {
                 "@type": "Organization",
                 name: "Dust & Wipes Limited",
                 logo: {
                   "@type": "ImageObject",
-                  url: "https://dustandwipes.com/images/logo-192.png",
+                  url: absolute("/images/logo-192.png"),
                 },
               },
-              mainEntityOfPage: `https://dustandwipes.com/blog/${post.slug}`,
+              mainEntityOfPage: absolute(`/blog/${post.slug}`),
             },
             {
               "@context": "https://schema.org",
               "@type": "BreadcrumbList",
               itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Home", item: "https://dustandwipes.com" },
-                { "@type": "ListItem", position: 2, name: "Blog", item: "https://dustandwipes.com/blog" },
-                { "@type": "ListItem", position: 3, name: post.title, item: `https://dustandwipes.com/blog/${post.slug}` },
+                { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+                { "@type": "ListItem", position: 2, name: "Blog", item: absolute("/blog") },
+                { "@type": "ListItem", position: 3, name: post.title, item: absolute(`/blog/${post.slug}`) },
               ],
             },
           ]),
         }}
       />
 
-      {/* Hero */}
-      <section className="hero-bg pt-32 pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10"
-          style={{ backgroundImage: `linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px)`, backgroundSize: "40px 40px" }}
-        />
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-white/70 hover:text-white text-sm mb-8 transition-colors"
-          >
-            <ArrowLeft size={16} />
-            Back to Blog
-          </Link>
-          <div className="flex items-center gap-3 mb-5 flex-wrap">
-            <span className="bg-white/10 border border-white/20 text-white/80 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1">
-              <Tag size={11} />
+      {/* Light article header — matches every other inner page (review 1.3) */}
+      <section className="border-b border-[var(--c-border)] bg-[var(--c-bg)] pt-28 pb-12 sm:pt-32 sm:pb-14">
+        <div className="container-dw max-w-3xl">
+          <nav aria-label="Breadcrumb">
+            <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.8125rem] text-[var(--c-ink-2)]">
+              <li><Link href="/" className="inline-flex min-h-[24px] items-center hover:text-[var(--c-green-700)]">Home</Link></li>
+              <li className="flex items-center gap-2">
+                <span aria-hidden="true" className="text-[var(--c-border)]">/</span>
+                <Link href="/blog" className="inline-flex min-h-[24px] items-center hover:text-[var(--c-green-700)]">Blog</Link>
+              </li>
+              <li className="flex items-center gap-2">
+                <span aria-hidden="true" className="text-[var(--c-border)]">/</span>
+                <span aria-current="page" className="font-medium text-[var(--c-green-800)]">{post.category}</span>
+              </li>
+            </ol>
+          </nav>
+          <div className="mt-7 flex flex-wrap items-center gap-3">
+            <span className="flex items-center gap-1 rounded-full bg-[var(--c-green-50)] px-3 py-1 text-xs font-semibold text-[var(--c-green-700)]">
+              <Tag size={11} aria-hidden="true" />
               {post.category}
             </span>
-            <span className="text-white/60 text-xs flex items-center gap-1">
-              <Clock size={11} />
+            <span className="flex items-center gap-1 text-xs text-[var(--c-ink-2)]">
+              <Clock size={11} aria-hidden="true" />
               {post.readTime}
             </span>
-            <span className="text-white/60 text-xs flex items-center gap-1">
-              <Calendar size={11} />
+            <span className="flex items-center gap-1 text-xs text-[var(--c-ink-2)]">
+              <Calendar size={11} aria-hidden="true" />
               {post.date}
             </span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-black text-white mb-5 leading-tight">
+          <h1 className="h1-display mt-4 !text-[clamp(1.875rem,1.4rem+1.9vw,2.75rem)]">
             {post.title}
           </h1>
-          <p className="text-white/70 text-lg">{post.excerpt}</p>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-            <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="white" />
-          </svg>
+          <p className="lede mt-5">{post.excerpt}</p>
+          <Link
+            href="/blog"
+            className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-[var(--c-green-700)] transition-colors hover:text-[var(--c-green-800)]"
+          >
+            <ArrowLeft size={16} aria-hidden="true" />
+            All articles
+          </Link>
         </div>
       </section>
 
@@ -234,7 +260,7 @@ export default async function BlogPostPage({ params }: Props) {
               />
             </div>
           ) : (
-            <div className="w-full h-64 bg-gradient-to-br from-[#0b8441]/10 to-[#dd4c2f]/10 rounded-3xl flex items-center justify-center text-8xl mb-10">
+            <div className="mb-10 flex h-64 w-full items-center justify-center rounded-2xl bg-[var(--c-green-50)]">
               {post.category === "Pest Control" ? "🐛" : post.category === "Office Cleaning" ? "🏢" : "🧹"}
             </div>
           )}
@@ -244,7 +270,7 @@ export default async function BlogPostPage({ params }: Props) {
             {content.map((block, i) => {
               if (typeof block === "string") {
                 return (
-                  <p key={i} className="text-gray-700 leading-relaxed mb-5 text-base">
+                  <p key={i} className="text-[var(--c-ink-2)] leading-relaxed mb-5 text-base">
                     {block}
                   </p>
                 );
@@ -253,7 +279,7 @@ export default async function BlogPostPage({ params }: Props) {
                 return (
                   <h2
                     key={i}
-                    className="text-2xl font-bold text-gray-900 mt-10 mb-4"
+                    className="text-2xl font-bold text-[var(--c-green-800)] mt-10 mb-4"
                     style={{ fontFamily: "var(--font-display), Georgia, serif" }}
                   >
                     {block.heading}
@@ -272,7 +298,7 @@ export default async function BlogPostPage({ params }: Props) {
                     />
                   </div>
                   {block.caption && (
-                    <figcaption className="text-center text-sm text-gray-400 mt-3 italic">
+                    <figcaption className="text-center text-sm text-[var(--c-ink-2)] mt-3 italic">
                       {block.caption}
                     </figcaption>
                   )}
@@ -281,52 +307,60 @@ export default async function BlogPostPage({ params }: Props) {
             })}
           </article>
 
-          {/* Author / CTA box */}
-          <div className="mt-12 bg-gradient-to-br from-[#0b8441]/5 to-[#dd4c2f]/5 rounded-3xl p-8 border border-gray-100">
+          {/* Author box (§6.11) */}
+          <div className="mt-12 card p-7">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#0b8441] flex items-center justify-center text-white font-black text-lg shrink-0">
-                D&W
-              </div>
-              <div className="flex-1">
-                <div className="font-bold text-gray-900 mb-1">Dust & Wipes Limited</div>
-                <p className="text-sm text-gray-500 mb-4">
-                  Professional cleaning and pest control services across Abuja FCT. We&apos;re here to help you maintain a spotless, pest-free space.
+              <Image
+                src="/images/founder-photo.jpg"
+                alt="Bisi Teru, Founder and CEO of Dust and Wipes Limited"
+                width={64}
+                height={64}
+                className="h-16 w-16 shrink-0 rounded-full object-cover"
+              />
+              <div>
+                <p className="eyebrow">Written by</p>
+                <p className="mt-1 font-semibold text-[var(--c-green-800)]">Bisi Teru</p>
+                <p className="text-[0.875rem] text-[var(--c-ink-2)]">
+                  Founder &amp; CEO, Dust and Wipes Limited
                 </p>
-                <a
-                  href={`https://wa.me/${COMPANY.whatsapp.replace("+", "")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-[#0b8441] text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#076634] transition-all"
-                >
-                  Book a Service Today
-                </a>
+                <p className="mt-3 text-[0.9375rem] text-[var(--c-ink-2)]">
+                  Bisi founded Dust and Wipes in Abuja in 2017 after more than a decade in
+                  operations and IT management, on the belief that better cleaning starts with
+                  better equipped people.
+                </p>
               </div>
             </div>
           </div>
 
-          {/* Related posts */}
-          {related.length > 0 && (
-            <div className="mt-16">
-              <h3 className="text-xl font-bold text-gray-900 mb-6">Related Articles</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {related.map((p) => (
-                  <Link key={p.slug} href={`/blog/${p.slug}`} className="group">
-                    <div className="h-28 bg-gradient-to-br from-[#0b8441]/10 to-[#dd4c2f]/10 rounded-xl flex items-center justify-center text-4xl mb-3">
-                      {p.category === "Pest Control" ? "🐛" : "🧹"}
-                    </div>
-                    <h4 className="text-sm font-bold text-gray-900 group-hover:text-[#0b8441] transition-colors line-clamp-2">
-                      {p.title}
-                    </h4>
-                    <p className="text-xs text-gray-400 mt-1">{p.date}</p>
+          {/* Related services (§6.11) */}
+          <div className="mt-8">
+            <p className="eyebrow">Related services</p>
+            <ul className="mt-4 flex flex-wrap gap-2.5">
+              {RELATED[post.category]?.map((r) => (
+                <li key={r.href}>
+                  <Link
+                    href={r.href}
+                    className="inline-flex rounded-full border border-[var(--c-border)] bg-[var(--c-surface)] px-4 py-2 text-[0.875rem] font-medium text-[var(--c-green-800)] transition-colors hover:border-[var(--c-green-600)] hover:text-[var(--c-green-700)]"
+                  >
+                    {r.label}
                   </Link>
-                ))}
-              </div>
-            </div>
-          )}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
-      <CTABanner />
+      <EnquirySection
+        eyebrow="From reading to doing"
+        title="Would you rather we handled it?"
+        lede="Everything above is written so you can do it yourself. If you would rather not, that is what we are for — in Abuja and Lagos, for homes and for organisations."
+        points={[
+          "A written quote itemised by task, within two working hours.",
+          "One-off, recurring or a monthly retainer — whichever suits the space.",
+          "No charge and no obligation for the quote or the site assessment.",
+        ]}
+      />
     </>
   );
 }
